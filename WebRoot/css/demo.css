@@ -1,0 +1,227 @@
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'codropsicons';
+	src:url('../fonts/jq22icons/jq22icons.eot');
+	src:url('../fonts/jq22icons/jq22icons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/jq22icons/jq22icons.woff') format('woff'),
+		url('../fonts/jq22icons/jq22icons.ttf') format('truetype'),
+		url('../fonts/jq22icons/jq22icons.svg#jq22icons') format('svg');
+}
+
+*, *::after, *::before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+.clearfix::before, .clearfix::after {display: table;  content: ''; }
+.clearfix::after { clear: both; }
+
+/* Content */
+
+.section--intro {
+	background: linear-gradient(90deg, #58A8FB, #465683);
+}
+
+.section--portraits {
+	background: linear-gradient(20deg, #F5F0F9, #A8CFF1);
+}
+
+.section--cards {
+	background: #FFB8CC;
+}
+
+.section__heading {
+	pointer-events: none;
+	padding: 5% 0 0 70%;/*控制思博课三个字的位置*/
+	font-size: 2em;
+	float:left;
+	text-align:left;
+	line-height: 1;
+	color: #fff;
+	position: relative;
+	margin: 0;
+	z-index: 1000;
+	font-family: 'Playfair Display', serif;
+}
+
+
+/*.section__heading em {
+	font-family: sans-serif;
+	font-style: normal;
+	text-transform: uppercase;
+	font-size: 0.3em;
+	border-top: 3px solid #fff;
+	border-bottom: 3px solid #fff;
+	padding: 0.15em 0;
+	vertical-align: middle;
+	display: inline-block;
+	letter-spacing: 0.05em;
+}*/
+
+.section__subtitle {
+	pointer-events: none;
+	font-size: 1.25em;
+	max-width: 500px;
+	position: relative;
+	z-index: 1000;
+}
+
+.section--portraits .section__subtitle {
+	color: #688CB1;
+}
+
+.section--right .section__subtitle {
+	margin: 1em 0 0 auto;
+}
+
+.interval {
+	position: relative;
+	padding: 30vh 20vw;
+	background: #1C222F;
+	overflow: hidden;
+}
+
+.interval__text {
+	font-size: 1.75em;
+	line-height: 1.5;
+	color: #777792;
+}
+
+/* Related demos */
+.content--related {
+	text-align: center;
+	font-weight: bold;
+	padding: 10vh 2vw;
+	background: #1C222F;
+	color: #fff;
+}
+
+.media-item {
+	display: inline-block;
+	padding: 1em;
+	vertical-align: top;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+.media-item__img {
+	max-width: 100%;
+	opacity: 0.3;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.media-item:hover .media-item__img,
+.media-item:focus .media-item__img {
+	opacity: 1;
+}
+
+.media-item__title {
+	margin: 0;
+	padding: 0.5em;
+	font-size: 1em;
+}
+
+.pater {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	color: #fff;
+	width: 320px;
+	padding: 2em 2em 2em 0;
+	text-align: right;
+	z-index: 100000;
+}
+
+.demo-2 .pater {
+	position: absolute;
+}
+
+.pater::before {
+	content: '';
+	position: absolute;
+	background: url(../img/ink.png) no-repeat top left;
+	width: 491px;
+	height: 332px;
+	top: -80px;
+	left: -60px;
+	z-index: 0;
+	opacity: 0.9;
+	-webkit-transform: translate3d(10px,10px,0);
+	transform: translate3d(10px,10px,0);
+	-webkit-transition: opacity 0.3s, -webit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	pointer-events: none;
+}
+
+.pater:hover::before {
+	opacity: 1;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+.pater__title::before {
+	content: 'Sponsored by';
+	position: absolute;
+	bottom: 93%;
+	left: 27%;
+	font-weight: bold;
+	letter-spacing: 2px;
+	font-size: 0.45em;
+	color: #212738;
+}
+
+.pater__title,
+.pater__desc {
+	margin: 0;
+	color: #fff;
+	position: relative;
+}
+
+.pater__title {
+	-webkit-transform: translate3d(5px,10px,0);
+	transform: translate3d(5px,10px,0);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.pater:hover .pater__title {
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+.pater__title img {
+	width: 90%;
+}
+
+.pater__desc {
+	font-weight: 600;
+	padding: 0.3em 0 0 0.3em;
+}
+
+@media screen and (max-width: 50em) {
+	
+	.interval {
+		padding: 1.5em;
+	}
+	.interval__text {
+		font-size: 1.25em;
+		padding: 0 0 3em 0;
+	}
+	.section__heading {
+		font-size: 2.5em;
+	}
+	.section__subtitle {
+		display: none;
+	}
+	.jq22-demos {
+		margin: 0.5em 0;
+		font-size: 0.75em;
+	}
+	
+	.demo-2 .pater {
+		position: relative;
+		display: block;
+		background: none;
+		margin: 0 0 0 auto;
+		padding: 0;
+		width: 100%;
+	}
+}
