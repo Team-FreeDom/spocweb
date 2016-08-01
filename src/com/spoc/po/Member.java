@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class Member {
 
 	@Id
-	private int loginid;
+	private String loginid;
 	private String password;
 	private String name;
 	private String sex;
@@ -25,10 +25,10 @@ public class Member {
 	private String job;
 	private int flag;
 	private int adminid;
-	public int getLoginid() {
+	public String getLoginid() {
 		return loginid;
 	}
-	public void setLoginid(int loginid) {
+	public void setLoginid(String loginid) {
 		this.loginid = loginid;
 	}
 	public String getPassword() {
@@ -121,7 +121,7 @@ public class Member {
 	public void setAdminid(int adminid) {
 		this.adminid = adminid;
 	}
-	public Member(int loginid, String password, String name, String sex,
+	public Member(String loginid, String password, String name, String sex,
 			String img, String date, String college, String grade,
 			String major, String qq, String phone, String address,
 			String introduction, String job, int flag, int adminid) {
