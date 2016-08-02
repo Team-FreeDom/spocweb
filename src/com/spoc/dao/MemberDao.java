@@ -21,7 +21,7 @@ public class MemberDao {
 	{
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Member where flag=?");
-		query.setInteger(0, 1);
+		query.setInteger(0, 2);
 		List<Member> list=query.list();
 		
 		return list;
@@ -31,9 +31,28 @@ public class MemberDao {
 	{
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Member where flag=?");
-		query.setInteger(0, 2);
+		query.setInteger(0, 1);
 		List<Member> list=query.list();
 		
 		return list;
+	}
+	
+	public Member getMember(Member member)
+	{
+		Session session=sessionFactory.openSession();
+		Query query=session.createQuery("from Member where name=?");
+		query.setString(0, member.getName());
+		Member member1=(Member) query.uniqueResult();
+		
+		return member1;
+		
+	}
+	
+	public void deleteMember(Member member)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.delete(member);
+		session.getTransaction().commit();
 	}
 }
