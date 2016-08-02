@@ -7,22 +7,7 @@
 <link href="../css/admin1.css" type="text/css" rel="stylesheet">
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-<SCRIPT language=javascript>
-	function expand(el)
-	{
-		childObj = document.getElementById("child" + el);
-
-		if (childObj.style.display == 'none')
-		{
-			childObj.style.display = 'block';
-		}
-		else
-		{
-			childObj.style.display = 'none';
-		}
-		return;
-	}
-</SCRIPT>
+<script src="../js/main.js"></script>
 </head>
 
 <body>
@@ -64,11 +49,11 @@
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
                             
-                            <td><a class=menuchild href="../list.html" target=main>老师管理</a></td>
+                            <td><a class=menuchild href="#">老师管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#" target="main">学生管理</a></td>
+                            <td><a class=menuchild  href="#">学生管理</a></td>
                           </tr>
                           <tr height=4>
                             <td colspan=2></td>
@@ -78,7 +63,7 @@
                         
                         <table class="admin_table">
                           <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent  href="../list.html" target="main">荣誉管理</a></td></tr>
+                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent  href="#">荣誉管理</a></td></tr>
                           <tr height=4>
                             <td></td>
                           </tr>
@@ -86,7 +71,7 @@
                         
                         <table class="admin_table">
                           <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent href="../list2.html" target="main">作品管理</a></td>
+                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent href="#">作品管理</a></td>
                           </tr>
                           <tr height=4>
                             <td></td>
@@ -104,15 +89,15 @@
                         <table id=child4 style="display: none"class="text-left admin_table">
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#" target=main>业务申请管理</a></td>
+                            <td><a class=menuchild  href="#">业务申请管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#" target=main>业务处理管理</a></td>
+                            <td><a class=menuchild  href="#">业务处理管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#" target=main>业务类型管理</a></td>
+                            <td><a class=menuchild  href="#">业务类型管理</a></td>
                           </tr>
                           <tr height=4>
                             <td colspan=2></td>
@@ -129,11 +114,11 @@
                         <table id=child5 style="display: none"  class="text-left admin_table">
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild href="#" target=main>报名申请管理</a></td>
+                            <td><a class=menuchild href="#">报名申请管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#" target=main>报名处理管理</a></td>
+                            <td><a class=menuchild  href="#">报名处理管理</a></td>
                           </tr>
                           <tr height=4>
                             <td colspan=2></td>
@@ -159,8 +144,8 @@
                         </div>
                         
                         <div class="row admin_black admin_spacing">
-                            <div class="col-md-2 col-xs-5">管理人员基本信息表</div>
-                            <div class="col-md-7 hidden-xs"></div>
+                            <div class="col-md-3 col-xs-5">管理人员基本信息表</div>
+                            <div class="col-md-6 hidden-xs"></div>
                             <div class="col-md-3 col-xs-7">
                                 <span>
                                     <a  data-toggle="modal" data-target=".bs-example-modal-lg" href="#">
@@ -175,17 +160,55 @@
                                 <!-- Large modal -->
                                 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                                   <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
+                                    <div class="modal-content text-center" style="width:1000px;">
                                       <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                                           </div>
                                           <div class="modal-body">
-                                            <h1 style="color:#000;">具体内容暂定</h1>
+                                          		<div class="table admin_color">
+                                                	<table>
+                                                    	<tr>
+                                                        	<td>名字</td>
+                                                            <td>性别</td>
+                                                            <td>照片</td>
+                                                            <td>出身</td>
+                                                            <td>学院</td>
+                                                            <td>年纪</td>
+                                                            <td>班级</td>
+                                                            <td>QQ</td>
+                                                            <td>电话</td>
+                                                            <td>地址</td>
+                                                            <td>介绍</td>
+                                                            <td>组别</td>
+                                                        </tr>
+                                                        <tr>
+                                                        	<td><input type="text" class="form-control"  style="height:130px;"></td>
+                                                            <td><input type="text" class="form-control"  style="height:130px;"></td>
+                                                            <td>
+																	<form action="" style="width:100px;">
+																	<input type="file" name="imgOne" id="imgOne" onchange="preImg(this.id,'imgPre');" />
+																	<img id="imgPre" src="" width="100px" height="120px" style="display: block;" />
+																	</form>
+
+                                                                
+                                                            </td>
+                                                            <td><input type="text"  class="form-control" style="height:130px;"></td>
+                                                            <td><input type="text" class="form-control"  style="height:130px;"></td>
+                                                            <td><input type="text" class="form-control"  style="height:130px;"></td>
+                                                            <td><input type="text" class="form-control"  style="height:130px;"></td>
+                                                            <td><textarea  class="form-control" style="height:130px;"></textarea></td>
+                                                            <td><textarea  class="form-control" style="height:130px;"></textarea></td>
+                                                            <td><textarea  class="form-control" style="height:130px;"></textarea></td>
+                                                            <td><textarea  class="form-control" style="height:130px;"></textarea></td>
+                                                            <td><input type="text" class="form-control"  style="height:130px;"></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button></div>
+                                         </div>
                                     </div>
                                   </div>
                                 </div>
@@ -269,7 +292,6 @@
                             </div>
                         </div>
                         <script>
-                        
                             var tabBox = document.getElementById("tabBox"),
                                 //tab = tabBox.getElementsByClassName("tab"),
                                 tab = [0,1,2,3],
