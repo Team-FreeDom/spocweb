@@ -40,4 +40,8 @@ imgPre.src = url;
 }
 
 
+function fun(obj){
+	var div = document.getElementById("modal");
+		div.style.display = "none";
+}
 								
