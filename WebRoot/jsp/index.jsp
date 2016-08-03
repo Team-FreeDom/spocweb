@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -445,121 +446,77 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <td>进阶版（1w）</td>
                                     <td>无忧版（3w）</td>
                                 </tr>
+                                
                                 <tr>
                                 <td class="danger" colspan="4">美工类</td>
                                 </tr>
+                               <c:forEach items='${affairs}' var="affair">  
+                              <c:if test="${affair.type=='美工类' }">   
                                 <tr>
-                                	<td>PPT美化</td>
-                                    <td>无</td>
-                                    <td>20张</td>
-                                    <td>无</td>
+                                	<td>${affair.description}</td>
+                                    <td>${affair.basic}</td>
+                                    <td>${affair.advance}</td>
+                                    <td>${affair.careless}</td>
                                 </tr>
-                                <tr>
-                                	<td>素材采集</td>
-                                    <td>四小时</td>
-                                    <td>32小时</td>
-                                    <td>无</td>
-                                </tr>
-                                <tr>
-                                	<td>平面素材设计</td>
-                                    <td>5张内</td>
-                                    <td>40张内</td>
-                                    <td>暂无</td>
-                                </tr>
-                                <tr>
-                                	<td>视频剪辑</td>
-                                    <td>8分钟</td>
-                                    <td>64分钟</td>
-                                    <td>暂无</td>
-                                </tr>
+                             </c:if> 
+                              </c:forEach> 
+                                
                                 <tr>
                                 <td class="danger" colspan="4">特效类</td>
                                 </tr>
-                                  <tr>
-                                	<td>动画特效</td>
-                                    <td>限PPT内，2套</td>
-                                    <td>16套</td>
-                                    <td>暂无</td>
-                                </tr>
+                             <c:forEach items='${affairs}' var="affair">  
+                              <c:if test="${affair.type=='特效类' }">   
                                 <tr>
-                                	<td>字幕特效</td>
-                                    <td>3套</td>
-                                    <td>10套</td>
-                                    <td>暂无</td>
+                                	<td>${affair.description}</td>
+                                    <td>${affair.basic}</td>
+                                    <td>${affair.advance}</td>
+                                    <td>${affair.careless}</td>
                                 </tr>
-                                <tr>
-                                	<td>光特效</td>
-                                    <td>1套</td>
-                                    <td>5套</td>
-                                    <td>暂无</td>
-                                </tr>
-                                <tr>
-                                	<td>片头</td>
-                                    <td>PPT简易片头</td>
-                                    <td>特效片头</td>
-                                    <td>暂无</td>
-                                </tr>
+                             </c:if> 
+                              </c:forEach>   
+                               
                                 <tr>
                                 <td class="danger" colspan="4">拍摄类</td>
                                 </tr>
-                                  <tr>
-                                	<td>室外拍摄</td>
-                                    <td>30分钟</td>
-                                    <td>4小时</td>
-                                    <td>暂无</td>
+                             <c:forEach items='${affairs}' var="affair">  
+                              <c:if test="${affair.type=='拍摄类' }">   
+                                <tr>
+                                	<td>${affair.description}</td>
+                                    <td>${affair.basic}</td>
+                                    <td>${affair.advance}</td>
+                                    <td>${affair.careless}</td>
                                 </tr>
-                                 <tr>
-                                	<td>室内拍摄</td>
-                                    <td>1小时</td>
-                                    <td>8小时</td>
-                                    <td>暂无</td>
-                                </tr>
-                                 <tr>
-                                	<td>无人机拍摄</td>
-                                    <td>无</td>
-                                    <td>20分钟</td>
-                                    <td>暂无</td>
-                                </tr>
+                             </c:if> 
+                              </c:forEach>    
+                                 
+                                 
                                 <tr>
                                 <td class="danger" colspan="4">其他</td>
                                 </tr>
-                                 <tr>
-                                	<td>音频处理</td>
-                                    <td>人声去噪</td>
-                                    <td>环境人生去噪</td>
-                                    <td>暂无</td>
-                                </tr>
+                            <c:forEach items='${affairs}' var="affair">  
+                              <c:if test="${affair.type=='其他' }">   
                                 <tr>
-                                	<td>背景音</td>
-                                    <td>1首</td>
-                                    <td>2首</td>
-                                    <td>暂无</td>
+                                	<td>${affair.description}</td>
+                                    <td>${affair.basic}</td>
+                                    <td>${affair.advance}</td>
+                                    <td>${affair.careless}</td>
                                 </tr>
-                                <tr>
-                                	<td>后期字幕</td>
-                                    <td>无</td>
-                                    <td>无</td>
-                                    <td>暂无</td>
-                                </tr>
-                                <tr>
-                                	<td>策划设计</td>
-                                    <td>无</td>
-                                    <td>无</td>
-                                    <td>有</td>
-                                </tr>
+                             </c:if> 
+                              </c:forEach>   
+                             
                            </table>
                         </div>
                         <div class="col-md-2 col-xs-2" id="fourth">
                         	<span id="span" style="color:#b04a34;">收费指南</span>
                         	<ul class="list-unstyled fourth_right">
-                            	<li>微课慕课</li>
-                                <li>广告</li>
-                                <li>视频</li>
+                            	<li><a href="affair.do?name=微课慕课">微课慕课</a></li>
+                                <li><a href="affair.do?name=广告">广告</a></li>
+                                <li><a href="affair.do?name=视频">视频</a></li>
                             </ul>
                             
                             <ul class="list-unstyled">
-                            	<li>行业软件</li>
-                                <li>商业活动软件</li>
+                            	<li><a href="affair.do?name=行业软件">行业软件</a></li>
+                                <li><a href="affair.do?name=商业活动软件">商业活动软件</a></li>
                                 <li class="gray">游戏软件</li>
                                 <li class="gray">VR视频</li>
                                 <li class="gray">VR游戏</li>
