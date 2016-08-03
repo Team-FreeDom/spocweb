@@ -424,23 +424,25 @@
 
     $(function () {
 		$('[data-toggle="tooltip"]').tooltip();
-		
+		var myPlayer = videojs("example_video_2");
 		$('#myModal').on('show.bs.modal', function (e) {
 			var str=(e.relatedTarget).getAttribute("data");
 			var title=(e.relatedTarget).getAttribute("tle");
 			$('#myModal h4').html(title);
-			videojs("example_video_2").ready(function(){
-				this.src(str);
+			myPlayer.ready(function(){
+				this.on("ended", function(){
+					 //this.dispose(); 
+					 this.pause();
+				});
+				this.src({type: "video/mp4", src: str});
 				this.play();
-			});	
-		
+			});
+			myPlayer.preload();
 		})
 		
 		$('#myModal').on('hidden.bs.modal', function (e) {
-					var myPlayer = videojs('example_video_2'); ///视频插件的idexample_video_1
-					myPlayer.pause();
-					//myPlayer.currentTime(0);
-					//myPlayer.hide();
+			if(!myPlayer.paused)
+				myPlayer.pause();
 		})
 		
 
