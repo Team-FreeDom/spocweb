@@ -28,4 +28,27 @@ public class MemberService {
 		
 	   return memberDao.getTeachers();
 	}
+	
+	public Member getMember(String membername)
+	{
+		Member member=new Member();
+		member.setName(membername);
+		
+		
+		return memberDao.getMember(member);
+		
+		
+	}
+	
+	public void deleteMembers(String[] str)
+	{
+	   Member member=null;
+		for(int i=0;i<str.length;i++)
+		{
+			member=new Member();
+			member.setLoginid(str[i]);
+			memberDao.deleteMember(member);
+			
+		}
+	}
 }
