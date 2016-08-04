@@ -45,9 +45,7 @@
 .admin_input{
 	height:130px;}
 .admin_hide{
-	width:800px;
+	width:1000px;
 	position:absolute;
-	top:-60px;
-	left:-750px;
 	/*display:none;*/}
 
