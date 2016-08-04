@@ -37,14 +37,14 @@ public class MemberDao {
 		return list;
 	}
 	
-	public Member getMember(Member member)
+	public List<Member> getMember(Member member)
 	{
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Member where name=?");
 		query.setString(0, member.getName());
-		Member member1=(Member) query.uniqueResult();
+		List<Member> members=query.list();
 		
-		return member1;
+		return members;
 		
 	}
 	
@@ -54,5 +54,26 @@ public class MemberDao {
 		session.beginTransaction();
 		session.delete(member);
 		session.getTransaction().commit();
+	}
+	
+	public Member getMember(String loginid)
+	{
+
+		Session session=sessionFactory.openSession();
+		Query query=session.createQuery("from Member where loginid=?");
+		query.setString(0, loginid);
+		Member member=(Member) query.uniqueResult();
+		
+		return member;
+		
+	}
+	
+	public void doMember(Member member)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(member);
+		session.getTransaction().commit();
+		
 	}
 }
