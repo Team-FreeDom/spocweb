@@ -29,7 +29,7 @@ public class MemberService {
 	   return memberDao.getTeachers();
 	}
 	
-	public Member getMember(String membername)
+	public List<Member> getMember(String membername)
 	{
 		Member member=new Member();
 		member.setName(membername);
@@ -50,5 +50,15 @@ public class MemberService {
 			memberDao.deleteMember(member);
 			
 		}
+	}
+	
+	public Member getUniqueMember(String loginid)
+	{
+		return memberDao.getMember(loginid);
+	}
+	
+	public void addMember(Member member)
+	{
+		memberDao.doMember(member);
 	}
 }
