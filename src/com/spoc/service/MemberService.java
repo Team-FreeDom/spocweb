@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spoc.dao.MemberDao;
+import com.spoc.dao.Member_groupDao;
 import com.spoc.po.Member;
 
 
@@ -16,6 +17,8 @@ public class MemberService {
 
 	@Autowired
 	private MemberDao memberDao;
+	@Autowired
+	private Member_groupDao member_groupDao;
 	
 	public List<Member> getStudents()
 	{
@@ -29,11 +32,11 @@ public class MemberService {
 	   return memberDao.getTeachers();
 	}
 	
-	public List<Member> getMember(String membername)
+	public List<Member> getMember(String membername,int flag)
 	{
 		Member member=new Member();
 		member.setName(membername);
-		
+		member.setFlag(flag);
 		
 		return memberDao.getMember(member);
 		
@@ -47,7 +50,8 @@ public class MemberService {
 		{
 			member=new Member();
 			member.setLoginid(str[i]);
-			memberDao.deleteMember(member);
+			member_groupDao.deleteMember(str[i]);
+			memberDao.deleteMember(member);	
 			
 		}
 	}
@@ -60,5 +64,10 @@ public class MemberService {
 	public void addMember(Member member)
 	{
 		memberDao.doMember(member);
+	}
+	
+	public void updateMember(Member member)
+	{
+		memberDao.updateMember(member);
 	}
 }

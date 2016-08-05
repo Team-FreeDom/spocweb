@@ -17,6 +17,8 @@ public class Member_group_view implements Serializable{
 	 @Id
 	 private String loginid;
 	 @Id
+	 private int gid;
+	 @Id
 	 private String name;
 	public int getLgid() {
 		return lgid;
@@ -32,6 +34,12 @@ public class Member_group_view implements Serializable{
 	}
 	
 	
+	public int getGid() {
+		return gid;
+	}
+	public void setGid(int gid) {
+		this.gid = gid;
+	}
 	public String getName() {
 		return name;
 	}

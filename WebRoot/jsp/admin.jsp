@@ -66,7 +66,7 @@
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
                             
-                            <td><a class=menuchild href="../list.html" target=main>老师管理</a></td>
+                            <td><a class=menuchild href="user.do?flag=1" target=main>老师管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>

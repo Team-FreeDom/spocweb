@@ -40,8 +40,9 @@ public class MemberDao {
 	public List<Member> getMember(Member member)
 	{
 		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from Member where name=?");
+		Query query=session.createQuery("from Member where name=? and flag=?");
 		query.setString(0, member.getName());
+		query.setInteger(1, member.getFlag());
 		List<Member> members=query.list();
 		
 		return members;
@@ -75,5 +76,13 @@ public class MemberDao {
 		session.save(member);
 		session.getTransaction().commit();
 		
+	}
+	
+	public void updateMember(Member member)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.update(member);
+		session.getTransaction().commit();
 	}
 }

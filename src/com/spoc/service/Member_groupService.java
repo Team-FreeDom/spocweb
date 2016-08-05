@@ -26,4 +26,19 @@ public class Member_groupService {
 			member_groupDao.doMemberGroup(member_group);
 		}
 	}
+	
+	public void updateMemberGroup(String[] groups,String loginid)
+	{
+		Member_group member_group=null;
+		int groupid=0;
+		member_groupDao.deleteMember(loginid);
+		for(String group:groups)
+		{
+			member_group=new Member_group();
+			groupid=Integer.valueOf(group);
+			member_group.setLoginid(loginid);
+			member_group.setGid(groupid);			
+			member_groupDao.doMemberGroup(member_group);
+		}
+	}
 }
