@@ -64,7 +64,7 @@ CREATE TABLE `affair_category` (
 
 /*Data for the table `affair_category` */
 
-insert  into `affair_category`(`acid`,`name`) values (1,'微课慕课制作'),(2,'广告制作'),(3,'宣传视频'),(4,'行业软件'),(5,'商业活动软件'),(6,'英语翻译'),(7,'VR视频'),(8,'VR游戏'),(9,'游戏软件');
+insert  into `affair_category`(`acid`,`name`) values (1,'微课慕课'),(2,'广告制作'),(3,'宣传视频'),(4,'行业软件'),(5,'商业活动软件'),(6,'英语翻译'),(7,'VR视频'),(8,'VR游戏'),(9,'游戏软件');
 
 /*Table structure for table `apply` */
 
@@ -100,7 +100,7 @@ CREATE TABLE `charge_standard` (
   KEY `tc` (`tcid`),
   CONSTRAINT `charge_standard_ibfk_1` FOREIGN KEY (`acid`) REFERENCES `affair_category` (`acid`),
   CONSTRAINT `charge_standard_ibfk_3` FOREIGN KEY (`tcid`) REFERENCES `type_category` (`tcid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `charge_standard` */
 
@@ -238,6 +238,7 @@ CREATE TABLE `product` (
   `time` date DEFAULT NULL COMMENT '作品时间',
   `description` varchar(200) DEFAULT NULL COMMENT '作品介绍',
   `pro_path` varchar(100) NOT NULL COMMENT '作品路径',
+  `img_path` varchar(100) DEFAULT NULL COMMENT '作品缩略图路径',
   PRIMARY KEY (`pid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='作品关系表';
 
@@ -251,7 +252,7 @@ CREATE TABLE `service_type` (
   `stid` int(11) NOT NULL AUTO_INCREMENT COMMENT '服务类型编号',
   `type` varchar(100) DEFAULT NULL COMMENT '服务类型',
   PRIMARY KEY (`stid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `service_type` */
 
@@ -290,12 +291,32 @@ DROP TABLE IF EXISTS `affairs`;
  `无忧版` varchar(20) 
 )*/;
 
+/*Table structure for table `member_group_view` */
+
+DROP TABLE IF EXISTS `member_group_view`;
+
+/*!50001 DROP VIEW IF EXISTS `member_group_view` */;
+/*!50001 DROP TABLE IF EXISTS `member_group_view` */;
+
+/*!50001 CREATE TABLE  `member_group_view`(
+ `lgid` int(11) ,
+ `loginid` varchar(20) ,
+ `name` varchar(20) 
+)*/;
+
 /*View structure for view affairs */
 
 /*!50001 DROP TABLE IF EXISTS `affairs` */;
 /*!50001 DROP VIEW IF EXISTS `affairs` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `affairs` AS select `affair_category`.`name` AS `类别`,`service_type`.`type` AS `服务类型`,`type_category`.`description` AS `类型描述`,`charge_standard`.`basic` AS `基础版`,`charge_standard`.`advance` AS `进阶版`,`charge_standard`.`careless` AS `无忧版` from (((`affair_category` join `service_type`) join `type_category`) join `charge_standard`) where ((`charge_standard`.`acid` = `affair_category`.`acid`) and (`charge_standard`.`tcid` = `type_category`.`tcid`) and (`type_category`.`stid` = `service_type`.`stid`)) */;
+
+/*View structure for view member_group_view */
+
+/*!50001 DROP TABLE IF EXISTS `member_group_view` */;
+/*!50001 DROP VIEW IF EXISTS `member_group_view` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `member_group_view` AS select `member_group`.`lgid` AS `lgid`,`member_group`.`loginid` AS `loginid`,`group_manage`.`name` AS `name` from (`member_group` join `group_manage`) where (`member_group`.`gid` = `group_manage`.`gid`) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
