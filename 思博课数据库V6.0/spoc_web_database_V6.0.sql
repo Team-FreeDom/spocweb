@@ -1,8 +1,9 @@
-﻿/*
+/*
 SQLyog Professional v12.09 (64 bit)
 MySQL - 5.6.10 : Database - spoc_web
 *********************************************************************
-*/
+*/
+
 /*!40101 SET NAMES utf8 */;
 
 /*!40101 SET SQL_MODE=''*/;
@@ -40,13 +41,12 @@ CREATE TABLE `affair` (
   `content` varchar(1000) DEFAULT NULL COMMENT '具体内容',
   `flag` tinyint(1) DEFAULT NULL COMMENT '是否被处理',
   `doc` varchar(100) DEFAULT NULL COMMENT '附件路径',
+  `type` varchar(50) DEFAULT NULL COMMENT '业务类别',
   `loginid` varchar(20) DEFAULT NULL COMMENT '审核业务的管理员',
-  `acid` int(11) DEFAULT NULL COMMENT '业务类别',
   PRIMARY KEY (`aff_id`),
   KEY `adminid` (`loginid`),
-  KEY `ccid` (`acid`),
-  CONSTRAINT `affair_ibfk_3` FOREIGN KEY (`loginid`) REFERENCES `member` (`loginid`),
-  CONSTRAINT `affair_ibfk_4` FOREIGN KEY (`acid`) REFERENCES `affair_category` (`acid`)
+  KEY `ccid` (`type`),
+  CONSTRAINT `affair_ibfk_3` FOREIGN KEY (`loginid`) REFERENCES `member` (`loginid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='业务关系表';
 
 /*Data for the table `affair` */
@@ -58,12 +58,13 @@ DROP TABLE IF EXISTS `affair_category`;
 CREATE TABLE `affair_category` (
   `acid` int(11) NOT NULL AUTO_INCREMENT COMMENT '业务类别编号',
   `name` varchar(50) DEFAULT NULL COMMENT '业务类别名称',
+  `flag` int(11) DEFAULT NULL COMMENT '业务类别是否已经运行',
   PRIMARY KEY (`acid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 /*Data for the table `affair_category` */
 
-insert  into `affair_category`(`acid`,`name`) values (1,'微课慕课'),(2,'广告制作'),(3,'宣传视频'),(4,'行业软件'),(5,'商业活动软件'),(6,'英语翻译'),(7,'VR视频'),(8,'VR游戏'),(9,'游戏软件');
+insert  into `affair_category`(`acid`,`name`,`flag`) values (1,'微课慕课',NULL),(2,'广告制作',NULL),(3,'宣传视频',NULL),(4,'行业软件',NULL),(5,'商业活动软件',NULL),(6,'英语翻译',NULL),(7,'VR视频',NULL),(8,'VR游戏',NULL),(9,'游戏软件',NULL);
 
 /*Table structure for table `apply` */
 
@@ -300,6 +301,7 @@ DROP TABLE IF EXISTS `member_group_view`;
 /*!50001 CREATE TABLE  `member_group_view`(
  `lgid` int(11) ,
  `loginid` varchar(20) ,
+ `gid` int(11) ,
  `name` varchar(20) 
 )*/;
 
@@ -315,7 +317,7 @@ DROP TABLE IF EXISTS `member_group_view`;
 /*!50001 DROP TABLE IF EXISTS `member_group_view` */;
 /*!50001 DROP VIEW IF EXISTS `member_group_view` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `member_group_view` AS select `member_group`.`lgid` AS `lgid`,`member_group`.`loginid` AS `loginid`,  `member_group`.`gid` AS `gid`,`group_manage`.`name` AS `name` from (`member_group` join `group_manage`) where (`member_group`.`gid` = `group_manage`.`gid`) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `member_group_view` AS select `member_group`.`lgid` AS `lgid`,`member_group`.`loginid` AS `loginid`,`member_group`.`gid` AS `gid`,`group_manage`.`name` AS `name` from (`member_group` join `group_manage`) where (`member_group`.`gid` = `group_manage`.`gid`) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
