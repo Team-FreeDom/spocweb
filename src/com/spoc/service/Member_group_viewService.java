@@ -25,4 +25,9 @@ public class Member_group_viewService {
 		}
 		return str;
 	}
+	
+	public List<Member_group_view> getMemberGroups()
+	{
+		return member_group_viewDao.getMemberGroups();
+	}
 }

@@ -26,4 +26,14 @@ public class Member_group_viewDao {
 		
 		return list;
 	}
+	
+	public  List<Member_group_view> getMemberGroups()
+	{
+		Session session=sessionFactory.openSession();
+		Query query=session.createQuery("from Member_group_view");
+		List<Member_group_view> list=query.list();
+		
+		return list;
+
+	}
 }

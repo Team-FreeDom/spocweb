@@ -159,7 +159,7 @@
 
 					<div class=" row text-right" style="margin-top:10px;">
 						<div class="col-md-12 col-xs-12">
-							<form action="search.do" method="post" class="form-inline">
+							<form action="search1.do" method="post" class="form-inline">
 								<div class="form-group">
 									<label for="exampleInputName2">用户搜索</label> <input type="text"
 										name="membername" class="form-control" id="exampleInputName2"
@@ -186,7 +186,7 @@
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="deleteMember.do" method="post" name="myform"
+							<form action="deleteMember1.do" method="post" name="myform"
 								id="myform">
 								<table class="table" id="tabBox">
 									<tr>
@@ -194,22 +194,21 @@
 										<td>姓名</td>
 										<td>性别</td>
 										<td>院系</td>
-										<td>年级</td>
+										<td>电话</td>
 										<td colspan="2">基本操作</td>
 									</tr>
-									<c:forEach items='${students}' var="student">
+									<c:forEach items='${teachers}' var="teacher">
 										<tr>
-											<td><label><input type="checkbox" name="student"
-													value="${student.loginid}" id="student" class="ck" /></label></td>
+											<td><label><input type="checkbox" name="teacher"
+													value="${teacher.loginid}" id="teacher" class="ck" /></label></td>
 
-											<td>${student.name}</td>
-											<td>${student.sex}</td>
-											<td>${student.college}</td>
-											<td>${student.grade}</td>
+											<td>${teacher.name}</td>
+											<td>${teacher.sex}</td>
+											<td>${teacher.college}</td>
+											<td>${teacher.phone}</td>
 											<td colspan="2"><a
-												href="detail.do?id=${student.loginid}&flag=2">查看详情</a> <a
-												class="edit" id=${student.loginid
-												}
+												href="detail.do?id=${teacher.loginid}&flag=1">查看详情</a> <a
+												class="edit" id="${teacher.loginid}"
 												style="margin-left:20px;" data-toggle="modal"
 												data-target=".bs-example-modal-lg" href="#"> <img
 													src="../image/edit.gif" width="10" height="10" /> 编辑
@@ -235,7 +234,7 @@
 							</button>
 							<h4 class="modal-title" id="myModalLabel">添加成员</h4>
 						</div>
-						<form action="add.do" method="post" enctype="multipart/form-data"
+						<form action="add1.do" method="post" enctype="multipart/form-data"
 							name="myForm2" id="myForm2">
 							<div class="container table-responsive">
 								<table>
@@ -254,7 +253,6 @@
 											value="1" type="radio"> <label for="q2_1">是</label> <input
 											name="admin" value="2" type="radio" checked="checked">
 											<label for="q2_2">否</label></td>
-
 
 									</tr>
 
@@ -286,17 +284,6 @@
 												</c:forEach>
 										</select></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">年级</label></td>
-										<td style="text-align:left;"><input type="text"
-											name="grade" class="form-control" id="exampleInputName2"></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">专业</label></td>
-										<td style="text-align:left;"><input type="text"
-											name="major" class="form-control" id="exampleInputName2"></td>
-									</tr>
-
-									<tr>
-										<td style="width:80px;text-align:center;line-height:40px;"><label
 											for="exampleInputName2">QQ</label></td>
 										<td style="text-align:left;"><input type="text" name="qq"
 											class="form-control" id="exampleInputName2"></td>
@@ -304,19 +291,6 @@
 											for="exampleInputName2">电话</label></td>
 										<td style="text-align:left;"><input type="text"
 											name="phone" class="form-control" id="exampleInputName2"></td>
-										<td colspan="2"></td>
-									</tr>
-
-									<tr>
-										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">组别</label></td>
-										<td clospan="5"><c:forEach items='${groups}' var="group">
-												<label class="checkbox-inline"> <input
-													value="${group.gid}" type="checkbox" name="group"
-													id="inlineCheckbox1" value="option1" /> <label>${group.name}
-												</label>
-												</label>
-											</c:forEach></td>
 									</tr>
 
 									<tr>
@@ -335,13 +309,6 @@
 												style="width:650px;"></textarea></td>
 									</tr>
 
-									<tr>
-										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">介绍</label></td>
-										<td colspan="5"><textarea type="text" rows="3"
-												class="form-control" name="introduction"
-												id="exampleInputName2" style="width:650px;"></textarea></td>
-									</tr>
 								</table>
 							</div>
 
@@ -354,7 +321,7 @@
 											id="imgOne" onchange="preImg(this.id,'imgPre');" /></td>
 									</tr>
 									<tr>
-										<td>
+										<td colspan="2">
 											<button type="button" class="btn btn-primary"
 												data-dismiss="modal" onclick="add()">添加</button>
 										</td>
@@ -363,71 +330,73 @@
 							</center>
 						</form>
 					</div>
-					<div class="modal-footer">
+					<!-- <div class="modal-footer">
 						<button type="button" class="btn btn-primary" data-dismiss="modal"
 							onclick="add()">添加</button>
 						<button type="button" class="btn btn-primary" data-dismiss="modal"
 							onclick="fun(this)">Close</button>
-					</div>
+					</div> -->
 				</div>
 
 				<!--add-section-end  -->
 
 				<!--edit-section-start  -->
 
-				<c:forEach items='${students}' var="student">
-					<div class="modal-content text-center admin_hide"
-						id="${student.loginid}ta">
+				<c:forEach items='${teachers}' var="teacher">
+					<div class="modal-content text-center admin_hide" 
+						id="${teacher.loginid}ta">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								id="${student.loginid}t"">
+							<button type="button" class="close" data-dismiss="modal" id="${teacher.loginid}t"
+								>
 								<span aria-hidden="true">&times;</span>
 							</button>
 							<h4 class="modal-title" id="myModalLabel">编辑成员信息</h4>
 						</div>
-						<form action="updateStu.do" method="post" enctype="multipart/form-data"
-							name="myForm2" id="myForm${student.loginid}">
+						<form action="updateT.do" method="post" enctype="multipart/form-data"
+							name="myForm3" id="myForm${teacher.loginid}">
 							<div class="container table-responsive">
 								<table>
 									<tr style="padding-top:20px;">
 										<td style="width:80px;text-align:center;line-height:100px;"><label
 											for="exampleInputName2">登录名</label></td>
 										<td style="text-align:left;"><input type="text"
-											value="${student.loginid}" name="loginid"
+											value="${teacher.loginid}" name="loginid"
 											class="form-control" id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">密码</label></td>
 										<td style="text-align:left;"><input type="text"
-											value="${student.password}" name="pwd" class="form-control"
+											value="${teacher.password}" name="pwd" class="form-control"
 											id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">管理员</label></td>
-										<td style="text-align:left;"><input name="admin"
-											value="1" type="radio" ${student.adminid==1?"checked" : ""} />
-											<label for="q2_1">是</label> <input name="admin" value="2"
-											type="radio" ${student.adminid==2?"checked" : ""} /> <label
-											for="q2_2">否</label></td>
+										<td style="text-align:left;">
+										<input name="admin" value="1" type="radio"
+								${teacher.adminid==1?"checked" : ""} />
+										<label for="q2_1">是</label>
+										<input name="admin" value="2" type="radio" 
+										${teacher.adminid==2?"checked" : ""}	/>
+										<label for="q2_2">否</label>
+                                      </td>
 									</tr>
 
 									<tr style="margin-top:20px;">
 										<td style="width:80px;text-align:center;line-height:40px;"><label
 											for="exampleInputName2">姓名</label></td>
 										<td style="text-align:left;"><input type="text"
-											value="${student.name}" name="name" class="form-control"
+											value="${teacher.name}" name="name" class="form-control"
 											id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">性别</label></td>
 										<td style="text-align:left;"><input name="sex" value="1"
-											${student.sex=="男"?"checked" : ""} type="radio"> <label
-											for="q2_1">男</label> <input name="sex" value="2"
-											${student.sex=="女"?"checked" : ""} type="radio"> <label
-											for="q2_2">女</label></td>
+								${teacher.sex=="男"?"checked" : ""} type="radio" >
+											<label for="q2_1">男</label> <input name="sex" value="2"
+									${teacher.sex=="女"?"checked" : ""} type="radio">
+											<label for="q2_2">女</label></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">出生日期</label></td>
 										<td style="text-align:left;"><input type="text"
-											value="${student.date}" name="birth_date"
+											value="${teacher.date}" name="birth_date"
 											class="form-control" id="exampleInputName2"></td>
-
 									</tr>
 
 									<tr>
@@ -438,56 +407,28 @@
 												<option>请选择</option>
 												<c:forEach items='${colleges}' var="college">
 													<option values="${college.name }"
-														${student.college==college.name?"selected":""}>${college.name }</option>
+														${teacher.college==college.name?"selected":""}>${college.name }</option>
 												</c:forEach>
 										</select></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">年级</label></td>
-										<td style="text-align:left;"><input type="text"
-											value="${student.grade }" name="grade" class="form-control"
-											id="exampleInputName2"></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">专业</label></td>
-										<td style="text-align:left;"><input type="text"
-											value="${student.major}" name="major" class="form-control"
-											id="exampleInputName2"></td>
-									</tr>
-
-									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
 											for="exampleInputName2">QQ</label></td>
 										<td style="text-align:left;"><input type="text" name="qq"
-											value="${student.qq }" class="form-control"
+											value="${teacher.qq }" class="form-control"
 											id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">电话</label></td>
 										<td style="text-align:left;"><input type="text"
-											value="${student.phone }" name="phone" class="form-control"
+											value="${teacher.phone }" name="phone" class="form-control"
 											id="exampleInputName2"></td>
-										<td colspan="2"></td>
 									</tr>
 
-									<tr>
-										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">组别</label></td>
-										<td clospan="5"><c:forEach items='${membergroups}' var="mg">
-										<c:if test="${mg.loginid==student.loginid }"> 
-												<label class="checkbox-inline"> 
-												<input	value="${mg.gid}" type="checkbox" name="group"
-											checked	id="inlineCheckbox1" value="option1" />
-											    <label>${mg.name}
-												</label>
-												</label>
-												</c:if>
-											</c:forEach></td>
-									</tr>
-
+									
 									<tr>
 										<td style="width:80px;text-align:center;line-height:100px;"><label
 											for="exampleInputName2">就业</label></td>
 										<td colspan="5"><textarea type="text"
 												class="form-control" name="job" id="exampleInputName2"
-												style="width:650px;"> ${student.job }</textarea></td>
+												style="width:650px;"> ${teacher.job }</textarea></td>
 									</tr>
 
 									<tr>
@@ -495,16 +436,9 @@
 											for="exampleInputName2">地址</label></td>
 										<td colspan="5"><textarea type="text"
 												class="form-control" name="address" id="exampleInputName2"
-												style="width:650px;"> ${student.address }</textarea></td>
+												style="width:650px;"> ${teacher.address }</textarea></td>
 									</tr>
 
-									<tr>
-										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">介绍</label></td>
-										<td colspan="5"><textarea type="text" rows="3"
-												class="form-control" name="introduction"
-												id="exampleInputName2" style="width:650px;">${student.introduction }</textarea></td>
-									</tr>
 								</table>
 							</div>
 
@@ -512,15 +446,15 @@
 								<table style="color:#000; margin-top:10px;">
 									<tr>
 										<td>照片</td>
-										<td><img src="${student.img}" id="imgPre" width="100px"
+										<td><img src="${teacher.img}" id="imgPre" width="100px"
 											height="120px" style="display: block;" /> <input type="file"
 											name="imgOne" id="imgOne"
 											onchange="preImg(this.id,'imgPre');" /></td>
 									</tr>
 									<tr>
 										<td>
-											<button type="button" class="btn btn-primary update"
-												id="${student.loginid}"	data-dismiss="modal">确定</button>
+											<button type="button" class="btn btn-primary update" id="${teacher.loginid}"
+												data-dismiss="modal">确定</button>
 										</td>
 									</tr>
 								</table>
@@ -558,16 +492,15 @@
 					$('#myForm2').submit();
 
 				}
-
+				$(".update").bind("click", function() {
+					var id = "#myForm"+this.id;
+					$(id).submit();
+				})
 				$(".close").bind("click", function() {
 					var id = this.id + "a";
 					document.getElementById(id).style.display = "none";
 				})
-
-				$(".update").bind("click", function() {
-					var id = "#myForm" + this.id; 
-					$(id).submit();
-				})
+				
 			</script>
 			<script>
 				var tabBox = document.getElementById("tabBox"),
