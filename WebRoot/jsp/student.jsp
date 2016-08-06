@@ -470,12 +470,15 @@
 									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
 											for="exampleInputName2">组别</label></td>
-										<td clospan="5"><c:forEach items='${groups}' var="group">
-												<label class="checkbox-inline"> <input
-													value="${group.gid}" type="checkbox" name="group"
-													id="inlineCheckbox1" value="option1" /> <label>${group.name}
+										<td clospan="5"><c:forEach items='${membergroups}' var="mg">
+										<c:if test="${mg.loginid==student.loginid }"> 
+												<label class="checkbox-inline"> 
+												<input	value="${mg.gid}" type="checkbox" name="group"
+											checked	id="inlineCheckbox1" value="option1" />
+											    <label>${mg.name}
 												</label>
 												</label>
+												</c:if>
 											</c:forEach></td>
 									</tr>
 
@@ -562,7 +565,7 @@
 				})
 
 				$(".update").bind("click", function() {
-					var id = "#myForm" + this.id;
+					var id = "#myForm" + this.id; 
 					$(id).submit();
 				})
 			</script>

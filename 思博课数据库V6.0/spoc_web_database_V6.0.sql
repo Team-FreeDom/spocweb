@@ -1,9 +1,8 @@
-/*
+﻿/*
 SQLyog Professional v12.09 (64 bit)
 MySQL - 5.6.10 : Database - spoc_web
 *********************************************************************
-*/
-
+*/
 /*!40101 SET NAMES utf8 */;
 
 /*!40101 SET SQL_MODE=''*/;
@@ -316,7 +315,7 @@ DROP TABLE IF EXISTS `member_group_view`;
 /*!50001 DROP TABLE IF EXISTS `member_group_view` */;
 /*!50001 DROP VIEW IF EXISTS `member_group_view` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `member_group_view` AS select `member_group`.`lgid` AS `lgid`,`member_group`.`loginid` AS `loginid`,`group_manage`.`name` AS `name` from (`member_group` join `group_manage`) where (`member_group`.`gid` = `group_manage`.`gid`) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `member_group_view` AS select `member_group`.`lgid` AS `lgid`,`member_group`.`loginid` AS `loginid`,  `member_group`.`gid` AS `gid`,`group_manage`.`name` AS `name` from (`member_group` join `group_manage`) where (`member_group`.`gid` = `group_manage`.`gid`) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

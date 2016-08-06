@@ -70,4 +70,11 @@ public class MemberService {
 	{
 		memberDao.updateMember(member);
 	}
+	
+	public void updateMember2(Member member)
+	{
+		Member memberFormal=memberDao.getMember(member.getLoginid());
+		member.setImg(memberFormal.getImg());
+		memberDao.updateMember(member);
+	}
 }

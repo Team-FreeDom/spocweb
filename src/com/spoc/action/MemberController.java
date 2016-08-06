@@ -251,7 +251,7 @@ public class MemberController {
 		// 得到上传的文件的文件名
 		String fileName = mFile.getOriginalFilename();
 		System.out.println(fileName);
-		 if(fileName!=null)
+		 if(!fileName.isEmpty())
 		  {
 			 
 		String fileType = fileName.substring(fileName.lastIndexOf("."));
@@ -270,21 +270,23 @@ public class MemberController {
 		 member=new Member(loginid, pwd, name, sex, filename,
 				birth_date, college,  qq, phone, address,
 				 job, 1, admin);
-		
+		 memberService.updateMember(member);
 	  }else
 	  {
 		  System.out.println(pwd);
 		   member=new Member(loginid, pwd, name, sex,
 					birth_date, college,  qq, phone, address,
 					 job, 1, admin);
+		   memberService.updateMember2(member);
 	  }
 
 		
-		memberService.updateMember(member);
+		
 		return "forward:user.do?flag=1";
 	}
 	
 	@RequestMapping(value = "/updateStu.do", method = RequestMethod.POST)
+	
 	public String updateMemberStu(HttpServletRequest request, ModelMap map)
 			throws Exception {
 		Member member=null;
@@ -310,13 +312,15 @@ public class MemberController {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		// 得到上传的文件
 		MultipartFile mFile = multipartRequest.getFile("imgOne");
+		System.out.println(mFile);
 		// 得到上传服务器的路径
 		String path = request.getSession().getServletContext()
 				.getRealPath("/infor/selfie/");
 		// 得到上传的文件的文件名
 		String fileName = mFile.getOriginalFilename();
 		System.out.println(fileName);
-		 if(fileName!=null)
+		
+		 if(!fileName.isEmpty())
 		  {
 		String fileType = fileName.substring(fileName.lastIndexOf("."));
 		String filename = new Date().getTime() + fileType;
@@ -335,19 +339,19 @@ public class MemberController {
 		 member = new Member(loginid, pwd, name, sex, filename,
 				birth_date, college, grade, major, qq, phone, address,
 				introduction, job, 2, admin);
-		
+		 memberService.updateMember(member);
 		  }else
 		  {
 			member=new Member(loginid, pwd, name, sex,
 					birth_date, college, grade, major, qq, phone, address,
 					introduction, job, 2, admin);  
-			
+			 memberService.updateMember2(member);
 		  }
 		 
-		 memberService.updateMember(member);
+		
 		 member_groupService.updateMemberGroup(group, loginid);
-		 
-		return "forward:user.do?flag=2";
+		
+		return "admin";
 	}
 
 }
