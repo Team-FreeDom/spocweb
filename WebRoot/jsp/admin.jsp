@@ -106,7 +106,7 @@
                         <table id=child4 style="display: none"class="text-left admin_table">
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#" target=main>业务申请管理</a></td>
+                            <td><a class=menuchild  href="applyAffair.do" target=main>业务申请管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
@@ -114,7 +114,7 @@
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#" target=main>业务类型管理</a></td>
+                            <td><a class=menuchild  href="dealAT.do" target=main>业务类型管理</a></td>
                           </tr>
                           <tr height=4>
                             <td colspan=2></td>
