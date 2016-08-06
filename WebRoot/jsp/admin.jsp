@@ -1,3 +1,5 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+
 <!doctype html>
 <html>
 <head>
@@ -7,7 +9,22 @@
 <link href="../css/admin1.css" type="text/css" rel="stylesheet">
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-<script src="../js/run_main.js"></script>
+<SCRIPT language=javascript>
+	function expand(el)
+	{
+		childObj = document.getElementById("child" + el);
+
+		if (childObj.style.display == 'none')
+		{
+			childObj.style.display = 'block';
+		}
+		else
+		{
+			childObj.style.display = 'none';
+		}
+		return;
+	}
+</SCRIPT>
 </head>
 
 <body>
@@ -17,8 +34,8 @@
     	<div class="row bg">
         	<div class="col-md-2 col-xs-3 text-while">思博课网站管理</div>
             <div class="col-md-7 col-xs-6 text-while">
-            	<a style="color: #fff" href="" target=main>修改口令</a>
-             &nbsp;&nbsp; 
+            	<!-- <a style="color: #fff" href="" target=main>修改口令</a>
+             &nbsp;&nbsp;  -->
              <a style="color: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;" href="../main.htm" target=_top>退出系统</a> 
             </div>
             <div class="col-md-3 col-xs-3 bg2"></div>
@@ -49,11 +66,11 @@
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
                             
-                            <td><a class=menuchild href="#">老师管理</a></td>
+                            <td><a class=menuchild href="user.do?flag=1" target=main>老师管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#">学生管理</a></td>
+                            <td><a class=menuchild  href="user.do?flag=2" target="main">学生管理</a></td>
                           </tr>
                           <tr height=4>
                             <td colspan=2></td>
@@ -63,7 +80,7 @@
                         
                         <table class="admin_table">
                           <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent  href="#">荣誉管理</a></td></tr>
+                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent  href="../list.html" target="main">荣誉管理</a></td></tr>
                           <tr height=4>
                             <td></td>
                           </tr>
@@ -71,7 +88,7 @@
                         
                         <table class="admin_table">
                           <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent href="#">作品管理</a></td>
+                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent href="../list2.html" target="main">作品管理</a></td>
                           </tr>
                           <tr height=4>
                             <td></td>
@@ -89,15 +106,15 @@
                         <table id=child4 style="display: none"class="text-left admin_table">
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#">业务申请管理</a></td>
+                            <td><a class=menuchild  href="#" target=main>业务申请管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#">业务处理管理</a></td>
+                            <td><a class=menuchild  href="#" target=main>业务处理管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#">业务类型管理</a></td>
+                            <td><a class=menuchild  href="#" target=main>业务类型管理</a></td>
                           </tr>
                           <tr height=4>
                             <td colspan=2></td>
@@ -114,11 +131,11 @@
                         <table id=child5 style="display: none"  class="text-left admin_table">
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild href="#">报名申请管理</a></td>
+                            <td><a class=menuchild href="#" target=main>报名申请管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#">报名处理管理</a></td>
+                            <td><a class=menuchild  href="#" target=main>报名处理管理</a></td>
                           </tr>
                           <tr height=4>
                             <td colspan=2></td>
@@ -144,8 +161,8 @@
                         </div>
                         
                         <div class="row admin_black admin_spacing">
-                            <div class="col-md-3 col-xs-5">管理人员基本信息表</div>
-                            <div class="col-md-6 hidden-xs"></div>
+                            <div class="col-md-2 col-xs-5">管理人员基本信息表</div>
+                            <div class="col-md-7 hidden-xs"></div>
                             <div class="col-md-3 col-xs-7">
                                 <span>
                                     <a  data-toggle="modal" data-target=".bs-example-modal-lg" href="#">
@@ -158,122 +175,22 @@
                                 
                                 
                                 <!-- Large modal -->
-                                <!--<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                                  <div class="modal-dialog modal-lg">-->
-                                    <div class="modal-content admin_hide" id="modal">
+                                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
                                       <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" onclick="fun(this)"><span aria-hidden="true">&times;</span></button>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                                           </div>
                                           <div class="modal-body">
-                                          	  <form class="form-inline" style="color:#000">
-                                                	<div class="form-group">
-                                                        <label for="exampleInputName2">姓名</label>
-                                                        <input type="text" class="form-control" id="exampleInputName2">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="form-group" style="margin-left:63px; margin-right:63px;">
-                                                        <label for="exampleInputName2">性别</label>
-                                                        <input name="sex" value="1" type="radio">
-                                                        <label for="q2_1">男</label>
-                                                        <input name="sex" value="2" type="radio">
-                                                        <label for="q2_2">女</label>
-                                                    </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputName2">出生</label>
-                                                        <input type="text" class="form-control" id="exampleInputName2">
-                                                    </div>
-                                                </form>
-                                                <form class="form-inline" style="color:#000; margin-top:10px;">
-                                                	<div class="form-group">
-                                                       <label for="exampleInputName2">学院</label>
-                                                        <select style="width:195px;">
-                                                          <option>信息科学技术学院</option>
-                                                          <option>2</option>
-                                                          <option>3</option>
-                                                          <option>4</option>
-                                                          <option>5</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputName2">年级</label>
-                                                        <input type="text" class="form-control" id="exampleInputName2">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputName2">班级</label>
-                                                        <input type="text" class="form-control" id="exampleInputName2">
-                                                    </div>
-                                                </form>
-                                                <form class="form-inline" style="color:#000; margin-top:10px;">
-                                                	<div class="form-group">
-                                                        <label for="exampleInputName2">QQ</label>
-                                                        <input type="text" class="form-control" id="exampleInputName2">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputName2">电话</label>
-                                                        <input type="text" class="form-control" id="exampleInputName2">
-                                                    </div>
-                                                </form>
-                                                <form class="form-inline" style="color:#000; margin-top:10px;">
-                                                	<div class="form-group">
-                                                        <label for="exampleInputName2">组别</label>
-                                                        <label class="checkbox-inline">
-                                                          <input type="checkbox" id="inlineCheckbox1" value="option1"> 程序组
-                                                        </label>
-                                                        <label class="checkbox-inline">
-                                                          <input type="checkbox" id="inlineCheckbox2" value="option2"> 程序组
-                                                        </label>
-                                                        <label class="checkbox-inline">
-                                                          <input type="checkbox" id="inlineCheckbox3" value="option3"> 程序组
-                                                        </label>
-                                                         <label class="checkbox-inline">
-                                                          <input type="checkbox" id="inlineCheckbox1" value="option1"> 程序组
-                                                        </label>
-                                                        <label class="checkbox-inline">
-                                                          <input type="checkbox" id="inlineCheckbox2" value="option2"> 程序组
-                                                        </label>
-                                                        <label class="checkbox-inline">
-                                                          <input type="checkbox" id="inlineCheckbox3" value="option3"> 程序组
-                                                        </label>
-                                                    </div>
-                                                </form>
-                                                <form class="form-inline" style="color:#000; margin-top:10px;">
-                                                	<div class="form-group">
-                                                        <label for="exampleInputName2">就业情况</label>
-                                                        <textarea type="text" class="form-control" id="exampleInputName2" style="width:620px;"></textarea>
-                                                    </div>
-                                               </form>
-                                                <form class="form-inline" style="color:#000; margin-top:10px;">
-                                                	<div class="form-group">
-                                                        <label for="exampleInputName2">地址</label>
-                                                        <textarea type="text" class="form-control" id="exampleInputName2" style="width:650px;"></textarea>
-                                                    </div>
-                                               </form>
-                                               <form class="form-inline" style="color:#000; margin-top:10px; width:100%">
-													<div class="form-group">
-                                                        <label for="exampleInputName2">介绍</label>
-                                                        <textarea type="text" class="form-control" id="exampleInputName2" style="width:650px;"></textarea>
-                                                    </div>
-                                               </form>
-                                               <center>
-                                               <table style="color:#000; margin-top:10px;">
-                                               		<tr>
-                                                    	<td>照片</td>
-                                                        <td>
-                                                            <img id="imgPre" src="" width="100px" height="120px" style="display: block;" />
-                                                            <input type="file" name="imgOne" id="imgOne" onchange="preImg(this.id,'imgPre');" />
-                                                        </td>
-                                                    </tr>
-                                               </table>
-                                              </center>
+                                            <h1 style="color:#000;">具体内容暂定</h1>
                                           </div>
                                           <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="fun(this)">Close</button>
-                                         </div>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button></div>
                                     </div>
-                                <!--  </div>
-                                </div>-->
+                                  </div>
+                                </div>
                                 <!-- Large modal -->
                                 
                                 
@@ -354,6 +271,7 @@
                             </div>
                         </div>
                         <script>
+                        
                             var tabBox = document.getElementById("tabBox"),
                                 //tab = tabBox.getElementsByClassName("tab"),
                                 tab = [0,1,2,3],

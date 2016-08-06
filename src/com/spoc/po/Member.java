@@ -109,6 +109,23 @@ public class Member {
 	public void setJob(String job) {
 		this.job = job;
 	}
+	public Member(String loginid, String password, String name, String sex,
+			String date, String college, String qq, String phone,
+			String address, String job, int flag, int adminid) {
+		super();
+		this.loginid = loginid;
+		this.password = password;
+		this.name = name;
+		this.sex = sex;
+		this.date = date;
+		this.college = college;
+		this.qq = qq;
+		this.phone = phone;
+		this.address = address;
+		this.job = job;
+		this.flag = flag;
+		this.adminid = adminid;
+	}
 	public int getFlag() {
 		return flag;
 	}
@@ -145,6 +162,45 @@ public class Member {
 	}
 	public Member() {
 		super();
+	}
+	public Member(String loginid, String password, String name, String sex,
+			String img, String date, String college, String qq, String phone,
+			String address, String job, int flag, int adminid) {
+		super();
+		this.loginid = loginid;
+		this.password = password;
+		this.name = name;
+		this.sex = sex;
+		this.img = img;
+		this.date = date;
+		this.college = college;
+		this.qq = qq;
+		this.phone = phone;
+		this.address = address;
+		this.job = job;
+		this.flag = flag;
+		this.adminid = adminid;
+	}
+	public Member(String loginid, String password, String name, String sex,
+			String date, String college, String grade, String major, String qq,
+			String phone, String address, String introduction, String job,
+			int flag, int adminid) {
+		super();
+		this.loginid = loginid;
+		this.password = password;
+		this.name = name;
+		this.sex = sex;
+		this.date = date;
+		this.college = college;
+		this.grade = grade;
+		this.major = major;
+		this.qq = qq;
+		this.phone = phone;
+		this.address = address;
+		this.introduction = introduction;
+		this.job = job;
+		this.flag = flag;
+		this.adminid = adminid;
 	}
 	
 	

@@ -37,4 +37,12 @@
 	 height:300px;}
 .admin_spacing{
 	margin-top:30px;}
+.admin_hide{
+	width:1000px;
+	position:absolute;
+	top:40px;
+	left:10px;
+	display:none;
+           }
+
 
