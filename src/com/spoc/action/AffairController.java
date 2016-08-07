@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,14 +26,14 @@ public class AffairController {
 	@Autowired
 	private AffairService affairService;
 	
-	@RequestMapping("/dealAT.do") //转向业务类型管理页面
+	@RequestMapping("/dealAT.do") 
 	public String dealAffairType(HttpServletRequest request, ModelMap map)
 	{
 		map.addAttribute("affairtypes", affair_categoryService.getAffairCa());
 		return "dealAffairType";
 	}
 	
-	@RequestMapping("/searchType.do") //转向业务类型管理页面
+	@RequestMapping("/searchType.do")
 	public String searchType(HttpServletRequest request, ModelMap map)
 	{
 		String affairtype=request.getParameter("affairtype");
@@ -42,7 +44,7 @@ public class AffairController {
 		return "dealAffairType";
 	}
 	
-	@RequestMapping("/addType.do") //转向业务类型管理页面
+	@RequestMapping("/addType.do")
 	public String addType(HttpServletRequest request, ModelMap map)
 	{
 		String name=request.getParameter("name");
@@ -52,7 +54,7 @@ public class AffairController {
 		return "forward:dealAT.do";
 	}
 	
-	@RequestMapping("/deleteType.do") //转向业务类型管理页面
+	@RequestMapping("/deleteType.do") 
 	public String deleteType(HttpServletRequest request, ModelMap map)
 	{
 		String[] check = request.getParameterValues("type");
@@ -60,7 +62,7 @@ public class AffairController {
 		return "forward:dealAT.do";
 	}
 	
-	@RequestMapping("/updateType.do") //转向业务类型管理页面
+	@RequestMapping("/updateType.do") 
 	public String updateType(HttpServletRequest request, ModelMap map)
 	{
 		int acid=Integer.valueOf(request.getParameter("acid"));
@@ -75,8 +77,35 @@ public class AffairController {
 	public String applyAffair(HttpServletRequest request, ModelMap map)
 	{
 		List<Affair> list=affairService.getAffairs();
+		int flag=Integer.valueOf(request.getParameter("flag"));
 		map.addAttribute("affairs", list);
+		if(flag==0)
+		{
 		return "applyAffair";
+		}else
+		{
+			return "affairHistory";
+		}
 		
+	}
+	
+	@RequestMapping("/read.do")
+	public String read(HttpServletRequest request, ModelMap map)
+	{
+		HttpSession session=request.getSession();
+		session.setAttribute("user", "ffff");//假设有用户登录，并存在此session对象
+		int aff_id=Integer.valueOf(request.getParameter("aff_id"));
+		String loginid=(String) session.getAttribute("user");
+		affairService.updateAffair(aff_id, loginid);
+		return "forward:applyAffair.do";
+	}
+	
+	
+	@RequestMapping("/deleteAffair.do")
+	public String deleteAffair(HttpServletRequest request, ModelMap map)
+	{
+		String[] check = request.getParameterValues("affair");
+		affairService.deleteAffair(check);
+		return "forward:applyAffair.do?flag=1";
 	}
 }

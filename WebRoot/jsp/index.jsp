@@ -598,7 +598,7 @@
 							<span id="span" style="color:#b04a34;">收费指南</span>
 							<ul class="list-unstyled fourth_right">
 								<c:forEach items='${affair_category}' var="ac">
-									<li class=${ac.flag==0?"\"gray\"":"" } ><a href="affair.do?name=${ac.name }">${ac.name }</a></li>
+									<li class=${ac.flag==0?"\"gray\"":"" } ><a href="affair.do?name=${ac.name }#4thpage">${ac.name }</a></li>
 
 								</c:forEach>
 							</ul>

@@ -25,4 +25,24 @@ public class AffairDao {
 		
 		return list;
 	}
+	
+	public void updateAffair(int aff_id,String loginid)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		Affair af=(Affair) session.get(Affair.class, aff_id);
+		af.setLoginid(loginid);
+		af.setFlag(1);
+		session.update(af);
+		session.getTransaction().commit();
+	}
+	
+	public void deleteAffair(int aff_id)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		Affair af=(Affair) session.get(Affair.class,aff_id);
+		session.delete(af);
+		session.getTransaction().commit();
+	}
 }

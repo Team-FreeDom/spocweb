@@ -159,37 +159,38 @@
 
 
 					<div class="row admin_black admin_spacing">
-						<div class="col-md-2 col-xs-5">业务处理</div>
+						<div class="col-md-2 col-xs-5">业务已处理信息</div>
 						<div class="col-md-7 hidden-xs"></div>
+						<div class="col-md-3 col-xs-7">
+						    <a href="javascript:deleteAffair()"> <img
+									src="../image/del.gif" width="10" height="10" /> 删除
+							</a> &nbsp;&nbsp;
+
+							</span>
+
+						</div>
 					    </div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form id="myForm4" action="read.do" method="post">
+							<form action="deleteAffair.do" id="myform" method="post">
 								<table class="table" id="tabBox">
 									<tr>
-
-										<td>业务类别</td>
-										<td>联系人姓名</td>
-										<td>联系人电话</td>
+                                        <td></td>
+										<td>业务编号</td>
+										<td>业务类型</td>
+										<td>处理人</td>
 										<td colspan="2">基本操作</td>
 									</tr>
 									<c:forEach items='${affairs}' var="affair">
-										<c:if test="${affair.flag==0}">
+										<c:if test="${affair.flag==1}">
 											<tr>
-
+                                              <td> <label><input type="checkbox" name="affair"
+													value="${affair.aff_id}" id="affair" class="ck" /></label></td>
+												<td>${affair.aff_id}</td>
 												<td>${affair.type}</td>
-												<td>${affair.name}</td>
-												<td>${affair.phone}</td>
-												<td colspan="2"><a href="#" class="display" id="${affair.aff_id}">查看详情</a> <a
-													style="margin-left:20px;" data-toggle="modal"
-													data-target=".bs-example-modal-lg" href="#">
-														<button type="button" class="btn btn-primary read"
-													 data-dismiss="modal">审阅完成</button>
-												</a>
-												</td>
-												<td>
-												<input type="text" name="aff_id" hidden="hidden" value="${affair.aff_id}"/>
-												</td>
+												
+												<td>${affair.loginid}</td>
+												<td colspan="2"><a href="#" class="display" id="${affair.aff_id}">查看详情</a></td>
 											</tr>
 										</c:if>
 									</c:forEach>
@@ -240,11 +241,19 @@
 									       <td style="width:80px;text-align:center;line-height:100px;">
 									         <label for="exampleInputName2">附件地址</label>
 									       </td>
-									       <td colspan="5">
+									       <td>
 									         <input type="text"
 												 name="typeName" class="form-control"
 												id="exampleInputName2" value="${affair.doc}"/>
-									       </td>									       
+									       </td>
+									       <td style="width:80px;text-align:center;margin-left:100px;">
+												<label for="exampleInputName2">处理人</label>
+											</td>
+											<td style="text-align:left;"><input type="text"
+												 name="typeName" class="form-control"
+												id="exampleInputName2" value="${affair.loginid}"></td>	
+									     </tr>	
+									       								       
 									     </tr>
 									     <tr>
 									       <td style="width:80px;text-align:center;line-height:100px;"><label
@@ -267,7 +276,7 @@
 				</div>
 				<!--detail-section-end -->
 				<script type="text/javascript">
-					function deleteType() {
+					function deleteAffair() {
 
 						$('#myform').submit();
 
@@ -290,12 +299,10 @@
 						$("input").val("");
 					}
 
-					
-					
-					$(".read").bind("click", function() {
-						alert("hello");
-						$('#myForm4').submit();
-					})
+					function add() {
+						$('#myForm2').submit();
+
+					}
 
 					$(".close").bind("click", function() {
 						var id = this.id + "a";

@@ -19,4 +19,19 @@ public class AffairService {
 	{
 		return affairDao.getAffairs();
 	}
+	
+	public void updateAffair(int aff_id,String loginid)
+	{
+		affairDao.updateAffair(aff_id, loginid);
+	}
+	
+	public void deleteAffair(String[] str)
+	{
+		int aff_id=0;
+		for(String id:str)
+		{
+			aff_id=Integer.valueOf(id);
+			affairDao.deleteAffair(aff_id);
+		}
+	}
 }
