@@ -14,6 +14,21 @@ public class Affair_category {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int acid;
 	private String name;
+	private int flag;
+	public int getFlag() {
+		return flag;
+	}
+	
+	public Affair_category(int acid, String name, int flag) {
+		super();
+		this.acid = acid;
+		this.name = name;
+		this.flag = flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
 	public int getAcid() {
 		return acid;
 	}

@@ -113,15 +113,15 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#" target=main>业务申请管理</a></td>
+										<td><a class=menuchild href="applyAffair.do?flag=0" target=main>业务申请管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#" target=main>业务处理管理</a></td>
+										<td><a class=menuchild href="applyAffair.do?flag=1" target=main>业务处理管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#" target=main>业务类型管理</a></td>
+										<td><a class=menuchild href="dealAT.do" target=main>业务类型管理</a></td>
 									</tr>
 									<tr height=4>
 										<td colspan=2></td>
@@ -320,22 +320,16 @@
 											style="display: block;" /> <input type="file" name="imgOne"
 											id="imgOne" onchange="preImg(this.id,'imgPre');" /></td>
 									</tr>
-									<tr>
-										<td colspan="2">
-											<button type="button" class="btn btn-primary"
-												data-dismiss="modal" onclick="add()">添加</button>
-										</td>
-									</tr>
+									
 								</table>
 							</center>
 						</form>
+						 <div class="modal-footer">
+						  <button type="button" class="btn btn-primary"
+												data-dismiss="modal" onclick="add()">添加</button>
+					
 					</div>
-					<!-- <div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal"
-							onclick="add()">添加</button>
-						<button type="button" class="btn btn-primary" data-dismiss="modal"
-							onclick="fun(this)">Close</button>
-					</div> -->
+					
 				</div>
 
 				<!--add-section-end  -->
@@ -451,15 +445,14 @@
 											name="imgOne" id="imgOne"
 											onchange="preImg(this.id,'imgPre');" /></td>
 									</tr>
-									<tr>
-										<td>
-											<button type="button" class="btn btn-primary update" id="${teacher.loginid}"
-												data-dismiss="modal">确定</button>
-										</td>
-									</tr>
+									
 								</table>
 							</center>
 						</form>
+						<div class="modal-footer">
+						  <button type="button" class="btn btn-primary update" id="${teacher.loginid}"
+												data-dismiss="modal">确定</button>
+					</div>
 					</div>
 			</div>
 			</c:forEach>
