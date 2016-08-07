@@ -47,9 +47,11 @@ CREATE TABLE `affair` (
   KEY `adminid` (`loginid`),
   KEY `ccid` (`type`),
   CONSTRAINT `affair_ibfk_3` FOREIGN KEY (`loginid`) REFERENCES `member` (`loginid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='业务关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='业务关系表';
 
 /*Data for the table `affair` */
+
+insert  into `affair`(`aff_id`,`name`,`phone`,`content`,`flag`,`doc`,`type`,`loginid`) values (1,'张三 ','18767545676',' 拍摄一部宣传片',0,'..infor/selfie/1.jpg','微课慕课',NULL);
 
 /*Table structure for table `affair_category` */
 
