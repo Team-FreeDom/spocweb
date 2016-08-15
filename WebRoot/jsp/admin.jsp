@@ -66,11 +66,11 @@
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
                             
-                            <td><a class=menuchild href="user.do?flag=1" target=main>老师管理</a></td>
+                            <td><a class=menuchild href="user.do?flag=1">老师管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="user.do?flag=2" target="main">学生管理</a></td>
+                            <td><a class=menuchild  href="user.do?flag=2">学生管理</a></td>
                           </tr>
                           <tr height=4>
                             <td colspan=2></td>
@@ -80,7 +80,7 @@
                         
                         <table class="admin_table">
                           <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent  href="../list.html" target="main">荣誉管理</a></td></tr>
+                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent  href="#">荣誉管理</a></td></tr>
                           <tr height=4>
                             <td></td>
                           </tr>
@@ -88,7 +88,7 @@
                         
                         <table class="admin_table">
                           <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent href="../list2.html" target="main">作品管理</a></td>
+                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent href="#">作品管理</a></td>
                           </tr>
                           <tr height=4>
                             <td></td>
@@ -106,15 +106,15 @@
                         <table id=child4 style="display: none"class="text-left admin_table">
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="applyAffair.do?flag=0" target=main>业务申请管理</a></td>
+                            <td><a class=menuchild  href="applyAffair.do?flag=0">业务申请管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="applyAffair.do?flag=1" target=main>业务处理管理</a></td>
+                            <td><a class=menuchild  href="applyAffair.do?flag=1">业务处理管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="dealAT.do" target=main>业务类型管理</a></td>
+                            <td><a class=menuchild  href="dealAT.do">业务类型管理</a></td>
                           </tr>
                           <tr height=4>
                             <td colspan=2></td>
@@ -131,20 +131,34 @@
                         <table id=child5 style="display: none"  class="text-left admin_table">
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild href="#" target=main>报名申请管理</a></td>
+                            <td><a class=menuchild href="#">报名申请管理</a></td>
                           </tr>
                           <tr height=20>
                             <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#" target=main>报名处理管理</a></td>
+                            <td><a class=menuchild  href="#">报名处理管理</a></td>
                           </tr>
                           <tr height=4>
                             <td colspan=2></td>
                           </tr>
                         </table>
-                      
+                      <table class="admin_table">
+                          <tr height=22>
+                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent  href="#">服务管理</a></td></tr>
+                          <tr height=4>
+                            <td></td>
+                          </tr>
+                        </table>
+                  <table class="admin_table">
+                          <tr height=22>
+                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent  href="#">收费管理</a></td></tr>
+                          <tr height=4>
+                            <td></td>
+                          </tr>
+                        </table>
                       </td>
                     </tr>
                   </table>	
+                  
             </div>
             <div class="col-md-10 col-xs-10">
                      
