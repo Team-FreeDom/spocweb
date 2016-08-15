@@ -348,7 +348,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<span id="span" style="color:#b04a34;">收费指南</span>
                         	<ul class="list-unstyled fourth_right">
 								<c:forEach items='${affair_category}' var="ac">
-									<li ><a class=${ac.flag==0?"\"gray\"":"" } href="affair.do?name=${ac.name }#4thpage">${ac.name }</a></li>
+									<li ><a ${ac.flag==0?"class=\"gray\"":"" } href="affair.do?name=${ac.name }#4thpage">${ac.name }</a></li>
 
 								</c:forEach>
 							</ul>
