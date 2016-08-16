@@ -97,7 +97,7 @@ public class AffairController {
 		int aff_id=Integer.valueOf(request.getParameter("aff_id"));
 		String loginid=(String) session.getAttribute("user");
 		affairService.updateAffair(aff_id, loginid);
-		return "forward:applyAffair.do";
+		return "forward:applyAffair.do?flag=0";
 	}
 	
 	
