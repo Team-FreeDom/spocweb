@@ -141,18 +141,28 @@
                             <td colspan=2></td>
                           </tr>
                         </table>
-                      <table class="admin_table">
+                  <table class="admin_table">
                           <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent  href="#">服务管理</a></td></tr>
+                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent  class=menuparent onclick=expand(6) href="javascript:void(0);">收费管理</a></td></tr>
                           <tr height=4>
                             <td></td>
                           </tr>
                         </table>
-                  <table class="admin_table">
-                          <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent  href="#">收费管理</a></td></tr>
+                      <table id=child6 style="display: none"  class="text-left admin_table">
+                          <tr height=20>
+                            <td width=30><img  src="../image/menu_icon.gif" ></td>
+                            <td><a class=menuchild href="#">服务类别管理</a></td>
+                          </tr>
+                          <tr height=20>
+                            <td width=30><img  src="../image/menu_icon.gif" ></td>
+                            <td><a class=menuchild  href="#">类别分类管理</a></td>
+                          </tr>
+                          <tr height=20>
+                            <td width=30><img  src="../image/menu_icon.gif" ></td>
+                            <td><a class=menuchild  href="#">收费标准管理</a></td>
+                          </tr>
                           <tr height=4>
-                            <td></td>
+                            <td colspan=2></td>
                           </tr>
                         </table>
                       </td>
