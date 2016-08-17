@@ -142,12 +142,12 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applyAffair.do" target=main>报名申请管理</a></td>
+										<td><a class=menuchild href="applys.do" target=main>报名申请管理</a></td>
 									</tr>
-									<tr height=20>
+									<!--  <tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#" target=main>报名处理管理</a></td>
-									</tr>
+										<td><a class=menuchild href="applys.do" target=main>报名处理管理</a></td>
+									</tr> -->
 									<tr height=4>
 										<td colspan=2></td>
 									</tr>
@@ -188,38 +188,37 @@
 
 
 					<div class="row admin_black admin_spacing">
-						<div class="col-md-2 col-xs-5">业务处理</div>
+						<div class="col-md-2 col-xs-5">报名申请处理</div>
 						<div class="col-md-7 hidden-xs"></div>
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form id="myForm4" action="read.do" method="post">
+							<form id="myForm4" action="duqu.do" method="post">
 								<table class="table" id="tabBox">
 									<tr>
 
-										<td>业务类别</td>
-										<td>联系人姓名</td>
-										<td>联系人电话</td>
+										<td>姓名</td>
+										<td>性别</td>
+										<td>学院</td>
 										<td colspan="2">基本操作</td>
 									</tr>
-									<c:forEach items='${affairs}' var="affair">
-										<c:if test="${affair.flag==0}">
+									<c:forEach items='${apply}' var="affair">
+
 											<tr>
 
-												<td>${affair.type}</td>
 												<td>${affair.name}</td>
-												<td>${affair.phone}</td>
+												<td>${affair.sex==1?"男":"女"}</td>
+												<td>${affair.college}</td>
 												<td colspan="2"><a href="#" class="display"
-													id="${affair.aff_id}">查看详情</a> <a style="margin-left:20px;"
+													id="${affair.apply_id}">查看详情</a> <a style="margin-left:20px;"
 													data-toggle="modal" data-target=".bs-example-modal-lg"
 													href="#">
-														<button type="button" class="btn btn-primary read"
-															data-dismiss="modal">审阅完成</button>
+
 												</a></td>
-												<td><input type="text" name="aff_id" hidden="hidden"
-													value="${affair.aff_id}" /></td>
+												<td><input type="text" name="apply_id" hidden="hidden"
+													value="${affair.apply_id}" /></td>
 											</tr>
-										</c:if>
+										
 									</c:forEach>
 								</table>
 							</form>
@@ -229,56 +228,69 @@
 
 					<!--detail-section-start  -->
 
-					<c:forEach items='${affairs}' var="affair">
+					<c:forEach items='${apply}' var="affair">
 						<div class="modal-content text-center admin_hide"
-							id="${affair.aff_id}ta">
+							id="${affair.apply_id}ta">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal"
-									id="${affair.aff_id}t"">
+									id="${affair.apply_id}t"">
 									<span aria-hidden="true">&times;</span>
 								</button>
-								<h4 class="modal-title" id="myModalLabel">业务信息${affair.aff_id}</h4>
+								<h4 class="modal-title" id="myModalLabel">报名信息${affair.apply_id}</h4>
 							</div>
 							<form action="updateType.do" method="post"
 								enctype="multipart/form-data" name="myForm2"
-								id="myForm${affair.aff_id}">
+								id="myForm${affair.apply_id}">
 								<div class="container table-responsive">
 									<table>
 										<tr style="padding-top:20px;">
 											<td style="width:80px;text-align:center;line-height:100px;">
-												<label for="exampleInputName2">联系人姓名</label>
+												<label for="exampleInputName2">姓名</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
 												name="typeName" class="form-control" id="exampleInputName2"
 												value="${affair.name}"></td>
 											<td style="width:80px;text-align:center;margin-left:100px;">
-												<label for="exampleInputName2">联系人电话</label>
+												<label for="exampleInputName2">性别</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
 												name="typeName" class="form-control" id="exampleInputName2"
-												value="${affair.phone}"></td>
+												value="${affair.sex}"></td>
 											<td style="width:80px;text-align:center;margin-left:100px;">
-												<label for="exampleInputName2">业务类别</label>
+												<label for="exampleInputName2">学院</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
 												name="typeName" class="form-control" id="exampleInputName2"
-												value="${affair.type}"></td>
+												value="${affair.college}"></td>
 										</tr>
 										<tr>
 											<td style="width:80px;text-align:center;line-height:100px;">
-												<label for="exampleInputName2">附件地址</label>
+												<label for="exampleInputName2">年级</label>
 											</td>
 											<td colspan="5"><input type="text" name="typeName"
 												class="form-control" id="exampleInputName2"
-												value="${affair.doc}" /></td>
+												value="${affair.grade}" /></td>
 										</tr>
 										<tr>
 											<td style="width:80px;text-align:center;line-height:100px;"><label
-												for="exampleInputName2">具体内容</label></td>
-											<td colspan="5"><textarea type="text" rows="3"
-													class="form-control" name="introduction"
-													value="${affair.content}" id="exampleInputName2"
-													style="width:650px;"></textarea></td>
+												for="exampleInputName2">班级</label></td>
+											<td colspan="5"><input type="text" name="typeName"
+												class="form-control" id="exampleInputName2"
+												value="${affair.major}" /></td>
+										</tr>
+										<tr>
+											<td style="width:80px;text-align:center;line-height:100px;"><label
+												for="exampleInputName2">电话</label></td>
+											<td colspan="5"><input type="text" name="typeName"
+												class="form-control" id="exampleInputName2"
+												value="${affair.phone}" /></td>
+										</tr>
+										<tr>
+											<td style="width:80px;text-align:center;line-height:100px;"><label
+												for="exampleInputName2">申报组别</label></td>
+											<td colspan="5"><input type="text" name="typeName"
+												class="form-control" id="exampleInputName2"
+												value="${affair.grouptype}" /></td>
 										</tr>
 									</table>
 								</div>
@@ -286,7 +298,7 @@
 							<div class="modal-footer">
 
 								<button type="button" class="btn btn-primary detail"
-									id="${affair.aff_id}" data-dismiss="modal">关闭</button>
+									id="${affair.apply_id}" data-dismiss="modal">关闭</button>
 							</div>
 						</div>
 

@@ -1,12 +1,16 @@
 package com.spoc.action;
+
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,39 +22,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spoc.po.Affair;
 import com.spoc.po.Affair_category;
-import com.spoc.service.AffairService;
-import com.spoc.service.Charge_categoryService;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.spoc.po.Affair;
-import com.spoc.po.Affair_category;
+import com.spoc.po.Apply;
 import com.spoc.service.AffairService;
 import com.spoc.service.Affair_categoryService;
+import com.spoc.service.ApplyService;
 
-
-
-@Controller("AffairControlle")
+@Controller("affairController")
 @RequestMapping("/jsp")
-public class AffairController
-{
-	@Autowired
-	 private AffairService affairService;
-	@Autowired
-	private Charge_categoryService charge_categoyService ;
-	@SuppressWarnings("unused")
-	private ServletContext servletContext;
+public class AffairController {
+
 	@Autowired
 	private Affair_categoryService affair_categoryService;
+	@Autowired
+	private ApplyService applyService;
+	@Autowired
+	private AffairService affairService;
+	private ServletContext servletContext;
 	@RequestMapping("/lianxi.do")
 	public String userAffair(HttpServletRequest request,HttpServletResponse response) throws Exception
 	{
@@ -73,7 +60,7 @@ public class AffairController
 	@RequestMapping("/lianxijsp.do")
 	public ModelAndView getInfo(ModelMap map) 
 	{
-		List<Affair_category> Charge=charge_categoyService.getCharge();
+		List<Affair_category> Charge=affair_categoryService.getAffairCa();
 		
 		map.addAttribute("Charge", Charge);
 		return new ModelAndView("affair");
@@ -86,33 +73,34 @@ public class AffairController
 	public String handleUploadData(String name,@RequestParam("file") CommonsMultipartFile file,HttpServletRequest request)
 	{
 		if (!file.isEmpty()) {
-			   String path = request.getServletContext().getRealPath("/")+"test";  //获取WebRoot/test存储路径
+			   String path = request.getServletContext().getRealPath("/")+"infor/test";  //��ȡWebRoot/test�洢·��
 			   System.out.println(path);
 			   String fileName = file.getOriginalFilename();
 			   String fileType = fileName.substring(fileName.lastIndexOf("."));
 			   //System.out.println(fileType); 
-			   File file2 = new File(path,new Date().getTime() + fileType); //新建一个文件
+			   File file2 = new File(path,new Date().getTime() + fileType); //�½�һ���ļ�
 			   try {
-				    file.getFileItem().write(file2); //将上传的文件写入新建的文件中
+				    file.getFileItem().write(file2); //���ϴ����ļ�д���½����ļ���
+				    
 			   } 
 			   catch (Exception e) 
 			   {
 				    e.printStackTrace();
 			   }
-			   return "lianxijsp.do";
+			   return "redirect:upload_ok.jsp";
 			}
 		   else
 			{
 				return "redirect:upload_error.jsp";
 			}
 	}
+	
 	@RequestMapping("/dealAT.do") 
 	public String dealAffairType(HttpServletRequest request, ModelMap map)
 	{
 		map.addAttribute("affairtypes", affair_categoryService.getAffairCa());
 		return "dealAffairType";
 	}
-	
 	@RequestMapping("/searchType.do")
 	public String searchType(HttpServletRequest request, ModelMap map)
 	{
@@ -173,7 +161,7 @@ public class AffairController
 	public String read(HttpServletRequest request, ModelMap map)
 	{
 		HttpSession session=request.getSession();
-		session.setAttribute("user", "ffff");//假设有用户登录，并存在此session对象
+		//session.setAttribute("user", "ffff");//�������û���¼�������ڴ�session����
 		int aff_id=Integer.valueOf(request.getParameter("aff_id"));
 		String loginid=(String) session.getAttribute("user");
 		affairService.updateAffair(aff_id, loginid);
@@ -187,5 +175,22 @@ public class AffairController
 		String[] check = request.getParameterValues("affair");
 		affairService.deleteAffair(check);
 		return "forward:applyAffair.do?flag=1";
+	}
+	@RequestMapping("/applys.do")
+	public String apply(HttpServletRequest request, ModelMap map)
+	{
+		List<Apply> list=applyService.getApply();
+		//int flag=Integer.valueOf(request.getParameter("flag"));
+		map.addAttribute("apply", list);
+		return "houapply0";
+	}
+	@RequestMapping("/duqu.do")
+	public String duqu(HttpServletRequest request, ModelMap map)
+	{
+		HttpSession session=request.getSession();
+		int apply_id=Integer.valueOf(request.getParameter("apply_id"));
+		//String loginid=(String) session.getAttribute("user");
+		applyService.updateApply(apply_id);
+		return "forward:applys.do";
 	}
 }

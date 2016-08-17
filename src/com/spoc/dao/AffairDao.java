@@ -2,22 +2,21 @@ package com.spoc.dao;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import com.spoc.po.Affair;
+import com.spoc.po.College;
 
+@Repository("affairDao")
+public class AffairDao {
 
-@Repository("AffairDao")
-public class AffairDao
-{
 	@Autowired
 	private SessionFactory sessionFactory;
+	
 	public void add(Affair affair)
 	{
 		Session session=sessionFactory.openSession();
@@ -25,11 +24,11 @@ public class AffairDao
 		session.save(affair);
 		session.getTransaction().commit();
 	}
-	@SuppressWarnings("unchecked")
+	
 	public List<Affair> getAffairs()
 	{
 		Session session=sessionFactory.openSession();
-		org.hibernate.Query query=session.createQuery("from Affair");
+		Query query=session.createQuery("from Affair");
 		List<Affair> list=query.list();
 		
 		return list;
@@ -54,6 +53,4 @@ public class AffairDao
 		session.delete(af);
 		session.getTransaction().commit();
 	}
-	
-
 }

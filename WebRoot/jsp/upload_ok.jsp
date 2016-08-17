@@ -24,5 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
       <h1>上传成功！</h1>
+       <a type="button"  href="jsp/lianxijsp.do" >点击返回</a>
+      
   </body>
 </html>

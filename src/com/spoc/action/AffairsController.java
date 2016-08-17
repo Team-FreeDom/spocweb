@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spoc.po.Affairs;
+import com.spoc.service.Affair_categoryService;
 import com.spoc.service.AffairsService;
 
 @Controller("affairsController")
@@ -21,6 +22,8 @@ public class AffairsController {
 
 	@Autowired
 	private AffairsService affairsService;
+	@Autowired
+	private Affair_categoryService affair_categoryService;
 	
 	@RequestMapping("/affair.do")
 	public String getAffairs(HttpServletRequest request,ModelMap map) throws Exception
@@ -29,12 +32,15 @@ public class AffairsController {
 		String name=request.getParameter("name");
 		if(name==null)
 		{
-			name="å¾®è¯¾æ…•è¯¾";
+			name="Î¢¿ÎÄ½¿Î";
 		}else{
 		name=new String(name.getBytes("iso8859-1"),"utf-8");
 		}
 		List<Affairs> list=affairsService.getAffairs(name);
 		map.addAttribute("affairs", list);
+		map.addAttribute("affair_category",affair_categoryService.getAffairCa());
 		return "index";
 	}
+	
+	
 }

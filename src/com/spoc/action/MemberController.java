@@ -11,7 +11,7 @@ import javassist.expr.NewArray;
 
 import javax.servlet.http.HttpServletRequest;
 
-
+import net.sf.json.JSONArray;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -122,15 +122,15 @@ public class MemberController {
 	@RequestMapping(value = "/add.do", method = RequestMethod.POST)
 	public String addMember(HttpServletRequest request, ModelMap map)
 			throws Exception {
-		// ä¸Šä¼ æ–‡ä»¶ï¼ˆå›¾ç‰‡ï¼‰ï¼Œå°†æ–‡ä»¶å­˜å…¥æœåŠ¡å™¨æŒ‡å®šè·¯å¾„ä¸‹ï¼Œå¹¶è·å¾—æ–‡ä»¶çš„ç›¸å¯¹è·¯å¾„
+		// ÉÏ´«ÎÄ¼ş£¨Í¼Æ¬£©£¬½«ÎÄ¼ş´æÈë·şÎñÆ÷Ö¸¶¨Â·¾¶ÏÂ£¬²¢»ñµÃÎÄ¼şµÄÏà¶ÔÂ·¾¶
 
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		// å¾—åˆ°ä¸Šä¼ çš„æ–‡ä»¶
+		// µÃµ½ÉÏ´«µÄÎÄ¼ş
 		MultipartFile mFile = multipartRequest.getFile("imgOne");
-		// å¾—åˆ°ä¸Šä¼ æœåŠ¡å™¨çš„è·¯å¾„
+		// µÃµ½ÉÏ´«·şÎñÆ÷µÄÂ·¾¶
 		String path = request.getSession().getServletContext()
 				.getRealPath("/infor/selfie/");
-		// å¾—åˆ°ä¸Šä¼ çš„æ–‡ä»¶çš„æ–‡ä»¶å
+		// µÃµ½ÉÏ´«µÄÎÄ¼şµÄÎÄ¼şÃû
 		String fileName = mFile.getOriginalFilename();
 		System.out.println(fileName);
 		String fileType = fileName.substring(fileName.lastIndexOf("."));
@@ -139,7 +139,7 @@ public class MemberController {
 		byte[] b = new byte[1048576];
 		int length = inputStream.read(b);
 		path += "\\" + filename;
-		// æ–‡ä»¶æµå†™åˆ°æœåŠ¡å™¨ç«¯
+		// ÎÄ¼şÁ÷Ğ´µ½·şÎñÆ÷¶Ë
 		FileOutputStream outputStream = new FileOutputStream(path);
 		outputStream.write(b, 0, length);
 		inputStream.close();
@@ -149,7 +149,7 @@ public class MemberController {
 		String name = request.getParameter("name");
 		String sex = request.getParameter("sex");
 		int sexValue = Integer.parseInt(sex);
-		sex = sexValue == 1 ? "ç”·" : "å¥³";
+		sex = sexValue == 1 ? "ÄĞ" : "Å®";
 		String birth_date = request.getParameter("birth_date");
 		String major = request.getParameter("major");
 		String grade = request.getParameter("grade");
@@ -175,15 +175,15 @@ public class MemberController {
 	public String addMemberT(HttpServletRequest request, ModelMap map)
 			throws Exception {
 		
-		// ä¸Šä¼ æ–‡ä»¶ï¼ˆå›¾ç‰‡ï¼‰ï¼Œå°†æ–‡ä»¶å­˜å…¥æœåŠ¡å™¨æŒ‡å®šè·¯å¾„ä¸‹ï¼Œå¹¶è·å¾—æ–‡ä»¶çš„ç›¸å¯¹è·¯å¾„
+		// ÉÏ´«ÎÄ¼ş£¨Í¼Æ¬£©£¬½«ÎÄ¼ş´æÈë·şÎñÆ÷Ö¸¶¨Â·¾¶ÏÂ£¬²¢»ñµÃÎÄ¼şµÄÏà¶ÔÂ·¾¶
 
 				MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-				// å¾—åˆ°ä¸Šä¼ çš„æ–‡ä»¶
+				// µÃµ½ÉÏ´«µÄÎÄ¼ş
 				MultipartFile mFile = multipartRequest.getFile("imgOne");
-				// å¾—åˆ°ä¸Šä¼ æœåŠ¡å™¨çš„è·¯å¾„
+				// µÃµ½ÉÏ´«·şÎñÆ÷µÄÂ·¾¶
 				String path = request.getSession().getServletContext()
 						.getRealPath("/infor/selfie/");
-				// å¾—åˆ°ä¸Šä¼ çš„æ–‡ä»¶çš„æ–‡ä»¶å
+				// µÃµ½ÉÏ´«µÄÎÄ¼şµÄÎÄ¼şÃû
 				String fileName = mFile.getOriginalFilename();
 				System.out.println(fileName);
 				String fileType = fileName.substring(fileName.lastIndexOf("."));
@@ -192,7 +192,7 @@ public class MemberController {
 				byte[] b = new byte[1048576];
 				int length = inputStream.read(b);
 				path += "\\" + filename;
-				// æ–‡ä»¶æµå†™åˆ°æœåŠ¡å™¨ç«¯
+				// ÎÄ¼şÁ÷Ğ´µ½·şÎñÆ÷¶Ë
 				FileOutputStream outputStream = new FileOutputStream(path);
 				outputStream.write(b, 0, length);
 				inputStream.close();
@@ -202,7 +202,7 @@ public class MemberController {
 				String name = request.getParameter("name");
 				String sex = request.getParameter("sex");
 				int sexValue = Integer.parseInt(sex);
-				sex = sexValue == 1 ? "ï¿½ï¿½" : "Å®";
+				sex = sexValue == 1 ? "ÄĞ" : "Å®";
 				String birth_date = request.getParameter("birth_date");	
 				String qq = request.getParameter("qq");
 				String phone = request.getParameter("phone");
@@ -227,7 +227,7 @@ public class MemberController {
 		String name = request.getParameter("name");
 		String sex = request.getParameter("sex");
 		int sexValue = Integer.parseInt(sex);
-		sex = sexValue == 1 ? "ï¿½ï¿½" : "Å®";
+		sex = sexValue == 1 ? "ÄĞ" : "Å®";
 		String birth_date = request.getParameter("birth_date");	
 		String qq = request.getParameter("qq");
 		String phone = request.getParameter("phone");
@@ -240,15 +240,15 @@ public class MemberController {
 		//String file=request.getParameter("imgOne");
 		
 		
-		// ä¸Šä¼ æ–‡ä»¶ï¼ˆå›¾ç‰‡ï¼‰ï¼Œå°†æ–‡ä»¶å­˜å…¥æœåŠ¡å™¨æŒ‡å®šè·¯å¾„ä¸‹ï¼Œå¹¶è·å¾—æ–‡ä»¶çš„ç›¸å¯¹è·¯å¾„      
+		// ÉÏ´«ÎÄ¼ş£¨Í¼Æ¬£©£¬½«ÎÄ¼ş´æÈë·şÎñÆ÷Ö¸¶¨Â·¾¶ÏÂ£¬²¢»ñµÃÎÄ¼şµÄÏà¶ÔÂ·¾¶      
         
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		// å¾—åˆ°ä¸Šä¼ çš„æ–‡ä»¶
+		// µÃµ½ÉÏ´«µÄÎÄ¼ş
 		MultipartFile mFile = multipartRequest.getFile("imgOne");
-		// å¾—åˆ°ä¸Šä¼ æœåŠ¡å™¨çš„è·¯å¾„
+		// µÃµ½ÉÏ´«·şÎñÆ÷µÄÂ·¾¶
 		String path = request.getSession().getServletContext()
 				.getRealPath("/infor/selfie/");
-		// å¾—åˆ°ä¸Šä¼ çš„æ–‡ä»¶çš„æ–‡ä»¶å
+		// µÃµ½ÉÏ´«µÄÎÄ¼şµÄÎÄ¼şÃû
 		String fileName = mFile.getOriginalFilename();
 		System.out.println(fileName);
 		 if(!fileName.isEmpty())
@@ -260,7 +260,7 @@ public class MemberController {
 		byte[] b = new byte[1048576];
 		int length = inputStream.read(b);
 		path += "\\" + filename;
-		// æ–‡ä»¶æµå†™åˆ°æœåŠ¡å™¨ç«¯
+		// ÎÄ¼şÁ÷Ğ´µ½·şÎñÆ÷¶Ë
 		FileOutputStream outputStream = new FileOutputStream(path);
 		outputStream.write(b, 0, length);
 		inputStream.close();
@@ -293,7 +293,7 @@ public class MemberController {
 		String name = request.getParameter("name");
 		String sex = request.getParameter("sex");
 		int sexValue = Integer.parseInt(sex);
-		sex = sexValue ==  1 ? "ç”·" : "å¥³";
+		sex = sexValue == 1 ? "ÄĞ" : "Å®";
 		String birth_date = request.getParameter("birth_date");
 		String major = request.getParameter("major");
 		String grade = request.getParameter("grade");
@@ -307,16 +307,16 @@ public class MemberController {
 		String pwd = request.getParameter("pwd");
 		String loginid = request.getParameter("loginid");
 		int admin=Integer.valueOf(request.getParameter("admin"));
-		// ä¸Šä¼ æ–‡ä»¶ï¼ˆå›¾ç‰‡ï¼‰ï¼Œå°†æ–‡ä»¶å­˜å…¥æœåŠ¡å™¨æŒ‡å®šè·¯å¾„ä¸‹ï¼Œå¹¶è·å¾—æ–‡ä»¶çš„ç›¸å¯¹è·¯å¾„
+		// ÉÏ´«ÎÄ¼ş£¨Í¼Æ¬£©£¬½«ÎÄ¼ş´æÈë·şÎñÆ÷Ö¸¶¨Â·¾¶ÏÂ£¬²¢»ñµÃÎÄ¼şµÄÏà¶ÔÂ·¾¶
 
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		// å¾—åˆ°ä¸Šä¼ çš„æ–‡ä»¶
+		// µÃµ½ÉÏ´«µÄÎÄ¼ş
 		MultipartFile mFile = multipartRequest.getFile("imgOne");
 		System.out.println(mFile);
-		// å¾—åˆ°ä¸Šä¼ æœåŠ¡å™¨çš„è·¯å¾„
+		// µÃµ½ÉÏ´«·şÎñÆ÷µÄÂ·¾¶
 		String path = request.getSession().getServletContext()
 				.getRealPath("/infor/selfie/");
-		// å¾—åˆ°ä¸Šä¼ çš„æ–‡ä»¶çš„æ–‡ä»¶å
+		// µÃµ½ÉÏ´«µÄÎÄ¼şµÄÎÄ¼şÃû
 		String fileName = mFile.getOriginalFilename();
 		System.out.println(fileName);
 		
@@ -328,7 +328,7 @@ public class MemberController {
 		byte[] b = new byte[1048576];
 		int length = inputStream.read(b);
 		path += "\\" + filename;
-		// æ–‡ä»¶æµå†™åˆ°æœåŠ¡å™¨ç«¯
+		// ÎÄ¼şÁ÷Ğ´µ½·şÎñÆ÷¶Ë
 		FileOutputStream outputStream = new FileOutputStream(path);
 		outputStream.write(b, 0, length);
 		inputStream.close();

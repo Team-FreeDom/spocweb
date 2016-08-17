@@ -239,10 +239,11 @@
 													<td>${servicetype.type}</td>
 												</c:if>
 											</c:forEach>
-											<td colspan="2"><a class="edit" id=${typecategory.tcid }
+											<td colspan="2">
+											<a class="edit" id=${typecategory.tcid }
 												style="margin-left:20px;" data-toggle="modal"
-												data-target=".bs-example-modal-lg" href="#"> <img
-													src="../image/edit.gif" width="10" height="10" /> 编辑
+												data-target=".bs-example-modal-lg" href="#"> 
+												<img src="../image/edit.gif" width="10" height="10" /> 编辑
 											</a></td>
 										</tr>
 									</c:forEach>
