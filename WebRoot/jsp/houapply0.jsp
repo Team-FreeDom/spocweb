@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!doctype html>
@@ -255,7 +255,7 @@
 											</td>
 											<td style="text-align:left;"><input type="text"
 												name="typeName" class="form-control" id="exampleInputName2"
-												value="${affair.sex}"></td>
+												value="$${affair.sex==1?"男":"女"}"></td>
 											<td style="width:80px;text-align:center;margin-left:100px;">
 												<label for="exampleInputName2">学院</label>
 											</td>
