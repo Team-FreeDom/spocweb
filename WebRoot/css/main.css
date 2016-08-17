@@ -51,14 +51,14 @@ white-space: nowrap;
 }
 
 .commonTitle {
-    color:#FFF;
+    color:#b04a34;
     font-size: 50px;
     font-weight: bold;
     letter-spacing: -5px;
     line-height: 0.8;
 	margin-bottom:40px;
 }
-
+.commonText{ color:#b04a34; line-height:1.5; font-size:15px;}
 .carousel {
   margin: 0 30px;
   width: calc(100% - ($button-spacing * 2));
@@ -120,8 +120,10 @@ white-space: nowrap;
 #list .liList{ width:2000px; position:relative; left:50%; margin-left:-1000px; overflow:hidden;}
 #list .divList{ width:1100px; height:520px; margin:0px auto; position:relative;}
 
-#team{ height: 480px;}
-#team .teamContent3{ position:absolute; bottom:50px; left:50%; margin-left:-472px;}
+#team{ }
+#team .teamContent1{ padding:50px; float:left; width:400px; transition:1s;}
+#team .teamContent2{ padding:50px; float:right; width:400px; transition:1s;}
+#team .teamContent3{ position:absolute; bottom:-150px; left:50%; margin-left:-472px;}
 #team .teamContent3 ul{}
 #team .teamContent3 li{ width:118px; height:448px; background:url(../image/team.png) no-repeat; float:left; cursor:pointer; transition:1s; }
 #canvasBubble{ position:absolute; left:0; bottom:100px; cursor:pointer;}
@@ -136,15 +138,12 @@ white-space: nowrap;
  #turn_picture ul
         {
            /* width: 960px;*/
-            margin: 4% auto 0 6%;
+            margin: 4% auto 0 0;
             padding: 0;
         }
 
         #turn_picture ul li
         {
-            margin-right: 20px;
-            width: 150px;
-            height: 150px;
             float: left;
         }
 
@@ -213,16 +212,6 @@ white-space: nowrap;
             -moz-transform: rotateY(0);
         }
 
-        #turn_picture ul li a div h3
-        {
-            margin: 0 auto 15px;
-            padding:0;
-            width: 150px;
-            height: 100px;
-            line-height: 100px;
-            text-align: center;
-            font-size: 2em;
-        }
 		
 /*fourth*/
 #fourth{
@@ -235,34 +224,37 @@ white-space: nowrap;
 	margin-top:50px;
 	font-size:1em;
 	width:100%;}
-.gray{
-	color:#999;}
 #gundong{
 	 overflow-y:auto;
 	 height:550px;}
-#fourth{
+.red a{
 	color:#b04a34;}
+.red a:hover{
+	color:#b04a34;
+	text-decoration:none;
+}
+.gray{
+	color:#999;
+	text-decoration:none;
+	}
+.gray a{
+	color:#999;
+	text-decoration:none;
+	cursor:default;}
+.gray  a:hover{
+	color:#999;
+	text-decoration:none;
+	}
+
 #fourth li{
-	line-height:50px;}
+	line-height:40px;}
 .fourth_right{
 	padding-bottom:20px;
 	border-bottom:solid 1px #b04a34;
 	}
 		
 @media screen and (max-width: 970px) {
-	 #turn_picture ul
-        {
-           /* width: 960px;*/
-            margin: 0;
-            padding: 0;
-        }
-	 #turn_picture ul li
-        {
-            margin:0px;
-            width: 150px;
-            height: 180px;
-          
-        }
+	 
 	#span{
 		font-size:1em;}
 	

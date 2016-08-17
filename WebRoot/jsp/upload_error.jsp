@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'display.jsp' starting page</title>
+    <title>My JSP 'upload_error.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <a href="jsp/user.do?flag=1">查看学生</a>
-    <a href="jsp/user.do?flag=2">查看老师</a>
+     <h1>上传失败！</h1>
+      <a type="button"  href="jsp/lianxijsp.do" >点击返回</a>
   </body>
 </html>

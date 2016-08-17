@@ -6,19 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spoc.dao.UserDao;
-import com.spoc.po.Student;
+import com.spoc.po.Member;
 
 
-
+@SuppressWarnings("unused")
 @Service("userService")
 public class UserService
 {
 	@Autowired
 	private UserDao userDao;
 
-	public boolean find(String username,String password)
+	public boolean find(String loginid,String password)
 	{
-		boolean flag=userDao.find(username,password);	
+		boolean flag=userDao.find(loginid,password);	
 		return flag;
 	}
 	public UserDao getUserDao()
