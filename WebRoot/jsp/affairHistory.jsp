@@ -113,11 +113,13 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applyAffair.do?flag=0" target=main>业务申请管理</a></td>
+										<td><a class=menuchild href="applyAffair.do?flag=0"
+											target=main>业务申请管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applyAffair.do?flag=1" target=main>业务处理管理</a></td>
+										<td><a class=menuchild href="applyAffair.do?flag=1"
+											target=main>业务处理管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
@@ -150,7 +152,34 @@
 										<td colspan=2></td>
 									</tr>
 								</table>
-
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent class=menuparent onclick=expand(6)
+											href="javascript:void(0);">收费管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+								<table id=child6 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="service.do">服务类别管理</a></td>
+									</tr>
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="TypeCategory.do">类别分类管理</a></td>
+									</tr>
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="chargeStandard.do">收费标准管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 					</table>
@@ -162,20 +191,18 @@
 						<div class="col-md-2 col-xs-5">业务已处理信息</div>
 						<div class="col-md-7 hidden-xs"></div>
 						<div class="col-md-3 col-xs-7">
-						    <a href="javascript:deleteAffair()"> <img
-									src="../image/del.gif" width="10" height="10" /> 删除
-							</a> &nbsp;&nbsp;
-
-							</span>
+							<a href="javascript:deleteAffair()"> <img
+								src="../image/del.gif" width="10" height="10" /> 删除
+							</a> &nbsp;&nbsp; </span>
 
 						</div>
-					    </div>
+					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
 							<form action="deleteAffair.do" id="myform" method="post">
 								<table class="table" id="tabBox">
 									<tr>
-                                        <td></td>
+										<td></td>
 										<td>业务编号</td>
 										<td>业务类型</td>
 										<td>处理人</td>
@@ -184,13 +211,14 @@
 									<c:forEach items='${affairs}' var="affair">
 										<c:if test="${affair.flag==1}">
 											<tr>
-                                              <td> <label><input type="checkbox" name="affair"
-													value="${affair.aff_id}" id="affair" class="ck" /></label></td>
+												<td><label><input type="checkbox" name="affair"
+														value="${affair.aff_id}" id="affair" class="ck" /></label></td>
 												<td>${affair.aff_id}</td>
 												<td>${affair.type}</td>
-												
+
 												<td>${affair.loginid}</td>
-												<td colspan="2"><a href="#" class="display" id="${affair.aff_id}">查看详情</a></td>
+												<td colspan="2"><a href="#" class="display"
+													id="${affair.aff_id}">查看详情</a></td>
 											</tr>
 										</c:if>
 									</c:forEach>
@@ -222,46 +250,45 @@
 												<label for="exampleInputName2">联系人姓名</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
-												name="typeName" class="form-control"
-												id="exampleInputName2" value="${affair.name}"></td>
+												name="typeName" class="form-control" id="exampleInputName2"
+												value="${affair.name}"></td>
 											<td style="width:80px;text-align:center;margin-left:100px;">
 												<label for="exampleInputName2">联系人电话</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
-												 name="typeName" class="form-control"
-												id="exampleInputName2" value="${affair.phone}"></td>
+												name="typeName" class="form-control" id="exampleInputName2"
+												value="${affair.phone}"></td>
 											<td style="width:80px;text-align:center;margin-left:100px;">
 												<label for="exampleInputName2">业务类别</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
-												 name="typeName" class="form-control"
-												id="exampleInputName2" value="${affair.type}"></td>	
-									     </tr>
-									     <tr>
-									       <td style="width:80px;text-align:center;line-height:100px;">
-									         <label for="exampleInputName2">附件地址</label>
-									       </td>
-									       <td>
-									         <input type="text"
-												 name="typeName" class="form-control"
-												id="exampleInputName2" value="${affair.doc}"/>
-									       </td>
-									       <td style="width:80px;text-align:center;margin-left:100px;">
+												name="typeName" class="form-control" id="exampleInputName2"
+												value="${affair.type}"></td>
+										</tr>
+										<tr>
+											<td style="width:80px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">附件地址</label>
+											</td>
+											<td><input type="text" name="typeName"
+												class="form-control" id="exampleInputName2"
+												value="${affair.doc}" /></td>
+											<td style="width:80px;text-align:center;margin-left:100px;">
 												<label for="exampleInputName2">处理人</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
-												 name="typeName" class="form-control"
-												id="exampleInputName2" value="${affair.loginid}"></td>	
-									     </tr>	
-									       								       
-									     </tr>
-									     <tr>
-									       <td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">具体内容</label></td>
-										<td colspan="5"><textarea type="text" rows="3"
-												class="form-control" name="introduction" value="${affair.content}"
-												id="exampleInputName2" style="width:650px;"></textarea></td>
-									     </tr>
+												name="typeName" class="form-control" id="exampleInputName2"
+												value="${affair.loginid}"></td>
+										</tr>
+
+										</tr>
+										<tr>
+											<td style="width:80px;text-align:center;line-height:100px;"><label
+												for="exampleInputName2">具体内容</label></td>
+											<td colspan="5"><textarea type="text" rows="3"
+													class="form-control" name="introduction"
+													value="${affair.content}" id="exampleInputName2"
+													style="width:650px;"></textarea></td>
+										</tr>
 									</table>
 								</div>
 							</form>
@@ -310,7 +337,7 @@
 					})
 
 					$(".detail").bind("click", function() {
-						var id = this.id+"ta";
+						var id = this.id + "ta";
 						document.getElementById(id).style.display = "none";
 					})
 				</script>
