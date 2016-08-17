@@ -17,6 +17,14 @@ public class AffairDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	public void add(Affair affair)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(affair);
+		session.getTransaction().commit();
+	}
+	
 	public List<Affair> getAffairs()
 	{
 		Session session=sessionFactory.openSession();
