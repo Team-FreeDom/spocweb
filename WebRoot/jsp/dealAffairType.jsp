@@ -113,13 +113,11 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applyAffair.do?flag=0"
-											target=main>业务申请管理</a></td>
+										<td><a class=menuchild href="applyAffair.do?flag=0" target=main>业务申请管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applyAffair.do?flag=1"
-											target=main>业务处理管理</a></td>
+										<td><a class=menuchild href="applyAffair.do?flag=1" target=main>业务处理管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
@@ -152,34 +150,7 @@
 										<td colspan=2></td>
 									</tr>
 								</table>
-								<table class="admin_table">
-									<tr height=22>
-										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent class=menuparent onclick=expand(6)
-											href="javascript:void(0);">收费管理</a></td>
-									</tr>
-									<tr height=4>
-										<td></td>
-									</tr>
-								</table>
-								<table id=child6 style="display: none"
-									class="text-left admin_table">
-									<tr height=20>
-										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="service.do">服务类别管理</a></td>
-									</tr>
-									<tr height=20>
-										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="TypeCategory.do">类别分类管理</a></td>
-									</tr>
-									<tr height=20>
-										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="chargeStandard.do">收费标准管理</a></td>
-									</tr>
-									<tr height=4>
-										<td colspan=2></td>
-									</tr>
-								</table>
+
 							</td>
 						</tr>
 					</table>
@@ -309,35 +280,33 @@
 								enctype="multipart/form-data" name="myForm2"
 								id="myForm${affairtype.acid}">
 								<div class="container table-responsive">
-									<table>
-										<tr style="padding-top:20px;">
-											<td style="width:80px;text-align:center;line-height:100px;">
-												<label for="exampleInputName2">类别名称</label>
-											</td>
-											<td style="text-align:left;"><input type="text"
-												readOnly="true" name="typeName" class="form-control"
-												id="exampleInputName2" value="${affairtype.name}"></td>
-											<td style="width:80px;text-align:center;margin-left:150px;">
-												<label for="exampleInputName2">投入开发</label>
-											</td>
-											<td style="text-align:left;"><input name="flag"
-												value="1" ${affairtype.flag==1?"checked":""} type="radio">
-												<label for="q2_1">是</label> <input
-												${affairtype.flag==0?"checked":""} name="flag" value="0"
-												type="radio" /> <label for="q2_2">否</label></td>
-										</tr>
-										<tr>
-											<td><input type="text" name="acid"
-												value="${affairtype.acid}" hidden="hidden" /></td>
-										</tr>
-									</table>
-								</div>
+								<table>
+									<tr style="padding-top:20px;">
+										<td style="width:80px;text-align:center;line-height:100px;">
+											<label for="exampleInputName2">类别名称</label>
+										</td>
+										<td style="text-align:left;"><input type="text" readOnly="true"
+											name="typeName" class="form-control" id="exampleInputName2"
+											value="${affairtype.name}">
+										</td>
+										<td style="width:80px;text-align:center;margin-left:150px;">
+											<label for="exampleInputName2">投入开发</label>
+										</td>
+										<td style="text-align:left;"><input name="flag" value="1"
+									${affairtype.flag==1?"checked":""}	type="radio"> <label for="q2_1">是</label> <input
+									${affairtype.flag==0?"checked":""} name="flag" value="0" type="radio" /> <label for="q2_2">否</label></td>
+									</tr>
+									<tr>
+									<td><input type="text" name="acid" value="${affairtype.acid}" hidden="hidden"/></td>
+									</tr>
+								</table>
+							</div>
 							</form>
 							<div class="modal-footer">
-
-								<button type="button" class="btn btn-primary update"
-									id="${affairtype.acid}" data-dismiss="modal">确定</button>
-							</div>
+							
+						 <button type="button" class="btn btn-primary update"
+												id="${affairtype.acid}"	data-dismiss="modal">确定</button>
+						</div>
 						</div>
 				</div>
 				</c:forEach>

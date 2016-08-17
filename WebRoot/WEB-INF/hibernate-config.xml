@@ -19,7 +19,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
 		</property>
 		<property name="url" value="jdbc:mysql://localhost:3306/spoc_web"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="511409licai"></property>
+		<property name="password" value="123456"></property>
 	</bean>
 
 	<bean id="sessionFactory"

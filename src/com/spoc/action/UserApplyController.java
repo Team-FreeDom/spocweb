@@ -48,7 +48,7 @@ public class UserApplyController {
 	  Apply apply=new Apply(name,sex,college,grade,major,phone,group);
 	  applyService.userApply(apply);
 	  
-	  return "forward:affair.do";
+	  return "index";
   }
   
   @RequestMapping("/applyjsp.do")

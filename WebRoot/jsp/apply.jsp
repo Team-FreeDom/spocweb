@@ -115,6 +115,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		     alert("请填写您的电话号码！");
 		     return false;
 		   }
+		   if(!group.checked)
+	       {
+		      alert("请选择您要加入的组！");
+		      return false;
+		   }
 		     return true;
       }
   </script>

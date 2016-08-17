@@ -67,16 +67,6 @@ public class Charge_Standard {
 	public Charge_Standard() {
 		super();
 	}
-	public Charge_Standard(int csid, String basic, String advance,
-			String careless, int acid, int tcid) {
-		super();
-		this.csid = csid;
-		this.basic = basic;
-		this.advance = advance;
-		this.careless = careless;
-		this.acid = acid;
-		this.tcid = tcid;
-	}
 	 
 	 
 }

@@ -13,16 +13,29 @@ import com.spoc.po.Affair;
 public class AffairService {
 
 	@Autowired
-	private AffairDao affairDao;
-	
+	private AffairDao affairdao;
+	public void add(Affair affair)
+	{
+		affairdao.add(affair);
+		
+	}
+	public AffairDao getAffairdao()
+	{
+		return affairdao;
+	}
+
+	public void setAffairdao(AffairDao affairdao)
+	{
+		this.affairdao = affairdao;
+	}
 	public List<Affair> getAffairs()
 	{
-		return affairDao.getAffairs();
+		return affairdao.getAffairs();
 	}
 	
 	public void updateAffair(int aff_id,String loginid)
 	{
-		affairDao.updateAffair(aff_id, loginid);
+		affairdao.updateAffair(aff_id, loginid);
 	}
 	
 	public void deleteAffair(String[] str)
@@ -31,7 +44,7 @@ public class AffairService {
 		for(String id:str)
 		{
 			aff_id=Integer.valueOf(id);
-			affairDao.deleteAffair(aff_id);
+			affairdao.deleteAffair(aff_id);
 		}
 	}
 }
