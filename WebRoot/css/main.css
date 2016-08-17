@@ -235,10 +235,12 @@ white-space: nowrap;
 }
 .gray{
 	color:#999;
-	text-decoration:none;}
+	text-decoration:none;
+	}
 .gray a{
 	color:#999;
-	text-decoration:none;}
+	text-decoration:none;
+	cursor:default;}
 .gray  a:hover{
 	color:#999;
 	text-decoration:none;
