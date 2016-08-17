@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!doctype html>
 <html>
@@ -7,7 +8,7 @@
 <title>管理员界面</title>
 <link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet">
 <link href="../css/admin1.css" type="text/css" rel="stylesheet">
-<script src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <SCRIPT language=javascript>
 	function expand(el) {
@@ -66,11 +67,12 @@
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
 
-										<td><a class=menuchild href="user.do?flag=1">老师管理</a></td>
+										<td><a class=menuchild href="user.do?flag=1" target=main>老师管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="user.do?flag=2">学生管理</a></td>
+										<td><a class=menuchild href="user.do?flag=2"
+											target="main">学生管理</a></td>
 									</tr>
 									<tr height=4>
 										<td colspan=2></td>
@@ -81,7 +83,7 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent href="#">荣誉管理</a></td>
+											class=menuparent href="../list.html" target="main">荣誉管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
@@ -91,7 +93,7 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent href="#">作品管理</a></td>
+											class=menuparent href="../list2.html" target="main">作品管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
@@ -111,15 +113,17 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applyAffair.do?flag=0">业务申请管理</a></td>
+										<td><a class=menuchild href="applyAffair.do?flag=0"
+											target=main>业务申请管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applyAffair.do?flag=1">业务处理管理</a></td>
+										<td><a class=menuchild href="applyAffair.do?flag=1"
+											target=main>业务处理管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="dealAT.do">业务类型管理</a></td>
+										<td><a class=menuchild href="dealAT.do" target=main>业务类型管理</a></td>
 									</tr>
 									<tr height=4>
 										<td colspan=2></td>
@@ -138,11 +142,11 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#">报名申请管理</a></td>
+										<td><a class=menuchild href="applyAffair.do" target=main>报名申请管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#">报名处理管理</a></td>
+										<td><a class=menuchild href="#" target=main>报名处理管理</a></td>
 									</tr>
 									<tr height=4>
 										<td colspan=2></td>
@@ -179,11 +183,150 @@
 							</td>
 						</tr>
 					</table>
-
 				</div>
 				<div class="col-md-10 col-xs-10">
 
-					
+					<div class=" row text-right" style="margin-top:10px;">
+						<div class="col-md-12 col-xs-12">
+							<form action="searchServiceType.do" method="post"
+								class="form-inline">
+								<div class="form-group">
+									<label for="exampleInputName2">用户搜索</label> <input type="text"
+										name="servicetype" class="form-control" id="exampleInputName2"
+										placeholder="服务类别名">
+								</div>
+								<input type="submit" name="submit" value="搜索"
+									class="btn btn-default" />
+							</form>
+						</div>
+					</div>
+
+					<div class="row admin_black admin_spacing">
+						<div class="col-md-2 col-xs-5">服务类别信息</div>
+						<div class="col-md-7 hidden-xs"></div>
+						<div class="col-md-3 col-xs-7">
+							<span> <a class="add" href="#"> <img
+									src="../image/add.gif" width="10" height="10" /> 添加
+							</a> &nbsp; <a href="javascript:deleteType()"> <img
+									src="../image/del.gif" width="10" height="10" /> 删除
+							</a> &nbsp;&nbsp;
+
+							</span>
+
+						</div>
+					</div>
+					<div id="tableBox">
+						<div class="admin_roll">
+							<form action="deleteServiceType.do" method="post" name="myform"
+								id="myform">
+								<table class="table" id="tabBox">
+									<tr>
+										<td></td>
+										<td>类别编号</td>
+										<td>类别名称</td>
+
+									</tr>
+									<c:forEach items='${serviceTypes}' var="servicetype">
+										<tr>
+											<td><label><input type="checkbox" name="type"
+													value="${servicetype.stid}" id="type" class="ck" /></label></td>
+
+											<td>${servicetype.stid}</td>
+											<td>${servicetype.type}</td>
+
+										</tr>
+									</c:forEach>
+								</table>
+							</form>
+						</div>
+						<div class="text-right" style="margin-right:60px;">
+							<label><input type="checkbox" name="0" class="ck-all" />全选</label>
+							<label><input type="checkbox" name="0" class="ck-re" />反选</label>
+						</div>
+					</div>
+
+					<!--add-section-start  -->
+
+					<div class="modal-content text-center admin_hide" id="addMember">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								onclick="fun(this)">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">添加服务类别</h4>
+						</div>
+						<form action="addServiceType.do" method="post" name="myForm2"
+							id="myForm2">
+							<div class="container table-responsive">
+								<table>
+									<tr style="padding-top:20px;">
+										<td style="width:80px;text-align:center;line-height:100px;">
+											<label for="exampleInputName2">类别名称</label>
+										</td>
+										<td style="text-align:left;"><input type="text"
+											name="type" class="form-control" id="exampleInputName2">
+										</td>
+
+									</tr>
+								</table>
+							</div>
+						</form>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal" onclick="add()">添加</button>
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal" onclick="fun(this)">Close</button>
+						</div>
+					</div>
+
+
+
+					<!--add-section-end  -->
+
+
+					<script type="text/javascript">
+						function deleteType() {
+
+							$('#myform').submit();
+
+						}
+						$(".edit")
+								.bind(
+										"click",
+										function() {
+											var id = this.id + "ta";
+											document.getElementById(id).style.display = "block";
+										})
+
+						$(".add")
+								.bind(
+										"click",
+										function() {
+											document
+													.getElementById("addMember").style.display = "block";
+										})
+
+						function fun(obj) {
+							var div = document.getElementById("addMember");
+							div.style.display = "none";
+							$("input").val("");
+						}
+
+						function add() {
+							$('#myForm2').submit();
+
+						}
+
+						$(".close").bind("click", function() {
+							var id = this.id + "a";
+							document.getElementById(id).style.display = "none";
+						})
+
+						$(".update").bind("click", function() {
+							var id = "#myForm" + this.id;
+							$(id).submit();
+						})
+					</script>
 					<script>
 						var tabBox = document.getElementById("tabBox"),
 						//tab = tabBox.getElementsByClassName("tab"),
@@ -228,13 +371,14 @@
 								}
 							}
 
-							//反选函数 by:<a href="http://www.51xuediannao.com/">懒人建站</a>
+							//反选函数 by:<a href="http://www.51xued iannao.com/">懒人建站</a>
 							function reCk() {
 								for (var i = 0; i < ck.length; i++) {
 									ck[i].checked ? ck[i].checked = false
 											: ck[i].checked = true;
 								}
 							}
+
 						}
 					</script>
 				</div>

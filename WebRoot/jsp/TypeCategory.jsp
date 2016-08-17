@@ -142,7 +142,7 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#" target=main>报名申请管理</a></td>
+										<td><a class=menuchild href="applyAffair.do" target=main>报名申请管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
@@ -188,24 +188,26 @@
 
 					<div class=" row text-right" style="margin-top:10px;">
 						<div class="col-md-12 col-xs-12">
-							<form action="search1.do" method="post" class="form-inline">
+							<form action="searchTypeCategory.do" method="post"
+								class="form-inline">
 								<div class="form-group">
 									<label for="exampleInputName2">用户搜索</label> <input type="text"
-										name="membername" class="form-control" id="exampleInputName2"
-										placeholder="姓名">
+										name="type" class="form-control" id="exampleInputName2"
+										placeholder="类别描述">
 								</div>
-								<input type="submit" name="submit" class="btn btn-default" />
+								<input type="submit" name="submit" value="搜索"
+									class="btn btn-default" />
 							</form>
 						</div>
 					</div>
 
 					<div class="row admin_black admin_spacing">
-						<div class="col-md-2 col-xs-5">管理人员基本信息表</div>
+						<div class="col-md-2 col-xs-5">类型分类信息</div>
 						<div class="col-md-7 hidden-xs"></div>
 						<div class="col-md-3 col-xs-7">
 							<span> <a class="add" href="#"> <img
 									src="../image/add.gif" width="10" height="10" /> 添加
-							</a> &nbsp; <a href="javascript:deleteMember()"> <img
+							</a> &nbsp; <a href="javascript:deleteType()"> <img
 									src="../image/del.gif" width="10" height="10" /> 删除
 							</a> &nbsp;&nbsp;
 
@@ -215,29 +217,29 @@
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="deleteMember1.do" method="post" name="myform"
+							<form action="deleteTypeCategory.do" method="post" name="myform"
 								id="myform">
 								<table class="table" id="tabBox">
 									<tr>
 										<td></td>
-										<td>姓名</td>
-										<td>性别</td>
-										<td>院系</td>
-										<td>电话</td>
+										<td>类别编号</td>
+										<td>类别描述</td>
+										<td>所属服务类别</td>
 										<td colspan="2">基本操作</td>
 									</tr>
-									<c:forEach items='${teachers}' var="teacher">
+									<c:forEach items='${typecategorys}' var="typecategory">
 										<tr>
-											<td><label><input type="checkbox" name="teacher"
-													value="${teacher.loginid}" id="teacher" class="ck" /></label></td>
+											<td><label><input type="checkbox" name="type"
+													value="${typecategory.tcid}" id="type" class="ck" /></label></td>
 
-											<td>${teacher.name}</td>
-											<td>${teacher.sex}</td>
-											<td>${teacher.college}</td>
-											<td>${teacher.phone}</td>
-											<td colspan="2"><a
-												href="detail.do?id=${teacher.loginid}&flag=1">查看详情</a> <a
-												class="edit" id="${teacher.loginid}"
+											<td>${typecategory.tcid}</td>
+											<td>${typecategory.description}</td>
+											<c:forEach items='${servicetypes}' var="servicetype">
+												<c:if test="${typecategory.stid==servicetype.stid}">
+													<td>${servicetype.type}</td>
+												</c:if>
+											</c:forEach>
+											<td colspan="2"><a class="edit" id=${typecategory.tcid }
 												style="margin-left:20px;" data-toggle="modal"
 												data-target=".bs-example-modal-lg" href="#"> <img
 													src="../image/edit.gif" width="10" height="10" /> 编辑
@@ -261,231 +263,99 @@
 								onclick="fun(this)">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h4 class="modal-title" id="myModalLabel">添加成员</h4>
+							<h4 class="modal-title" id="myModalLabel">添加类别种类</h4>
 						</div>
-						<form action="add1.do" method="post" enctype="multipart/form-data"
-							name="myForm2" id="myForm2">
+						<form action="addTypeCategory.do" method="post" name="myForm2"
+							id="myForm2">
 							<div class="container table-responsive">
 								<table>
 									<tr style="padding-top:20px;">
-										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">登录名</label></td>
+										<td style="width:80px;text-align:center;line-height:100px;">
+											<label for="exampleInputName2">类别描述</label>
+										</td>
 										<td style="text-align:left;"><input type="text"
-											name="loginid" class="form-control" id="exampleInputName2"></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">密码</label></td>
-										<td style="text-align:left;"><input type="text"
-											name="pwd" class="form-control" id="exampleInputName2"></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">管理员</label></td>
-										<td style="text-align:left;"><input name="admin"
-											value="1" type="radio"> <label for="q2_1">是</label> <input
-											name="admin" value="2" type="radio" checked="checked">
-											<label for="q2_2">否</label></td>
-
-									</tr>
-
-									<tr style="margin-top:20px;">
-										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">姓名</label></td>
-										<td style="text-align:left;"><input type="text"
-											name="name" class="form-control" id="exampleInputName2"></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">性别</label></td>
-										<td style="text-align:left;"><input name="sex" value="1"
-											type="radio" checked="checked"> <label for="q2_1">男</label>
-											<input name="sex" value="2" type="radio"> <label
-											for="q2_2">女</label></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">出生日期</label></td>
-										<td style="text-align:left;"><input type="text"
-											name="birth_date" class="form-control" id="exampleInputName2"></td>
-									</tr>
-
-									<tr>
-										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">学院</label></td>
-										<td style="text-align:left;"><select name="college"
+											name="description" class="form-control"
+											id="exampleInputName2"></td>
+										<td style="width:120px;text-align:center;margin-left:150px;">
+											<label for="exampleInputName2">所属服务类别</label>
+										</td>
+										<td style="text-align:left;"><select name="type"
 											style="width:195px;">
 												<option>请选择</option>
-												<c:forEach items='${colleges}' var="college">
-													<option values="${college.name }">${college.name }</option>
+												<c:forEach items='${servicetypes}' var="servicetype">
+													<option value="${servicetype.stid }">${servicetype.type }</option>
 												</c:forEach>
 										</select></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">QQ</label></td>
-										<td style="text-align:left;"><input type="text" name="qq"
-											class="form-control" id="exampleInputName2"></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">电话</label></td>
-										<td style="text-align:left;"><input type="text"
-											name="phone" class="form-control" id="exampleInputName2"></td>
 									</tr>
-
-									<tr>
-										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">就业</label></td>
-										<td colspan="5"><textarea type="text"
-												class="form-control" name="job" id="exampleInputName2"
-												style="width:650px;"></textarea></td>
-									</tr>
-
-									<tr>
-										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">地址</label></td>
-										<td colspan="5"><textarea type="text"
-												class="form-control" name="address" id="exampleInputName2"
-												style="width:650px;"></textarea></td>
-									</tr>
-
 								</table>
 							</div>
-
-							<center>
-								<table style="color:#000; margin-top:10px;">
-									<tr>
-										<td>照片</td>
-										<td><img id="imgPre" src="" width="100px" height="120px"
-											style="display: block;" /> <input type="file" name="imgOne"
-											id="imgOne" onchange="preImg(this.id,'imgPre');" /></td>
-									</tr>
-
-								</table>
-							</center>
 						</form>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary"
 								data-dismiss="modal" onclick="add()">添加</button>
-
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal" onclick="fun(this)">Close</button>
 						</div>
-
 					</div>
+
+
 
 					<!--add-section-end  -->
 
 					<!--edit-section-start  -->
 
-					<c:forEach items='${teachers}' var="teacher">
+					<c:forEach items='${typecategorys}' var="typecategory">
 						<div class="modal-content text-center admin_hide"
-							id="${teacher.loginid}ta">
+							id="${typecategory.tcid}ta">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal"
-									id="${teacher.loginid}t">
+									id="${typecategory.tcid}t"">
 									<span aria-hidden="true">&times;</span>
 								</button>
-								<h4 class="modal-title" id="myModalLabel">编辑成员信息</h4>
+								<h4 class="modal-title" id="myModalLabel">编辑类别信息</h4>
 							</div>
-							<form action="updateT.do" method="post"
-								enctype="multipart/form-data" name="myForm3"
-								id="myForm${teacher.loginid}">
+							<form action="updateTypeCategory.do" method="post"
+								enctype="multipart/form-data" name="myForm2"
+								id="myForm${typecategory.tcid}">
 								<div class="container table-responsive">
 									<table>
 										<tr style="padding-top:20px;">
-											<td style="width:80px;text-align:center;line-height:100px;"><label
-												for="exampleInputName2">登录名</label></td>
+											<td style="width:80px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">类别描述</label>
+											</td>
 											<td style="text-align:left;"><input type="text"
-												value="${teacher.loginid}" name="loginid"
+												value="${typecategory.description}" name="description"
 												class="form-control" id="exampleInputName2"></td>
-											<td style="width:80px;text-align:center;margin-left:30px;"><label
-												for="exampleInputName2">密码</label></td>
-											<td style="text-align:left;"><input type="text"
-												value="${teacher.password}" name="pwd" class="form-control"
-												id="exampleInputName2"></td>
-											<td style="width:80px;text-align:center;margin-left:30px;"><label
-												for="exampleInputName2">管理员</label></td>
-											<td style="text-align:left;"><input name="admin"
-												value="1" type="radio" ${teacher.adminid==1?"checked" : ""} />
-												<label for="q2_1">是</label> <input name="admin" value="2"
-												type="radio" ${teacher.adminid==2?"checked" : ""} /> <label
-												for="q2_2">否</label></td>
-										</tr>
-
-										<tr style="margin-top:20px;">
-											<td style="width:80px;text-align:center;line-height:40px;"><label
-												for="exampleInputName2">姓名</label></td>
-											<td style="text-align:left;"><input type="text"
-												value="${teacher.name}" name="name" class="form-control"
-												id="exampleInputName2"></td>
-											<td style="width:80px;text-align:center;margin-left:30px;"><label
-												for="exampleInputName2">性别</label></td>
-											<td style="text-align:left;"><input name="sex" value="1"
-												${teacher.sex=="男"?"checked" : ""} type="radio"> <label
-												for="q2_1">男</label> <input name="sex" value="2"
-												${teacher.sex=="女"?"checked" : ""} type="radio"> <label
-												for="q2_2">女</label></td>
-											<td style="width:80px;text-align:center;margin-left:30px;"><label
-												for="exampleInputName2">出生日期</label></td>
-											<td style="text-align:left;"><input type="text"
-												value="${teacher.date}" name="birth_date"
-												class="form-control" id="exampleInputName2"></td>
-										</tr>
-
-										<tr>
-											<td style="width:80px;text-align:center;line-height:40px;"><label
-												for="exampleInputName2">学院</label></td>
-											<td style="text-align:left;"><select name="college"
+											<td style="width:120px;text-align:center;margin-left:150px;">
+												<label for="exampleInputName2">所属服务类别</label>
+											</td>
+											<td style="text-align:left;"><select name="type"
 												style="width:195px;">
 													<option>请选择</option>
-													<c:forEach items='${colleges}' var="college">
-														<option values="${college.name }"
-															${teacher.college==college.name?"selected":""}>${college.name }</option>
+													<c:forEach items='${servicetypes}' var="servicetype">
+														<option value="${servicetype.stid }"
+															${servicetype.stid==typecategory.stid?"selected":"" }>${servicetype.type }</option>
 													</c:forEach>
 											</select></td>
-											<td style="width:80px;text-align:center;line-height:40px;"><label
-												for="exampleInputName2">QQ</label></td>
-											<td style="text-align:left;"><input type="text"
-												name="qq" value="${teacher.qq }" class="form-control"
-												id="exampleInputName2"></td>
-											<td style="width:80px;text-align:center;margin-left:30px;"><label
-												for="exampleInputName2">电话</label></td>
-											<td style="text-align:left;"><input type="text"
-												value="${teacher.phone }" name="phone" class="form-control"
-												id="exampleInputName2"></td>
+											<td style="width:120px;text-align:center;margin-left:150px;">
+												<input type="text" name="tcid" value="${typecategory.tcid}"
+												hidden="hidden" />
+											</td>
 										</tr>
-
-
-										<tr>
-											<td style="width:80px;text-align:center;line-height:100px;"><label
-												for="exampleInputName2">就业</label></td>
-											<td colspan="5"><textarea type="text"
-													class="form-control" name="job" id="exampleInputName2"
-													style="width:650px;"> ${teacher.job }</textarea></td>
-										</tr>
-
-										<tr>
-											<td style="width:80px;text-align:center;line-height:100px;"><label
-												for="exampleInputName2">地址</label></td>
-											<td colspan="5"><textarea type="text"
-													class="form-control" name="address" id="exampleInputName2"
-													style="width:650px;"> ${teacher.address }</textarea></td>
-										</tr>
-
 									</table>
 								</div>
-
-								<center>
-									<table style="color:#000; margin-top:10px;">
-										<tr>
-											<td>照片</td>
-											<td><img src="${teacher.img}" id="imgPre" width="100px"
-												height="120px" style="display: block;" /> <input
-												type="file" name="imgOne" id="imgOne"
-												onchange="preImg(this.id,'imgPre');" /></td>
-										</tr>
-
-									</table>
-								</center>
 							</form>
 							<div class="modal-footer">
+
 								<button type="button" class="btn btn-primary update"
-									id="${teacher.loginid}" data-dismiss="modal">确定</button>
+									id="${typecategory.tcid}" data-dismiss="modal">确定</button>
 							</div>
 						</div>
 				</div>
 				</c:forEach>
 				<!--edit-section-end -->
 				<script type="text/javascript">
-					function deleteMember() {
+					function deleteType() {
 
 						$('#myform').submit();
 
@@ -512,13 +382,15 @@
 						$('#myForm2').submit();
 
 					}
-					$(".update").bind("click", function() {
-						var id = "#myForm" + this.id;
-						$(id).submit();
-					})
+
 					$(".close").bind("click", function() {
 						var id = this.id + "a";
 						document.getElementById(id).style.display = "none";
+					})
+
+					$(".update").bind("click", function() {
+						var id = "#myForm" + this.id;
+						$(id).submit();
 					})
 				</script>
 				<script>
