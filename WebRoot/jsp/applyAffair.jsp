@@ -113,11 +113,13 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applyAffair.do?flag=0" target=main>业务申请管理</a></td>
+										<td><a class=menuchild href="applyAffair.do?flag=0"
+											target=main>业务申请管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applyAffair.do?flag=1" target=main>业务处理管理</a></td>
+										<td><a class=menuchild href="applyAffair.do?flag=1"
+											target=main>业务处理管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
@@ -150,7 +152,34 @@
 										<td colspan=2></td>
 									</tr>
 								</table>
-
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent class=menuparent onclick=expand(6)
+											href="javascript:void(0);">收费管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+								<table id=child6 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="service.do">服务类别管理</a></td>
+									</tr>
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="TypeCategory.do">类别分类管理</a></td>
+									</tr>
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="chargeStandard.do">收费标准管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 					</table>
@@ -161,7 +190,7 @@
 					<div class="row admin_black admin_spacing">
 						<div class="col-md-2 col-xs-5">业务处理</div>
 						<div class="col-md-7 hidden-xs"></div>
-					    </div>
+					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
 							<form id="myForm4" action="read.do" method="post">
@@ -180,16 +209,15 @@
 												<td>${affair.type}</td>
 												<td>${affair.name}</td>
 												<td>${affair.phone}</td>
-												<td colspan="2"><a href="#" class="display" id="${affair.aff_id}">查看详情</a> <a
-													style="margin-left:20px;" data-toggle="modal"
-													data-target=".bs-example-modal-lg" href="#">
+												<td colspan="2"><a href="#" class="display"
+													id="${affair.aff_id}">查看详情</a> <a style="margin-left:20px;"
+													data-toggle="modal" data-target=".bs-example-modal-lg"
+													href="#">
 														<button type="button" class="btn btn-primary read"
-													 data-dismiss="modal">审阅完成</button>
-												</a>
-												</td>
-												<td>
-												<input type="text" name="aff_id" hidden="hidden" value="${affair.aff_id}"/>
-												</td>
+															data-dismiss="modal">审阅完成</button>
+												</a></td>
+												<td><input type="text" name="aff_id" hidden="hidden"
+													value="${affair.aff_id}" /></td>
 											</tr>
 										</c:if>
 									</c:forEach>
@@ -221,38 +249,37 @@
 												<label for="exampleInputName2">联系人姓名</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
-												name="typeName" class="form-control"
-												id="exampleInputName2" value="${affair.name}"></td>
+												name="typeName" class="form-control" id="exampleInputName2"
+												value="${affair.name}"></td>
 											<td style="width:80px;text-align:center;margin-left:100px;">
 												<label for="exampleInputName2">联系人电话</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
-												 name="typeName" class="form-control"
-												id="exampleInputName2" value="${affair.phone}"></td>
+												name="typeName" class="form-control" id="exampleInputName2"
+												value="${affair.phone}"></td>
 											<td style="width:80px;text-align:center;margin-left:100px;">
 												<label for="exampleInputName2">业务类别</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
-												 name="typeName" class="form-control"
-												id="exampleInputName2" value="${affair.type}"></td>	
-									     </tr>
-									     <tr>
-									       <td style="width:80px;text-align:center;line-height:100px;">
-									         <label for="exampleInputName2">附件地址</label>
-									       </td>
-									       <td colspan="5">
-									         <input type="text"
-												 name="typeName" class="form-control"
-												id="exampleInputName2" value="${affair.doc}"/>
-									       </td>									       
-									     </tr>
-									     <tr>
-									       <td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">具体内容</label></td>
-										<td colspan="5"><textarea type="text" rows="3"
-												class="form-control" name="introduction" value="${affair.content}"
-												id="exampleInputName2" style="width:650px;"></textarea></td>
-									     </tr>
+												name="typeName" class="form-control" id="exampleInputName2"
+												value="${affair.type}"></td>
+										</tr>
+										<tr>
+											<td style="width:80px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">附件地址</label>
+											</td>
+											<td colspan="5"><input type="text" name="typeName"
+												class="form-control" id="exampleInputName2"
+												value="${affair.doc}" /></td>
+										</tr>
+										<tr>
+											<td style="width:80px;text-align:center;line-height:100px;"><label
+												for="exampleInputName2">具体内容</label></td>
+											<td colspan="5"><textarea type="text" rows="3"
+													class="form-control" name="introduction"
+													value="${affair.content}" id="exampleInputName2"
+													style="width:650px;"></textarea></td>
+										</tr>
 									</table>
 								</div>
 							</form>
@@ -290,8 +317,6 @@
 						$("input").val("");
 					}
 
-					
-					
 					$(".read").bind("click", function() {
 						alert("hello");
 						$('#myForm4').submit();
@@ -303,7 +328,7 @@
 					})
 
 					$(".detail").bind("click", function() {
-						var id = this.id+"ta";
+						var id = this.id + "ta";
 						document.getElementById(id).style.display = "none";
 					})
 				</script>

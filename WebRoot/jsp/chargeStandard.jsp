@@ -142,7 +142,7 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#" target=main>报名申请管理</a></td>
+										<td><a class=menuchild href="applyAffair.do" target=main>报名申请管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
@@ -186,26 +186,15 @@
 				</div>
 				<div class="col-md-10 col-xs-10">
 
-					<div class=" row text-right" style="margin-top:10px;">
-						<div class="col-md-12 col-xs-12">
-							<form action="search1.do" method="post" class="form-inline">
-								<div class="form-group">
-									<label for="exampleInputName2">用户搜索</label> <input type="text"
-										name="membername" class="form-control" id="exampleInputName2"
-										placeholder="姓名">
-								</div>
-								<input type="submit" name="submit" class="btn btn-default" />
-							</form>
-						</div>
-					</div>
+
 
 					<div class="row admin_black admin_spacing">
-						<div class="col-md-2 col-xs-5">管理人员基本信息表</div>
+						<div class="col-md-2 col-xs-5">收费标准</div>
 						<div class="col-md-7 hidden-xs"></div>
 						<div class="col-md-3 col-xs-7">
 							<span> <a class="add" href="#"> <img
 									src="../image/add.gif" width="10" height="10" /> 添加
-							</a> &nbsp; <a href="javascript:deleteMember()"> <img
+							</a> &nbsp; <a href="javascript:deleteType()"> <img
 									src="../image/del.gif" width="10" height="10" /> 删除
 							</a> &nbsp;&nbsp;
 
@@ -215,32 +204,46 @@
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="deleteMember1.do" method="post" name="myform"
-								id="myform">
+							<form action="deleteChargeStandard.do" method="post"
+								name="myform" id="myform">
 								<table class="table" id="tabBox">
 									<tr>
 										<td></td>
-										<td>姓名</td>
-										<td>性别</td>
-										<td>院系</td>
-										<td>电话</td>
+										<td>编号</td>
+										<td>业务类别</td>
+										<td>类别分类</td>
+										<td>基础版</td>
+										<td>进阶版</td>
+										<td>无忧版</td>
 										<td colspan="2">基本操作</td>
 									</tr>
-									<c:forEach items='${teachers}' var="teacher">
+									<c:forEach items='${chargeStandards}' var="chargeStandard">
 										<tr>
-											<td><label><input type="checkbox" name="teacher"
-													value="${teacher.loginid}" id="teacher" class="ck" /></label></td>
+											<td><label><input type="checkbox" name="type"
+													value="${chargeStandard.csid}" id="type" class="ck" /></label></td>
 
-											<td>${teacher.name}</td>
-											<td>${teacher.sex}</td>
-											<td>${teacher.college}</td>
-											<td>${teacher.phone}</td>
-											<td colspan="2"><a
-												href="detail.do?id=${teacher.loginid}&flag=1">查看详情</a> <a
-												class="edit" id="${teacher.loginid}"
-												style="margin-left:20px;" data-toggle="modal"
-												data-target=".bs-example-modal-lg" href="#"> <img
-													src="../image/edit.gif" width="10" height="10" /> 编辑
+											<td>${chargeStandard.csid}</td>
+
+											<c:forEach items='${affairCategorys}' var="affairCategory">
+												<c:if test="${affairCategory.acid==chargeStandard.acid}">
+													<td>${affairCategory.name}</td>
+												</c:if>
+											</c:forEach>
+
+											<c:forEach items='${typeCategorys}' var="typeCategory">
+												<c:if test="${typeCategory.tcid==chargeStandard.tcid}">
+													<td>${typeCategory.description}</td>
+												</c:if>
+											</c:forEach>
+
+											<td>${chargeStandard.basic}</td>
+											<td>${chargeStandard.advance}</td>
+											<td>${chargeStandard.careless}</td>
+											<td colspan="2"><a class="edit"
+												id=${chargeStandard.csid } style="margin-left:20px;"
+												data-toggle="modal" data-target=".bs-example-modal-lg"
+												href="#"> <img src="../image/edit.gif" width="10"
+													height="10" /> 编辑
 											</a></td>
 										</tr>
 									</c:forEach>
@@ -261,231 +264,147 @@
 								onclick="fun(this)">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h4 class="modal-title" id="myModalLabel">添加成员</h4>
+							<h4 class="modal-title" id="myModalLabel">添加收费标准</h4>
 						</div>
-						<form action="add1.do" method="post" enctype="multipart/form-data"
-							name="myForm2" id="myForm2">
+						<form action="addChargeStandard.do" method="post" name="myForm2"
+							id="myForm2">
 							<div class="container table-responsive">
 								<table>
 									<tr style="padding-top:20px;">
-										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">登录名</label></td>
-										<td style="text-align:left;"><input type="text"
-											name="loginid" class="form-control" id="exampleInputName2"></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">密码</label></td>
-										<td style="text-align:left;"><input type="text"
-											name="pwd" class="form-control" id="exampleInputName2"></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">管理员</label></td>
-										<td style="text-align:left;"><input name="admin"
-											value="1" type="radio"> <label for="q2_1">是</label> <input
-											name="admin" value="2" type="radio" checked="checked">
-											<label for="q2_2">否</label></td>
-
-									</tr>
-
-									<tr style="margin-top:20px;">
-										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">姓名</label></td>
-										<td style="text-align:left;"><input type="text"
-											name="name" class="form-control" id="exampleInputName2"></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">性别</label></td>
-										<td style="text-align:left;"><input name="sex" value="1"
-											type="radio" checked="checked"> <label for="q2_1">男</label>
-											<input name="sex" value="2" type="radio"> <label
-											for="q2_2">女</label></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">出生日期</label></td>
-										<td style="text-align:left;"><input type="text"
-											name="birth_date" class="form-control" id="exampleInputName2"></td>
-									</tr>
-
-									<tr>
-										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">学院</label></td>
-										<td style="text-align:left;"><select name="college"
+										<td style="width:80px;text-align:center;line-height:100px;">
+											<label for="exampleInputName2">业务类别</label>
+										</td>
+										<td style="text-align:left;"><select name="affair"
 											style="width:195px;">
 												<option>请选择</option>
-												<c:forEach items='${colleges}' var="college">
-													<option values="${college.name }">${college.name }</option>
+												<c:forEach items='${affairCategorys}' var="affairCategory">
+													<option value="${affairCategory.acid }">${affairCategory.name }</option>
 												</c:forEach>
 										</select></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">QQ</label></td>
-										<td style="text-align:left;"><input type="text" name="qq"
-											class="form-control" id="exampleInputName2"></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">电话</label></td>
+
+										<td style="width:80px;text-align:center;margin-left:150px;">
+											<label for="exampleInputName2">类别分类</label>
+										</td>
+										<td style="text-align:left;"><select name="type"
+											style="width:195px;">
+												<option>请选择</option>
+												<c:forEach items='${typeCategorys}' var="typeCategory">
+													<option value="${typeCategory.tcid }">${typeCategory.description }</option>
+												</c:forEach>
+										</select></td>
+									</tr>
+									<tr>
+										<td style="width:80px;text-align:center;line-height:100px;">
+											<label for="exampleInputName2">基础版</label>
+										</td>
 										<td style="text-align:left;"><input type="text"
-											name="phone" class="form-control" id="exampleInputName2"></td>
+											name="basic" class="form-control" id="exampleInputName2"></td>
+										<td style="width:80px;text-align:center;line-height:100px;">
+											<label for="exampleInputName2">进阶版</label>
+										</td>
+										<td style="text-align:left;"><input type="text"
+											name="advance" class="form-control" id="exampleInputName2"></td>
+										<td style="width:80px;text-align:center;line-height:100px;">
+											<label for="exampleInputName2">无忧版</label>
+										</td>
+										<td style="text-align:left;"><input type="text"
+											name="careless" class="form-control" id="exampleInputName2"></td>
 									</tr>
-
-									<tr>
-										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">就业</label></td>
-										<td colspan="5"><textarea type="text"
-												class="form-control" name="job" id="exampleInputName2"
-												style="width:650px;"></textarea></td>
-									</tr>
-
-									<tr>
-										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">地址</label></td>
-										<td colspan="5"><textarea type="text"
-												class="form-control" name="address" id="exampleInputName2"
-												style="width:650px;"></textarea></td>
-									</tr>
-
 								</table>
 							</div>
-
-							<center>
-								<table style="color:#000; margin-top:10px;">
-									<tr>
-										<td>照片</td>
-										<td><img id="imgPre" src="" width="100px" height="120px"
-											style="display: block;" /> <input type="file" name="imgOne"
-											id="imgOne" onchange="preImg(this.id,'imgPre');" /></td>
-									</tr>
-
-								</table>
-							</center>
 						</form>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary"
 								data-dismiss="modal" onclick="add()">添加</button>
-
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal" onclick="fun(this)">Close</button>
 						</div>
-
 					</div>
+
+
 
 					<!--add-section-end  -->
 
 					<!--edit-section-start  -->
 
-					<c:forEach items='${teachers}' var="teacher">
+					<c:forEach items='${chargeStandards}' var="chargeStandard">
 						<div class="modal-content text-center admin_hide"
-							id="${teacher.loginid}ta">
+							id="${chargeStandard.csid}ta">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal"
-									id="${teacher.loginid}t">
+									id="${chargeStandard.csid}t"">
 									<span aria-hidden="true">&times;</span>
 								</button>
-								<h4 class="modal-title" id="myModalLabel">编辑成员信息</h4>
+								<h4 class="modal-title" id="myModalLabel">编辑收费信息</h4>
 							</div>
-							<form action="updateT.do" method="post"
-								enctype="multipart/form-data" name="myForm3"
-								id="myForm${teacher.loginid}">
+							<form action="updateChargeStandard.do" method="post"
+								enctype="multipart/form-data" name="myForm2"
+								id="myForm${chargeStandard.csid}">
 								<div class="container table-responsive">
 									<table>
 										<tr style="padding-top:20px;">
-											<td style="width:80px;text-align:center;line-height:100px;"><label
-												for="exampleInputName2">登录名</label></td>
-											<td style="text-align:left;"><input type="text"
-												value="${teacher.loginid}" name="loginid"
-												class="form-control" id="exampleInputName2"></td>
-											<td style="width:80px;text-align:center;margin-left:30px;"><label
-												for="exampleInputName2">密码</label></td>
-											<td style="text-align:left;"><input type="text"
-												value="${teacher.password}" name="pwd" class="form-control"
-												id="exampleInputName2"></td>
-											<td style="width:80px;text-align:center;margin-left:30px;"><label
-												for="exampleInputName2">管理员</label></td>
-											<td style="text-align:left;"><input name="admin"
-												value="1" type="radio" ${teacher.adminid==1?"checked" : ""} />
-												<label for="q2_1">是</label> <input name="admin" value="2"
-												type="radio" ${teacher.adminid==2?"checked" : ""} /> <label
-												for="q2_2">否</label></td>
-										</tr>
-
-										<tr style="margin-top:20px;">
-											<td style="width:80px;text-align:center;line-height:40px;"><label
-												for="exampleInputName2">姓名</label></td>
-											<td style="text-align:left;"><input type="text"
-												value="${teacher.name}" name="name" class="form-control"
-												id="exampleInputName2"></td>
-											<td style="width:80px;text-align:center;margin-left:30px;"><label
-												for="exampleInputName2">性别</label></td>
-											<td style="text-align:left;"><input name="sex" value="1"
-												${teacher.sex=="男"?"checked" : ""} type="radio"> <label
-												for="q2_1">男</label> <input name="sex" value="2"
-												${teacher.sex=="女"?"checked" : ""} type="radio"> <label
-												for="q2_2">女</label></td>
-											<td style="width:80px;text-align:center;margin-left:30px;"><label
-												for="exampleInputName2">出生日期</label></td>
-											<td style="text-align:left;"><input type="text"
-												value="${teacher.date}" name="birth_date"
-												class="form-control" id="exampleInputName2"></td>
-										</tr>
-
-										<tr>
-											<td style="width:80px;text-align:center;line-height:40px;"><label
-												for="exampleInputName2">学院</label></td>
-											<td style="text-align:left;"><select name="college"
+											<td style="width:80px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">业务类别</label>
+											</td>
+											<td style="text-align:left;"><select name="affair"
 												style="width:195px;">
 													<option>请选择</option>
-													<c:forEach items='${colleges}' var="college">
-														<option values="${college.name }"
-															${teacher.college==college.name?"selected":""}>${college.name }</option>
+													<c:forEach items='${affairCategorys}' var="affairCategory">
+														<option value="${affairCategory.acid }"
+															${affairCategory.acid==chargeStandard.acid?"selected":"" }>${affairCategory.name }</option>
 													</c:forEach>
 											</select></td>
-											<td style="width:80px;text-align:center;line-height:40px;"><label
-												for="exampleInputName2">QQ</label></td>
-											<td style="text-align:left;"><input type="text"
-												name="qq" value="${teacher.qq }" class="form-control"
-												id="exampleInputName2"></td>
-											<td style="width:80px;text-align:center;margin-left:30px;"><label
-												for="exampleInputName2">电话</label></td>
-											<td style="text-align:left;"><input type="text"
-												value="${teacher.phone }" name="phone" class="form-control"
-												id="exampleInputName2"></td>
+
+											<td style="width:80px;text-align:center;margin-left:150px;">
+												<label for="exampleInputName2">类别分类</label>
+											</td>
+											<td style="text-align:left;"><select name="type"
+												style="width:195px;">
+													<option>请选择</option>
+													<c:forEach items='${typeCategorys}' var="typeCategory">
+														<option value="${typeCategory.tcid }"
+															${typeCategory.tcid==chargeStandard.tcid?"selected":"" }>${typeCategory.description }</option>
+													</c:forEach>
+											</select></td>
 										</tr>
-
-
 										<tr>
-											<td style="width:80px;text-align:center;line-height:100px;"><label
-												for="exampleInputName2">就业</label></td>
-											<td colspan="5"><textarea type="text"
-													class="form-control" name="job" id="exampleInputName2"
-													style="width:650px;"> ${teacher.job }</textarea></td>
-										</tr>
+											<td style="width:80px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">基础版</label>
+											</td>
+											<td style="text-align:left;"><input type="text"
+												name="basic" class="form-control"
+												value="${chargeStandard.csid}" id="exampleInputName2"></td>
+											<td style="width:80px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">进阶版</label>
+											</td>
+											<td style="text-align:left;"><input type="text"
+												name="advance" class="form-control"
+												value="${chargeStandard.advance}" id="exampleInputName2"></td>
+											<td style="width:80px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">无忧版</label>
+											</td>
+											<td style="text-align:left;"><input type="text"
+												name="careless" class="form-control"
+												value="${chargeStandard.careless}" id="exampleInputName2">
 
-										<tr>
-											<td style="width:80px;text-align:center;line-height:100px;"><label
-												for="exampleInputName2">地址</label></td>
-											<td colspan="5"><textarea type="text"
-													class="form-control" name="address" id="exampleInputName2"
-													style="width:650px;"> ${teacher.address }</textarea></td>
-										</tr>
+												<input type="text" name="csid" hidden="hidden"
+												value="${chargeStandard.csid}" /></td>
 
+										</tr>
 									</table>
 								</div>
-
-								<center>
-									<table style="color:#000; margin-top:10px;">
-										<tr>
-											<td>照片</td>
-											<td><img src="${teacher.img}" id="imgPre" width="100px"
-												height="120px" style="display: block;" /> <input
-												type="file" name="imgOne" id="imgOne"
-												onchange="preImg(this.id,'imgPre');" /></td>
-										</tr>
-
-									</table>
-								</center>
 							</form>
 							<div class="modal-footer">
+
 								<button type="button" class="btn btn-primary update"
-									id="${teacher.loginid}" data-dismiss="modal">确定</button>
+									id="${chargeStandard.csid}" data-dismiss="modal">确定</button>
 							</div>
 						</div>
 				</div>
 				</c:forEach>
 				<!--edit-section-end -->
 				<script type="text/javascript">
-					function deleteMember() {
+					function deleteType() {
 
 						$('#myform').submit();
 
@@ -512,13 +431,15 @@
 						$('#myForm2').submit();
 
 					}
-					$(".update").bind("click", function() {
-						var id = "#myForm" + this.id;
-						$(id).submit();
-					})
+
 					$(".close").bind("click", function() {
 						var id = this.id + "a";
 						document.getElementById(id).style.display = "none";
+					})
+
+					$(".update").bind("click", function() {
+						var id = "#myForm" + this.id;
+						$(id).submit();
 					})
 				</script>
 				<script>
