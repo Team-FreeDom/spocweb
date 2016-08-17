@@ -225,7 +225,8 @@ white-space: nowrap;
 	font-size:1em;
 	width:100%;}
 .gray{
-	color:#999;}
+	color:#999;
+	text-decoration:underline;}
 #gundong{
 	 overflow-y:auto;
 	 height:550px;}
