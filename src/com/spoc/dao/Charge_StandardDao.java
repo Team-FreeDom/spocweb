@@ -29,4 +29,37 @@ public class Charge_StandardDao {
 		}
 		session.getTransaction().commit();
 	}
+	
+	public void doChargeStandard(Charge_Standard cs)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(cs);
+		session.getTransaction().commit();
+	}
+	
+	public void updateChargeStandard(Charge_Standard cs)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.update(cs);
+		session.getTransaction().commit();
+	}
+	
+	public void deleteChargeStandard(int csid)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		Charge_Standard cs=(Charge_Standard) session.get(Charge_Standard.class, csid);
+		session.delete(cs);
+		session.getTransaction().commit();
+	} 
+	
+	public List<Charge_Standard> getTypes()
+	{
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("from Charge_Standard");
+		List<Charge_Standard> list = query.list();
+		return list;
+	}
 }
