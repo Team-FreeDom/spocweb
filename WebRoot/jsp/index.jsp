@@ -348,7 +348,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<span id="span" style="color:#b04a34;">收费指南</span>
                         	<ul class="list-unstyled fourth_right">
 								<c:forEach items='${affair_category}' var="ac">
-									<li ><a ${ac.flag==0?"class=\"gray\"":"" } href="affair.do?name=${ac.name }#4thpage">${ac.name }</a></li>
+									<li ${ac.flag==0?"class=\"gray\"":"" }><a  href="affair.do?name=${ac.name }#4thpage">${ac.name }</a></li>
 
 								</c:forEach>
 							</ul>
@@ -442,5 +442,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
       </div>
     </div> 
-
+     <script>
+       $(".gray").bind("click", function() {   	  
+    	  
+		   $(".gray a").attr("href","#");
+		   
+	   })
+    </script>
 </body></html>
