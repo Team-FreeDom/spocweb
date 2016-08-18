@@ -77,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <form action="upload.do" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <input id="file-4" type="file" class="file"  name="file">
-                        <input type="submit" value="上传">
+                       <!--<input type="submit" value="上传">-->
                     </div>
                 </form>
              </div>

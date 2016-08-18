@@ -44,6 +44,8 @@ public class AffairController {
 		String name=request.getParameter("name");
 		String phone=request.getParameter("phone");
 		String content=request.getParameter("content");
+		HttpSession session = request.getSession();
+		String doc=(String) session.getAttribute("flag");
 		String type[]=request.getParameterValues("news");
 		String str="";
 		if(type!=null)
@@ -53,8 +55,10 @@ public class AffairController {
 				str+=type[i]+" ";	
 			}
 		}
-		Affair affair=new Affair(name,phone,content,str);
+		// HttpSession session = request.getSession();
+		Affair affair=new Affair(name,phone,content,str,doc);
 		affairService.add(affair);
+		 request.getSession().invalidate();
 		return "index";
 	}
 	@RequestMapping("/lianxijsp.do")
@@ -77,7 +81,8 @@ public class AffairController {
 			   System.out.println(path);
 			   String fileName = file.getOriginalFilename();
 			   String fileType = fileName.substring(fileName.lastIndexOf("."));
-			   //System.out.println(fileType); 
+			   HttpSession session = request.getSession();
+			   session.setAttribute("flag", path+fileName);
 			   File file2 = new File(path,new Date().getTime() + fileType); //�½�һ���ļ�
 			   try {
 				    file.getFileItem().write(file2); //���ϴ����ļ�д���½����ļ���
