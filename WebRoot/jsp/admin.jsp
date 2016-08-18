@@ -138,12 +138,12 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#">报名申请管理</a></td>
+										<td><a class=menuchild href="applys.do">报名申请管理</a></td>
 									</tr>
-									<tr height=20>
+									<!-- <tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#">报名处理管理</a></td>
-									</tr>
+										<td><a class=menuchild href="applys.do?">报名处理管理</a></td>
+									</tr>-->
 									<tr height=4>
 										<td colspan=2></td>
 									</tr>
