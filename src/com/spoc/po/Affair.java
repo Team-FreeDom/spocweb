@@ -85,6 +85,14 @@ public class Affair {
 	public Affair() {
 		super();
 	}
-	 
+	 public Affair( String name, String phone, String content,
+			String type)
+	{
+		super();
+		this.name = name;
+		this.phone = phone;
+		this.content = content;
+		this.type = type;
+	}  
 	 
 }
