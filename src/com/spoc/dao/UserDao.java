@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 
@@ -19,16 +20,18 @@ public class UserDao
 	
 	
 
-	public boolean find(String username,String password)
+	public boolean find(String loginid,String password)
 	{
-		System.out.println("UserDao.find()");
+		//System.out.println("UserDao.find()");
 		boolean flag=false;		
-		String hql="from Student u where u.username=? and u.password=?";
+		String hql="from Member u where u.loginid=? and u.password=?";
 		Session session = sessionFactory.openSession();
-        Query query = session.createQuery(hql).setParameter(0, username).setParameter(1, password);
+        Query query = session.createQuery(hql).setParameter(0, loginid).setParameter(1, password);
         //使用List方法
-        List userList = query.list();
-        Iterator it=userList.iterator();
+        @SuppressWarnings("rawtypes")
+		List userList = query.list();
+        @SuppressWarnings("rawtypes")
+		Iterator it=userList.iterator();
        if(it.hasNext())
 	   {
 	    	 flag=true;

@@ -21,7 +21,7 @@ public class MemberDao {
 	{
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Member where flag=?");
-		query.setInteger(0, 1);
+		query.setInteger(0, 2);
 		List<Member> list=query.list();
 		
 		return list;
@@ -31,9 +31,58 @@ public class MemberDao {
 	{
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Member where flag=?");
-		query.setInteger(0, 2);
+		query.setInteger(0, 1);
 		List<Member> list=query.list();
 		
 		return list;
+	}
+	
+	public List<Member> getMember(Member member)
+	{
+		Session session=sessionFactory.openSession();
+		Query query=session.createQuery("from Member where name=? and flag=?");
+		query.setString(0, member.getName());
+		query.setInteger(1, member.getFlag());
+		List<Member> members=query.list();
+		
+		return members;
+		
+	}
+	
+	public void deleteMember(Member member)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.delete(member);
+		session.getTransaction().commit();
+	}
+	
+	public Member getMember(String loginid)
+	{
+
+		Session session=sessionFactory.openSession();
+		Query query=session.createQuery("from Member where loginid=?");
+		query.setString(0, loginid);
+		Member member=(Member) query.uniqueResult();
+		
+		return member;
+		
+	}
+	
+	public void doMember(Member member)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(member);
+		session.getTransaction().commit();
+		
+	}
+	
+	public void updateMember(Member member)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.update(member);
+		session.getTransaction().commit();
 	}
 }
