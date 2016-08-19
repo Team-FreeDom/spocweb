@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,48 +17,93 @@ public class Affair_categoryDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	public List<Affair_category> getAffairCa()
-	{
-		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from Affair_category");
-		List<Affair_category> list=query.list();
+
+	public List<Affair_category> getAffairCa() {
+		Session session = sessionFactory.openSession();
+		List<Affair_category> list = null;
+		try {
+
+			Query query = session.createQuery("from Affair_category");
+			list = query.list();
+
+		} catch (Exception ex) {
+			System.out.println(ex);
+		} finally {
+			session.close();
+		}
 		return list;
 	}
-	
-	public Affair_category getAffairType(String affairtype)
-	{
-		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from Affair_category where name=?");
-		query.setString(0, affairtype);
-		Affair_category type=(Affair_category) query.uniqueResult();
+
+	public Affair_category getAffairType(String affairtype) {
+		Session session = sessionFactory.openSession();
+		Affair_category type = null;
+		try {
+			Query query = session
+					.createQuery("from Affair_category where name=?");
+			query.setString(0, affairtype);
+			type = (Affair_category) query.uniqueResult();
+		} catch (Exception ex) {
+			System.out.println(ex);
+		} finally {
+			session.close();
+		}
 		return type;
 	}
-	
+
 	public void doAffairType(Affair_category at)
 	{
 		Session session=sessionFactory.openSession();
-		session.beginTransaction();
-		session.save(at);
-		session.getTransaction().commit();
+		Transaction transaction = null;
+		try{
+			transaction=session.beginTransaction();
+		    session.save(at);
+		    transaction.commit();
+		}catch (Exception ex) {
+			if (transaction != null) {
+				transaction.rollback();// 回滚事务，撤消查询语句
+			}
+			System.out.println(ex);
+		} finally {
+			session.close();// 关闭会话状态，清空资源
+		}	
+
 	}
-	
-	public void deleteType(Affair_category at)
-	{
+
+	public void deleteType(Affair_category at) {
 		Session session=sessionFactory.openSession();
-		session.beginTransaction();
-		session.delete(at);
-		session.getTransaction().commit();
+		Transaction transaction = null;
+		try{
+			transaction=session.beginTransaction();
+		    session.delete(at);
+		    transaction.commit();
+		}catch (Exception ex) {
+			if (transaction != null) {
+				transaction.rollback();// 回滚事务，撤消查询语句
+			}
+			System.out.println(ex);
+		} finally {
+			session.close();// 关闭会话状态，清空资源
+		}	
 	}
-	
-	public void updateType(Affair_category ac)
-	{
-		Session session=sessionFactory.openSession();
-		session.beginTransaction();
-		Affair_category at=(Affair_category)session.get(Affair_category.class, ac.getAcid());
+
+	public void updateType(Affair_category ac) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = null;
+		Affair_category at=null;
+		try{
+		transaction=session.beginTransaction();
+		at= (Affair_category) session.get(Affair_category.class, ac.getAcid());
 		at.setName(ac.getName());
 		at.setFlag(ac.getFlag());
 		session.update(at);
 		session.getTransaction().commit();
+		}catch (Exception ex) {
+			if (transaction != null) {
+				transaction.rollback();// 回滚事务，撤消查询语句
+			}
+			System.out.println(ex);
+		} finally {
+			session.close();// 关闭会话状态，清空资源
+		}	
 	}
 }

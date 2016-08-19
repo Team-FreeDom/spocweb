@@ -142,12 +142,12 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applyAffair.do" target=main>报名申请管理</a></td>
+										<td><a class=menuchild href="applys.do">报名申请管理</a></td>
 									</tr>
-									<tr height=20>
+									<!-- <tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#" target=main>报名处理管理</a></td>
-									</tr>
+										<td><a class=menuchild href="applys.do?">报名处理管理</a></td>
+									</tr>-->
 									<tr height=4>
 										<td colspan=2></td>
 									</tr>
@@ -237,7 +237,7 @@
 									id="${affair.aff_id}t"">
 									<span aria-hidden="true">&times;</span>
 								</button>
-								<h4 class="modal-title" id="myModalLabel">业务信息${affair.aff_id}</h4>
+								<h4 class="modal-title" id="myModalLabel">业务信息</h4>
 							</div>
 							<form action="updateType.do" method="post"
 								enctype="multipart/form-data" name="myForm2"
@@ -277,8 +277,8 @@
 												for="exampleInputName2">具体内容</label></td>
 											<td colspan="5"><textarea type="text" rows="3"
 													class="form-control" name="introduction"
-													value="${affair.content}" id="exampleInputName2"
-													style="width:650px;"></textarea></td>
+													 id="exampleInputName2"
+													style="width:650px;">${affair.content}</textarea></td>
 										</tr>
 									</table>
 								</div>
@@ -314,11 +314,11 @@
 					function fun(obj) {
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
-						$("input").val("");
+						$("#addMember input").val("");
 					}
 
 					$(".read").bind("click", function() {
-						alert("hello");
+						
 						$('#myForm4').submit();
 					})
 

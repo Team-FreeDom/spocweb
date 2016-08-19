@@ -142,12 +142,12 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applyAffair.do" target=main>报名申请管理</a></td>
+										<td><a class=menuchild href="applys.do">报名申请管理</a></td>
 									</tr>
-									<tr height=20>
+									<!-- <tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#" target=main>报名处理管理</a></td>
-									</tr>
+										<td><a class=menuchild href="applys.do?">报名处理管理</a></td>
+									</tr>-->
 									<tr height=4>
 										<td colspan=2></td>
 									</tr>
@@ -274,7 +274,7 @@
 											<label for="exampleInputName2">类别描述</label>
 										</td>
 										<td style="text-align:left;"><input type="text"
-											name="description" class="form-control"
+											name="description" class="form-control empty"
 											id="exampleInputName2"></td>
 										<td style="width:120px;text-align:center;margin-left:150px;">
 											<label for="exampleInputName2">所属服务类别</label>
@@ -375,7 +375,8 @@
 					function fun(obj) {
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
-						$("input").val("");
+						$("#addMember .empty").val("");
+						$("#addMember select").val("请选择");
 					}
 
 					function add() {

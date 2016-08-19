@@ -207,7 +207,7 @@
 											<tr>
 
 												<td>${affair.name}</td>
-												<td>${affair.sex==1?"男":"女"}</td>
+												<td>${affair.sex}</td>
 												<td>${affair.college}</td>
 												<td colspan="2"><a href="#" class="display"
 													id="${affair.apply_id}">查看详情</a> <a style="margin-left:20px;"
@@ -255,7 +255,7 @@
 											</td>
 											<td style="text-align:left;"><input type="text"
 												name="typeName" class="form-control" id="exampleInputName2"
-												value="${affair.sex==1?"男":"女"}"></td>
+												value="${affair.sex}"></td>
 											<td style="width:80px;text-align:center;margin-left:100px;">
 												<label for="exampleInputName2">学院</label>
 											</td>
@@ -326,7 +326,7 @@
 					function fun(obj) {
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
-						$("input").val("");
+						$("#addMember input").val("");
 					}
 
 					$(".read").bind("click", function() {

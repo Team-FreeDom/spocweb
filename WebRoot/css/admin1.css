@@ -46,6 +46,8 @@
 	height:130px;}
 .admin_hide{
 	width:1000px;
+	top:20px;
+	left:20px;
 	position:absolute;
-	/*display:none;*/}
+	display:none;}
 
