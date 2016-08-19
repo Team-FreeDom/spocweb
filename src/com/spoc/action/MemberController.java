@@ -351,7 +351,7 @@ public class MemberController {
 		
 		 member_groupService.updateMemberGroup(group, loginid);
 		
-		return "admin";
+		return "forward:user.do?flag=2";
 	}
 
 }

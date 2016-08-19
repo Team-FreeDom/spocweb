@@ -375,7 +375,7 @@
 					function fun(obj) {
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
-						$("input").val("");
+						$("#addMember input").val("");
 					}
 
 					function add() {

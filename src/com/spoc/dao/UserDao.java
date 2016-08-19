@@ -26,6 +26,7 @@ public class UserDao
 		boolean flag=false;		
 		String hql="from Member u where u.loginid=? and u.password=?";
 		Session session = sessionFactory.openSession();
+		try{
         Query query = session.createQuery(hql).setParameter(0, loginid).setParameter(1, password);
         //使用List方法
         @SuppressWarnings("rawtypes")
@@ -36,6 +37,11 @@ public class UserDao
 	   {
 	    	 flag=true;
 	    }
+		}catch (Exception ex) {
+			System.out.println(ex);
+		} finally {
+			session.close();
+		}
 	     return flag;
 	
 	}

@@ -20,19 +20,31 @@ public class Member_group_viewDao {
 	public List<Member_group_view> getMemberGroup(String loginid)
 	{
 		Session session=sessionFactory.openSession();
+		List<Member_group_view> list=null;
+		try{
 		Query query=session.createQuery("from Member_group_view where loginid=?");
 		query.setString(0, loginid);
-		List<Member_group_view> list=query.list();
-		
+		list=query.list();
+		}catch (Exception ex) {
+			System.out.println(ex);
+		} finally {
+			session.close();
+		}
 		return list;
 	}
 	
 	public  List<Member_group_view> getMemberGroups()
 	{
 		Session session=sessionFactory.openSession();
+		List<Member_group_view> list=null;
+		try{
 		Query query=session.createQuery("from Member_group_view");
-		List<Member_group_view> list=query.list();
-		
+		list=query.list();
+		}catch (Exception ex) {
+			System.out.println(ex);
+		} finally {
+			session.close();
+		}
 		return list;
 
 	}
