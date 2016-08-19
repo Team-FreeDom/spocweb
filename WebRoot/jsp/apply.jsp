@@ -31,9 +31,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <div class="list_top">性别</div>
                 <div class="list_top1">
-                	<input name="sex" value="男" type="radio" checked="checked">
+                	<input name="sex" value="1" type="radio" checked="checked">
                     <label for="q2_1">男</label>
-                    <input name="sex" id="q2_2" value="女" type="radio">
+                    <input name="sex" id="q2_2" value="2" type="radio">
                     <label for="q2_2">女</label>
                 </div>
                 <div  class="list_top">学院班级</div>
@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                  <div class="list_top">申报组别</div>
                 <div class="list_top1">
-                	<ul class="list-unstyled" id="spoc_gruop">
+                	<ul class="list-unstyled" id="spoc_gruop"><!--我将ul去掉了-->
                 	   <c:forEach items='${groups}' var="group">
 			              <li>
                         	<input value="${group.name}" name="group" id="group" type="radio">
