@@ -271,15 +271,15 @@
 										<td style="width:80px;text-align:center;line-height:100px;"><label
 											for="exampleInputName2">登录名</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="loginid" class="form-control" id="exampleInputName2"></td>
+											name="loginid" class="form-control empty" id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">密码</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="pwd" class="form-control" id="exampleInputName2"></td>
+											name="pwd" class="form-control empty" id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">管理员</label></td>
 										<td style="text-align:left;"><input name="admin"
-											value="1" type="radio"> <label for="q2_1">是</label> <input
+											value="1" type="radio"> <label for="q2_1">是</label> <input id="admin"
 											name="admin" value="2" type="radio" checked="checked">
 											<label for="q2_2">否</label></td>
 
@@ -289,17 +289,17 @@
 										<td style="width:80px;text-align:center;line-height:40px;"><label
 											for="exampleInputName2">姓名</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="name" class="form-control" id="exampleInputName2"></td>
+											name="name" class="form-control empty" id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">性别</label></td>
-										<td style="text-align:left;"><input name="sex" value="1"
+										<td style="text-align:left;"><input name="sex" value="1" id="sex"
 											type="radio" checked="checked"> <label for="q2_1">男</label>
 											<input name="sex" value="2" type="radio"> <label
 											for="q2_2">女</label></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">出生日期</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="birth_date" class="form-control" id="exampleInputName2"></td>
+											name="birth_date" class="form-control empty" id="exampleInputName2"></td>
 									</tr>
 
 									<tr>
@@ -315,11 +315,11 @@
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">QQ</label></td>
 										<td style="text-align:left;"><input type="text" name="qq"
-											class="form-control" id="exampleInputName2"></td>
+											class="form-control empty" id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">电话</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="phone" class="form-control" id="exampleInputName2"></td>
+											name="phone" class="form-control empty" id="exampleInputName2"></td>
 									</tr>
 
 									<tr>
@@ -346,7 +346,7 @@
 									<tr>
 										<td>照片</td>
 										<td><img id="imgPre" src="" width="100px" height="120px"
-											style="display: block;" /> <input type="file" name="imgOne"
+											style="display: block;" /> <input type="file" name="imgOne" class="empty"
 											id="imgOne" onchange="preImg(this.id,'imgPre');" /></td>
 									</tr>
 
@@ -505,7 +505,11 @@
 					function fun(obj) {
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
-						$("#addMember input").val("");
+						$("#addMember .empty").val("");
+						$("#addMember select").val("请选择");
+						$("#addMember textarea").val("");
+						document.getElementById("admin").checked="checked";
+						document.getElementById("sex").checked="checked";
 					}
 
 					function add() {

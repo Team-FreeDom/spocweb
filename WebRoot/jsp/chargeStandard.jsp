@@ -298,17 +298,17 @@
 											<label for="exampleInputName2">基础版</label>
 										</td>
 										<td style="text-align:left;"><input type="text"
-											name="basic" class="form-control" id="exampleInputName2"></td>
+											name="basic" class="form-control empty" id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;line-height:100px;">
 											<label for="exampleInputName2">进阶版</label>
 										</td>
 										<td style="text-align:left;"><input type="text"
-											name="advance" class="form-control" id="exampleInputName2"></td>
+											name="advance" class="form-control empty" id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;line-height:100px;">
 											<label for="exampleInputName2">无忧版</label>
 										</td>
 										<td style="text-align:left;"><input type="text"
-											name="careless" class="form-control" id="exampleInputName2"></td>
+											name="careless" class="form-control empty" id="exampleInputName2"></td>
 									</tr>
 								</table>
 							</div>
@@ -424,7 +424,8 @@
 					function fun(obj) {
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
-						$("#addMember input").val("");
+						$("#addMember .empty").val("");
+						$("#addMember select").val("请选择");
 					}
 
 					function add() {

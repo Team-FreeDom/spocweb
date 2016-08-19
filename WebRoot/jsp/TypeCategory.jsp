@@ -274,7 +274,7 @@
 											<label for="exampleInputName2">类别描述</label>
 										</td>
 										<td style="text-align:left;"><input type="text"
-											name="description" class="form-control"
+											name="description" class="form-control empty"
 											id="exampleInputName2"></td>
 										<td style="width:120px;text-align:center;margin-left:150px;">
 											<label for="exampleInputName2">所属服务类别</label>
@@ -375,7 +375,8 @@
 					function fun(obj) {
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
-						$("#addMember input").val("");
+						$("#addMember .empty").val("");
+						$("#addMember select").val("请选择");
 					}
 
 					function add() {

@@ -271,18 +271,18 @@
 									<tr style="padding-top:20px;">
 										<td style="width:80px;text-align:center;line-height:100px;"><label
 											for="exampleInputName2">登录名</label></td>
-										<td style="text-align:left;"><input type="text"
-											name="loginid" class="form-control" id="exampleInputName2"></td>
+										<td style="text-align:left;"><input type="text" 
+											name="loginid" class="form-control empty" id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">密码</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="pwd" class="form-control" id="exampleInputName2"></td>
+											name="pwd" class="form-control empty" id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">管理员</label></td>
 										<td style="text-align:left;"><input name="admin"
 											value="1" type="radio"> <label for="q2_1">是</label> <input
-											name="admin" value="2" type="radio" checked="checked">
-											<label for="q2_2">否</label></td>
+											id="admin" name="admin" value="2" type="radio"
+											checked="checked"> <label for="q2_2">否</label></td>
 
 
 									</tr>
@@ -291,17 +291,17 @@
 										<td style="width:80px;text-align:center;line-height:40px;"><label
 											for="exampleInputName2">姓名</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="name" class="form-control" id="exampleInputName2"></td>
+											name="name" class="form-control empty" id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">性别</label></td>
 										<td style="text-align:left;"><input name="sex" value="1"
-											type="radio" checked="checked"> <label for="q2_1">男</label>
-											<input name="sex" value="2" type="radio"> <label
-											for="q2_2">女</label></td>
+											type="radio" checked="checked" id="sex"> <label
+											for="q2_1">男</label> <input name="sex" value="2" type="radio">
+											<label for="q2_2">女</label></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">出生日期</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="birth_date" class="form-control" id="exampleInputName2"></td>
+											name="birth_date" class="form-control empty" id="exampleInputName2"></td>
 									</tr>
 
 									<tr>
@@ -317,22 +317,22 @@
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">年级</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="grade" class="form-control" id="exampleInputName2"></td>
+											name="grade" class="form-control empty" id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">专业</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="major" class="form-control" id="exampleInputName2"></td>
+											name="major" class="form-control empty" id="exampleInputName2"></td>
 									</tr>
 
 									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
 											for="exampleInputName2">QQ</label></td>
 										<td style="text-align:left;"><input type="text" name="qq"
-											class="form-control" id="exampleInputName2"></td>
+											class="form-control empty" id="exampleInputName2"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">电话</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="phone" class="form-control" id="exampleInputName2"></td>
+											name="phone" class="form-control empty" id="exampleInputName2"></td>
 										<td colspan="2"></td>
 									</tr>
 
@@ -341,7 +341,7 @@
 											for="exampleInputName2">组别</label></td>
 										<td clospan="5"><c:forEach items='${groups}' var="group">
 												<label class="checkbox-inline"> <input
-													value="${group.gid}" type="checkbox" name="group"
+													value="${group.gid}" type="checkbox" name="groupOne"
 													id="inlineCheckbox1" value="option1" /> <label>${group.name}
 												</label>
 												</label>
@@ -379,7 +379,7 @@
 									<tr>
 										<td>照片</td>
 										<td><img id="imgPre" src="" width="100px" height="120px"
-											style="display: block;" /> <input type="file" name="imgOne"
+											style="display: block;" /> <input type="file" name="imgOne" class="empty"
 											id="imgOne" onchange="preImg(this.id,'imgPre');" /></td>
 									</tr>
 
@@ -577,7 +577,18 @@
 						function fun(obj) {
 							var div = document.getElementById("addMember");
 							div.style.display = "none";
-							$("#addMember input").val("");
+							$("#addMember .empty").val("");
+							$("#addMember select").val("请选择");
+							$("#addMember textarea").val("");			
+							document.getElementById("admin").checked="checked";
+							document.getElementById("sex").checked="checked";
+							var allObj = document.getElementsByName("groupOne");//通过NAME得到CHECKBOX集合  
+						    for(var i=0; i<allObj.length; i++){  
+						        if(allObj[i].checked){  
+						            allObj[i].checked = false;  
+						        }  
+						    }  
+							
 						}
 
 						function add() {

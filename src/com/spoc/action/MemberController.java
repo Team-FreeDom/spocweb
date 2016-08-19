@@ -72,9 +72,14 @@ public class MemberController {
 	public String searchMember_student(HttpServletRequest request, ModelMap map) {
 		String name = request.getParameter("membername");
 		List<Member> members = memberService.getMember(name,2);
+		List<College> colleges = collegeService.getCollege();
+		List<Group_manage> groups = group_manageService.getGroup();
 		map.addAttribute("students", members);
-
-		return "forward:user.do?flag=2";
+		map.addAttribute("colleges", colleges);
+		map.addAttribute("groups", groups);
+		map.addAttribute("membergroups",
+				member_group_viewService.getMemberGroups());
+		return "student";
 
 	}
 	
@@ -82,8 +87,9 @@ public class MemberController {
 	public String searchMember_teacher(HttpServletRequest request, ModelMap map) {
 		String name = request.getParameter("membername");
 		List<Member> members = memberService.getMember(name,1);
+		List<College> colleges = collegeService.getCollege();
 		map.addAttribute("teachers", members);
-
+		map.addAttribute("colleges", colleges);
 		return "teacher";
 
 	}
@@ -148,6 +154,7 @@ public class MemberController {
 
 		String name = request.getParameter("name");
 		String sex = request.getParameter("sex");
+		System.out.println(sex);
 		int sexValue = Integer.parseInt(sex);
 		sex = sexValue == 1 ? "ÄÐ" : "Å®";
 		String birth_date = request.getParameter("birth_date");
@@ -159,7 +166,7 @@ public class MemberController {
 		String introduction = request.getParameter("introduction");
 		String job = request.getParameter("job");
 		String college = request.getParameter("college");
-		String[] group = request.getParameterValues("group");
+		String[] group = request.getParameterValues("groupOne");
 		String pwd = request.getParameter("pwd");
 		String loginid = request.getParameter("loginid");
 		int admin=Integer.valueOf(request.getParameter("admin"));
