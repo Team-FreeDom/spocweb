@@ -224,13 +224,28 @@ white-space: nowrap;
 	margin-top:50px;
 	font-size:1em;
 	width:100%;}
-.gray{
-	color:#999;}
 #gundong{
 	 overflow-y:auto;
 	 height:550px;}
-#fourth{
+.red a{
 	color:#b04a34;}
+.red a:hover{
+	color:#b04a34;
+	text-decoration:none;
+}
+.gray{
+	color:#999;
+	text-decoration:none;
+	}
+.gray a{
+	color:#999;
+	text-decoration:none;
+	cursor:default;}
+.gray  a:hover{
+	color:#999;
+	text-decoration:none;
+	}
+
 #fourth li{
 	line-height:40px;}
 .fourth_right{

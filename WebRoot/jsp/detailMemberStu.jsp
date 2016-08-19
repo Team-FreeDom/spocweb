@@ -19,15 +19,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="container table-responsive">
     <table class="table table-bordered">
         <tr>
+            <td>登录名</td>
+            <td>${member.loginid}</td>
+            <td>密码</td>
+            <td>${member.password}</td>
+            <td>管理员</td>
+            <td>${member.adminid==1?"是":"否"}</td>
+            <td rowspan="4" width="140px">
+            	<img src="${member.img}" width="120px" />
+            </td>
+        </tr>
+        <tr>
             <td>姓名</td>
             <td>${member.name}</td>
             <td>性别</td>
             <td>${member.sex}</td>
             <td>出身</td>
-            <td>${member.date}</td>
-            <td rowspan="3" width="140px">
-            	<img src="${member.img}" width="120px" />
-            </td>
+            <td>${member.date}</td>            
         </tr>
         <tr>
             <td>学院</td>

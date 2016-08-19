@@ -348,11 +348,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<span id="span" style="color:#b04a34;">收费指南</span>
                         	<ul class="list-unstyled fourth_right">
 								<c:forEach items='${affair_category}' var="ac">
-									<li ><a ${ac.flag==0?"class=\"gray\"":"" } href="affair.do?name=${ac.name }#4thpage">${ac.name }</a></li>
+									<li ${ac.flag==0?"class=\"gray\"":"" }><a  href="affair.do?name=${ac.name }#4thpage">${ac.name }</a></li>
 
 								</c:forEach>
 							</ul>
-                            <a type="button" class="btn btn-danger" href="list2.html" target="_blank">点击申请</a>
+                            <a type="button" class="btn btn-danger" href="lianxijsp.do" target="_blank">点击申请</a>
                         </div>
                     </div> 
                 </div>
@@ -393,34 +393,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div><!--/fullpage -->
 
 <!-- Modal1 登录 -->
-    <center>
-    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content" style="width:350px; margin-top:30%;">
-          <div class="modal-header" style="height:90px; background:url(../image/1_02_03.gif) center no-repeat">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title text-center" id="myModalLabel"></h4>
-          </div>
-          <form>
-              <div class="modal-body">
-                   
-                          <div class="input-group" style="margin-top:15px;">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="test" class="form-control" id="exampleInputEmail1" placeholder="账号">
-                          </div>
-                          <div class="input-group" style="margin-top:30px;">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-th"></span></span>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
-                          </div>
-              </div>
-              <div class="text-center" style="margin:20px 0 40px 0">
-                <button type="submit" class="btn btn-danger"   style="width:85%;">登录</button>
-              </div>
-          </form>
-        </div>
+<center>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:350px; margin-top:30%;">
+      <div class="modal-header" style="height:90px; background:url(../image/1_02_03.gif) center no-repeat">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel"></h4>
       </div>
+      <form action="login.do">
+          <div class="modal-body">
+               
+                      <div class="input-group" style="margin-top:15px;">
+                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                        <input type="test"  name="loginid" class="form-control" id="exampleInputEmail1" placeholder="账号">
+                      </div>
+                      <div class="input-group" style="margin-top:30px;">
+                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-th"></span></span>
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                      </div>
+          </div>
+          <div class="text-center" style="margin:20px 0 40px 0">
+            <button type="submit" class="btn btn-danger"   style="width:85%;">登录</button>
+          </div>
+      </form>
     </div>
-    </center>
+  </div>
+</div>
+</center>
     
     <!-- Modal2 视频-->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -442,5 +442,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
       </div>
     </div> 
-
+     <script>
+       $(".gray").bind("click", function() {   	  
+    	  
+		   $(".gray a").attr("href","#");
+		   
+	   })
+    </script>
 </body></html>

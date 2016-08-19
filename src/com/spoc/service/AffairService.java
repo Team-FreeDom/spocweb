@@ -15,6 +15,12 @@ public class AffairService {
 	@Autowired
 	private AffairDao affairDao;
 	
+	public void add(Affair affair)
+	{
+		affairDao.add(affair);
+		
+	}
+	
 	public List<Affair> getAffairs()
 	{
 		return affairDao.getAffairs();
