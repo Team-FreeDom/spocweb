@@ -21,9 +21,15 @@ public class Group_manageDao {
 	public List<Group_manage> getGroups()
 	{
 		Session session=sessionFactory.openSession();
+		List<Group_manage> list=null;
+		try{
 		Query query=session.createQuery("from Group_manage");
-		List<Group_manage> list=query.list();
-		
+		list=query.list();
+		}catch (Exception ex) {
+			System.out.println(ex);
+		} finally {
+			session.close();
+		}
 		return list;
 	}
 }
