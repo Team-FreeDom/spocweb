@@ -89,6 +89,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          var inputEmail3=document.getElementById("inputEmail3").value;
          var phone=document.getElementById("phone").value;
          var group=document.getElementById("group");
+		 /*学姐，这个是我新加的内容*/
+		 var radios=document.getElementsByName("group");
+		 var m=0;
+		 /*学姐，这个是我新加的内容*/
          
 	     if(name=="")
 	       {
@@ -115,6 +119,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		     alert("请填写您的电话号码！");
 		     return false;
 		   }
+		   
+		   /*学姐，这个是我新加的内容*/
+		   for(var i=0;i<radios.length;i++)
+			{
+				if(radios[i].checked==false)
+				{
+					m=m+1;
+				}
+			}
+			if(m==i)
+			{
+				alert("请选组别！！！");
+				return false;
+				}
+		  /*学姐，这个是我新加的内容*/
+		  
 		     return true;
       }
   </script>
