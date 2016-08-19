@@ -142,12 +142,12 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applyAffair.do" target=main>报名申请管理</a></td>
+										<td><a class=menuchild href="applys.do">报名申请管理</a></td>
 									</tr>
-									<tr height=20>
+									<!-- <tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="#" target=main>报名处理管理</a></td>
-									</tr>
+										<td><a class=menuchild href="applys.do?">报名处理管理</a></td>
+									</tr>-->
 									<tr height=4>
 										<td colspan=2></td>
 									</tr>
@@ -269,13 +269,13 @@
 											<label for="exampleInputName2">类别名称</label>
 										</td>
 										<td style="text-align:left;"><input type="text"
-											name="name" class="form-control" id="exampleInputName2">
+											name="name" class="form-control empty" id="exampleInputName2">
 										</td>
 										<td style="width:80px;text-align:center;margin-left:150px;">
 											<label for="exampleInputName2">投入开发</label>
 										</td>
-										<td style="text-align:left;"><input name="flag" value="1"
-											type="radio"> <label for="q2_1">是</label> <input
+										<td style="text-align:left;"><input name="flag" value="1" checked="checked"
+									id="use" type="radio"> <label for="q2_1">是</label> <input
 											name="flag" value="0" type="radio" /> <label for="q2_2">否</label></td>
 									</tr>
 								</table>
@@ -363,7 +363,8 @@
 					function fun(obj) {
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
-						$("input").val("");
+						$("#addMember .empty").val("");
+						document.getElementById("use").checked="checked";
 					}
 
 					function add() {

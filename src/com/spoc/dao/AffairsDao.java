@@ -19,9 +19,16 @@ public class AffairsDao {
 	public List<Affairs> getAffairs(String name)
 	{
 		Session session=sessionFactory.openSession();
+		List<Affairs> affairs=null;
+		try{
 		Query query=session.createQuery("from Affairs where name=?");
 		query.setString(0,name);
-		List<Affairs> affairs=query.list();
+		affairs=query.list();
+		}catch (Exception ex) {
+			System.out.println(ex);
+		} finally {
+			session.close();
+		}
 		return affairs;
 	}
 
