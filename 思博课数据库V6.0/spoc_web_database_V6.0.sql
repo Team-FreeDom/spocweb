@@ -98,10 +98,10 @@ CREATE TABLE `charge_standard` (
   `acid` int(11) DEFAULT NULL COMMENT '业务类别编号',
   `tcid` int(11) DEFAULT NULL COMMENT '类型分类编号',
   PRIMARY KEY (`csid`),
-  KEY `acid` (`acid`),
-  KEY `tc` (`tcid`),
-  CONSTRAINT `charge_standard_ibfk_1` FOREIGN KEY (`acid`) REFERENCES `affair_category` (`acid`),
-  CONSTRAINT `charge_standard_ibfk_3` FOREIGN KEY (`tcid`) REFERENCES `type_category` (`tcid`)
+  KEY `charge_standard_ibfk_1` (`acid`),
+  KEY `charge_standard_ibfk_3` (`tcid`),
+  CONSTRAINT `charge_standard_ibfk_3` FOREIGN KEY (`tcid`) REFERENCES `type_category` (`tcid`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `charge_standard_ibfk_1` FOREIGN KEY (`acid`) REFERENCES `affair_category` (`acid`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `charge_standard` */
@@ -190,8 +190,8 @@ CREATE TABLE `member_group` (
   PRIMARY KEY (`lgid`),
   KEY `sid` (`loginid`),
   KEY `gid` (`gid`),
-  CONSTRAINT `member_group_ibfk_1` FOREIGN KEY (`loginid`) REFERENCES `member` (`loginid`),
-  CONSTRAINT `member_group_ibfk_2` FOREIGN KEY (`gid`) REFERENCES `group_manage` (`gid`)
+  CONSTRAINT `member_group_ibfk_2` FOREIGN KEY (`gid`) REFERENCES `group_manage` (`gid`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `member_group_ibfk_1` FOREIGN KEY (`loginid`) REFERENCES `member` (`loginid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生小组关系表';
 
 /*Data for the table `member_group` */
@@ -269,8 +269,8 @@ CREATE TABLE `type_category` (
   `description` varchar(100) DEFAULT NULL COMMENT '分类描述',
   `stid` int(11) DEFAULT NULL COMMENT '服务类型编号',
   PRIMARY KEY (`tcid`),
-  KEY `stid` (`stid`),
-  CONSTRAINT `type_category_ibfk_1` FOREIGN KEY (`stid`) REFERENCES `service_type` (`stid`)
+  KEY `type_category_ibfk_1` (`stid`),
+  CONSTRAINT `type_category_ibfk_1` FOREIGN KEY (`stid`) REFERENCES `service_type` (`stid`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 /*Data for the table `type_category` */
@@ -285,12 +285,12 @@ DROP TABLE IF EXISTS `affairs`;
 /*!50001 DROP TABLE IF EXISTS `affairs` */;
 
 /*!50001 CREATE TABLE  `affairs`(
- `类别` varchar(50) ,
- `服务类型` varchar(100) ,
- `类型描述` varchar(100) ,
- `基础版` varchar(20) ,
- `进阶版` varchar(20) ,
- `无忧版` varchar(20) 
+ `category` varchar(50) ,
+ `service_type` varchar(100) ,
+ `description` varchar(100) ,
+ `basic` varchar(20) ,
+ `advance` varchar(20) ,
+ `careless` varchar(20) 
 )*/;
 
 /*Table structure for table `member_group_view` */
@@ -312,7 +312,7 @@ DROP TABLE IF EXISTS `member_group_view`;
 /*!50001 DROP TABLE IF EXISTS `affairs` */;
 /*!50001 DROP VIEW IF EXISTS `affairs` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `affairs` AS select `affair_category`.`name` AS `类别`,`service_type`.`type` AS `服务类型`,`type_category`.`description` AS `类型描述`,`charge_standard`.`basic` AS `基础版`,`charge_standard`.`advance` AS `进阶版`,`charge_standard`.`careless` AS `无忧版` from (((`affair_category` join `service_type`) join `type_category`) join `charge_standard`) where ((`charge_standard`.`acid` = `affair_category`.`acid`) and (`charge_standard`.`tcid` = `type_category`.`tcid`) and (`type_category`.`stid` = `service_type`.`stid`)) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `affairs` AS select `affair_category`.`name` AS `category`,`service_type`.`type` AS `service_type`,`type_category`.`description` AS `description`,`charge_standard`.`basic` AS `basic`,`charge_standard`.`advance` AS `advance`,`charge_standard`.`careless` AS `careless` from (((`affair_category` join `service_type`) join `type_category`) join `charge_standard`) where ((`charge_standard`.`acid` = `affair_category`.`acid`) and (`charge_standard`.`tcid` = `type_category`.`tcid`) and (`type_category`.`stid` = `service_type`.`stid`)) */;
 
 /*View structure for view member_group_view */
 
