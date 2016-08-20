@@ -59,7 +59,7 @@ DROP TABLE IF EXISTS `affair_category`;
 CREATE TABLE `affair_category` (
   `acid` int(11) NOT NULL AUTO_INCREMENT COMMENT '业务类别编号',
   `name` varchar(50) DEFAULT NULL COMMENT '业务类别名称',
-  `flag` int(11) NOT NULL COMMENT '业务类别是否已经运行',
+  `flag` int(11) NOT NULL COMMENT '业务类别是否已经运行（0代表运行，1代表没有运行）',
   PRIMARY KEY (`acid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
