@@ -45,8 +45,7 @@ CREATE TABLE `affair` (
   `loginid` varchar(20) DEFAULT NULL COMMENT '审核业务的管理员',
   PRIMARY KEY (`aff_id`),
   KEY `adminid` (`loginid`),
-  KEY `ccid` (`type`),
-  CONSTRAINT `affair_ibfk_3` FOREIGN KEY (`loginid`) REFERENCES `member` (`loginid`)
+  KEY `ccid` (`type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='业务关系表';
 
 /*Data for the table `affair` */
@@ -60,13 +59,13 @@ DROP TABLE IF EXISTS `affair_category`;
 CREATE TABLE `affair_category` (
   `acid` int(11) NOT NULL AUTO_INCREMENT COMMENT '业务类别编号',
   `name` varchar(50) DEFAULT NULL COMMENT '业务类别名称',
-  `flag` int(11) DEFAULT NULL COMMENT '业务类别是否已经运行',
+  `flag` int(11) NOT NULL COMMENT '业务类别是否已经运行',
   PRIMARY KEY (`acid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 /*Data for the table `affair_category` */
 
-insert  into `affair_category`(`acid`,`name`,`flag`) values (1,'微课慕课',NULL),(2,'广告制作',NULL),(3,'宣传视频',NULL),(4,'行业软件',NULL),(5,'商业活动软件',NULL),(6,'英语翻译',NULL),(7,'VR视频',NULL),(8,'VR游戏',NULL),(9,'游戏软件',NULL);
+insert  into `affair_category`(`acid`,`name`,`flag`) values (1,'微课慕课',0),(2,'广告制作',0),(3,'宣传视频',0),(4,'行业软件',0),(5,'商业活动软件',0),(6,'英语翻译',0),(7,'VR视频',1),(8,'VR游戏',1),(9,'游戏软件',1);
 
 /*Table structure for table `apply` */
 
