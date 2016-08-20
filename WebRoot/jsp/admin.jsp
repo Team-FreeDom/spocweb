@@ -81,13 +81,22 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent href="#">荣誉管理</a></td>
+											class=menuparent onclick=expand(2) href="javascript:void(0);">荣誉管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
 									</tr>
 								</table>
-
+                             <table id=child2 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="honors.do">荣誉信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
@@ -140,10 +149,7 @@
 										<td width=30><img src="../image/menu_icon.gif"></td>
 										<td><a class=menuchild href="applys.do">报名申请管理</a></td>
 									</tr>
-									<!-- <tr height=20>
-										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applys.do?">报名处理管理</a></td>
-									</tr>-->
+								
 									<tr height=4>
 										<td colspan=2></td>
 									</tr>
