@@ -262,7 +262,7 @@
 							</button>
 							<h4 class="modal-title" id="myModalLabel">添加服务类别</h4>
 						</div>
-						<form action="addServiceType.do" method="post" name="myForm2"
+						<form action="addServiceType.do" method="post" name="myForm2"  onSubmit="return check()"
 							id="myForm2">
 							<div class="container table-responsive">
 								<table>
@@ -271,7 +271,7 @@
 											<label for="exampleInputName2">类别名称</label>
 										</td>
 										<td style="text-align:left;"><input type="text"
-											name="type" class="form-control" id="exampleInputName2">
+											name="type" class="form-control" id="typeName">
 										</td>
 
 									</tr>
@@ -333,6 +333,16 @@
 							var id = "#myForm" + this.id;
 							$(id).submit();
 						})
+						 function check()
+                     {
+						 var typeName=document.getElementById("typeName").value;
+						 if(typeName=="")
+					       {
+						     alert("请填写类别名称！");
+						     return false;
+						   }
+						 return true;
+                     }
 					</script>
 					<script>
 						var tabBox = document.getElementById("tabBox"),

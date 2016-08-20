@@ -45,10 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>电话</td>
             <td>${member.phone}</td>
         </tr>
-        <tr>
-            <td>就业信息</td>
-            <td colspan="6">${member.job}</td>
-        </tr>
+       
         <tr>
             <td>地址</td>
             <td colspan="6">${member.address}</td>
