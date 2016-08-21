@@ -328,14 +328,7 @@
 										<td style="text-align:left;"><input type="text"
 											name="phone" class="form-control empty" id="exampleInputName2"></td>
 									</tr>
-
-									<tr>
-										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">就业</label></td>
-										<td colspan="5"><textarea type="text"
-												class="form-control" name="job" id="exampleInputName2"
-												style="width:650px;"></textarea></td>
-									</tr>
+									
 
 									<tr>
 										<td style="width:80px;text-align:center;line-height:100px;"><label
@@ -451,14 +444,7 @@
 										</tr>
 
 
-										<tr>
-											<td style="width:80px;text-align:center;line-height:100px;"><label
-												for="exampleInputName2">就业</label></td>
-											<td colspan="5"><textarea type="text"
-													class="form-control" name="job" id="exampleInputName2"
-													style="width:650px;"> ${teacher.job }</textarea></td>
-										</tr>
-
+									
 										<tr>
 											<td style="width:80px;text-align:center;line-height:100px;"><label
 												for="exampleInputName2">地址</label></td>

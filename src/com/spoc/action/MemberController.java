@@ -213,15 +213,14 @@ public class MemberController {
 				String birth_date = request.getParameter("birth_date");	
 				String qq = request.getParameter("qq");
 				String phone = request.getParameter("phone");
-				String address = request.getParameter("address");
-				String job = request.getParameter("job");
+				String address = request.getParameter("address");				
 				String college = request.getParameter("college");
 				String pwd = request.getParameter("pwd");
 				String loginid = request.getParameter("loginid");
 				int admin=Integer.valueOf(request.getParameter("admin"));
 				Member member=new Member(loginid, pwd, name, sex, filename,
 						birth_date, college,  qq, phone, address,
-						 job, 1, admin);
+						  1, admin,0);
 				memberService.addMember(member);
 				return "forward:user.do?flag=1";
 	}
@@ -239,7 +238,7 @@ public class MemberController {
 		String qq = request.getParameter("qq");
 		String phone = request.getParameter("phone");
 		String address = request.getParameter("address");
-		String job = request.getParameter("job");
+		
 		String college = request.getParameter("college");
 		String pwd = request.getParameter("pwd");
 		String loginid = request.getParameter("loginid");
@@ -276,14 +275,14 @@ public class MemberController {
 		
 		 member=new Member(loginid, pwd, name, sex, filename,
 				birth_date, college,  qq, phone, address,
-				 job, 1, admin);
+				  1, admin,0);
 		 memberService.updateMember(member);
 	  }else
 	  {
 		  System.out.println(pwd);
 		   member=new Member(loginid, pwd, name, sex,
 					birth_date, college,  qq, phone, address,
-					 job, 1, admin);
+					  1, admin);
 		   memberService.updateMember2(member);
 	  }
 
