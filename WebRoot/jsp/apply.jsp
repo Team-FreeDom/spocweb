@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          var grade=document.getElementById("grade").value;
          var inputEmail3=document.getElementById("inputEmail3").value;
          var phone=document.getElementById("phone").value;
-         var group=document.getElementById("group");
+        
 		 /*学姐，这个是我新加的内容*/
 		 var radios=document.getElementsByName("group");
 		 var m=0;
@@ -116,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   }
 		    if(phone=="")
 	       {
-		     alert("请填写您的电话号码！");
+		     alert("请填写您的电话号码！");		     
 		     return false;
 		   }
 		   

@@ -272,7 +272,7 @@
 							</button>
 							<h4 class="modal-title" id="myModalLabel">添加类别种类</h4>
 						</div>
-						<form action="addTypeCategory.do" method="post" name="myForm2"
+						<form action="addTypeCategory.do" method="post" name="myForm2"  onSubmit="return check()"
 							id="myForm2">
 							<div class="container table-responsive">
 								<table>
@@ -282,13 +282,13 @@
 										</td>
 										<td style="text-align:left;"><input type="text"
 											name="description" class="form-control empty"
-											id="exampleInputName2"></td>
+											id="typeDescription"></td>
 										<td style="width:120px;text-align:center;margin-left:150px;">
 											<label for="exampleInputName2">所属服务类别</label>
 										</td>
-										<td style="text-align:left;"><select name="type"
+										<td style="text-align:left;"><select name="type" id="serviceType"
 											style="width:195px;">
-												<option>请选择</option>
+												<option value="-1">请选择</option>
 												<c:forEach items='${servicetypes}' var="servicetype">
 													<option value="${servicetype.stid }">${servicetype.type }</option>
 												</c:forEach>
@@ -383,7 +383,7 @@
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
 						$("#addMember .empty").val("");
-						$("#addMember select").val("请选择");
+						$("#addMember select").val("-1");
 					}
 
 					function add() {
@@ -400,6 +400,21 @@
 						var id = "#myForm" + this.id;
 						$(id).submit();
 					})
+					function check() {
+						
+						var typeDescription = document.getElementById("typeDescription").value;								
+						var serviceType=document.getElementById("serviceType").value;						
+						if (typeDescription =="") {
+							alert("请填写类别描述！");
+							return false;
+						}
+						if (serviceType ==-1) {
+							alert("请选择服务类别！");
+							return false;
+						}
+						
+						return true;
+					}
 				</script>
 				<script>
 					var tabBox = document.getElementById("tabBox"),
