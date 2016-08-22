@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!doctype html>
@@ -83,10 +83,20 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent href="../list.html" target="main">荣誉管理</a></td>
+											class=menuparent onclick=expand(2) href="javascript:void(0);">荣誉管理                                                                                                                       </a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
+									</tr>
+								</table>
+                                                                      <table id=child2 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="honors.do">荣誉信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
 									</tr>
 								</table>
 
@@ -144,10 +154,7 @@
 										<td width=30><img src="../image/menu_icon.gif"></td>
 										<td><a class=menuchild href="applys.do">报名申请管理</a></td>
 									</tr>
-									<!-- <tr height=20>
-										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applys.do?">报名处理管理</a></td>
-									</tr>-->
+									
 									<tr height=4>
 										<td colspan=2></td>
 									</tr>
@@ -217,7 +224,7 @@
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="deleteServiceType.do" method="post" name="myform"
+							<form action="deleteServiceType.do" method="post" name="myform"  onSubmit="return check1()"
 								id="myform">
 								<table class="table" id="tabBox">
 									<tr>
@@ -255,7 +262,7 @@
 							</button>
 							<h4 class="modal-title" id="myModalLabel">添加服务类别</h4>
 						</div>
-						<form action="addServiceType.do" method="post" name="myForm2"
+						<form action="addServiceType.do" method="post" name="myForm2"  onSubmit="return check()"
 							id="myForm2">
 							<div class="container table-responsive">
 								<table>
@@ -264,7 +271,7 @@
 											<label for="exampleInputName2">类别名称</label>
 										</td>
 										<td style="text-align:left;"><input type="text"
-											name="type" class="form-control" id="exampleInputName2">
+											name="type" class="form-control" id="typeName">
 										</td>
 
 									</tr>
@@ -326,6 +333,33 @@
 							var id = "#myForm" + this.id;
 							$(id).submit();
 						})
+						 function check()
+                     {
+						 var typeName=document.getElementById("typeName").value;
+						 if(typeName=="")
+					       {
+						     alert("请填写类别名称！");
+						     return false;
+						   }
+						 return true;
+                     }
+						function check1()
+						{
+							 var checkboxs=document.getElementsByName("type");
+							 var m=0;
+							  for(var i=0;i<checkboxs.length;i++)
+								{
+									if(checkboxs[i].checked==false)
+									{
+										m=m+1;
+									}
+								}
+								if(m==i)
+								{
+									alert("请选择您要删除的选项！！！");
+									return false;
+									}
+						}
 					</script>
 					<script>
 						var tabBox = document.getElementById("tabBox"),
