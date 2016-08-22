@@ -52,7 +52,7 @@ public class ChargeStandardController {
 	@RequestMapping("/deleteChargeStandard.do") //删除管理员所选择的相应的收费记录
 	public String deleteChargeStandard(HttpServletRequest request)
 	{
-		String[] check=request.getParameterValues("type");
+		String[] check=request.getParameterValues("typeCh");
 		chargeStandardService.deleteChargeStandard(check);
 		return "forward:chargeStandard.do";
 	}

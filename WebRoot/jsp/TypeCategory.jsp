@@ -83,13 +83,14 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent onclick=expand(2) href="javascript:void(0);">荣誉管理                                                                                                                       </a></td>
+											class=menuparent onclick=expand(2) href="javascript:void(0);">荣誉管理
+										</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
 									</tr>
 								</table>
-                                                                      <table id=child2 style="display: none"
+								<table id=child2 style="display: none"
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
@@ -154,7 +155,7 @@
 										<td width=30><img src="../image/menu_icon.gif"></td>
 										<td><a class=menuchild href="applys.do">报名申请管理</a></td>
 									</tr>
-									
+
 									<tr height=4>
 										<td colspan=2></td>
 									</tr>
@@ -225,7 +226,7 @@
 					<div id="tableBox">
 						<div class="admin_roll">
 							<form action="deleteTypeCategory.do" method="post" name="myform"
-								id="myform">
+								onSubmit="return check1()" id="myform">
 								<table class="table" id="tabBox">
 									<tr>
 										<td></td>
@@ -236,7 +237,7 @@
 									</tr>
 									<c:forEach items='${typecategorys}' var="typecategory">
 										<tr>
-											<td><label><input type="checkbox" name="type"
+											<td><label><input type="checkbox" name="typeCh"
 													value="${typecategory.tcid}" id="type" class="ck" /></label></td>
 
 											<td>${typecategory.tcid}</td>
@@ -272,8 +273,8 @@
 							</button>
 							<h4 class="modal-title" id="myModalLabel">添加类别种类</h4>
 						</div>
-						<form action="addTypeCategory.do" method="post" name="myForm2"  onSubmit="return check()"
-							id="myForm2">
+						<form action="addTypeCategory.do" method="post" name="myForm2"
+							onSubmit="return check()" id="myForm2">
 							<div class="container table-responsive">
 								<table>
 									<tr style="padding-top:20px;">
@@ -286,8 +287,8 @@
 										<td style="width:120px;text-align:center;margin-left:150px;">
 											<label for="exampleInputName2">所属服务类别</label>
 										</td>
-										<td style="text-align:left;"><select name="type" id="serviceType"
-											style="width:195px;">
+										<td style="text-align:left;"><select name="type"
+											id="serviceType" style="width:195px;">
 												<option value="-1">请选择</option>
 												<c:forEach items='${servicetypes}' var="servicetype">
 													<option value="${servicetype.stid }">${servicetype.type }</option>
@@ -322,8 +323,8 @@
 								<h4 class="modal-title" id="myModalLabel">编辑类别信息</h4>
 							</div>
 							<form action="updateTypeCategory.do" method="post"
-								enctype="multipart/form-data" name="myForm2"
-								id="myForm${typecategory.tcid}">
+								onSubmit="return check2()" enctype="multipart/form-data"
+								name="myForm2" id="myForm${typecategory.tcid}">
 								<div class="container table-responsive">
 									<table>
 										<tr style="padding-top:20px;">
@@ -332,12 +333,12 @@
 											</td>
 											<td style="text-align:left;"><input type="text"
 												value="${typecategory.description}" name="description"
-												class="form-control" id="exampleInputName2"></td>
+												class="form-control" id="typeDescription2"></td>
 											<td style="width:120px;text-align:center;margin-left:150px;">
 												<label for="exampleInputName2">所属服务类别</label>
 											</td>
 											<td style="text-align:left;"><select name="type"
-												style="width:195px;">
+												id="serviceType2" style="width:195px;">
 													<option>请选择</option>
 													<c:forEach items='${servicetypes}' var="servicetype">
 														<option value="${servicetype.stid }"
@@ -401,18 +402,52 @@
 						$(id).submit();
 					})
 					function check() {
-						
-						var typeDescription = document.getElementById("typeDescription").value;								
-						var serviceType=document.getElementById("serviceType").value;						
-						if (typeDescription =="") {
+
+						var typeDescription = document
+								.getElementById("typeDescription").value;
+						var serviceType = document
+								.getElementById("serviceType").value;
+						if (typeDescription == "") {
 							alert("请填写类别描述！");
 							return false;
 						}
-						if (serviceType ==-1) {
+						if (serviceType == -1) {
 							alert("请选择服务类别！");
 							return false;
 						}
-						
+
+						return true;
+					}
+					function check1() {						
+
+						var checkboxs = document.getElementsByName("typeCh");
+						var m = 0;
+						for (var i = 0; i < checkboxs.length; i++) {
+							if (checkboxs[i].checked == false) {
+								m = m + 1;
+							}
+						}
+						if (m == i) {
+							alert("请选择您要删除的选项！！！");
+							return false;
+						}
+						return true;
+					}
+					function check2() {
+
+						var typeDescription = document
+								.getElementById("typeDescription2").value;
+						var serviceType = document
+								.getElementById("serviceType2").value;
+						if (typeDescription == "") {
+							alert("请填写类别描述！");
+							return false;
+						}
+						if (serviceType == -1) {
+							alert("请选择服务类别！");
+							return false;
+						}
+
 						return true;
 					}
 				</script>
