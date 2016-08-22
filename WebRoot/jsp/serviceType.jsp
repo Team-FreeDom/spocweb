@@ -224,7 +224,7 @@
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="deleteServiceType.do" method="post" name="myform"
+							<form action="deleteServiceType.do" method="post" name="myform"  onSubmit="return check1()"
 								id="myform">
 								<table class="table" id="tabBox">
 									<tr>
@@ -343,6 +343,23 @@
 						   }
 						 return true;
                      }
+						function check1()
+						{
+							 var checkboxs=document.getElementsByName("type");
+							 var m=0;
+							  for(var i=0;i<checkboxs.length;i++)
+								{
+									if(checkboxs[i].checked==false)
+									{
+										m=m+1;
+									}
+								}
+								if(m==i)
+								{
+									alert("请选择您要删除的选项！！！");
+									return false;
+									}
+						}
 					</script>
 					<script>
 						var tabBox = document.getElementById("tabBox"),
