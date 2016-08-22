@@ -170,9 +170,27 @@ public class MemberController {
 		String pwd = request.getParameter("pwd");
 		String loginid = request.getParameter("loginid");
 		int admin=Integer.valueOf(request.getParameter("admin"));
-		Member member = new Member(loginid, pwd, name, sex, filename,
-				birth_date, college, grade, major, qq, phone, address,
-				introduction, job, 2, admin);
+		Member member=null;
+		if(job==null&&introduction==null)
+		{
+			member = new Member(loginid, pwd, name, sex, filename,
+					birth_date, college, grade, major, qq, phone, address,
+					 2, admin);
+		}else if(introduction==null)
+		{
+			member = new Member(0,loginid, pwd, name, sex, filename,
+					birth_date, college, grade, major, qq, phone, address,
+					introduction, 2, admin);
+		}else if(job==null)
+		{
+			member = new Member(loginid, pwd, name, sex, filename,
+					birth_date, college, grade, major, qq, phone, address,
+					introduction, 2, admin,1);
+		}else{
+			member = new Member(loginid, pwd, name, sex, filename,
+					birth_date, college, grade, major, qq, phone, address,
+					introduction, job, 2, admin);
+		}
 		memberService.addMember(member);
 		member_groupService.addMemberGroup(group, loginid);
 		return "forward:user.do?flag=2";
@@ -220,7 +238,7 @@ public class MemberController {
 				int admin=Integer.valueOf(request.getParameter("admin"));
 				Member member=new Member(loginid, pwd, name, sex, filename,
 						birth_date, college,  qq, phone, address,
-						  1, admin,0);
+						  1, admin);
 				memberService.addMember(member);
 				return "forward:user.do?flag=1";
 	}
@@ -275,7 +293,7 @@ public class MemberController {
 		
 		 member=new Member(loginid, pwd, name, sex, filename,
 				birth_date, college,  qq, phone, address,
-				  1, admin,0);
+				  1, admin);
 		 memberService.updateMember(member);
 	  }else
 	  {
@@ -309,7 +327,7 @@ public class MemberController {
 		String introduction = request.getParameter("introduction");
 		String job = request.getParameter("job");
 		String college = request.getParameter("college");
-		String[] group = request.getParameterValues("group");
+		String[] group = request.getParameterValues("groupOne2");
 		String pwd = request.getParameter("pwd");
 		String loginid = request.getParameter("loginid");
 		int admin=Integer.valueOf(request.getParameter("admin"));
@@ -339,18 +357,51 @@ public class MemberController {
 		outputStream.write(b, 0, length);
 		inputStream.close();
 		outputStream.close();
-		filename = "../infor/selfie/" + filename;
-
+		filename = "../infor/selfie/" + filename;		
 		
-		 member = new Member(loginid, pwd, name, sex, filename,
-				birth_date, college, grade, major, qq, phone, address,
-				introduction, job, 2, admin);
+		if(job==null&&introduction==null)
+		{
+			member = new Member(loginid, pwd, name, sex, filename,
+					birth_date, college, grade, major, qq, phone, address,
+					 2, admin);
+		}else if(introduction==null)
+		{
+			member = new Member(0,loginid, pwd, name, sex, filename,
+					birth_date, college, grade, major, qq, phone, address,
+					introduction, 2, admin);
+		}else if(job==null)
+		{
+			member = new Member(loginid, pwd, name, sex, filename,
+					birth_date, college, grade, major, qq, phone, address,
+					introduction, 2, admin,1);
+		}else{
+			member = new Member(loginid, pwd, name, sex, filename,
+					birth_date, college, grade, major, qq, phone, address,
+					introduction, job, 2, admin);
+		}
 		 memberService.updateMember(member);
 		  }else
 		  {
-			member=new Member(loginid, pwd, name, sex,
-					birth_date, college, grade, major, qq, phone, address,
-					introduction, job, 2, admin);  
+			  if(job==null&&introduction==null)
+				{
+					member = new Member(loginid, pwd, name, sex,
+							birth_date, college, grade, major, qq, phone, address,
+							 2, admin);
+				}else if(introduction==null)
+				{
+					member = new Member(0,loginid, pwd, name, sex,
+							birth_date, college, grade, major, qq, phone, address,
+							introduction, 2, admin);
+				}else if(job==null)
+				{
+					member = new Member(loginid, pwd, name, sex, 
+							birth_date, college, grade, major, qq, phone, address,
+							introduction, 2, admin,1);
+				}else{
+					member = new Member(loginid, pwd, name, sex,
+							birth_date, college, grade, major, qq, phone, address,
+							introduction, job, 2, admin);
+				}
 			 memberService.updateMember2(member);
 		  }
 		 
