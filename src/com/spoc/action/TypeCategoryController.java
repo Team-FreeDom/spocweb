@@ -57,7 +57,7 @@ public class TypeCategoryController {
 	@RequestMapping("/deleteTypeCategory.do")
 	public String deleteTypeCategory(HttpServletRequest request, ModelMap map)
 	{
-		String[] check = request.getParameterValues("type");
+		String[] check = request.getParameterValues("typeCh");
 		typeCategoryService.deleteTypeCategory(check);
 		return "forward:TypeCategory.do";
 	}

@@ -202,6 +202,42 @@ public class Member {
 		this.flag = flag;
 		this.adminid = adminid;
 	}
+	public Member(String loginid, String password, String name, String sex,
+			String img, String date, String college, String qq, String phone,
+			String address, int flag, int adminid,int i) {
+		super();
+		this.loginid = loginid;
+		this.password = password;
+		this.name = name;
+		this.sex = sex;
+		this.img = img;
+		this.date = date;
+		this.college = college;
+		this.qq = qq;
+		this.phone = phone;
+		this.address = address;
+		this.flag = flag;
+		this.adminid = adminid;
+		
+	}
+	public Member(String loginid, String password, String name, String sex,
+			String date, String college, String qq, String phone,
+			String address, int flag, int adminid) {
+		super();
+		this.loginid = loginid;
+		this.password = password;
+		this.name = name;
+		this.sex = sex;
+		this.date = date;
+		this.college = college;
+		this.qq = qq;
+		this.phone = phone;
+		this.address = address;
+		this.flag = flag;
+		this.adminid = adminid;
+	}
+	
+	
 	
 	
 	

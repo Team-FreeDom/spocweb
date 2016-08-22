@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!doctype html>
@@ -83,10 +83,21 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent href="../list.html" target="main">荣誉管理</a></td>
+											class=menuparent onclick=expand(2) href="javascript:void(0);">荣誉管理
+										</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
+									</tr>
+								</table>
+								<table id=child2 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="honors.do">荣誉信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
 									</tr>
 								</table>
 
@@ -144,10 +155,7 @@
 										<td width=30><img src="../image/menu_icon.gif"></td>
 										<td><a class=menuchild href="applys.do">报名申请管理</a></td>
 									</tr>
-									<!-- <tr height=20>
-										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="applys.do?">报名处理管理</a></td>
-									</tr>-->
+
 									<tr height=4>
 										<td colspan=2></td>
 									</tr>
@@ -204,7 +212,7 @@
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="deleteChargeStandard.do" method="post"
+							<form action="deleteChargeStandard.do" method="post"onSubmit="return check1()"
 								name="myform" id="myform">
 								<table class="table" id="tabBox">
 									<tr>
@@ -219,7 +227,7 @@
 									</tr>
 									<c:forEach items='${chargeStandards}' var="chargeStandard">
 										<tr>
-											<td><label><input type="checkbox" name="type"
+											<td><label><input type="checkbox" name="typeCh"
 													value="${chargeStandard.csid}" id="type" class="ck" /></label></td>
 
 											<td>${chargeStandard.csid}</td>
@@ -267,7 +275,7 @@
 							<h4 class="modal-title" id="myModalLabel">添加收费标准</h4>
 						</div>
 						<form action="addChargeStandard.do" method="post" name="myForm2"
-							id="myForm2">
+							onSubmit="return check()" id="myForm2">
 							<div class="container table-responsive">
 								<table>
 									<tr style="padding-top:20px;">
@@ -275,8 +283,8 @@
 											<label for="exampleInputName2">业务类别</label>
 										</td>
 										<td style="text-align:left;"><select name="affair"
-											style="width:195px;">
-												<option>请选择</option>
+											id="affair" style="width:195px;">
+												<option value=-1>请选择</option>
 												<c:forEach items='${affairCategorys}' var="affairCategory">
 													<option value="${affairCategory.acid }">${affairCategory.name }</option>
 												</c:forEach>
@@ -286,8 +294,8 @@
 											<label for="exampleInputName2">类别分类</label>
 										</td>
 										<td style="text-align:left;"><select name="type"
-											style="width:195px;">
-												<option>请选择</option>
+											id="typeCategory" style="width:195px;">
+												<option value=-1>请选择</option>
 												<c:forEach items='${typeCategorys}' var="typeCategory">
 													<option value="${typeCategory.tcid }">${typeCategory.description }</option>
 												</c:forEach>
@@ -298,17 +306,17 @@
 											<label for="exampleInputName2">基础版</label>
 										</td>
 										<td style="text-align:left;"><input type="text"
-											name="basic" class="form-control empty" id="exampleInputName2"></td>
+											name="basic" class="form-control empty" id="basic"></td>
 										<td style="width:80px;text-align:center;line-height:100px;">
 											<label for="exampleInputName2">进阶版</label>
 										</td>
 										<td style="text-align:left;"><input type="text"
-											name="advance" class="form-control empty" id="exampleInputName2"></td>
+											name="advance" class="form-control empty" id="advance"></td>
 										<td style="width:80px;text-align:center;line-height:100px;">
 											<label for="exampleInputName2">无忧版</label>
 										</td>
 										<td style="text-align:left;"><input type="text"
-											name="careless" class="form-control empty" id="exampleInputName2"></td>
+											name="careless" class="form-control empty" id="careless"></td>
 									</tr>
 								</table>
 							</div>
@@ -338,7 +346,7 @@
 								<h4 class="modal-title" id="myModalLabel">编辑收费信息</h4>
 							</div>
 							<form action="updateChargeStandard.do" method="post"
-								enctype="multipart/form-data" name="myForm2"
+								enctype="multipart/form-data" name="myForm2" onSubmit="return check2()"
 								id="myForm${chargeStandard.csid}">
 								<div class="container table-responsive">
 									<table>
@@ -346,9 +354,9 @@
 											<td style="width:80px;text-align:center;line-height:100px;">
 												<label for="exampleInputName2">业务类别</label>
 											</td>
-											<td style="text-align:left;"><select name="affair"
+											<td style="text-align:left;"><select name="affair" id="affair2"
 												style="width:195px;">
-													<option>请选择</option>
+													<option value=-1>请选择</option>
 													<c:forEach items='${affairCategorys}' var="affairCategory">
 														<option value="${affairCategory.acid }"
 															${affairCategory.acid==chargeStandard.acid?"selected":"" }>${affairCategory.name }</option>
@@ -358,9 +366,9 @@
 											<td style="width:80px;text-align:center;margin-left:150px;">
 												<label for="exampleInputName2">类别分类</label>
 											</td>
-											<td style="text-align:left;"><select name="type"
+											<td style="text-align:left;"><select name="type" id="typeCategory2"
 												style="width:195px;">
-													<option>请选择</option>
+													<option value=-1>请选择</option>
 													<c:forEach items='${typeCategorys}' var="typeCategory">
 														<option value="${typeCategory.tcid }"
 															${typeCategory.tcid==chargeStandard.tcid?"selected":"" }>${typeCategory.description }</option>
@@ -373,19 +381,19 @@
 											</td>
 											<td style="text-align:left;"><input type="text"
 												name="basic" class="form-control"
-												value="${chargeStandard.csid}" id="exampleInputName2"></td>
+												value="${chargeStandard.csid}" id="basic2"></td>
 											<td style="width:80px;text-align:center;line-height:100px;">
 												<label for="exampleInputName2">进阶版</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
 												name="advance" class="form-control"
-												value="${chargeStandard.advance}" id="exampleInputName2"></td>
+												value="${chargeStandard.advance}" id="advance2"></td>
 											<td style="width:80px;text-align:center;line-height:100px;">
 												<label for="exampleInputName2">无忧版</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
 												name="careless" class="form-control"
-												value="${chargeStandard.careless}" id="exampleInputName2">
+												value="${chargeStandard.careless}" id="careless2">
 
 												<input type="text" name="csid" hidden="hidden"
 												value="${chargeStandard.csid}" /></td>
@@ -425,7 +433,7 @@
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
 						$("#addMember .empty").val("");
-						$("#addMember select").val("请选择");
+						$("#addMember select").val("-1");
 					}
 
 					function add() {
@@ -442,6 +450,84 @@
 						var id = "#myForm" + this.id;
 						$(id).submit();
 					})
+
+					function check() {
+						var basic = document.getElementById("basic").value;
+						var affair = document.getElementById("affair").value;
+						var typeCategory = document.getElementById("typeCategory").value;
+						var advance = document.getElementById("advance").value;
+						var careless = document.getElementById("careless").value;				
+						
+						if (affair == -1) {
+							alert("请选择业务类别！");
+							return false;
+						}
+						if (typeCategory == -1) {
+							alert("请选择类别分类！");
+							return false;
+						}
+						if (basic == "") {
+							alert("请填写基本版！");
+							return false;
+						}
+						if (advance == "") {
+							alert("请填写进阶版！");
+							return false;
+						}
+						if (careless == "") {
+							alert("请填写无忧版！");
+							return false;
+						}
+						
+						return true;
+					}
+					function check1()
+					{
+						 var checkboxs=document.getElementsByName("typeCh");
+						 var m=0;
+						  for(var i=0;i<checkboxs.length;i++)
+							{
+								if(checkboxs[i].checked==false)
+								{
+									m=m+1;
+								}
+							}
+							if(m==i)
+							{
+								alert("请选择您要删除的选项！！！");
+								return false;
+								}
+					}
+					function check2() {
+						var basic = document.getElementById("basic2").value;
+						var affair = document.getElementById("affair2").value;
+						var typeCategory = document.getElementById("typeCategory2").value;
+						var advance = document.getElementById("advance2").value;
+						var careless = document.getElementById("careless2").value;				
+						
+						if (affair == -1) {
+							alert("请选择业务类别！");
+							return false;
+						}
+						if (typeCategory == -1) {
+							alert("请选择类别分类！");
+							return false;
+						}
+						if (basic == "") {
+							alert("请填写基本版！");
+							return false;
+						}
+						if (advance == "") {
+							alert("请填写进阶版！");
+							return false;
+						}
+						if (careless == "") {
+							alert("请填写无忧版！");
+							return false;
+						}
+						
+						return true;
+					}
 				</script>
 				<script>
 					var tabBox = document.getElementById("tabBox"),

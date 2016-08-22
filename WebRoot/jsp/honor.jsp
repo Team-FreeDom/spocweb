@@ -1,6 +1,5 @@
-﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!doctype html>
 <html>
 <head>
@@ -83,8 +82,7 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent onclick=expand(2) href="javascript:void(0);">荣誉管理
-										</a></td>
+											class=menuparent onclick=expand(2) href="javascript:void(0);">荣誉管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
@@ -94,7 +92,7 @@
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="honors.do">荣誉信息管理</a></td>
+										<td><a class=menuchild href="honor.do">荣誉信息管理</a></td>
 									</tr>
 									<tr height=4>
 										<td colspan=2></td>
@@ -155,7 +153,7 @@
 										<td width=30><img src="../image/menu_icon.gif"></td>
 										<td><a class=menuchild href="applys.do">报名申请管理</a></td>
 									</tr>
-
+								
 									<tr height=4>
 										<td colspan=2></td>
 									</tr>
@@ -196,70 +194,55 @@
 
 					<div class=" row text-right" style="margin-top:10px;">
 						<div class="col-md-12 col-xs-12">
-							<form action="searchTypeCategory.do" method="post"
-								class="form-inline">
+							<!--  <form action="search1.do" method="post" class="form-inline">
 								<div class="form-group">
 									<label for="exampleInputName2">用户搜索</label> <input type="text"
-										name="type" class="form-control" id="exampleInputName2"
-										placeholder="类别描述">
+										name="membername" class="form-control" id="exampleInputName2"
+										placeholder="姓名">
 								</div>
-								<input type="submit" name="submit" value="搜索"
-									class="btn btn-default" />
-							</form>
+								<input type="submit" name="submit" class="btn btn-default" />
+							</form>-->
 						</div>
 					</div>
 
 					<div class="row admin_black admin_spacing">
-						<div class="col-md-2 col-xs-5">类型分类信息</div>
+						<div class="col-md-2 col-xs-5">荣誉展示</div>
 						<div class="col-md-7 hidden-xs"></div>
 						<div class="col-md-3 col-xs-7">
-							<span> <a class="add" href="#"> <img
+                      <span> <a class="add" href="#"> <img
 									src="../image/add.gif" width="10" height="10" /> 添加
-							</a> &nbsp; <a href="javascript:deleteType()"> <img
+							</a> &nbsp; 
+							<!--  <a href="javascript:deleteMember()"> <img
 									src="../image/del.gif" width="10" height="10" /> 删除
-							</a> &nbsp;&nbsp;
+							</a> &nbsp;&nbsp;-->
 
 							</span>
-
 						</div>
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="deleteTypeCategory.do" method="post" name="myform"
-								onSubmit="return check1()" id="myform">
+							<form action="honorS.do" method="post" name="myform"
+								id="myform">
 								<table class="table" id="tabBox">
 									<tr>
-										<td></td>
-										<td>类别编号</td>
-										<td>类别描述</td>
-										<td>所属服务类别</td>
-										<td colspan="2">基本操作</td>
+										
+										<td>荣誉编号</td>
+										<td>获奖时间</td>
+										<td >荣誉照片储存路径</td>
+										<td>荣誉介绍</td>
+										
 									</tr>
-									<c:forEach items='${typecategorys}' var="typecategory">
+									<c:forEach items='${honors}' var="honor">
 										<tr>
-											<td><label><input type="checkbox" name="typeCh"
-													value="${typecategory.tcid}" id="type" class="ck" /></label></td>
-
-											<td>${typecategory.tcid}</td>
-											<td>${typecategory.description}</td>
-											<c:forEach items='${servicetypes}' var="servicetype">
-												<c:if test="${typecategory.stid==servicetype.stid}">
-													<td>${servicetype.type}</td>
-												</c:if>
-											</c:forEach>
-											<td colspan="2"><a class="edit" id=${typecategory.tcid }
-												style="margin-left:20px;" data-toggle="modal"
-												data-target=".bs-example-modal-lg" href="#"> <img
-													src="../image/edit.gif" width="10" height="10" /> 编辑
-											</a></td>
+										<td>${honor.hid}</td>
+										<td>${honor.time}</td>
+										<td>${honor.img}</td>
+										<td>${honor.description}</td>
+												
 										</tr>
-									</c:forEach>
+									</c:forEach>  
 								</table>
 							</form>
-						</div>
-						<div class="text-right" style="margin-right:60px;">
-							<label><input type="checkbox" name="0" class="ck-all" />全选</label>
-							<label><input type="checkbox" name="0" class="ck-re" />反选</label>
 						</div>
 					</div>
 
@@ -271,99 +254,48 @@
 								onclick="fun(this)">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h4 class="modal-title" id="myModalLabel">添加类别种类</h4>
+							<h4 class="modal-title" id="myModalLabel">添加荣誉表</h4>
 						</div>
-						<form action="addTypeCategory.do" method="post" name="myForm2"
-							onSubmit="return check()" id="myForm2">
+						<form action="addhonor.do" method="post" enctype="multipart/form-data"
+							name="myForm2" id="myForm2">
 							<div class="container table-responsive">
 								<table>
 									<tr style="padding-top:20px;">
-										<td style="width:80px;text-align:center;line-height:100px;">
-											<label for="exampleInputName2">类别描述</label>
-										</td>
+										<td style="width:80px;text-align:center;line-height:100px;"><label
+											for="exampleInputName2">获奖时间</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="description" class="form-control empty"
-											id="typeDescription"></td>
-										<td style="width:120px;text-align:center;margin-left:150px;">
-											<label for="exampleInputName2">所属服务类别</label>
-										</td>
-										<td style="text-align:left;"><select name="type"
-											id="serviceType" style="width:195px;">
-												<option value="-1">请选择</option>
-												<c:forEach items='${servicetypes}' var="servicetype">
-													<option value="${servicetype.stid }">${servicetype.type }</option>
-												</c:forEach>
-										</select></td>
+											name="time" class="form-control" id="exampleInputName2"></td>
+										</tr>
+										<tr>
+										<td style="width:80px;text-align:center;margin-left:30px;"><label
+											for="exampleInputName2">荣誉描述</label></td>
+											<td colspan="5"><textarea type="text" rows="3"
+													class="form-control" name="description"
+													 id="exampleInputName2"
+													style="width:650px;"></textarea></td>
+											
 									</tr>
 								</table>
 							</div>
+							<center>
+								<table style="color:#000; margin-top:10px;">
+									<tr>
+										<td>照片</td>
+										<td><img id="imgPre" src="" width="100px" height="120px"
+											style="display: block;" /> <input type="file" name="imgOne"
+											id="imgOne" onchange="preImg(this.id,'imgPre');" /></td>
+									</tr>
+								</table>
+							</center>
 						</form>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary"
 								data-dismiss="modal" onclick="add()">添加</button>
-							<button type="button" class="btn btn-primary"
-								data-dismiss="modal" onclick="fun(this)">Close</button>
 						</div>
 					</div>
-
-
-
-					<!--add-section-end  -->
-
-					<!--edit-section-start  -->
-
-					<c:forEach items='${typecategorys}' var="typecategory">
-						<div class="modal-content text-center admin_hide"
-							id="${typecategory.tcid}ta">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									id="${typecategory.tcid}t"">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								<h4 class="modal-title" id="myModalLabel">编辑类别信息</h4>
-							</div>
-							<form action="updateTypeCategory.do" method="post"
-								onSubmit="return check2()" enctype="multipart/form-data"
-								name="myForm2" id="myForm${typecategory.tcid}">
-								<div class="container table-responsive">
-									<table>
-										<tr style="padding-top:20px;">
-											<td style="width:80px;text-align:center;line-height:100px;">
-												<label for="exampleInputName2">类别描述</label>
-											</td>
-											<td style="text-align:left;"><input type="text"
-												value="${typecategory.description}" name="description"
-												class="form-control" id="typeDescription2"></td>
-											<td style="width:120px;text-align:center;margin-left:150px;">
-												<label for="exampleInputName2">所属服务类别</label>
-											</td>
-											<td style="text-align:left;"><select name="type"
-												id="serviceType2" style="width:195px;">
-													<option>请选择</option>
-													<c:forEach items='${servicetypes}' var="servicetype">
-														<option value="${servicetype.stid }"
-															${servicetype.stid==typecategory.stid?"selected":"" }>${servicetype.type }</option>
-													</c:forEach>
-											</select></td>
-											<td style="width:120px;text-align:center;margin-left:150px;">
-												<input type="text" name="tcid" value="${typecategory.tcid}"
-												hidden="hidden" />
-											</td>
-										</tr>
-									</table>
-								</div>
-							</form>
-							<div class="modal-footer">
-
-								<button type="button" class="btn btn-primary update"
-									id="${typecategory.tcid}" data-dismiss="modal">确定</button>
-							</div>
-						</div>
-				</div>
-				</c:forEach>
-				<!--edit-section-end -->
+					<!--add-section-end  -->		
 				<script type="text/javascript">
-					function deleteType() {
+					function deleteMember() {
 
 						$('#myform').submit();
 
@@ -383,73 +315,21 @@
 					function fun(obj) {
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
-						$("#addMember .empty").val("");
-						$("#addMember select").val("-1");
+						$("input").val("");
 					}
 
 					function add() {
 						$('#myForm2').submit();
 
 					}
-
-					$(".close").bind("click", function() {
-						var id = this.id + "a";
-						document.getElementById(id).style.display = "none";
-					})
-
 					$(".update").bind("click", function() {
 						var id = "#myForm" + this.id;
 						$(id).submit();
 					})
-					function check() {
-
-						var typeDescription = document
-								.getElementById("typeDescription").value;
-						var serviceType = document
-								.getElementById("serviceType").value;
-						if (typeDescription == "") {
-							alert("请填写类别描述！");
-							return false;
-						}
-						if (serviceType == -1) {
-							alert("请选择服务类别！");
-							return false;
-						}
-
-						return true;
-					}
-					function check1() {						
-
-						var checkboxs = document.getElementsByName("typeCh");
-						var m = 0;
-						for (var i = 0; i < checkboxs.length; i++) {
-							if (checkboxs[i].checked == false) {
-								m = m + 1;
-							}
-						}
-						if (m == i) {
-							alert("请选择您要删除的选项！！！");
-							return false;
-						}
-						return true;
-					}
-					function check2() {
-
-						var typeDescription = document
-								.getElementById("typeDescription2").value;
-						var serviceType = document
-								.getElementById("serviceType2").value;
-						if (typeDescription == "") {
-							alert("请填写类别描述！");
-							return false;
-						}
-						if (serviceType == -1) {
-							alert("请选择服务类别！");
-							return false;
-						}
-
-						return true;
-					}
+					$(".close").bind("click", function() {
+						var id = this.id + "a";
+						document.getElementById(id).style.display = "none";
+					})
 				</script>
 				<script>
 					var tabBox = document.getElementById("tabBox"),
@@ -508,6 +388,6 @@
 			</div>
 		</div>
 	</div>
-	</div>
 </body>
+	
 </html>
