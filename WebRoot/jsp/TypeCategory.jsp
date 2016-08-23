@@ -316,10 +316,10 @@
 						<div class="modal-content text-center admin_hide"
 							id="${typecategory.tcid}ta">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
+								<a class="close" data-dismiss="modal" href="TypeCategory.do"
 									id="${typecategory.tcid}t"">
 									<span aria-hidden="true">&times;</span>
-								</button>
+								</a>
 								<h4 class="modal-title" id="myModalLabel">编辑类别信息</h4>
 							</div>
 							<form action="updateTypeCategory.do" method="post"

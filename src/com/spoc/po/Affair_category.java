@@ -15,6 +15,24 @@ public class Affair_category {
 	private int acid;
 	private String name;
 	private int flag;
+	private int rank;
+	
+	public Affair_category(int acid, String name, int flag, int rank) {
+		super();
+		this.acid = acid;
+		this.name = name;
+		this.flag = flag;
+		this.rank = rank;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
 	public int getFlag() {
 		return flag;
 	}

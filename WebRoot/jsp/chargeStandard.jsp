@@ -339,10 +339,10 @@
 						<div class="modal-content text-center admin_hide"
 							id="${chargeStandard.csid}ta">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
+								<a class="close" data-dismiss="modal" href="chargeStandard.do"
 									id="${chargeStandard.csid}t"">
 									<span aria-hidden="true">&times;</span>
-								</button>
+								</a>
 								<h4 class="modal-title" id="myModalLabel">编辑收费信息</h4>
 							</div>
 							<form action="updateChargeStandard.do" method="post"

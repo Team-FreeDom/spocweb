@@ -306,35 +306,43 @@
 						<div class="modal-content text-center admin_hide"
 							id="${affairtype.acid}ta">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
+								<a class="close" data-dismiss="modal" href="dealAT.do"
 									id="${affairtype.acid}t"">
 									<span aria-hidden="true">&times;</span>
-								</button>
-								<h4 class="modal-title" id="myModalLabel">编辑成员信息</h4>
+								</a>
+								<h4 class="modal-title" id="myModalLabel">编辑业务类别</h4>
 							</div>
-							<form action="updateType.do" method="post"
+							<form action="updateType.do" method="post"   onSubmit="return checkU()"
 								enctype="multipart/form-data" name="myForm2"
 								id="myForm${affairtype.acid}">
 								<div class="container table-responsive">
 									<table>
 										<tr style="padding-top:20px;">
+										   
 											<td style="width:80px;text-align:center;line-height:100px;">
 												<label for="exampleInputName2">类别名称</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
-												readOnly="true" name="typeName" class="form-control"
-												id="exampleInputName2" value="${affairtype.name}"></td>
-											<td style="width:80px;text-align:center;margin-left:150px;">
+												 name="typeName" class="form-control"
+												id="typeName2" value="${affairtype.name}"></td>
+											<td style="width:100px;text-align:center;margin-left:150px;">
 												<label for="exampleInputName2">投入开发</label>
 											</td>
 											<td style="text-align:left;"><input name="flag"
 												value="1" ${affairtype.flag==1?"checked":""} type="radio">
 												<label for="q2_1">是</label> <input
 												${affairtype.flag==0?"checked":""} name="flag" value="0"
-												type="radio" /> <label for="q2_2">否</label></td>
+												type="radio" /> <label for="q2_2">否</label>
+												</td>
+											 <td style="width:150px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">排列序号</label>												
+											</td>											
+											<td style="text-align:left;">
+											  <input type="text" name="rank" class="form-control"
+												id="rank" value="${affairtype.rank}"></td>
 										</tr>
 										<tr>
-											<td><input type="text" name="acid"
+											<td><input type="text" name="acid" id="acid"
 												value="${affairtype.acid}" hidden="hidden" /></td>
 										</tr>
 									</table>
@@ -342,8 +350,8 @@
 							</form>
 							<div class="modal-footer">
 
-								<button type="button" class="btn btn-primary update"
-									id="${affairtype.acid}" data-dismiss="modal">确定</button>
+								<button type="button"  class="btn btn-primary update" 
+									id="${affairtype.acid}" data-dismiss="modal">确定</a>
 							</div>
 						</div>
 				</div>
@@ -414,6 +422,17 @@
 								alert("请选择您要删除的选项！！！");
 								return false;
 								}
+					}
+					function checkU()
+					{						
+						
+						var typeName=document.getElementById("typeName2").value;						
+						 if(typeName=="")
+					       {
+						     alert("类别名称不能为空！");
+						     return false;
+						   }
+						 return true;
 					}
 				</script>
 				<script>

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.sf.json.JSONArray;
+
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -134,13 +137,33 @@ public class AffairController {
 		return "forward:dealAT.do";
 	}
 	
+	@RequestMapping("/checkAff_ca.do") 
+	@ResponseBody
+	public String checkAff_ca(HttpServletRequest request, ModelMap map)
+	{
+		int acid = Integer.valueOf(request.getParameter("acid"));	
+		System.out.println(acid);
+		boolean flag=affair_categoryService.checkAff_ca(acid);
+		String str="[{\"flag\":"+flag+"}]";
+		JSONArray json = JSONArray.fromObject(str);	
+		System.out.println(json);
+		return json.toString();
+	}
+	
 	@RequestMapping("/updateType.do") 
 	public String updateType(HttpServletRequest request, ModelMap map)
 	{
-		int acid=Integer.valueOf(request.getParameter("acid"));
+		int acid=Integer.valueOf(request.getParameter("acid"));		
 		String name=request.getParameter("typeName");
 		int flag=Integer.valueOf(request.getParameter("flag"));
-		Affair_category ac=new Affair_category(acid,name,flag);
+		String str=request.getParameter("rank");
+		int rank=0;
+		if(str!=null)
+		{
+			rank=Integer.valueOf(str);	
+		}	
+		
+		Affair_category ac=new Affair_category(acid,name,flag,rank);
 		affair_categoryService.updateType(ac);
 		return "forward:dealAT.do";
 	}
