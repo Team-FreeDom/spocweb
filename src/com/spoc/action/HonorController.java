@@ -1,4 +1,4 @@
-package com.spoc.action;
+﻿package com.spoc.action;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -89,16 +89,12 @@ public class HonorController {
 				outputStream.write(b, 0, length);
 				inputStream.close();
 				outputStream.close();
-				filename = "../infor/selfie/" + filename;
+				filename = "../infor/honor/" + filename;
 
 				String hid =request.getParameter("hid");
 				String time = request.getParameter("time");
-				HttpSession session=request.getSession();
-				session.setAttribute("imgs", path+fileName);
-				String img=(String) session.getAttribute("imgs");
 				String description=request.getParameter("description");
-			
-				Honor honor=new Honor(hid,time,img,description);
+				Honor honor=new Honor(hid,time,filename,description);
 				honorService.addHonor(honor);
 				return "forward:honors.do";
 	}
