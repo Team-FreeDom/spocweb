@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 String path = request.getContextPath();
@@ -138,32 +138,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div id="full" class="carousel slide">
                       <div class="carousel-inner">
                         <ul class="row item active">
+                         <c:forEach items='${gethonor}' var="gh" begin="0" end="3">
                           <li class="col-xs-3 col-md-3">
-                            <a href="#"><img src="../image/1.jpg" class="img-responsive img-thumbnail"></a>
-                          </li>
-                          <li class="col-xs-3 col-md-3">
-                            <img src="../image/2.jpg" class="img-responsive img-thumbnail">
-                          </li>
-                          <li class="col-xs-3 col-md-3">
-                            <img src="../image/3.jpg" class="img-responsive img-thumbnail">
-                          </li>
-                          <li class="col-xs-3 col-md-3">
-                            <img src="../image/3.jpg" class="img-responsive img-thumbnail">
-                          </li>                   
+								<img src="${gh.img}" class="img-responsive img-thumbnail"/>
+                          </li>      
+                           </c:forEach>    
                         </ul>
                         <ul class="row item">
+                        <c:forEach items='${gethonor}' var="gh" begin="2" >
                           <li class="col-xs-3">
-                            <img src="../image/4.jpg" class="img-responsive img-thumbnail">
-                          </li>
-                          <li class="col-xs-3">
-                            <img src="../image/5.jpg" class="img-responsive img-thumbnail">
-                          </li>
-                          <li class="col-xs-3">
-                            <img src="../image/1.jpg" class="img-responsive img-thumbnail">
-                          </li>
-                          <li class="col-xs-3">
-                            <img src="../image/1.jpg" class="img-responsive img-thumbnail">
-                          </li>
+									<img src="${gh.img}" class="img-responsive img-thumbnail"/>
+						   </li>
+						   </c:forEach>
                         </ul>
                       </div><!--/carousel-inner -->       
                     </div><!--/carousel slide -->
