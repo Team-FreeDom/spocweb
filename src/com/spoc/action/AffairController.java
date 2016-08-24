@@ -124,8 +124,13 @@ public class AffairController {
 	{
 		String name=request.getParameter("name");
 		int flag=Integer.valueOf(request.getParameter("flag"));
-		
-		affair_categoryService.doAffairType(name, flag);
+		String str=request.getParameter("rank");
+		int rank=100;
+		if(str!=null&&!str.equals(""))
+		{
+			rank=Integer.valueOf(str);	
+		}	
+		affair_categoryService.doAffairType(name, flag,rank);
 		return "forward:dealAT.do";
 	}
 	

@@ -31,11 +31,12 @@ public class Affair_categoryService {
 		return affair_categoryDao.getAffairType(affairtype);
 	}
 	
-	public void doAffairType(String name,int flag)
+	public void doAffairType(String name,int flag,int rank)
 	{
 	  Affair_category ac=new Affair_category();
 	  ac.setName(name);
 	  ac.setFlag(flag);
+	  ac.setRank(rank);
 	  affair_categoryDao.doAffairType(ac);
 	}
 	
