@@ -31,11 +31,12 @@ public class Affair_categoryService {
 		return affair_categoryDao.getAffairType(affairtype);
 	}
 	
-	public void doAffairType(String name,int flag)
+	public void doAffairType(String name,int flag,int rank)
 	{
 	  Affair_category ac=new Affair_category();
 	  ac.setName(name);
 	  ac.setFlag(flag);
+	  ac.setRank(rank);
 	  affair_categoryDao.doAffairType(ac);
 	}
 	
@@ -57,5 +58,10 @@ public class Affair_categoryService {
 	public void updateType(Affair_category ac)
 	{
 		affair_categoryDao.updateType(ac);
+	}
+	
+	public boolean checkAff_ca(int acid)
+	{
+		return affair_categoryDao.checkAff_ca(acid);
 	}
 }

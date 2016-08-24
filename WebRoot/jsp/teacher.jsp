@@ -223,8 +223,8 @@
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="deleteMember1.do" method="post" name="myform" onSubmit="return check1()"
-								id="myform">
+							<form action="deleteMember1.do" method="post" name="myform"
+								onSubmit="return check1()" id="myform">
 								<table class="table" id="tabBox">
 									<tr>
 										<td></td>
@@ -269,7 +269,7 @@
 								onclick="fun(this)">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h4 class="modal-title" id="myModalLabel">添加成员</h4>
+							<h4 class="modal-title" id="myModalLabel">添加老师</h4>
 						</div>
 						<form action="add1.do" method="post" enctype="multipart/form-data"
 							onSubmit="return check()" name="myForm2" id="myForm2">
@@ -277,13 +277,16 @@
 								<table>
 									<tr style="padding-top:20px;">
 										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">登录名</label></td>
+											for="exampleInputName2">登录名<span class="symbol">*</span></label></td>
+										<!-- onBlur="checkLoginid()" -->
 										<td style="text-align:left;"><input type="text"
-											name="loginid" class="form-control empty" id="loginid"></td>
+											onBlur="checkLoginid(this)" name="loginid"
+											class="form-control empty" id="loginid"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">密码</label></td>
+											for="exampleInputName2">密码<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
-											name="pwd" class="form-control empty" id="password"></td>
+											onBlur="checkPassword(this)" name="pwd"
+											class="form-control empty" id="password"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">管理员</label></td>
 										<td style="text-align:left;"><input name="admin"
@@ -295,9 +298,10 @@
 
 									<tr style="margin-top:20px;">
 										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">姓名</label></td>
+											for="exampleInputName2">姓名<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
-											name="name" class="form-control empty" id="name"></td>
+											onBlur="checkName(this)" name="name"
+											class="form-control empty" id="name"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">性别</label></td>
 										<td style="text-align:left;"><input name="sex" value="1"
@@ -305,39 +309,41 @@
 											for="q2_1">男</label> <input name="sex" value="2" type="radio">
 											<label for="q2_2">女</label></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">出生日期</label></td>
+											for="exampleInputName2">出生日期<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
-											placeholder="请以××××-××-××格式填写" name="birth_date"
-											class="form-control empty" id="birth_date"></td>
+											onBlur="checkBirthdate(this)" placeholder="请以××××-××-××格式填写"
+											name="birth_date" class="form-control empty" id="birth_date"></td>
 									</tr>
 
 									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">学院</label></td>
+											for="exampleInputName2">学院<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><select name="college"
-											id="college" style="width:195px;">
+											onBlur="checkCollege(this)" id="college" style="width:195px;">
 												<option value="-1">请选择</option>
 												<c:forEach items='${colleges}' var="college">
 													<option values="${college.name }">${college.name }</option>
 												</c:forEach>
 										</select></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">QQ</label></td>
+											for="exampleInputName2">QQ<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text" name="qq"
-											id="qq" class="form-control empty" id="exampleInputName2"></td>
-										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">电话</label></td>
-										<td style="text-align:left;"><input type="text"
-											id="phone" name="phone" class="form-control empty"
+											onBlur="checkQq(this)" id="qq" class="form-control empty"
 											id="exampleInputName2"></td>
+										<td style="width:80px;text-align:center;margin-left:30px;"><label
+											for="exampleInputName2">电话<span class="symbol">*</span></label></td>
+										<td style="text-align:left;"><input type="text"
+											onBlur="checkPhone(this)" id="phone" name="phone"
+											class="form-control empty" id="exampleInputName2"></td>
 									</tr>
 
 
 									<tr>
 										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">地址</label></td>
+											for="exampleInputName2">地址<span class="symbol">*</span></label></td>
 										<td colspan="5"><textarea type="text" id="address"
-												class="form-control" name="address" style="width:650px;"></textarea></td>
+												onBlur="checkAddress(this)" class="form-control"
+												name="address" style="width:650px;"></textarea></td>
 									</tr>
 
 								</table>
@@ -346,10 +352,11 @@
 							<center>
 								<table style="color:#000; margin-top:10px;">
 									<tr>
-										<td>照片</td>
+										<td>照片<span class="symbol">*</span></td>
 										<td><img id="imgPre" src="" width="100px" height="120px"
 											style="display: block;" /> <input type="file" name="imgOne"
-											class="empty" id="file" onchange="preImg(this.id,'imgPre');" /></td>
+											 class="empty" id="file"
+											onchange="preImg(this.id,'imgPre');" /></td>
 									</tr>
 
 								</table>
@@ -371,28 +378,29 @@
 						<div class="modal-content text-center admin_hide"
 							id="${teacher.loginid}ta">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
+								<a type="button" class="close" data-dismiss="modal" href="user.do?flag=1"
 									id="${teacher.loginid}t">
 									<span aria-hidden="true">&times;</span>
-								</button>
-								<h4 class="modal-title" id="myModalLabel">编辑成员信息</h4>
+								</a>
+								<h4 class="modal-title" id="myModalLabel">编辑老师信息</h4>
 							</div>
-							<form action="updateT.do" method="post" onSubmit="return check2()"
-								enctype="multipart/form-data" name="myForm3"
-								id="myForm${teacher.loginid}">
+							<form action="updateT.do" method="post"
+								onSubmit="return check2(this)" enctype="multipart/form-data"
+								name="myForm3" id="myForm${teacher.loginid}">
 								<div class="container table-responsive">
 									<table>
 										<tr style="padding-top:20px;">
+										   
 											<td style="width:80px;text-align:center;line-height:100px;"><label
 												for="exampleInputName2">登录名</label></td>
 											<td style="text-align:left;"><input type="text"
-												value="${teacher.loginid}" name="loginid"
-												class="form-control" id="loginid2"></td>
+												onChange="checkLoginid2(this)" value="${teacher.loginid}"
+												name="loginid"  id="myForm${teacher.loginid}loginid2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">密码</label></td>
-											<td style="text-align:left;"><input type="text"
+											<td style="text-align:left;"><input type="text" onChange="checkPassword(this)"
 												value="${teacher.password}" name="pwd" class="form-control"
-												id="password2"></td>
+												id="myForm${teacher.loginid}password2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">管理员</label></td>
 											<td style="text-align:left;"><input name="admin"
@@ -405,9 +413,9 @@
 										<tr style="margin-top:20px;">
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">姓名</label></td>
-											<td style="text-align:left;"><input type="text"
+											<td style="text-align:left;"><input type="text" onChange="checkName(this)"
 												value="${teacher.name}" name="name" class="form-control"
-												id="name2"></td>
+												id="myForm${teacher.loginid}name2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">性别</label></td>
 											<td style="text-align:left;"><input name="sex" value="1"
@@ -417,16 +425,16 @@
 												for="q2_2">女</label></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">出生日期</label></td>
-											<td style="text-align:left;"><input type="text"
+											<td style="text-align:left;"><input type="text" onChange="checkBirthdate(this)"
 												value="${teacher.date}" name="birth_date"
-												class="form-control" id="birth_date2"></td>
+												class="form-control" id="myForm${teacher.loginid}birth_date2"></td>
 										</tr>
 
 										<tr>
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">学院</label></td>
-											<td style="text-align:left;"><select name="college" id="college2"
-												style="width:195px;">
+											<td style="text-align:left;"><select name="college" onChange="checkCollege(this)"
+												id="myForm${teacher.loginid}college2" style="width:195px;">
 													<option value="-1">请选择</option>
 													<c:forEach items='${colleges}' var="college">
 														<option values="${college.name }"
@@ -435,14 +443,13 @@
 											</select></td>
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">QQ</label></td>
-											<td style="text-align:left;"><input type="text" id="qq2"
-												name="qq" value="${teacher.qq }" class="form-control"
-												></td>
+											<td style="text-align:left;"><input type="text" id="myForm${teacher.loginid}qq2" onChange="checkQq(this)"
+												name="qq" value="${teacher.qq }" class="form-control"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">电话</label></td>
-											<td style="text-align:left;"><input type="text" id="phone2"
-												value="${teacher.phone }" name="phone" class="form-control"
-												></td>
+											<td style="text-align:left;"><input type="text" onChange="checkPhone(this)"
+												id="myForm${teacher.loginid}phone2" value="${teacher.phone }" name="phone"
+												class="form-control"></td>
 										</tr>
 
 
@@ -450,8 +457,8 @@
 										<tr>
 											<td style="width:80px;text-align:center;line-height:100px;"><label
 												for="exampleInputName2">地址</label></td>
-											<td colspan="5"><textarea type="text"
-													class="form-control" name="address" id="address2"
+											<td colspan="5"><textarea type="text" onChange="checkAddress(this)"
+													class="form-control" name="address" id="myForm${teacher.loginid}address2"
 													style="width:650px;"> ${teacher.address }</textarea></td>
 										</tr>
 
@@ -464,8 +471,9 @@
 											<td>照片</td>
 											<td><img src="${teacher.img}" id="imgPre" width="100px"
 												height="120px" style="display: block;" /> <input
-												type="file" name="imgOne" id="imgOne"
+												type="file" name="imgOne" id="myForm${teacher.loginid}imgOne" onChange="checkFile(this)"
 												onchange="preImg(this.id,'imgPre');" /></td>
+												 <td><input type="text" name="hide" id="myForm${teacher.loginid}loginid2hide" value="${teacher.loginid}" hidden="hidden"></td>
 										</tr>
 
 									</table>
@@ -516,28 +524,27 @@
 						$(id).submit();
 					})
 					$(".close").bind("click", function() {
-						var id = this.id + "a";
-						document.getElementById(id).style.display = "none";
+						 var id = this.id + "a";
+						document.getElementById(id).style.display = "none"; 
+						
 					})
-                    function checkName()
-					{
-						var name = document.getElementById("name").value;
+					function checkName(obj) {
+						var name = document.getElementById(obj.id).value;
 						if (name == "") {
 							alert("姓名不能为空！");
 							return false;
 						}
 					}
-					function checkCollege()
-					{
-						var college = document.getElementById("college").value;
+					function checkCollege(obj) {
+						var college = document.getElementById(obj.id).value;
 						if (college == -1) {
 							alert("请选择学院！");
 							return false;
 						}
 					}
-					function checkLoginid()
-					{
-						var loginid = document.getElementById("loginid").value;
+					function checkLoginid(obj) {
+
+						var loginid = document.getElementById(obj.id).value;
 						var dateFormatL = /^[0-9]{12}$/;
 						if (loginid == "") {
 							alert("登录名不能为空！");
@@ -548,11 +555,70 @@
 								return false;
 							}
 						}
+						$.ajax({
+
+							type : 'POST',
+							data : {
+								"loginid" : loginid
+							},
+							dataType : 'json',
+							url : 'checkLoginid.do',
+							async : false,
+							cache : false,
+							error : function(request) {
+								alert("error");
+							},
+							success : function(data) {
+								if (data[0].flag) {									
+									alert("该登录名已存在！");
+									return false;
+								}
+
+							}
+						});
 					}
-					
-					function checkPassword()
-					{
-						var password = document.getElementById("password").value;
+					function checkLoginid2(obj) {
+
+						var loginid = document.getElementById(obj.id).value;
+						var hide = document.getElementById(obj.id+"hide").value;						
+						var dateFormatL = /^[0-9]{12}$/;
+						if (loginid == "") {
+							alert("登录名不能为空！");
+							return false;
+						} else {
+							if (!dateFormatL.exec(loginid)) {
+								alert("登录名应为12位的数字!");
+								return false;
+							}
+						}
+						$.ajax({
+
+							type : 'POST',
+							data : {
+								"loginid" : loginid
+							},
+							dataType : 'json',
+							url : 'checkLoginid.do',
+							async : false,
+							cache : false,
+							error : function(request) {
+								alert("error");
+							},
+							success : function(data) {
+								if (data[0].flag) {
+									if(loginid!=hide)
+										{
+									alert("该登录名已存在！");
+									return false;
+										}
+								}
+
+							}
+						});
+					}
+
+					function checkPassword(obj) {
+						var password = document.getElementById(obj.id).value;
 						var dateFormatP = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,19}$/;
 						if (password == "") {
 							alert("密码不能为空！");
@@ -564,10 +630,9 @@
 							}
 						}
 					}
-					
-					function checkBirthdate()
-					{
-						var birth_date = document.getElementById("birth_date").value;
+
+					function checkBirthdate(obj) {
+						var birth_date = document.getElementById(obj.id).value;
 						var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
 						if (birth_date == "") {
 							alert("出生日期不能为空！");
@@ -579,10 +644,9 @@
 							}
 						}
 					}
-					
-					function checkQq()
-					{
-						var qq = document.getElementById("qq").value;
+
+					function checkQq(obj) {
+						var qq = document.getElementById(obj.id).value;
 						var dateFormatQ = /^[1-9]{1}[0-9]{4,10}$/;
 						if (qq == "") {
 							alert("qq号码不能为空！");
@@ -594,44 +658,40 @@
 							}
 						}
 					}
-					
-					function checkPhone()
-					{
-						var phone = document.getElementById("phone").value;
-						var dateFormatPh=/^1[0-9]{10}$/;
+
+					function checkPhone(obj) {
+						var phone = document.getElementById(obj.id).value;
+						var dateFormatPh = /^1[0-9]{10}$/;
 						if (phone == "") {
 							alert("电话号码不能为空！");
 							return false;
-						}else {
+						} else {
 							if (!dateFormatPh.exec(phone)) {
 								alert("手机号码为以1开头的11位数字组成!");
 								return false;
 							}
 						}
 					}
-					
-					function checkAddress()
-					{
-						var address = document.getElementById("address").value;
+
+					function checkAddress(obj) {
+						var address = document.getElementById(obj.id).value;
 						if (address == "") {
 							alert("地址不能为空！");
 							return false;
 						}
 					}
-					
-					function checkFile()
-					{
-						var file = document.getElementById("file").value;
+
+					function checkFile(obj) {
+						var file = document.getElementById(obj.id).value;
 						if (file == "") {
 							alert("请选择您的照片！");
 							return false;
 						}
 					}
 					function check() {
-
 						var name = document.getElementById("name").value;//通过id获取相应input输入框的值
 						var college = document.getElementById("college").value;
-						var loginid = document.getElementById("loginid").value;
+						var loginid = document.getElementById("loginid").value;						
 						var password = document.getElementById("password").value;
 						var birth_date = document.getElementById("birth_date").value;
 						/**/
@@ -639,13 +699,13 @@
 						var dateFormatL = /^[0-9]{12}$/;
 						var dateFormatP = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,19}$/;
 						var dateFormatQ = /^[1-9]{1}[0-9]{4,10}$/;
-						var dateFormatPh=/^1[0-9]{10}$/;
+						var dateFormatPh = /^1[0-9]{10}$/;
 						var qq = document.getElementById("qq").value;
 						var phone = document.getElementById("phone").value;
 						var address = document.getElementById("address").value;
 
 						var file = document.getElementById("file").value;
-
+                        var returnValue=true;
 						if (loginid == "") {
 							alert("登录名不能为空！");
 							return false;
@@ -655,6 +715,29 @@
 								return false;
 							}
 						}
+						
+						$.ajax({
+
+							type : 'POST',
+							data : {
+								"loginid" : loginid
+							},
+							dataType : 'json',
+							url : 'checkLoginid.do',
+							async : false,
+							cache : false,
+							error : function(request) {
+								alert("error");
+							},
+							success : function(data) {
+								if (data[0].flag) {
+									
+									alert("该登录名已存在！");
+									returnValue=false;	
+								}
+
+							}
+						});
 						if (password == "") {
 							alert("密码不能为空！");
 							return false;
@@ -693,7 +776,7 @@
 						if (phone == "") {
 							alert("电话号码不能为空！");
 							return false;
-						}else {
+						} else {
 							if (!dateFormatPh.exec(phone)) {
 								alert("手机号码为以1开头的11位数字组成!");
 								return false;
@@ -708,45 +791,40 @@
 							return false;
 						}
 
-						return true;
+						return returnValue;
 					}
-					function check1()
-					{
-						 var checkboxs=document.getElementsByName("teacher");
-						 var m=0;
-						  for(var i=0;i<checkboxs.length;i++)
-							{
-								if(checkboxs[i].checked==false)
-								{
-									m=m+1;
-								}
+					function check1() {
+						var checkboxs = document.getElementsByName("teacher");
+						var m = 0;
+						for (var i = 0; i < checkboxs.length; i++) {
+							if (checkboxs[i].checked == false) {
+								m = m + 1;
 							}
-							if(m==i)
-							{
-								alert("请选择您要删除的选项！！！");
-								return false;
-								}
+						}
+						if (m == i) {
+							alert("请选择您要删除的选项！！！");
+							return false;
+						}
 					}
-					
-					function check2() {
 
-						var name = document.getElementById("name2").value;//通过id获取相应input输入框的值
-						var college = document.getElementById("college2").value;
-						var loginid = document.getElementById("loginid2").value;
-						var password = document.getElementById("password2").value;
-						var birth_date = document.getElementById("birth_date2").value;
+					function check2(obj) {
+
+						var name = document.getElementById(obj.id+"name2").value;//通过id获取相应input输入框的值
+						var college = document.getElementById(obj.id+"college2").value;
+						var loginid = document.getElementById(obj.id+"loginid2").value;
+						var hide = document.getElementById(obj.id+"loginid2hide").value;	
+						var password = document.getElementById(obj.id+"password2").value;
+						var birth_date = document.getElementById(obj.id+"birth_date2").value;
 						/**/
 						var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
 						var dateFormatL = /^[0-9]{12}$/;
 						var dateFormatP = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,19}$/;
 						var dateFormatQ = /^[1-9]{1}[0-9]{4,10}$/;
-						var dateFormatPh=/^1[0-9]{10}$/;
-						var qq = document.getElementById("qq2").value;
-						var phone = document.getElementById("phone2").value;
-						var address = document.getElementById("address2").value;
-
-						
-
+						var dateFormatPh = /^1[0-9]{10}$/;
+						var qq = document.getElementById(obj.id+"qq2").value;
+						var phone = document.getElementById(obj.id+"phone2").value;
+						var address = document.getElementById(obj.id+"address2").value;
+                        var returnValue=true;
 						if (loginid == "") {
 							alert("登录名不能为空！");
 							return false;
@@ -756,6 +834,32 @@
 								return false;
 							}
 						}
+						
+						$.ajax({
+
+							type : 'POST',
+							data : {
+								"loginid" : loginid
+							},
+							dataType : 'json',
+							url : 'checkLoginid.do',
+							async : false,
+							cache : false,
+							error : function(request) {
+								alert("error");
+							},
+							success : function(data) {
+								if (data[0].flag) {
+									if(loginid!=hide)
+										{
+									alert("该登录名已存在！");
+									returnValue=false;
+										}
+								}
+
+							}
+						});
+							
 						if (password == "") {
 							alert("密码不能为空！");
 							return false;
@@ -794,7 +898,7 @@
 						if (phone == "") {
 							alert("电话号码不能为空！");
 							return false;
-						}else {
+						} else {
 							if (!dateFormatPh.exec(phone)) {
 								alert("手机号码为以1开头的11位数字组成!");
 								return false;
@@ -804,9 +908,8 @@
 							alert("地址不能为空！");
 							return false;
 						}
-						
 
-						return true;
+						return returnValue;
 					}
 				</script>
 				<script>

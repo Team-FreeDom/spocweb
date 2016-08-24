@@ -21,8 +21,16 @@ public class HonorDao
 	public List<Honor> getHonor()
 	{
 		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from Honor");
-		List<Honor> list=query.list();
+		List<Honor> list=null;
+		try {
+			Query query=session.createQuery("from Honor");
+			list = query.list();
+
+		} catch (Exception ex) {
+			System.out.println(ex);
+		} finally {
+			session.close();
+		}
 		return list;
 	} 
 	public void updateHonor(int hid)

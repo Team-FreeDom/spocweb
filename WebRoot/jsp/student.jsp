@@ -222,7 +222,7 @@
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="deleteMember.do" method="post" name="myform"
+							<form action="deleteMember.do" method="post" name="myform"  onSubmit="return check()"
 								id="myform">
 								<table class="table" id="tabBox">
 									<tr>
@@ -271,19 +271,19 @@
 							</button>
 							<h4 class="modal-title" id="myModalLabel">添加成员</h4>
 						</div>
-						<form action="add.do" method="post" enctype="multipart/form-data"
+						<form action="add.do" method="post" enctype="multipart/form-data"  onSubmit="return checkA()"
 							name="myForm2" id="myForm2">
 							<div class="container table-responsive">
 								<table>
 									<tr style="padding-top:20px;">
 										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">登录名</label></td>
-										<td style="text-align:left;"><input type="text" 
-											name="loginid" class="form-control empty" id="exampleInputName2"></td>
+											for="exampleInputName2">登录名<span class="symbol">*</span></label></td>
+										<td style="text-align:left;"><input type="text" onBlur="checkLoginid(this)"
+											name="loginid" class="form-control empty" id="loginid"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">密码</label></td>
+											for="exampleInputName2">密码<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
-											name="pwd" class="form-control empty" id="exampleInputName2"></td>
+									 onBlur="checkPassword(this)"		name="pwd" class="form-control empty" id="password"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">管理员</label></td>
 										<td style="text-align:left;"><input name="admin"
@@ -296,9 +296,9 @@
 
 									<tr style="margin-top:20px;">
 										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">姓名</label></td>
+											for="exampleInputName2">姓名<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
-											name="name" class="form-control empty" id="exampleInputName2"></td>
+										 onBlur="checkName(this)"	name="name" class="form-control empty" id="name"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">性别</label></td>
 										<td style="text-align:left;"><input name="sex" value="1"
@@ -306,50 +306,50 @@
 											for="q2_1">男</label> <input name="sex" value="2" type="radio">
 											<label for="q2_2">女</label></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">出生日期</label></td>
-										<td style="text-align:left;"><input type="text"
-											name="birth_date" class="form-control empty" id="exampleInputName2"></td>
+											for="exampleInputName2">出生日期<span class="symbol">*</span></label></td>
+										<td style="text-align:left;"><input type="text" placeholder="请以××××-××-××格式填写"
+									 onBlur="checkBirthdate(this)"		name="birth_date" class="form-control empty" id="birth_date"></td>
 									</tr>
 
 									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">学院</label></td>
-										<td style="text-align:left;"><select name="college"
-											style="width:195px;">
-												<option>请选择</option>
+											for="exampleInputName2">学院<span class="symbol">*</span></label></td>
+										<td style="text-align:left;"><select name="college" id="college"
+									 onBlur="checkCollege(this)"		style="width:195px;">
+												<option value=-1>请选择</option>
 												<c:forEach items='${colleges}' var="college">
 													<option values="${college.name }">${college.name }</option>
 												</c:forEach>
 										</select></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">年级</label></td>
+											for="exampleInputName2">年级<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
-											name="grade" class="form-control empty" id="exampleInputName2"></td>
+									 onBlur="checkGrade(this)"		name="grade" class="form-control empty" id="grade"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">专业</label></td>
+											for="exampleInputName2">专业<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
-											name="major" class="form-control empty" id="exampleInputName2"></td>
+										 onBlur="checkMajor(this)"	name="major" class="form-control empty" id="major"></td>
 									</tr>
 
 									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">QQ</label></td>
+											for="exampleInputName2">QQ<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text" name="qq"
-											class="form-control empty" id="exampleInputName2"></td>
+									 onBlur="checkQq(this)"		class="form-control empty" id="qq"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">电话</label></td>
+											for="exampleInputName2">电话<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
-											name="phone" class="form-control empty" id="exampleInputName2"></td>
+										 onBlur="checkPhone(this)"	name="phone" class="form-control empty" id="phone"></td>
 										<td colspan="2"></td>
 									</tr>
 
 									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">组别</label></td>
+											for="exampleInputName2">组别<span class="symbol">*</span></label></td>
 										<td clospan="5"><c:forEach items='${groups}' var="group">
 												<label class="checkbox-inline"> <input
 													value="${group.gid}" type="checkbox" name="groupOne"
-													id="inlineCheckbox1" value="option1" /> <label>${group.name}
+													id="groupOne" value="option1" /> <label>${group.name}
 												</label>
 												</label>
 											</c:forEach></td>
@@ -365,9 +365,9 @@
 
 									<tr>
 										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">地址</label></td>
+											for="exampleInputName2">地址<span class="symbol">*</span></label></td>
 										<td colspan="5"><textarea type="text"
-												class="form-control" name="address" id="exampleInputName2"
+										 onBlur="checkAddress(this)"		class="form-control" name="address" id="address"
 												style="width:650px;"></textarea></td>
 									</tr>
 
@@ -384,10 +384,10 @@
 							<center>
 								<table style="color:#000; margin-top:10px;">
 									<tr>
-										<td>照片</td>
+										<td>照片<span class="symbol">*</span></td>
 										<td><img id="imgPre" src="" width="100px" height="120px"
 											style="display: block;" /> <input type="file" name="imgOne" class="empty"
-											id="imgOne" onchange="preImg(this.id,'imgPre');" /></td>
+											id="file" onchange="preImg(this.id,'imgPre');" /></td>
 									</tr>
 
 								</table>
@@ -409,13 +409,13 @@
 						<div class="modal-content text-center admin_hide"
 							id="${student.loginid}ta">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
+								<a type="button" class="close" data-dismiss="modal" href="user.do?flag=2"
 									id="${student.loginid}t"">
 									<span aria-hidden="true">&times;</span>
-								</button>
+								</a>
 								<h4 class="modal-title" id="myModalLabel">编辑成员信息</h4>
 							</div>
-							<form action="updateStu.do" method="post"
+							<form action="updateStu.do" method="post"  onSubmit="return checkU(this)"
 								enctype="multipart/form-data" name="myForm2"
 								id="myForm${student.loginid}">
 								<div class="container table-responsive">
@@ -423,14 +423,14 @@
 										<tr style="padding-top:20px;">
 											<td style="width:80px;text-align:center;line-height:100px;"><label
 												for="exampleInputName2">登录名</label></td>
-											<td style="text-align:left;"><input type="text"
+											<td style="text-align:left;"><input type="text" onChange="checkLoginid2(this)"
 												value="${student.loginid}" name="loginid"
-												class="form-control" id="exampleInputName2"></td>
+												class="form-control" id="myForm${student.loginid}loginid2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">密码</label></td>
-											<td style="text-align:left;"><input type="text"
+											<td style="text-align:left;"><input type="text" onChange="checkPassword(this)"
 												value="${student.password}" name="pwd" class="form-control"
-												id="exampleInputName2"></td>
+												id="myForm${student.loginid}password2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">管理员</label></td>
 											<td style="text-align:left;"><input name="admin"
@@ -443,9 +443,9 @@
 										<tr style="margin-top:20px;">
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">姓名</label></td>
-											<td style="text-align:left;"><input type="text"
+											<td style="text-align:left;"><input type="text" onChange="checkName(this)"
 												value="${student.name}" name="name" class="form-control"
-												id="exampleInputName2"></td>
+												id="myForm${student.loginid}name2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">性别</label></td>
 											<td style="text-align:left;"><input name="sex" value="1"
@@ -455,16 +455,16 @@
 												for="q2_2">女</label></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">出生日期</label></td>
-											<td style="text-align:left;"><input type="text"
+											<td style="text-align:left;"><input type="text" onChange="checkBirthdate(this)"
 												value="${student.date}" name="birth_date"
-												class="form-control" id="exampleInputName2"></td>
+												class="form-control" id="myForm${student.loginid}birth_date2"></td>
 
 										</tr>
 
 										<tr>
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">学院</label></td>
-											<td style="text-align:left;"><select name="college"
+											<td style="text-align:left;"><select name="college" id="myForm${student.loginid}college2" onChange="checkCollege(this)"
 												style="width:195px;">
 													<option>请选择</option>
 													<c:forEach items='${colleges}' var="college">
@@ -474,43 +474,48 @@
 											</select></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">年级</label></td>
-											<td style="text-align:left;"><input type="text"
+											<td style="text-align:left;"><input type="text" onChange="checkGrade(this)"
 												value="${student.grade }" name="grade" class="form-control"
-												id="exampleInputName2"></td>
+												id="myForm${student.loginid}grade2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">专业</label></td>
-											<td style="text-align:left;"><input type="text"
+											<td style="text-align:left;"><input type="text" onChange="checkMajor(this)"
 												value="${student.major}" name="major" class="form-control"
-												id="exampleInputName2"></td>
+												id="myForm${student.loginid}major2"></td>
 										</tr>
 
 										<tr>
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">QQ</label></td>
-											<td style="text-align:left;"><input type="text"
+											<td style="text-align:left;"><input type="text" onChange="checkQq(this)"
 												name="qq" value="${student.qq }" class="form-control"
-												id="exampleInputName2"></td>
+												id="myForm${student.loginid}qq2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">电话</label></td>
-											<td style="text-align:left;"><input type="text"
+											<td style="text-align:left;"><input type="text" onChange="checkPhone(this)"
 												value="${student.phone }" name="phone" class="form-control"
-												id="exampleInputName2"></td>
+												id="myForm${student.loginid}phone2"></td>
 											<td colspan="2"></td>
 										</tr>
 
 										<tr>
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">组别</label></td>
-											<td clospan="5"><c:forEach items='${membergroups}'
-													var="mg">
-													<c:if test="${mg.loginid==student.loginid }">
-														<label class="checkbox-inline"> <input
-															value="${mg.gid}" type="checkbox" name="group" checked
-															id="inlineCheckbox1" value="option1" /> <label>${mg.name}
-														</label>
-														</label>
-													</c:if>
-												</c:forEach></td>
+											<td clospan="5">
+											 <c:forEach items='${groups}'	var="group">
+											   <label class="checkbox-inline"> 
+											     <input	value="${group.gid}" type="checkbox" name="myForm${student.loginid}groupOne2" 
+											        <c:forEach items='${membergroups}'	var="mg">
+													  <c:if test="${mg.loginid==student.loginid&&group.gid==mg.gid}">
+													    checked
+													  </c:if>
+													  </c:forEach>
+															id="myForm${student.loginid}groupOne2" value="option1" />
+													 <label>${group.name}	</label>
+											  </label>
+											 </c:forEach>										
+											
+											</td>
 										</tr>
 
 										<tr>
@@ -525,7 +530,7 @@
 											<td style="width:80px;text-align:center;line-height:100px;"><label
 												for="exampleInputName2">地址</label></td>
 											<td colspan="5"><textarea type="text"
-													class="form-control" name="address" id="exampleInputName2"
+													class="form-control" name="address" id="myForm${student.loginid}address2" onChange="checkAddress(this)"
 													style="width:650px;"> ${student.address }</textarea></td>
 										</tr>
 
@@ -545,8 +550,9 @@
 											<td>照片</td>
 											<td><img src="${student.img}" id="imgPre" width="100px"
 												height="120px" style="display: block;" /> <input
-												type="file" name="imgOne" id="imgOne"
+												type="file" name="imgOne" id="file2"
 												onchange="preImg(this.id,'imgPre');" /></td>
+												<td><input type="text" name="hide" id="myForm${student.loginid}loginid2hide" value="${student.loginid}" hidden="hidden"></td>
 										</tr>
 
 									</table>
@@ -585,7 +591,7 @@
 							var div = document.getElementById("addMember");
 							div.style.display = "none";
 							$("#addMember .empty").val("");
-							$("#addMember select").val("请选择");
+							$("#addMember select").val("-1");
 							$("#addMember textarea").val("");			
 							document.getElementById("admin").checked="checked";
 							document.getElementById("sex").checked="checked";
@@ -612,6 +618,455 @@
 							var id = "#myForm" + this.id;
 							$(id).submit();
 						})
+						function checkName(obj) {
+						var name = document.getElementById(obj.id).value;
+						if (name == "") {
+							alert("姓名不能为空！");
+							return false;
+						}
+					}
+					function checkCollege(obj) {
+						var college = document.getElementById(obj.id).value;
+						if (college == -1) {
+							alert("请选择学院！");
+							return false;
+						}
+					}
+					function checkLoginid(obj) {
+
+						var loginid = document.getElementById(obj.id).value;
+						var dateFormatL = /^[0-9]{12}$/;
+						if (loginid == "") {
+							alert("登录名不能为空！");
+							return false;
+						} else {
+							if (!dateFormatL.exec(loginid)) {
+								alert("登录名应为12位的数字!");
+								return false;
+							}
+						}
+						$.ajax({
+
+							type : 'POST',
+							data : {
+								"loginid" : loginid
+							},
+							dataType : 'json',
+							url : 'checkLoginid.do',
+							async : false,
+							cache : false,
+							error : function(request) {
+								alert("error");
+							},
+							success : function(data) {
+								if (data[0].flag) {									
+									alert("该登录名已存在！");
+								}
+
+							}
+						});
+					}
+					function checkLoginid2(obj) {
+
+						var loginid = document.getElementById(obj.id).value;
+						var hide = document.getElementById(obj.id+"hide").value;						
+						var dateFormatL = /^[0-9]{12}$/;
+						if (loginid == "") {
+							alert("登录名不能为空！");
+							return false;
+						} else {
+							if (!dateFormatL.exec(loginid)) {
+								alert("登录名应为12位的数字!");
+								return false;
+							}
+						}
+						$.ajax({
+
+							type : 'POST',
+							data : {
+								"loginid" : loginid
+							},
+							dataType : 'json',
+							url : 'checkLoginid.do',
+							async : false,
+							cache : false,
+							error : function(request) {
+								alert("error");
+							},
+							success : function(data) {
+								if (data[0].flag) {
+									if(loginid!=hide)
+										{
+									alert("该登录名已存在！");
+										}
+								}
+
+							}
+						});
+					}
+
+					function checkPassword(obj) {
+						var password = document.getElementById(obj.id).value;
+						var dateFormatP = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,19}$/;
+						if (password == "") {
+							alert("密码不能为空！");
+							return false;
+						} else {
+							if (!dateFormatP.exec(password)) {
+								alert("密码可由字母、数字、下划线组成，以字母开头，位数不少于6位不多于20位!");
+								return false;
+							}
+						}
+					}
+
+					function checkBirthdate(obj) {
+						var birth_date = document.getElementById(obj.id).value;
+						var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
+						if (birth_date == "") {
+							alert("出生日期不能为空！");
+							return false;
+						} else {
+							if (!dateFormat.exec(birth_date)) {
+								alert("出生日期的格式必须是xxxx-xx-xx,且均为数字!");
+								return false;
+							}
+						}
+					}
+
+					function checkQq(obj) {
+						var qq = document.getElementById(obj.id).value;
+						var dateFormatQ = /^[1-9]{1}[0-9]{4,10}$/;
+						if (qq == "") {
+							alert("qq号码不能为空！");
+							return false;
+						} else {
+							if (!dateFormatQ.exec(qq)) {
+								alert("qq号码格式错误!");
+								return false;
+							}
+						}
+					}
+
+					function checkPhone(obj) {
+						var phone = document.getElementById(obj.id).value;
+						var dateFormatPh = /^1[0-9]{10}$/;
+						if (phone == "") {
+							alert("电话号码不能为空！");
+							return false;
+						} else {
+							if (!dateFormatPh.exec(phone)) {
+								alert("手机号码为以1开头的11位数字组成!");
+								return false;
+							}
+						}
+					}
+
+					function checkAddress(obj) {
+						var address = document.getElementById(obj.id).value;
+						if (address == "") {
+							alert("地址不能为空！");
+							return false;
+						}
+					}
+                    function checkGrade(obj)
+                    {
+                    	var grade = document.getElementById(obj.id).value;
+                    	if (grade == "") {
+							alert("年级不能为空！");
+							return false;
+						}
+                    }
+                    
+                    function checkMajor(obj)
+                    {
+                    	var major = document.getElementById(obj.id).value;
+                    	if (major == "") {
+							alert("专业不能为空！");
+							return false;
+						}
+                    }                    
+                    
+                    
+					function checkFile(obj) {
+						var file = document.getElementById(obj.id).value;
+						if (file == "") {
+							alert("请选择您的照片！");
+							return false;
+						}
+					}	
+						function check()
+					{
+						 var checkboxs=document.getElementsByName("student");
+						 var m=0;
+						  for(var i=0;i<checkboxs.length;i++)
+							{
+								if(checkboxs[i].checked==false)
+								{
+									m=m+1;
+								}
+							}
+							if(m==i)
+							{
+								alert("请选择您要删除的选项！！！");
+								return false;
+								}
+					}
+						
+						function checkA() {
+
+							var name = document.getElementById("name").value;//通过id获取相应input输入框的值
+							var college = document.getElementById("college").value;
+							var loginid = document.getElementById("loginid").value;
+								
+							var password = document.getElementById("password").value;
+							var birth_date = document.getElementById("birth_date").value;
+							var grade = document.getElementById("grade").value;
+							var major = document.getElementById("major").value;
+							var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
+							var dateFormatL = /^[0-9]{12}$/;
+							var dateFormatP = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,19}$/;
+							var dateFormatQ = /^[1-9]{1}[0-9]{4,10}$/;
+							var dateFormatPh=/^1[0-9]{10}$/;
+							var qq = document.getElementById("qq").value;
+							var phone = document.getElementById("phone").value;
+							var address = document.getElementById("address").value;
+							 var checkboxs=document.getElementsByName("groupOne");
+							 var m=0;
+							var file = document.getElementById("file").value;
+                            var returnValue=true;
+							if (loginid == "") {
+								alert("登录名不能为空！");
+								return false;
+							} else {
+								if (!dateFormatL.exec(loginid)) {
+									alert("登录名应为12位的数字!");
+									return false;
+								}
+							}
+							$.ajax({
+
+								type : 'POST',
+								data : {
+									"loginid" : loginid
+								},
+								dataType : 'json',
+								url : 'checkLoginid.do',
+								async : false,
+								cache : false,
+								error : function(request) {
+									alert("error");
+								},
+								success : function(data) {
+									if (data[0].flag) {
+										
+										alert("该登录名已存在！");
+										returnValue=false;	
+									}
+
+								}
+							});
+							if (password == "") {
+								alert("密码不能为空！");
+								return false;
+							} else {
+								if (!dateFormatP.exec(password)) {
+									alert("密码可由字母、数字、下划线组成，以字母开头，位数不少于6位不多于20位!");
+									return false;
+								}
+							}
+							if (name == "") {
+								alert("姓名不能为空！");								
+								return false;
+							}
+							if (birth_date == "") {
+								alert("出生日期不能为空！");
+								return false;
+							} else {
+								if (!dateFormat.exec(birth_date)) {
+									alert("出生日期的格式必须是xxxx-xx-xx,且均为数字!");
+									return false;
+								}
+							}
+							if (college == -1) {
+								alert("请选择学院！");
+								return false;
+							}
+							if (grade == "") {
+								alert("年级不能为空！");
+								return false;
+							}
+							if (major == "") {
+								alert("专业不能为空！");
+								return false;
+							}
+							if (qq == "") {
+								alert("qq号码不能为空！");
+								return false;
+							} else {
+								if (!dateFormatQ.exec(qq)) {
+									alert("qq号码格式错误!");
+									return false;
+								}
+							}
+							if (phone == "") {
+								alert("电话号码不能为空！");
+								return false;
+							}else {
+								if (!dateFormatPh.exec(phone)) {
+									alert("手机号码为以1开头的11位数字组成!");
+									return false;
+								}
+							}
+							for(var i=0;i<checkboxs.length;i++)
+							{
+								if(checkboxs[i].checked==false)
+								{
+									m=m+1;
+								}
+							}
+							if(m==i)
+							{
+								alert("请选择组别！！！");
+								return false;
+								}
+							if (address == "") {
+								alert("地址不能为空！");
+								return false;
+							}
+							if (file == "") {
+								alert("请选择您的照片！");
+								return false;
+							}
+
+							return returnValue;
+						}
+						function checkU(obj) {
+
+							var name = document.getElementById(obj.id+"name2").value;//通过id获取相应input输入框的值
+							var college = document.getElementById(obj.id+"college2").value;
+							var loginid = document.getElementById(obj.id+"loginid2").value;
+							var hide = document.getElementById(obj.id+"loginid2hide").value;	
+							var password = document.getElementById(obj.id+"password2").value;
+							var birth_date = document.getElementById(obj.id+"birth_date2").value;
+							var grade = document.getElementById(obj.id+"grade2").value;
+							var major = document.getElementById(obj.id+"major2").value;
+							var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
+							var dateFormatL = /^[0-9]{12}$/;
+							var dateFormatP = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,19}$/;
+							var dateFormatQ = /^[1-9]{1}[0-9]{4,10}$/;
+							var dateFormatPh=/^1[0-9]{10}$/;
+							var qq = document.getElementById(obj.id+"qq2").value;
+							var phone = document.getElementById(obj.id+"phone2").value;
+							var address = document.getElementById(obj.id+"address2").value;
+							 var checkboxs=document.getElementsByName(obj.id+"groupOne2");
+							 var m=0;
+							var returnValue=true;
+
+							if (loginid == "") {
+								alert("登录名不能为空！");
+								return false;
+							} else {
+								if (!dateFormatL.exec(loginid)) {
+									alert("登录名应为12位的数字!");
+									return false;
+								}
+							}
+							$.ajax({
+
+								type : 'POST',
+								data : {
+									"loginid" : loginid
+								},
+								dataType : 'json',
+								url : 'checkLoginid.do',
+								async : false,
+								cache : false,
+								error : function(request) {
+									alert("error");
+								},
+								success : function(data) {
+									if (data[0].flag) {
+										if(loginid!=hide)
+											{
+										alert("该登录名已存在！");
+										returnValue=false;
+											}
+									}
+
+								}
+							});
+							if (password == "") {
+								alert("密码不能为空！");
+								return false;
+							} else {
+								if (!dateFormatP.exec(password)) {
+									alert("密码可由字母、数字、下划线组成，以字母开头，位数不少于6位不多于20位!");
+									return false;
+								}
+							}
+							if (name == "") {
+								alert("姓名不能为空！");								
+								return false;
+							}
+							if (birth_date == "") {
+								alert("出生日期不能为空！");
+								return false;
+							} else {
+								if (!dateFormat.exec(birth_date)) {
+									alert("出生日期的格式必须是xxxx-xx-xx,且均为数字!");
+									return false;
+								}
+							}
+							if (college == -1) {
+								alert("请选择学院！");
+								return false;
+							}
+							if (grade == "") {
+								alert("年级不能为空！");
+								return false;
+							}
+							if (major == "") {
+								alert("专业不能为空！");
+								return false;
+							}
+							if (qq == "") {
+								alert("qq号码不能为空！");
+								return false;
+							} else {
+								if (!dateFormatQ.exec(qq)) {
+									alert("qq号码格式错误!");
+									return false;
+								}
+							}
+							if (phone == "") {
+								alert("电话号码不能为空！");
+								return false;
+							}else {
+								if (!dateFormatPh.exec(phone)) {
+									alert("手机号码为以1开头的11位数字组成!");
+									return false;
+								}
+							}
+							for(var i=0;i<checkboxs.length;i++)
+							{
+								if(checkboxs[i].checked==false)
+								{
+									m=m+1;
+								}
+							}
+							if(m==i)
+							{
+								alert("请选择组别！！！");
+								return false;
+								}
+							if (address == "") {
+								alert("地址不能为空！");
+								return false;
+							}
+							
+
+							return returnValue;
+						}
 					</script>
 					<script>
 						var tabBox = document.getElementById("tabBox"),

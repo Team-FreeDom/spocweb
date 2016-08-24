@@ -339,14 +339,14 @@
 						<div class="modal-content text-center admin_hide"
 							id="${chargeStandard.csid}ta">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
+								<a class="close" data-dismiss="modal" href="chargeStandard.do"
 									id="${chargeStandard.csid}t"">
 									<span aria-hidden="true">&times;</span>
-								</button>
+								</a>
 								<h4 class="modal-title" id="myModalLabel">编辑收费信息</h4>
 							</div>
 							<form action="updateChargeStandard.do" method="post"
-								enctype="multipart/form-data" name="myForm2" onSubmit="return check2()"
+								enctype="multipart/form-data" name="myForm2" onSubmit="return check2(this)"
 								id="myForm${chargeStandard.csid}">
 								<div class="container table-responsive">
 									<table>
@@ -354,7 +354,7 @@
 											<td style="width:80px;text-align:center;line-height:100px;">
 												<label for="exampleInputName2">业务类别</label>
 											</td>
-											<td style="text-align:left;"><select name="affair" id="affair2"
+											<td style="text-align:left;"><select name="affair" id="myForm${chargeStandard.csid}affair2"
 												style="width:195px;">
 													<option value=-1>请选择</option>
 													<c:forEach items='${affairCategorys}' var="affairCategory">
@@ -366,7 +366,7 @@
 											<td style="width:80px;text-align:center;margin-left:150px;">
 												<label for="exampleInputName2">类别分类</label>
 											</td>
-											<td style="text-align:left;"><select name="type" id="typeCategory2"
+											<td style="text-align:left;"><select name="type" id="myForm${chargeStandard.csid}typeCategory2"
 												style="width:195px;">
 													<option value=-1>请选择</option>
 													<c:forEach items='${typeCategorys}' var="typeCategory">
@@ -381,19 +381,19 @@
 											</td>
 											<td style="text-align:left;"><input type="text"
 												name="basic" class="form-control"
-												value="${chargeStandard.csid}" id="basic2"></td>
+												value="${chargeStandard.csid}" id="myForm${chargeStandard.csid}basic2"></td>
 											<td style="width:80px;text-align:center;line-height:100px;">
 												<label for="exampleInputName2">进阶版</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
 												name="advance" class="form-control"
-												value="${chargeStandard.advance}" id="advance2"></td>
+												value="${chargeStandard.advance}" id="myForm${chargeStandard.csid}advance2"></td>
 											<td style="width:80px;text-align:center;line-height:100px;">
 												<label for="exampleInputName2">无忧版</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
 												name="careless" class="form-control"
-												value="${chargeStandard.careless}" id="careless2">
+												value="${chargeStandard.careless}" id="myForm${chargeStandard.csid}careless2">
 
 												<input type="text" name="csid" hidden="hidden"
 												value="${chargeStandard.csid}" /></td>
@@ -498,12 +498,13 @@
 								return false;
 								}
 					}
-					function check2() {
-						var basic = document.getElementById("basic2").value;
-						var affair = document.getElementById("affair2").value;
-						var typeCategory = document.getElementById("typeCategory2").value;
-						var advance = document.getElementById("advance2").value;
-						var careless = document.getElementById("careless2").value;				
+					function check2(obj) {
+						
+						var basic = document.getElementById(obj.id+"basic2").value;
+						var affair = document.getElementById(obj.id+"affair2").value;
+						var typeCategory = document.getElementById(obj.id+"typeCategory2").value;
+						var advance = document.getElementById(obj.id+"advance2").value;
+						var careless = document.getElementById(obj.id+"careless2").value;				
 						
 						if (affair == -1) {
 							alert("请选择业务类别！");
