@@ -20,6 +20,11 @@ public class MemberService {
 	@Autowired
 	private Member_groupDao member_groupDao;
 	
+	public boolean checkLoginid(String loginid)
+	{
+		return memberDao.checkLoginid(loginid);
+	}
+	
 	public List<Member> getStudents()
 	{
 		
@@ -66,15 +71,15 @@ public class MemberService {
 		memberDao.doMember(member);
 	}
 	
-	public void updateMember(Member member)
+	public void updateMember(Member member,String hide)
 	{
-		memberDao.updateMember(member);
+		memberDao.updateMember(member,hide);
 	}
 	
-	public void updateMember2(Member member)
+	public void updateMember2(Member member,String hide)
 	{
-		Member memberFormal=memberDao.getMember(member.getLoginid());
+		Member memberFormal=memberDao.getMember(hide);
 		member.setImg(memberFormal.getImg());
-		memberDao.updateMember(member);
+		memberDao.updateMember(member,hide);
 	}
 }

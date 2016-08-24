@@ -58,4 +58,9 @@ public class Affair_categoryService {
 	{
 		affair_categoryDao.updateType(ac);
 	}
+	
+	public boolean checkAff_ca(int acid)
+	{
+		return affair_categoryDao.checkAff_ca(acid);
+	}
 }

@@ -206,7 +206,7 @@
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="deleteAffair.do" id="myform" method="post">
+							<form action="deleteAffair.do" id="myform" method="post" onSubmit="return checkDel()">
 								<table class="table" id="tabBox">
 									<tr>
 										<td></td>
@@ -241,10 +241,10 @@
 						<div class="modal-content text-center admin_hide"
 							id="${affair.aff_id}ta">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
+								<a class="close" data-dismiss="modal" href="applyAffair.do?flag=1"
 									id="${affair.aff_id}t"">
 									<span aria-hidden="true">&times;</span>
-								</button>
+								</a>
 								<h4 class="modal-title" id="myModalLabel">业务信息</h4>
 							</div>
 							<form action="updateType.do" method="post"
@@ -301,8 +301,8 @@
 							</form>
 							<div class="modal-footer">
 
-								<button type="button" class="btn btn-primary detail"
-									id="${affair.aff_id}" data-dismiss="modal">关闭</button>
+								<a class="btn btn-primary detail" href="applyAffair.do?flag=1"
+									id="${affair.aff_id}" data-dismiss="modal">关闭</a>
 							</div>
 						</div>
 
@@ -347,6 +347,23 @@
 						var id = this.id + "ta";
 						document.getElementById(id).style.display = "none";
 					})
+					function checkDel()
+					{
+						 var checkboxs=document.getElementsByName("affair");
+						 var m=0;
+						  for(var i=0;i<checkboxs.length;i++)
+							{
+								if(checkboxs[i].checked==false)
+								{
+									m=m+1;
+								}
+							}
+							if(m==i)
+							{
+								alert("请选择您要删除的选项！！！");
+								return false;
+								}
+					}
 				</script>
 				<script>
 					var tabBox = document.getElementById("tabBox"),
