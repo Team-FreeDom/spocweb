@@ -415,7 +415,7 @@
 								</a>
 								<h4 class="modal-title" id="myModalLabel">编辑成员信息</h4>
 							</div>
-							<form action="updateStu.do" method="post"  onSubmit="return checkU()"
+							<form action="updateStu.do" method="post"  onSubmit="return checkU(this)"
 								enctype="multipart/form-data" name="myForm2"
 								id="myForm${student.loginid}">
 								<div class="container table-responsive">
@@ -425,12 +425,12 @@
 												for="exampleInputName2">登录名</label></td>
 											<td style="text-align:left;"><input type="text" onChange="checkLoginid2(this)"
 												value="${student.loginid}" name="loginid"
-												class="form-control" id="loginid2"></td>
+												class="form-control" id="myForm${student.loginid}loginid2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">密码</label></td>
 											<td style="text-align:left;"><input type="text" onChange="checkPassword(this)"
 												value="${student.password}" name="pwd" class="form-control"
-												id="password2"></td>
+												id="myForm${student.loginid}password2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">管理员</label></td>
 											<td style="text-align:left;"><input name="admin"
@@ -445,7 +445,7 @@
 												for="exampleInputName2">姓名</label></td>
 											<td style="text-align:left;"><input type="text" onChange="checkName(this)"
 												value="${student.name}" name="name" class="form-control"
-												id="name2"></td>
+												id="myForm${student.loginid}name2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">性别</label></td>
 											<td style="text-align:left;"><input name="sex" value="1"
@@ -457,14 +457,14 @@
 												for="exampleInputName2">出生日期</label></td>
 											<td style="text-align:left;"><input type="text" onChange="checkBirthdate(this)"
 												value="${student.date}" name="birth_date"
-												class="form-control" id="birth_date2"></td>
+												class="form-control" id="myForm${student.loginid}birth_date2"></td>
 
 										</tr>
 
 										<tr>
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">学院</label></td>
-											<td style="text-align:left;"><select name="college" id="college2" onChange="checkCollege(this)"
+											<td style="text-align:left;"><select name="college" id="myForm${student.loginid}college2" onChange="checkCollege(this)"
 												style="width:195px;">
 													<option>请选择</option>
 													<c:forEach items='${colleges}' var="college">
@@ -476,12 +476,12 @@
 												for="exampleInputName2">年级</label></td>
 											<td style="text-align:left;"><input type="text" onChange="checkGrade(this)"
 												value="${student.grade }" name="grade" class="form-control"
-												id="grade2"></td>
+												id="myForm${student.loginid}grade2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">专业</label></td>
 											<td style="text-align:left;"><input type="text" onChange="checkMajor(this)"
 												value="${student.major}" name="major" class="form-control"
-												id="major2"></td>
+												id="myForm${student.loginid}major2"></td>
 										</tr>
 
 										<tr>
@@ -489,12 +489,12 @@
 												for="exampleInputName2">QQ</label></td>
 											<td style="text-align:left;"><input type="text" onChange="checkQq(this)"
 												name="qq" value="${student.qq }" class="form-control"
-												id="qq2"></td>
+												id="myForm${student.loginid}qq2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">电话</label></td>
 											<td style="text-align:left;"><input type="text" onChange="checkPhone(this)"
 												value="${student.phone }" name="phone" class="form-control"
-												id="phone2"></td>
+												id="myForm${student.loginid}phone2"></td>
 											<td colspan="2"></td>
 										</tr>
 
@@ -505,8 +505,8 @@
 													var="mg">
 													<c:if test="${mg.loginid==student.loginid }">
 														<label class="checkbox-inline"> <input
-															value="${mg.gid}" type="checkbox" name="groupOne2" checked
-															id="groupOne2" value="option1" /> <label>${mg.name}
+															value="${mg.gid}" type="checkbox" name="myForm${student.loginid}groupOne2" checked
+															id="myForm${student.loginid}groupOne2" value="option1" /> <label>${mg.name}
 														</label>
 														</label>
 													</c:if>
@@ -525,7 +525,7 @@
 											<td style="width:80px;text-align:center;line-height:100px;"><label
 												for="exampleInputName2">地址</label></td>
 											<td colspan="5"><textarea type="text"
-													class="form-control" name="address" id="address2" onChange="checkAddress(this)"
+													class="form-control" name="address" id="myForm${student.loginid}address2" onChange="checkAddress(this)"
 													style="width:650px;"> ${student.address }</textarea></td>
 										</tr>
 
@@ -547,7 +547,7 @@
 												height="120px" style="display: block;" /> <input
 												type="file" name="imgOne" id="file2"
 												onchange="preImg(this.id,'imgPre');" /></td>
-												<td><input type="text" name="hide" id="hide" value="${student.loginid}" hidden="hidden"></td>
+												<td><input type="text" name="hide" id="myForm${student.loginid}hide" value="${student.loginid}" hidden="hidden"></td>
 										</tr>
 
 									</table>
@@ -935,25 +935,25 @@
 
 							return true;
 						}
-						function checkU() {
+						function checkU(obj) {
 
-							var name = document.getElementById("name2").value;//通过id获取相应input输入框的值
-							var college = document.getElementById("college2").value;
-							var loginid = document.getElementById("loginid2").value;
-							var hide = document.getElementById("hide").value;	
-							var password = document.getElementById("password2").value;
-							var birth_date = document.getElementById("birth_date2").value;
-							var grade = document.getElementById("grade2").value;
-							var major = document.getElementById("major2").value;
+							var name = document.getElementById(obj.id+"name2").value;//通过id获取相应input输入框的值
+							var college = document.getElementById(obj.id+"college2").value;
+							var loginid = document.getElementById(obj.id+"loginid2").value;
+							var hide = document.getElementById(obj.id+"hide").value;	
+							var password = document.getElementById(obj.id+"password2").value;
+							var birth_date = document.getElementById(obj.id+"birth_date2").value;
+							var grade = document.getElementById(obj.id+"grade2").value;
+							var major = document.getElementById(obj.id+"major2").value;
 							var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
 							var dateFormatL = /^[0-9]{12}$/;
 							var dateFormatP = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,19}$/;
 							var dateFormatQ = /^[1-9]{1}[0-9]{4,10}$/;
 							var dateFormatPh=/^1[0-9]{10}$/;
-							var qq = document.getElementById("qq2").value;
-							var phone = document.getElementById("phone2").value;
-							var address = document.getElementById("address2").value;
-							 var checkboxs=document.getElementsByName("groupOne2");
+							var qq = document.getElementById(obj.id+"qq2").value;
+							var phone = document.getElementById(obj.id+"phone2").value;
+							var address = document.getElementById(obj.id+"address2").value;
+							 var checkboxs=document.getElementsByName(obj.id+"groupOne2");
 							 var m=0;
 							
 

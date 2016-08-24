@@ -342,10 +342,11 @@ public class MemberController {
 		String introduction = request.getParameter("introduction");
 		String job = request.getParameter("job");
 		String college = request.getParameter("college");
-		String[] group = request.getParameterValues("groupOne2");
+		String hide=request.getParameter("hide");
+		String[] group = request.getParameterValues("myForm"+hide+"groupOne2");
 		String pwd = request.getParameter("pwd");
 		String loginid = request.getParameter("loginid");
-		String hide=request.getParameter("hide");
+		
 		int admin=Integer.valueOf(request.getParameter("admin"));
 		// 上传文件（图片），将文件存入服务器指定路径下，并获得文件的相对路径
 

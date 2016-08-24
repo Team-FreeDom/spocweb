@@ -157,8 +157,8 @@ public class AffairController {
 		String name=request.getParameter("typeName");
 		int flag=Integer.valueOf(request.getParameter("flag"));
 		String str=request.getParameter("rank");
-		int rank=0;
-		if(str!=null)
+		int rank=100;
+		if(str!=null&&!str.equals(""))
 		{
 			rank=Integer.valueOf(str);	
 		}	

@@ -312,7 +312,7 @@
 								</a>
 								<h4 class="modal-title" id="myModalLabel">编辑业务类别</h4>
 							</div>
-							<form action="updateType.do" method="post"   onSubmit="return checkU()"
+							<form action="updateType.do" method="post"   onSubmit="return checkU(this)"
 								enctype="multipart/form-data" name="myForm2"
 								id="myForm${affairtype.acid}">
 								<div class="container table-responsive">
@@ -324,7 +324,7 @@
 											</td>
 											<td style="text-align:left;"><input type="text"
 												 name="typeName" class="form-control"
-												id="typeName2" value="${affairtype.name}"></td>
+												id="myForm${affairtype.acid}typeName2" value="${affairtype.name}"></td>
 											<td style="width:100px;text-align:center;margin-left:150px;">
 												<label for="exampleInputName2">投入开发</label>
 											</td>
@@ -423,10 +423,10 @@
 								return false;
 								}
 					}
-					function checkU()
+					function checkU(obj)
 					{						
-						
-						var typeName=document.getElementById("typeName2").value;						
+						var typeName2=obj.id+"typeName2";						
+						var typeName=document.getElementById(typeName2).value;						
 						 if(typeName=="")
 					       {
 						     alert("类别名称不能为空！");
