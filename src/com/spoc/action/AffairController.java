@@ -1,4 +1,4 @@
-package com.spoc.action;
+﻿package com.spoc.action;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class AffairController {
 		String content=request.getParameter("content");
 		HttpSession session = request.getSession();
 		String doc=(String) session.getAttribute("flag");
-		String type[]=request.getParameterValues("news");
+		String type[]=request.getParameterValues("inlineCheckbox");
 		String str="";
 		if(type!=null)
 		{
@@ -61,7 +61,7 @@ public class AffairController {
 		Affair affair=new Affair(name,phone,content,str,doc);
 		affairService.add(affair);
 		 request.getSession().invalidate();
-		return "index";
+		return "forward:affair.do";
 	}
 	@RequestMapping("/lianxijsp.do")
 	public ModelAndView getInfo(ModelMap map) 
@@ -76,24 +76,32 @@ public class AffairController {
 	}
 	
 	@RequestMapping(value="/upload.do", method = RequestMethod.POST)
-	public String handleUploadData(String name,@RequestParam("file") CommonsMultipartFile file,HttpServletRequest request)
+	public String handleUploadData(HttpServletRequest request, ModelMap map) throws IOException
 	{
-		if (!file.isEmpty()) {
-			   String path = request.getServletContext().getRealPath("/")+"infor/test";  //��ȡWebRoot/test�洢·��
+		// 上传文件（图片），将文件存入服务器指定路径下，并获得文件的相对路径
+
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		// 得到上传的文件
+		MultipartFile mFile = multipartRequest.getFile("imgOne");
+		if (!mFile.isEmpty()) {
+			// 得到上传服务器的路径
+			String path = request.getSession().getServletContext()
+					.getRealPath("/infor/test/");
 			   System.out.println(path);
-			   String fileName = file.getOriginalFilename();
+			   String fileName = mFile.getOriginalFilename();
 			   String fileType = fileName.substring(fileName.lastIndexOf("."));
+			   String filename = new Date().getTime() + fileType;
+			   InputStream inputStream = mFile.getInputStream();
+				byte[] b = new byte[1048576];
+				int length = inputStream.read(b);
+			   path += "\\" + filename;
+			   FileOutputStream outputStream = new FileOutputStream(path);
+				outputStream.write(b, 0, length);
+				inputStream.close();
+				outputStream.close();
+				filename = "../infor/honor/" + filename;
 			   HttpSession session = request.getSession();
-			   session.setAttribute("flag", path+fileName);
-			   File file2 = new File(path,new Date().getTime() + fileType); //�½�һ���ļ�
-			   try {
-				    file.getFileItem().write(file2); //���ϴ����ļ�д���½����ļ���
-				    
-			   } 
-			   catch (Exception e) 
-			   {
-				    e.printStackTrace();
-			   }
+			   session.setAttribute("flag", filename);
 			   return "redirect:upload_ok.jsp";
 			}
 		   else
@@ -124,8 +132,13 @@ public class AffairController {
 	{
 		String name=request.getParameter("name");
 		int flag=Integer.valueOf(request.getParameter("flag"));
-		
-		affair_categoryService.doAffairType(name, flag);
+		String str=request.getParameter("rank");
+		int rank=100;
+		if(str!=null&&!str.equals(""))
+		{
+			rank=Integer.valueOf(str);	
+		}	
+		affair_categoryService.doAffairType(name, flag,rank);
 		return "forward:dealAT.do";
 	}
 	

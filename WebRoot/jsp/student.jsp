@@ -35,7 +35,7 @@
              &nbsp;&nbsp;  -->
 					<a style="color: #fff"
 						onclick="if (confirm('确定要退出吗？')) return true; else return false;"
-						href="../main.htm" target=_top>退出系统</a>
+						href="exit.do" target=_top>退出系统</a>
 				</div>
 				<div class="col-md-3 col-xs-3 bg2"></div>
 			</div>
@@ -277,11 +277,11 @@
 								<table>
 									<tr style="padding-top:20px;">
 										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">登录名</label></td>
+											for="exampleInputName2">登录名<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text" onBlur="checkLoginid(this)"
 											name="loginid" class="form-control empty" id="loginid"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">密码</label></td>
+											for="exampleInputName2">密码<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
 									 onBlur="checkPassword(this)"		name="pwd" class="form-control empty" id="password"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
@@ -296,7 +296,7 @@
 
 									<tr style="margin-top:20px;">
 										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">姓名</label></td>
+											for="exampleInputName2">姓名<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
 										 onBlur="checkName(this)"	name="name" class="form-control empty" id="name"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
@@ -306,14 +306,14 @@
 											for="q2_1">男</label> <input name="sex" value="2" type="radio">
 											<label for="q2_2">女</label></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">出生日期</label></td>
+											for="exampleInputName2">出生日期<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text" placeholder="请以××××-××-××格式填写"
 									 onBlur="checkBirthdate(this)"		name="birth_date" class="form-control empty" id="birth_date"></td>
 									</tr>
 
 									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">学院</label></td>
+											for="exampleInputName2">学院<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><select name="college" id="college"
 									 onBlur="checkCollege(this)"		style="width:195px;">
 												<option value=-1>请选择</option>
@@ -322,22 +322,22 @@
 												</c:forEach>
 										</select></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">年级</label></td>
+											for="exampleInputName2">年级<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
 									 onBlur="checkGrade(this)"		name="grade" class="form-control empty" id="grade"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">专业</label></td>
+											for="exampleInputName2">专业<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
 										 onBlur="checkMajor(this)"	name="major" class="form-control empty" id="major"></td>
 									</tr>
 
 									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">QQ</label></td>
+											for="exampleInputName2">QQ<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text" name="qq"
 									 onBlur="checkQq(this)"		class="form-control empty" id="qq"></td>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
-											for="exampleInputName2">电话</label></td>
+											for="exampleInputName2">电话<span class="symbol">*</span></label></td>
 										<td style="text-align:left;"><input type="text"
 										 onBlur="checkPhone(this)"	name="phone" class="form-control empty" id="phone"></td>
 										<td colspan="2"></td>
@@ -345,7 +345,7 @@
 
 									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
-											for="exampleInputName2">组别</label></td>
+											for="exampleInputName2">组别<span class="symbol">*</span></label></td>
 										<td clospan="5"><c:forEach items='${groups}' var="group">
 												<label class="checkbox-inline"> <input
 													value="${group.gid}" type="checkbox" name="groupOne"
@@ -365,7 +365,7 @@
 
 									<tr>
 										<td style="width:80px;text-align:center;line-height:100px;"><label
-											for="exampleInputName2">地址</label></td>
+											for="exampleInputName2">地址<span class="symbol">*</span></label></td>
 										<td colspan="5"><textarea type="text"
 										 onBlur="checkAddress(this)"		class="form-control" name="address" id="address"
 												style="width:650px;"></textarea></td>
@@ -384,7 +384,7 @@
 							<center>
 								<table style="color:#000; margin-top:10px;">
 									<tr>
-										<td>照片</td>
+										<td>照片<span class="symbol">*</span></td>
 										<td><img id="imgPre" src="" width="100px" height="120px"
 											style="display: block;" /> <input type="file" name="imgOne" class="empty"
 											id="file" onchange="preImg(this.id,'imgPre');" /></td>
@@ -501,16 +501,21 @@
 										<tr>
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">组别</label></td>
-											<td clospan="5"><c:forEach items='${membergroups}'
-													var="mg">
-													<c:if test="${mg.loginid==student.loginid }">
-														<label class="checkbox-inline"> <input
-															value="${mg.gid}" type="checkbox" name="myForm${student.loginid}groupOne2" checked
-															id="myForm${student.loginid}groupOne2" value="option1" /> <label>${mg.name}
-														</label>
-														</label>
-													</c:if>
-												</c:forEach></td>
+											<td clospan="5">
+											 <c:forEach items='${groups}'	var="group">
+											   <label class="checkbox-inline"> 
+											     <input	value="${group.gid}" type="checkbox" name="myForm${student.loginid}groupOne2" 
+											        <c:forEach items='${membergroups}'	var="mg">
+													  <c:if test="${mg.loginid==student.loginid&&group.gid==mg.gid}">
+													    checked
+													  </c:if>
+													  </c:forEach>
+															id="myForm${student.loginid}groupOne2" value="option1" />
+													 <label>${group.name}	</label>
+											  </label>
+											 </c:forEach>										
+											
+											</td>
 										</tr>
 
 										<tr>
@@ -547,7 +552,7 @@
 												height="120px" style="display: block;" /> <input
 												type="file" name="imgOne" id="file2"
 												onchange="preImg(this.id,'imgPre');" /></td>
-												<td><input type="text" name="hide" id="myForm${student.loginid}hide" value="${student.loginid}" hidden="hidden"></td>
+												<td><input type="text" name="hide" id="myForm${student.loginid}loginid2hide" value="${student.loginid}" hidden="hidden"></td>
 										</tr>
 
 									</table>
@@ -664,7 +669,7 @@
 					function checkLoginid2(obj) {
 
 						var loginid = document.getElementById(obj.id).value;
-						var hide = document.getElementById("hide").value;						
+						var hide = document.getElementById(obj.id+"hide").value;						
 						var dateFormatL = /^[0-9]{12}$/;
 						if (loginid == "") {
 							alert("登录名不能为空！");
@@ -828,7 +833,7 @@
 							 var checkboxs=document.getElementsByName("groupOne");
 							 var m=0;
 							var file = document.getElementById("file").value;
-
+                            var returnValue=true;
 							if (loginid == "") {
 								alert("登录名不能为空！");
 								return false;
@@ -855,7 +860,7 @@
 									if (data[0].flag) {
 										
 										alert("该登录名已存在！");
-										return false;	
+										returnValue=false;	
 									}
 
 								}
@@ -933,14 +938,14 @@
 								return false;
 							}
 
-							return true;
+							return returnValue;
 						}
 						function checkU(obj) {
 
 							var name = document.getElementById(obj.id+"name2").value;//通过id获取相应input输入框的值
 							var college = document.getElementById(obj.id+"college2").value;
 							var loginid = document.getElementById(obj.id+"loginid2").value;
-							var hide = document.getElementById(obj.id+"hide").value;	
+							var hide = document.getElementById(obj.id+"loginid2hide").value;	
 							var password = document.getElementById(obj.id+"password2").value;
 							var birth_date = document.getElementById(obj.id+"birth_date2").value;
 							var grade = document.getElementById(obj.id+"grade2").value;
@@ -955,7 +960,7 @@
 							var address = document.getElementById(obj.id+"address2").value;
 							 var checkboxs=document.getElementsByName(obj.id+"groupOne2");
 							 var m=0;
-							
+							var returnValue=true;
 
 							if (loginid == "") {
 								alert("登录名不能为空！");
@@ -984,6 +989,7 @@
 										if(loginid!=hide)
 											{
 										alert("该登录名已存在！");
+										returnValue=false;
 											}
 									}
 
@@ -1059,7 +1065,7 @@
 							}
 							
 
-							return true;
+							return returnValue;
 						}
 					</script>
 					<script>

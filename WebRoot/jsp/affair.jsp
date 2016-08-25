@@ -27,32 +27,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="container bg1">
 	<center>
             <div class="bg3">
-            <form action="lianxi.do" method="post">
+            <form action="lianxi.do" method="post" onSubmit="return check()">
             	<div class="text-center"><img src="../image/1_02.gif"></div>
             	<div class="list_top">联系人姓名</div>
                 <div>
-                	<textarea name="name" class="underline textarea_style"></textarea>
+                	<textarea name="name" id="name" class="underline textarea_style"></textarea>
                 </div>
             
                 <div class="list_top">联系人手机</div>
                 <div>
-                	<textarea name="phone"  class="underline textarea_style"></textarea>
+                	<textarea name="phone" id="phone"  class="underline textarea_style"></textarea>
                 </div>
                 <div class="list_top">业务类别</div>
                  <div class="list_top1">
                 	<ul class="list-unstyled" id="list_top1" >
-                	   <c:forEach items='${Charge}' var="news"  begin="0" end="5">
+                	   <c:forEach items='${Charge}' var="inlineCheckbox"  begin="0" end="5">
 			              <li>
-                         <input value="${news.name}" name="news" type="checkbox" >
-                          <label  >${news.name} </label>
+                         <input value="${inlineCheckbox.name}" name="inlineCheckbox" type="checkbox" id="inlineCheckbox1" >
+                          <label  >${inlineCheckbox.name} </label>
                         </li>
-			             </c:forEach>          	                       
+			             </c:forEach>             	                       
                     </ul>
                   
                 </div>
                 <div class="list_top" style="clear:both">具体内容</div>
                 <div>
-                	<textarea name="content" class="underline textarea_style1"></textarea>
+                	<textarea name="content" id="content" class="underline textarea_style1"></textarea>
                 </div>
                 
                 <div class="list_top">
@@ -114,7 +114,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							'elErrorContainer': '#errorBlock'
 						});
 					});
-                </script>   	 		
+                </script>   
+                <script type="text/javascript">
+      function check()
+      {
+         var name=document.getElementById("name").value;
+         var phone=document.getElementById("phone").value;
+		 var checkbox=document.getElementsByName("inlineCheckbox");
+		 var content=document.getElementById("content").value;
+		 var m=0;
+	     if(name=="")
+	       {
+		     alert("请填写您的姓名！");
+		     return false;
+		   }
+		    if(phone=="")
+	       {
+		     alert("请填写您的电话号码！");
+		     return false;
+		   }
+		   
+		   for(var i=0;i<checkbox.length;i++)
+			{
+				if(checkbox[i].checked==false)
+				{
+					m=m+1;
+				}
+			}
+			if(m==i)
+			{
+				alert("请选择业务类别！");
+				return false;
+				}
+			 if(content=="")
+	       {
+		     alert("请填写具体内容！");
+		     return false;
+		   }
+
+		     return true;
+      }
+  </script> 	 			 		
    
 </body>
 </html>

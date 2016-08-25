@@ -35,7 +35,7 @@
              &nbsp;&nbsp;  -->
 					<a style="color: #fff"
 						onclick="if (confirm('确定要退出吗？')) return true; else return false;"
-						href="../main.htm" target=_top>退出系统</a>
+						href="exit.do" target=_top>退出系统</a>
 				</div>
 				<div class="col-md-3 col-xs-3 bg2"></div>
 			</div>
@@ -278,12 +278,18 @@
 										<td style="text-align:left;"><input type="text"
 											name="name" class="form-control empty" id="typeName">
 										</td>
-										<td style="width:80px;text-align:center;margin-left:150px;">
+										<td style="width:100px;text-align:center;margin-left:150px;">
 											<label for="exampleInputName2">投入开发</label>
 										</td>
 										<td style="text-align:left;"><input name="flag" value="1" checked="checked"
 									id="use" type="radio"> <label for="q2_1">是</label> <input
 											name="flag" value="0" type="radio" /> <label for="q2_2">否</label></td>
+										<td style="width:150px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">排列序号</label>												
+											</td>											
+											<td style="text-align:left;">
+											  <input type="text" name="rank" class="form-control"
+												 ></td>
 									</tr>
 								</table>
 							</div>
