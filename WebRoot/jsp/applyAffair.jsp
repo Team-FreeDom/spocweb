@@ -35,7 +35,7 @@
              &nbsp;&nbsp;  -->
 					<a style="color: #fff"
 						onclick="if (confirm('确定要退出吗？')) return true; else return false;"
-						href="../main.htm" target=_top>退出系统</a>
+						href="exit.do" target=_top>退出系统</a>
 				</div>
 				<div class="col-md-3 col-xs-3 bg2"></div>
 			</div>
@@ -240,10 +240,10 @@
 						<div class="modal-content text-center admin_hide"
 							id="${affair.aff_id}ta">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
+								<a type="button" class="close" data-dismiss="modal" href="applyAffair.do?flag=0"
 									id="${affair.aff_id}t"">
 									<span aria-hidden="true">&times;</span>
-								</button>
+								</a>
 								<h4 class="modal-title" id="myModalLabel">业务信息</h4>
 							</div>
 							<form action="updateType.do" method="post"
@@ -292,8 +292,8 @@
 							</form>
 							<div class="modal-footer">
 
-								<button type="button" class="btn btn-primary detail"
-									id="${affair.aff_id}" data-dismiss="modal">关闭</button>
+								<a  class="btn btn-primary detail" href="applyAffair.do?flag=0"
+									id="${affair.aff_id}" data-dismiss="modal">关闭</a>
 							</div>
 						</div>
 

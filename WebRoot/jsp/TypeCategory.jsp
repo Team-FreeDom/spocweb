@@ -35,7 +35,7 @@
              &nbsp;&nbsp;  -->
 					<a style="color: #fff"
 						onclick="if (confirm('确定要退出吗？')) return true; else return false;"
-						href="../main.htm" target=_top>退出系统</a>
+						href="exit.do" target=_top>退出系统</a>
 				</div>
 				<div class="col-md-3 col-xs-3 bg2"></div>
 			</div>
@@ -316,14 +316,14 @@
 						<div class="modal-content text-center admin_hide"
 							id="${typecategory.tcid}ta">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
+								<a class="close" data-dismiss="modal" href="TypeCategory.do"
 									id="${typecategory.tcid}t"">
 									<span aria-hidden="true">&times;</span>
-								</button>
+								</a>
 								<h4 class="modal-title" id="myModalLabel">编辑类别信息</h4>
 							</div>
 							<form action="updateTypeCategory.do" method="post"
-								onSubmit="return check2()" enctype="multipart/form-data"
+								onSubmit="return check2(this)" enctype="multipart/form-data"
 								name="myForm2" id="myForm${typecategory.tcid}">
 								<div class="container table-responsive">
 									<table>
@@ -333,13 +333,13 @@
 											</td>
 											<td style="text-align:left;"><input type="text"
 												value="${typecategory.description}" name="description"
-												class="form-control" id="typeDescription2"></td>
+												class="form-control" id="myForm${typecategory.tcid}typeDescription2"></td>
 											<td style="width:120px;text-align:center;margin-left:150px;">
 												<label for="exampleInputName2">所属服务类别</label>
 											</td>
 											<td style="text-align:left;"><select name="type"
-												id="serviceType2" style="width:195px;">
-													<option>请选择</option>
+												id="myForm${typecategory.tcid}serviceType2" style="width:195px;">
+													<option value=-1>请选择</option>
 													<c:forEach items='${servicetypes}' var="servicetype">
 														<option value="${servicetype.stid }"
 															${servicetype.stid==typecategory.stid?"selected":"" }>${servicetype.type }</option>
@@ -433,12 +433,12 @@
 						}
 						return true;
 					}
-					function check2() {
-
+					function check2(obj) {
+                        
 						var typeDescription = document
-								.getElementById("typeDescription2").value;
+								.getElementById(obj.id+"typeDescription2").value;
 						var serviceType = document
-								.getElementById("serviceType2").value;
+								.getElementById(obj.id+"serviceType2").value;
 						if (typeDescription == "") {
 							alert("请填写类别描述！");
 							return false;

@@ -1,5 +1,6 @@
 package com.spoc.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -18,6 +19,26 @@ public class MemberDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	public boolean checkLoginid(String loginid)
+	{
+		Session session=sessionFactory.openSession();
+		boolean flag=false;
+		try{
+			Query query=session.createQuery("from Member where loginid=?");	
+			query.setString(0, loginid);
+			List<Member> list=query.list();
+			Iterator<Member> it=list.iterator();
+			if(it.hasNext())
+			{
+				flag=true;
+			}
+			}catch (Exception ex) {
+				System.out.println(ex);
+			} finally {
+				session.close();
+			}
+			return flag;
+	}
 	public List<Member> getStudents()
 	{
 		Session session=sessionFactory.openSession();
@@ -123,13 +144,20 @@ public class MemberDao {
 		
 	}
 	
-	public void updateMember(Member member)
+	public void updateMember(Member member,String hide)
 	{
 		Session session=sessionFactory.openSession();
 		Transaction transaction = null;
 		try{
 		transaction=session.beginTransaction();
+		if(member.getLoginid().equals(hide))
+		{
 		session.update(member);
+		}else{
+			Member memberFormal=(Member) session.get(Member.class, hide);
+			session.delete(memberFormal);
+			session.save(member);
+		}
 		transaction.commit();
 		}catch (Exception ex) {
 			if (transaction != null) {

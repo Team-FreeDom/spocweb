@@ -51,7 +51,7 @@ public class MemberController {
 	@RequestMapping("/user.do")
 	public String displayUsers(HttpServletRequest request, ModelMap map) {
 		List<College> colleges = collegeService.getCollege();
-		List<Group_manage> groups = group_manageService.getGroup();
+		List<Group_manage> groups = group_manageService.getGroup();		
 		int flag = Integer.parseInt(request.getParameter("flag"));
 		if (flag == 2) {
 			map.addAttribute("students", memberService.getStudents());
@@ -62,10 +62,24 @@ public class MemberController {
 			return "student";
 		} else {
 			map.addAttribute("teachers", memberService.getTeachers());
-			map.addAttribute("colleges", colleges);
+			map.addAttribute("colleges", colleges);			
 			return "teacher";
 		}
 
+	}
+	
+	@RequestMapping("/checkLoginid.do")
+	@ResponseBody
+	public String checkLoginid(HttpServletRequest request, ModelMap map)
+	{
+		String loginid = request.getParameter("loginid");
+		System.out.println(loginid);
+		boolean flag=memberService.checkLoginid(loginid);
+		String str="[{\"flag\":"+flag+"}]";
+		JSONArray json = JSONArray.fromObject(str);
+		System.out.println(json);
+		return json.toString();
+		
 	}
 
 	@RequestMapping("/search.do")
@@ -260,6 +274,7 @@ public class MemberController {
 		String college = request.getParameter("college");
 		String pwd = request.getParameter("pwd");
 		String loginid = request.getParameter("loginid");
+		String hide=request.getParameter("hide");
 		int admin=Integer.valueOf(request.getParameter("admin"));
 		//String file=request.getParameter("imgOne");
 		
@@ -294,14 +309,14 @@ public class MemberController {
 		 member=new Member(loginid, pwd, name, sex, filename,
 				birth_date, college,  qq, phone, address,
 				  1, admin);
-		 memberService.updateMember(member);
+		 memberService.updateMember(member,hide);
 	  }else
 	  {
 		  System.out.println(pwd);
 		   member=new Member(loginid, pwd, name, sex,
 					birth_date, college,  qq, phone, address,
 					  1, admin);
-		   memberService.updateMember2(member);
+		   memberService.updateMember2(member,hide);
 	  }
 
 		
@@ -327,9 +342,11 @@ public class MemberController {
 		String introduction = request.getParameter("introduction");
 		String job = request.getParameter("job");
 		String college = request.getParameter("college");
-		String[] group = request.getParameterValues("groupOne2");
+		String hide=request.getParameter("hide");
+		String[] group = request.getParameterValues("myForm"+hide+"groupOne2");
 		String pwd = request.getParameter("pwd");
 		String loginid = request.getParameter("loginid");
+		
 		int admin=Integer.valueOf(request.getParameter("admin"));
 		// 上传文件（图片），将文件存入服务器指定路径下，并获得文件的相对路径
 
@@ -379,7 +396,7 @@ public class MemberController {
 					birth_date, college, grade, major, qq, phone, address,
 					introduction, job, 2, admin);
 		}
-		 memberService.updateMember(member);
+		 memberService.updateMember(member,hide);
 		  }else
 		  {
 			  if(job==null&&introduction==null)
@@ -402,7 +419,7 @@ public class MemberController {
 							birth_date, college, grade, major, qq, phone, address,
 							introduction, job, 2, admin);
 				}
-			 memberService.updateMember2(member);
+			 memberService.updateMember2(member,hide);
 		  }
 		 
 		
