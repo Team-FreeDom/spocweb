@@ -24,6 +24,8 @@ public class AffairsController {
 	private AffairsService affairsService;
 	@Autowired
 	private Affair_categoryService affair_categoryService;
+        @Autowired
+	private HonorService honorService;
 	
 	@RequestMapping("/affair.do")
 	public String getAffairs(HttpServletRequest request,ModelMap map) throws Exception
