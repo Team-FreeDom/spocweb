@@ -41,12 +41,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="list_top">业务类别</div>
                  <div class="list_top1">
                 	<ul class="list-unstyled" id="list_top1" >
-                	   <c:forEach items='${Charge}' var="news"  begin="0" end="5">
+                	   <c:forEach items='${Charge}' var="inlineCheckbox"  begin="0" end="5">
 			              <li>
-                         <input value="${news.name}" name="news" type="checkbox" >
-                          <label  >${news.name} </label>
+                         <input value="${inlineCheckbox.name}" name="inlineCheckbox" type="checkbox" id="inlineCheckbox1" >
+                          <label  >${inlineCheckbox.name} </label>
                         </li>
-			             </c:forEach>          	                       
+			             </c:forEach>             	                       
                     </ul>
                   
                 </div>
@@ -143,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 			if(m==i)
 			{
-				alert("请选组别！！！");
+				alert("请选择业务类别！");
 				return false;
 				}
 			 if(content=="")
