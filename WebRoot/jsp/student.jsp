@@ -35,7 +35,7 @@
              &nbsp;&nbsp;  -->
 					<a style="color: #fff"
 						onclick="if (confirm('确定要退出吗？')) return true; else return false;"
-						href="../main.htm" target=_top>退出系统</a>
+						href="exit.do" target=_top>退出系统</a>
 				</div>
 				<div class="col-md-3 col-xs-3 bg2"></div>
 			</div>
