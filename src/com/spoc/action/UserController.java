@@ -26,6 +26,14 @@ public class UserController
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping("/exit.do")
+	public String exit(HttpServletRequest request,HttpServletResponse response)
+	{
+		HttpSession session=request.getSession();
+		session.invalidate();
+		return "redirect:affair.do";
+	}
+	
 	@RequestMapping("/login.do")
 	public ModelAndView handleRequest(HttpServletRequest request,HttpServletResponse response) throws Exception
 	{
