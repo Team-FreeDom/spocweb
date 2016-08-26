@@ -447,16 +447,16 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title text-center" id="myModalLabel"></h4>
           </div>
-          <form>
+          <form method="post"  onSubmit="return check()">
               <div class="modal-body">
                    
                           <div class="input-group" style="margin-top:15px;">
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="test" class="form-control" id="exampleInputEmail1" placeholder="账号">
+                            <input type="test" class="form-control" id="admin" name="admin" placeholder="账号">
                           </div>
                           <div class="input-group" style="margin-top:30px;">
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-th"></span></span>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                            <input type="password" class="form-control" id="password" placeholder="密码">
                           </div>
               </div>
               <div class="text-center" style="margin:20px 0 40px 0">
@@ -464,6 +464,25 @@
               </div>
           </form>
         </div>
+        <script type="text/javascript">
+			  function check()
+			  {
+				 var admin=document.getElementById("admin").value;
+				 var password=document.getElementById("password").value;
+				 if(admin=="")
+				   {
+					 alert("请输入您的账号！");
+					 return false;
+				   }
+					  if(password=="")
+				   {
+					 alert("请输入您的密码！");
+					 return false;
+				   }
+		
+					 return true;
+			  }
+		  </script>
       </div>
     </div>
     </center>
