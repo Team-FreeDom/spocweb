@@ -227,34 +227,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       		<div class="section__heading">思博课</div>
 				<div class="isolayer isolayer--deco4">
 					<ul class="grid">
-						<li class="grid__item"><!--.isolayer--deco4 .grid__link div.layer的css块可以该背景图片的高度和宽度-->
-							<a class="grid__link" href="#" data-toggle="modal" data-target="#myModal" data="../video/1.mp4" tle="类别名：作品名"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/2.gif" alt="01" />
-							</a><!--超链接a标签请后台自动生成，主要修改自定义的data属性（视频源地址）和tle属性（类别：作品名）-->
-						</li>
-						<li class="grid__item">
-							<a class="grid__link" href="#" data-toggle="modal" data-target="#myModal" data="http://vjs.zencdn.net/v/oceans.mp4" tle="类别名：作品名"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/3.gif" alt="02" /></a>
-						</li>
-						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/4.gif" alt="03" /></a>
-						</li>
-						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/4.png" alt="04" /></a>
-						</li>
-						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/5.png" alt="05" /></a>
-						</li>
-						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/2.gif" alt="06" /></a>
-						</li>
-						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/7.png" alt="07" /></a>
-						</li>
-						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/8.png" alt="08" /></a>
-						</li>
-						<li class="grid__item">
-							<a class="grid__link" href="#"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="../img/Dribbble/9.png" alt="09" /></a>
-						</li>
+						<c:forEach items='${product}' var="list" >
+							<li class="grid__item"><!--.isolayer--deco4 .grid__link div.layer的css块可以该背景图片的高度和宽度-->
+								<a class="grid__link" href="#" data-toggle="modal" data-target="#myModal" data="${list.pro_path}" tle="${list.name}"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="${list.img_path}" alt="01" />
+								</a><!--超链接a标签请后台自动生成，主要修改自定义的data属性（视频源地址）和tle属性（类别：作品名）-->
+							</li>
+						</c:forEach>
 					</ul>
 				</div>	
       </div><!--/section3 -->solutions
