@@ -32,6 +32,7 @@ import com.spoc.po.Honor;
 import com.spoc.po.Member;
 import com.spoc.po.Member_group;
 import com.spoc.po.Member_group_view;
+import com.spoc.po.Type_category;
 import com.spoc.service.CollegeService;
 import com.spoc.service.Group_manageService;
 import com.spoc.service.HonorService;
@@ -46,13 +47,12 @@ public class HonorController {
 	@Autowired
 	private HonorService honorService;
 
-	
-	
 	@RequestMapping("/honors.do")
 	public String apply(HttpServletRequest request, ModelMap map)
 	{
 		List<Honor> list=honorService.getHonor();
 		map.addAttribute("honors", list);
+		map.addAttribute("honortype",  honorService.getHonor());
 		return "honor";
 	}
 	@RequestMapping("/honorS.do")
@@ -74,7 +74,7 @@ public class HonorController {
 				MultipartFile mFile = multipartRequest.getFile("imgOne");
 				// 得到上传服务器的路径
 				String path = request.getSession().getServletContext()
-						.getRealPath("/infor/selfie/");
+						.getRealPath("/infor/honor/");
 				// 得到上传的文件的文件名
 				String fileName = mFile.getOriginalFilename();
 				System.out.println(fileName);
@@ -90,6 +90,9 @@ public class HonorController {
 				inputStream.close();
 				outputStream.close();
 				filename = "../infor/honor/" + filename;
+				
+				// HttpSession session = request.getSession();
+				//   session.setAttribute("aaa", filename);
 
 				String hid =request.getParameter("hid");
 				String time = request.getParameter("time");
@@ -97,6 +100,17 @@ public class HonorController {
 				Honor honor=new Honor(hid,time,filename,description);
 				honorService.addHonor(honor);
 				return "forward:honors.do";
+	}
+	@RequestMapping("/updateHonor.do")
+	public String updateHonor(HttpServletRequest request, ModelMap map)
+	{
+		String hid =request.getParameter("hid");
+		String time = request.getParameter("time");
+		String description=request.getParameter("description");
+		String img=request.getParameter("img");
+		Honor Hn=new Honor(hid,time,img,description);
+		honorService.update(Hn);
+		return "forward:honors.do";
 	}
 	
 }

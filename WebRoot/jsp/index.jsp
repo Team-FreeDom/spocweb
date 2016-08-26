@@ -365,16 +365,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title text-center" id="myModalLabel"></h4>
       </div>
-      <form action="login.do">
+      <form action="login.do" onSubmit="return check()">
           <div class="modal-body">
                
                       <div class="input-group" style="margin-top:15px;">
                         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="test"  name="loginid" class="form-control" id="exampleInputEmail1" placeholder="账号">
+                        <input type="test"  name="loginid" class="form-control" id="loginid" placeholder="账号">
                       </div>
                       <div class="input-group" style="margin-top:30px;">
                         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-th"></span></span>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                        <input type="password" name="password" class="form-control" id="password" placeholder="密码">
                       </div>
           </div>
           <div class="text-center" style="margin:20px 0 40px 0">
@@ -382,6 +382,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </div>
       </form>
     </div>
+ <script type="text/javascript">
+			  function check()
+			  {
+				 var loginid=document.getElementById("loginid").value;
+				 var password=document.getElementById("password").value;
+				 if(loginid=="")
+				   {
+					 alert("请输入您的账号！");
+					 return false;
+				   }
+					  if(password=="")
+				   {
+					 alert("请输入您的密码！");
+					 return false;
+				   }
+		
+					 return true;
+			  }
+		  </script>
   </div>
 </div>
 </center>
