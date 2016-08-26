@@ -212,17 +212,14 @@
                       <span> <a class="add" href="#"> <img
 									src="../image/add.gif" width="10" height="10" /> 添加
 							</a> &nbsp; 
-							<!--  <a href="javascript:deleteMember()"> <img
-									src="../image/del.gif" width="10" height="10" /> 删除
-							</a> &nbsp;&nbsp;-->
-
+							
 							</span>
 						</div>
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
 							<form action="honorS.do" method="post" name="myform"
-								id="myform">
+								id="myform" onSubmit="return check1()">
 								<table class="table" id="tabBox">
 									<tr>
 										
@@ -238,7 +235,14 @@
 										<td>${honor.time}</td>
 										<td>${honor.img}</td>
 										<td>${honor.description}</td>
-												
+											<td colspan="2"><a class="edit"
+												id=${honor.hid } style="margin-left:20px;"
+												data-toggle="modal" data-target=".bs-example-modal-lg"
+												href="#"> <img src="../image/edit.gif" width="10"
+													height="10" /> 编辑
+											</a></td>	
+											<td><input type="text" name="hid" hidden="hidden"
+												value="${honor.hid}" /></td>
 										</tr>
 									</c:forEach>  
 								</table>
@@ -282,7 +286,8 @@
 									<tr>
 										<td>照片</td>
 										<td><img id="imgPre" src="" width="100px" height="120px"
-											style="display: block;" /> <input type="file" name="imgOne"
+											style="display: block;" /> 
+											<input type="file" name="imgOne"
 											id="imgOne" onchange="preImg(this.id,'imgPre');" /></td>
 									</tr>
 								</table>
@@ -293,7 +298,71 @@
 								data-dismiss="modal" onclick="add()">添加</button>
 						</div>
 					</div>
-					<!--add-section-end  -->		
+					<!--add-section-end  -->	
+					<!--edit-section-start  -->
+					<c:forEach items='${honors}' var="honor">
+					<div class="modal-content text-center admin_hide"
+							id="${honor.hid}ta">
+							<div class="modal-header">
+								<a class="close" data-dismiss="modal" href="honors.do""
+									id="${honor.hid}t"">
+									<span aria-hidden="true">&times;</span>
+								</a>
+								<h4 class="modal-title" id="myModalLabel">编辑荣誉信息</h4>
+							</div>
+							<form action="updateHonor.do" method="post"
+								enctype="multipart/form-data" name="myForm2" 
+								id="myForm${honor.hid}">
+								<div class="container table-responsive">
+									<table>
+										<tr style="padding-top:20px;">
+											<td style="width:80px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">获奖时间</label>
+											</td>
+											<td style="text-align:left;"><input type="text"
+												name="time" class="form-control"
+												value="${honor.time}" id="myForm${honor.time}time2"></td>
+                                         </tr>
+                                         <tr style="padding-top:20px;">
+											<td style="width:80px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">证书路径</label>
+											</td>
+											<td style="text-align:left;"><input type="text"
+												name="img" class="form-control"
+												value="${honor.img}" id="myForm${honor.img}time2"></td>
+                                         </tr>
+                                         <tr>
+											<td style="width:80px;text-align:center;margin-left:150px;">
+												<label for="exampleInputName2">内容描述</label>
+											</td>
+											<td style="text-align:left;"><input type="text"
+												name="description" class="form-control" 
+												value="${honor.description}" id="myForm${honor.description}description2"/></td>
+											<td style="width:120px;text-align:center;margin-left:150px;">
+												<input type="text" name="hid" value="${honor.hid}"
+												hidden="hidden" />
+											</td>
+										</tr>	
+											<center>
+										<tr>
+											<td style="text-align:right;">照片</td>
+											<td rowspan="3"><img src="${honor.img}" id="${honor.hid}" width="450px"
+												height="300px" style="display: block;" /> </td>
+										</tr>
+								       </center>
+									</table>
+								</div>
+							</form>
+							<div class="modal-footer">
+
+								<button type="button" class="btn btn-primary update"
+									id="${honor.hid}" data-dismiss="modal">确定</button>
+							</div>
+						</div>	
+						</c:forEach>
+						
+				
+					<!--edit-section-end -->
 				<script type="text/javascript">
 					function deleteMember() {
 
@@ -330,6 +399,7 @@
 						var id = this.id + "a";
 						document.getElementById(id).style.display = "none";
 					})
+					
 				</script>
 				<script>
 					var tabBox = document.getElementById("tabBox"),
