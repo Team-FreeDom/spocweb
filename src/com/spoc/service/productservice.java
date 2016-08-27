@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.spoc.dao.productdao;
-import cn.spoc.po.product;
+import com.spoc.dao.productdao;
+import com.spoc.po.product;
 
 @Service("productservice")
 public class productservice

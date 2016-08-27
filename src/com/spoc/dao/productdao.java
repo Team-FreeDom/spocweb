@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import cn.spoc.po.product;
+import com.spoc.po.product;
 
 @Repository("productdao")
 public class productdao

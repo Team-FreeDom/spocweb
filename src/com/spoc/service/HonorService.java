@@ -10,6 +10,7 @@ import com.spoc.po.Affair_category;
 import com.spoc.po.Apply;
 import com.spoc.po.Honor;
 import com.spoc.po.Member;
+import com.spoc.po.Type_category;
 
 @Service("honorService")
 public class HonorService
@@ -27,6 +28,10 @@ public class HonorService
 	public void addHonor(Honor honor)
 	{
 		honordao.doHonor(honor);
+	}
+	public void update(Honor Hn)
+	{
+		honordao.updategonor(Hn);
 	}
 	
 	

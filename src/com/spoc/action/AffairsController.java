@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.spoc.po.product;
-import cn.spoc.service.productservice;
+import com.spoc.po.product;
+import com.spoc.service.productservice;
 
 import com.spoc.po.Affairs;
 import com.spoc.service.Affair_categoryService;
@@ -43,7 +43,7 @@ public class AffairsController {
 		String name=request.getParameter("name");
 		if(name==null)
 		{
-			name="΢��Ľ��";
+			name="Î¢¿ÎÄ½¿Î";
 		}else{
 		name=new String(name.getBytes("iso8859-1"),"utf-8");
 		}
