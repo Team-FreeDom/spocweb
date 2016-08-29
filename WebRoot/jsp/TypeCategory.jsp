@@ -104,7 +104,7 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent href="../list2.html" target="main">作品管理</a></td>
+											class=menuparent href="products.do" target="main">作品管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>

@@ -26,150 +26,170 @@ $('#myModal').on('shown.bs.modal', function () {
 
 
 <body>
-<div class="container-fluid">
-    <div class="container">
-    
-    	<div class="row bg">
-        	<div class="col-md-2 col-xs-3 text-while">思博课网站管理</div>
-            <div class="col-md-7 col-xs-6 text-while">
-            	<a style="color: #fff" href="" target=main>修改口令</a>
-             &nbsp;&nbsp; 
-             <a style="color: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;" href="../main.htm" target=_top>退出系统</a> 
-            </div>
-            <div class="col-md-3 col-xs-3 bg2"></div>
-        </div>
-        
-        <div class="row">
-        	<div class="col-md-2 col-xs-2">
-            	<table class=" table admin_table_1">
-                    <tr>
-                      <td valign=top align=middle>
-                        <table cellspacing=0 cellpadding=0 width="100%" border=0>
-                          <tr>
-                            <td height=10></td>
-                          </tr>
-                        </table>
-                        
-                        <table class="admin_table">
-                        
-                          <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent onclick=expand(1)  href="javascript:void(0);">成员管理</a></td>
-                         </tr>
-                          <tr height=4>
-                            <td></td>
-                          </tr>
-                       </table>
-                       
-                        <table id=child1 style="display: none" class="text-left admin_table">
-                          <tr height=20>
-                            <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            
-                            <td><a class=menuchild href="admin.html">老师管理</a></td>
-                          </tr>
-                          <tr height=20>
-                            <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="admin.html">学生管理</a></td>
-                          </tr>
-                          <tr height=4>
-                            <td colspan=2></td>
-                          </tr>
-                        </table>
-                        
-                        
-                        <table class="admin_table">
-                          <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent  href="#">荣誉管理</a></td></tr>
-                          <tr height=4>
-                            <td></td>
-                          </tr>
-                        </table>
-                        
-                        <table class="admin_table">
-                          <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent href="work.html">作品管理</a></td>
-                          </tr>
-                          <tr height=4>
-                            <td></td>
-                          </tr>
-                        </table>
-                        
-                        <table class="admin_table">
-                          <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent onclick=expand(4) href="javascript:void(0);">业务管理</a></td>
-                          </tr>
-                          <tr height=4>
-                            <td></td>
-                          </tr>
-                        </table>
-                        <table id=child4 style="display: none"class="text-left admin_table">
-                          <tr height=20>
-                            <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#">业务申请管理</a></td>
-                          </tr>
-                          <tr height=20>
-                            <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#">业务处理管理</a></td>
-                          </tr>
-                          <tr height=20>
-                            <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#">业务类型管理</a></td>
-                          </tr>
-                          <tr height=4>
-                            <td colspan=2></td>
-                          </tr>
-                        </table>
-                        <table class="admin_table">
-                          <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent onclick=expand(5) href="javascript:void(0);">报名管理</a></td>
-                          </tr>
-                          <tr height=4>
-                            <td></td>
-                          </tr>
-                        </table>
-                        <table id=child5 style="display: none"  class="text-left admin_table">
-                          <tr height=20>
-                            <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild href="#">报名申请管理</a></td>
-                          </tr>
-                          <tr height=20>
-                            <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#">报名处理管理</a></td>
-                          </tr>
-                          <tr height=4>
-                            <td colspan=2></td>
-                          </tr>
-                        </table>
-                        
-                        <table class="admin_table">
-                          <tr height=22>
-                            <td style="padding-left: 30px" background=../image/menu_bt.jpg><a class=menuparent onclick=expand(6) href="javascript:void(0);">业务管理</a></td>
-                          </tr>
-                          <tr height=4>
-                            <td></td>
-                          </tr>
-                        </table>
-                        <table id=child6 style="display: none"class="text-left admin_table">
-                          <tr height=20>
-                            <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#">服务类别管理</a></td>
-                          </tr>
-                          <tr height=20>
-                            <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#">类别分类管理</a></td>
-                          </tr>
-                          <tr height=20>
-                            <td width=30><img  src="../image/menu_icon.gif" ></td>
-                            <td><a class=menuchild  href="#">收费标准管理</a></td>
-                          </tr>
-                          <tr height=4>
-                            <td colspan=2></td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>	
-            </div>
-            <div class="col-md-10 col-xs-10">
+	<div class="container-fluid">
+		<div class="container">
+
+			<div class="row bg">
+				<div class="col-md-2 col-xs-3 text-while">思博课网站管理</div>
+				<div class="col-md-7 col-xs-6 text-while">
+					<!-- <a style="color: #fff" href="" target=main>修改口令</a>
+             &nbsp;&nbsp;  -->
+					<a style="color: #fff"
+						onclick="if (confirm('确定要退出吗？')) return true; else return false;"
+						href="exit.do" target=_top>退出系统</a>
+				</div>
+				<div class="col-md-3 col-xs-3 bg2"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-2 col-xs-2">
+					<table class=" table admin_table_1">
+						<tr>
+							<td valign=top align=middle>
+								<table cellspacing=0 cellpadding=0 width="100%" border=0>
+									<tr>
+										<td height=10></td>
+									</tr>
+								</table>
+
+								<table class="admin_table">
+
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent onclick=expand(1) href="javascript:void(0);">成员管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+
+								<table id=child1 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+
+										<td><a class=menuchild href="user.do?flag=1">老师管理</a></td>
+									</tr>
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="user.do?flag=2">学生管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
+
+
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent onclick=expand(2) href="javascript:void(0);">荣誉管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+                             <table id=child2 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="honors.do">荣誉信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent href="products.do">作品管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent onclick=expand(4) href="javascript:void(0);">业务管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+								<table id=child4 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="applyAffair.do?flag=0">业务申请管理</a></td>
+									</tr>
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="applyAffair.do?flag=1">业务处理管理</a></td>
+									</tr>
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="dealAT.do">业务类型管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent onclick=expand(5) href="javascript:void(0);">报名管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+								<table id=child5 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="applys.do">报名申请管理</a></td>
+									</tr>
+								
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent class=menuparent onclick=expand(6)
+											href="javascript:void(0);">收费管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+								<table id=child6 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="service.do">服务类别管理</a></td>
+									</tr>
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="TypeCategory.do">类别分类管理</a></td>
+									</tr>
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="chargeStandard.do">收费标准管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+
+				</div>
+				<div class="col-md-10 col-xs-10">
                      
                         <div class=" row text-right" style="margin-top:10px;">
                         	<div class="col-md-12 col-xs-12">
@@ -290,16 +310,15 @@ $('#myModal').on('shown.bs.modal', function () {
                                                 <h4 class="modal-title" id="myModalLabel">作品详情</h4>
                                               </div>
                                               <div class="modal-body">
-                                             		<video id="example_video_1" class="video-js vjs-default-skin" controls ="none" width="400px" height="200px"
+                                             		<video id="example_video_1" class="video-js vjs-default-skin vjs-big-play-centered" controls ="none" width="400px" height="200px"
                                                       poster="http://video-js.zencoder.com/oceans-clip.png"
-                                                      data-setup="{}">
+                                                      data-setup="{}">                                  
                                                     <source src="${product.pro_path}" type='video/mp4' />                                                   
                                                     <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track>
                                                     <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track>
                                                     </video>
                                               </div>
                                               <div class="modal-body">
-                                              	这是作品的介绍。。。。。。。。。。。。。。。。。。
                                               </div>
                                               <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
