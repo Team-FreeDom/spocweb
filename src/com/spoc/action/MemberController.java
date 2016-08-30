@@ -111,14 +111,17 @@ public class MemberController {
 	@RequestMapping("/deleteMember.do")
 	public String deleteMember(HttpServletRequest request, ModelMap map) {
 		String[] check = request.getParameterValues("student");
-		memberService.deleteMembers(check);
+		String path = request.getSession().getServletContext().getRealPath("");
+		memberService.deleteMembers(check,path);
 		return "forward:user.do?flag=2";
 	}
 
 	@RequestMapping("/deleteMember1.do")
 	public String deleteMember1(HttpServletRequest request, ModelMap map) {
 		String[] check = request.getParameterValues("teacher");
-		memberService.deleteMembers(check);
+		String path = request.getSession().getServletContext().getRealPath("");
+		System.out.println(path);
+		memberService.deleteMembers(check,path);
 		return "forward:user.do?flag=1";
 	}
 	

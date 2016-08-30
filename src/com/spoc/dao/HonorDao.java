@@ -61,12 +61,12 @@ public class HonorDao
 		transaction.commit();
 		}catch (Exception ex) {
 			if (transaction != null) {
-				transaction.rollback();//回滚事务，撤消查询语句
-			}
+				transaction.rollback();//鍥炴粴浜嬪姟锛屾挙娑堟煡璇㈣鍙�		
+				}
 			System.out.println(ex);
 		} finally {
-			session.close();// 关闭会话状态，清空资源
-		}	
+			session.close();// 鍏抽棴浼氳瘽鐘舵�锛屾竻绌鸿祫婧�		
+			}	
 	}
 	
 

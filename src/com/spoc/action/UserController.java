@@ -26,6 +26,7 @@ public class UserController
 	@Autowired
 	private UserService userService;
 	
+	
 	@RequestMapping("/exit.do")
 	public String exit(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -35,7 +36,7 @@ public class UserController
 	}
 	
 	@RequestMapping("/login.do")
-	public ModelAndView handleRequest(HttpServletRequest request,HttpServletResponse response) throws Exception
+	public String handleRequest(HttpServletRequest request,HttpServletResponse response) throws Exception
 	{
 		    String loginid = request.getParameter("loginid");
 			String password = request.getParameter("password");
@@ -46,16 +47,20 @@ public class UserController
 			if(flag1)
 			{				
 				session.setAttribute("user", loginid);
-			    return new ModelAndView("admin");
+			    return "redirect:admin.do";
 			}
 			else
 			{
 				
-				return new ModelAndView("index");
+				return "redirect:affair.do";
 			}
 	}
 	  
-	
+	@RequestMapping("/admin.do")
+	public String admin(HttpServletRequest request,HttpServletResponse response)
+	{		
+		return "admin";
+	}
 	private Member getMember(String loginid, String password)
 	{
 		// TODO Auto-generated method stub
