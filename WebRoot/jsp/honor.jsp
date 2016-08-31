@@ -231,7 +231,9 @@
                       <span> <a class="add" href="#"> <img
 									src="../image/add.gif" width="10" height="10" /> 添加
 							</a> &nbsp; 
-							
+							 <a href="javascript:deleteType()"> <img
+									src="../image/del.gif" width="10" height="10" /> 删除
+							</a> &nbsp;&nbsp;
 							</span>
 						</div>
 					</div>
@@ -250,6 +252,8 @@
 									</tr>
 									<c:forEach items='${honors}' var="honor">
 										<tr>
+                                                                                 <td><label><input type="checkbox" name="deletehonor"
+													value="${honor.hid}" id="type" class="ck"                                                                                                                                           /></label></td>
 										<td>${honor.hid}</td>
 										<td>${honor.time}</td>
 										<td>${honor.img}</td>
@@ -418,6 +422,27 @@
 						var id = this.id + "a";
 						document.getElementById(id).style.display = "none";
 					})
+                                        function check1()
+					{
+						 var checkboxs=document.getElementsByName("deletehonor");
+						 var m=0;
+						 if(checkboxs.length==0)
+							 {
+							 alert("没有要删除的选项！");
+							 }
+						  for(var i=0;i<checkboxs.length;i++)
+							{
+								if(checkboxs[i].checked==false)
+								{
+									m=m+1;
+								}
+							}
+							if(m==i)
+							{
+								alert("请选择您要删除的选项！");
+								return false;
+								}
+					}
 					
 				</script>
 				<script>

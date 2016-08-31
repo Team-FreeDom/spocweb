@@ -104,14 +104,14 @@ public class AffairController {
 				outputStream.write(b, 0, length);
 				inputStream.close();
 				outputStream.close();
-				filename = "../infor/honor/" + filename;
+				filename = "../infor/test/" + filename;
 			   HttpSession session = request.getSession();
 			   session.setAttribute("flag", filename);
-			   return "redirect:upload_ok.jsp";
+			    return "redirect:lianxijsp.do";
 			}
 		   else
 			{
-				return "redirect:upload_error.jsp";
+				 return "redirect:lianxijsp.do";
 			}
 	}
 	

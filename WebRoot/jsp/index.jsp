@@ -145,7 +145,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                            </c:forEach>    
                         </ul>
                         <ul class="row item">
-                        <c:forEach items='${gethonor}' var="gh" begin="2" >
+                        <c:forEach items='${gethonor}' var="gh" begin="0" end="3" >
                           <li class="col-xs-3">
 									<img src="${gh.img}" class="img-responsive img-thumbnail"/>
 						   </li>
@@ -401,7 +401,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title text-center" id="myModalLabel"></h4>
       </div>
-      <form action="login.do" onSubmit="return check()">
+      <form action="login.do" onSubmit="return check()" method="post">
           <div class="modal-body">
                
                       <div class="input-group" style="margin-top:15px;">
