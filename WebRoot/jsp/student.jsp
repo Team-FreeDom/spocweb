@@ -187,6 +187,25 @@
 										<td colspan=2></td>
 									</tr>
 								</table>
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent onclick=expand(7) href="javascript:void(0);">组别管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+								<table id=child7 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="group.do">组别信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 					</table>
@@ -211,9 +230,9 @@
 						<div class="col-md-7 hidden-xs"></div>
 						<div class="col-md-3 col-xs-7">
 							<span> <a class="add" href="#"> <img
-									src="../image/add.gif" width="10" height="10" /> 添加
+							${sysbomlA?"":"hidden" }		src="../image/add.gif" width="10" height="10" /> ${sysbomlA?"添加":"" }
 							</a> &nbsp; <a href="javascript:deleteMember()"> <img
-									src="../image/del.gif" width="10" height="10" /> 删除
+								${sysbomlD?"":"hidden" }	src="../image/del.gif" width="10" height="10" /> ${sysbomlD?"删除":"" }
 							</a> &nbsp;&nbsp;
 
 							</span>
@@ -243,12 +262,12 @@
 											<td>${student.college}</td>
 											<td>${student.grade}</td>
 											<td colspan="2"><a
-												href="detail.do?id=${student.loginid}&flag=2">查看详情</a> <a
+												href="detail.do?id=${student.loginid}&flag=2">${sysbomlC?"查看详情":"" }</a> <a
 												class="edit" id=${student.loginid
 												}
 												style="margin-left:20px;" data-toggle="modal"
 												data-target=".bs-example-modal-lg" href="#"> <img
-													src="../image/edit.gif" width="10" height="10" /> 编辑
+												${sysbomlU?"":"hidden" }	src="../image/edit.gif" width="10" height="10" /> ${sysbomlU?"编辑":"" }
 											</a></td>
 										</tr>
 									</c:forEach>

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.spoc.po.Member;
+
 
 
 @Repository("userDao")
@@ -46,4 +48,19 @@ public class UserDao
 	
 	}
 	
+	public int getAdminId(String loginid)
+	{
+		Session session = sessionFactory.openSession();
+		Member member=null;
+		try{
+	        Query query = session.createQuery("from Member where loginid=?");
+	        query.setString(0, loginid);
+	        member=(Member) query.uniqueResult();
+		}catch (Exception ex) {
+			System.out.println(ex);
+		} finally {
+			session.close();
+		}
+		return member.getAdminid();
+	}
 }

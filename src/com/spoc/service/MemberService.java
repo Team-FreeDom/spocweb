@@ -1,5 +1,6 @@
 package com.spoc.service;
 
+import java.io.File;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -48,14 +49,20 @@ public class MemberService {
 		
 	}
 	
-	public void deleteMembers(String[] str)
+	public void deleteMembers(String[] str,String path)
 	{
 	   Member member=null;
 		for(int i=0;i<str.length;i++)
 		{
 			member=new Member();
-			member.setLoginid(str[i]);
+			member.setLoginid(str[i]);			
 			member_groupDao.deleteMember(str[i]);
+			
+			Member mb=memberDao.getMember(str[i]);
+			String relativePath=mb.getImg();
+			relativePath=relativePath.substring(2);
+			File file=new File(path+relativePath);			
+			file.delete(); 			
 			memberDao.deleteMember(member);	
 			
 		}

@@ -32,6 +32,12 @@ import com.spoc.service.Group_manageService;
 import com.spoc.service.MemberService;
 import com.spoc.service.Member_groupService;
 import com.spoc.service.Member_group_viewService;
+import com.spoc.service.UserService;
+
+/*
+ * teacher页面增，删，改，查的权限值分别为1,2,3,4
+ * student页面增，删，改，查的权限值分别为5,6,7,8
+ */
 
 @Controller("memberController")
 @RequestMapping("/jsp")
@@ -47,20 +53,51 @@ public class MemberController {
 	private Member_group_viewService member_group_viewService;
 	@Autowired
 	private Member_groupService member_groupService;
-
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping("/user.do")
 	public String displayUsers(HttpServletRequest request, ModelMap map) {
 		List<College> colleges = collegeService.getCollege();
 		List<Group_manage> groups = group_manageService.getGroup();		
 		int flag = Integer.parseInt(request.getParameter("flag"));
+		int userValue=(Integer) request.getSession().getAttribute("userAuthority");
+		boolean sysbomlA;
+		boolean sysbomlD;
+		boolean sysbomlU;
+		boolean sysbomlC;
+		
 		if (flag == 2) {
+			
+			sysbomlA=userService.checkAuthority(userValue, 5);
+			 sysbomlD=userService.checkAuthority(userValue, 6);
+			 sysbomlU=userService.checkAuthority(userValue, 7);
+			 sysbomlC=userService.checkAuthority(userValue, 8);
+			 map.addAttribute("sysbomlA", sysbomlA);
+			 map.addAttribute("sysbomlD", sysbomlD);
+			 map.addAttribute("sysbomlU", sysbomlU);
+			 map.addAttribute("sysbomlC", sysbomlC);
+			
+			 System.out.println(userValue+""+sysbomlA+""+sysbomlD+sysbomlU+sysbomlC);
 			map.addAttribute("students", memberService.getStudents());
 			map.addAttribute("colleges", colleges);
 			map.addAttribute("groups", groups);
 			map.addAttribute("membergroups",
 					member_group_viewService.getMemberGroups());
+			
+			
 			return "student";
 		} else {
+			
+			 sysbomlA=userService.checkAuthority(userValue, 1);
+			 sysbomlD=userService.checkAuthority(userValue, 2);
+			 sysbomlU=userService.checkAuthority(userValue, 3);
+			 sysbomlC=userService.checkAuthority(userValue, 4);
+			 map.addAttribute("sysbomlA", sysbomlA);
+			 map.addAttribute("sysbomlD", sysbomlD);
+			 map.addAttribute("sysbomlU", sysbomlU);
+			 map.addAttribute("sysbomlC", sysbomlC);
+			 
 			map.addAttribute("teachers", memberService.getTeachers());
 			map.addAttribute("colleges", colleges);			
 			return "teacher";
@@ -111,14 +148,17 @@ public class MemberController {
 	@RequestMapping("/deleteMember.do")
 	public String deleteMember(HttpServletRequest request, ModelMap map) {
 		String[] check = request.getParameterValues("student");
-		memberService.deleteMembers(check);
+		String path = request.getSession().getServletContext().getRealPath("");
+		memberService.deleteMembers(check,path);
 		return "forward:user.do?flag=2";
 	}
 
 	@RequestMapping("/deleteMember1.do")
 	public String deleteMember1(HttpServletRequest request, ModelMap map) {
 		String[] check = request.getParameterValues("teacher");
-		memberService.deleteMembers(check);
+		String path = request.getSession().getServletContext().getRealPath("");
+		System.out.println(path);
+		memberService.deleteMembers(check,path);
 		return "forward:user.do?flag=1";
 	}
 	
