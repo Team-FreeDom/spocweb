@@ -188,28 +188,29 @@
 										<td colspan=2></td>
 									</tr>
 								</table>
+								<table class="admin_table">
+						<tr height=22>
+							<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+								class=menuparent onclick=expand(7) href="javascript:void(0);">组别管理</a></td>
+						</tr>
+						<tr height=4>
+							<td></td>
+						</tr>
+					</table>
+					<table id=child7 style="display: none"
+						class="text-left admin_table">
+						<tr height=20>
+							<td width=30><img src="../image/menu_icon.gif"></td>
+							<td><a class=menuchild href="group.do">组别信息管理</a></td>
+						</tr>
+						<tr height=4>
+							<td colspan=2></td>
+						</tr>
+					</table>
 							</td>
 						</tr>
 					</table>
-					<table class="admin_table">
-									<tr height=22>
-										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent onclick=expand(7) href="javascript:void(0);">组别管理</a></td>
-									</tr>
-									<tr height=4>
-										<td></td>
-									</tr>
-								</table>
-								<table id=child7 style="display: none"
-									class="text-left admin_table">
-									<tr height=20>
-										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="group.do">组别信息管理</a></td>
-									</tr>
-									<tr height=4>
-										<td colspan=2></td>
-									</tr>
-								</table>
+					
 				</div>
 				<div class="col-md-10 col-xs-10">
 
@@ -231,9 +232,11 @@
 						<div class="col-md-7 hidden-xs"></div>
 						<div class="col-md-3 col-xs-7">
 							<span> <a class="add" href="#"> <img
-									src="../image/add.gif" width="10" height="10" /> 添加
+									${sysbomlA?"":"hidden" } src="../image/add.gif" width="10"
+									height="10" /> ${sysbomlA?"添加":"" }
 							</a> &nbsp; <a href="javascript:deleteMember()"> <img
-									src="../image/del.gif" width="10" height="10" /> 删除
+									${sysbomlD?"":"hidden" } src="../image/del.gif" width="10"
+									height="10" /> ${sysbomlD?"删除":"" }
 							</a> &nbsp;&nbsp;
 
 							</span>
@@ -263,11 +266,11 @@
 											<td>${teacher.college}</td>
 											<td>${teacher.phone}</td>
 											<td colspan="2"><a
-												href="detail.do?id=${teacher.loginid}&flag=1">查看详情</a> <a
+												href="detail.do?id=${teacher.loginid}&flag=1">${sysbomlC?"查看详情":"" }</a> <a
 												class="edit" id="${teacher.loginid}"
 												style="margin-left:20px;" data-toggle="modal"
 												data-target=".bs-example-modal-lg" href="#"> <img
-													src="../image/edit.gif" width="10" height="10" /> 编辑
+												${sysbomlU?"":"hidden" }	src="../image/edit.gif" width="10" height="10" /> ${sysbomlU?"编辑":"" }
 											</a></td>
 										</tr>
 									</c:forEach>
@@ -374,8 +377,7 @@
 										<td>照片<span class="symbol">*</span></td>
 										<td><img id="imgPre" src="" width="100px" height="120px"
 											style="display: block;" /> <input type="file" name="imgOne"
-											 class="empty" id="file"
-											onchange="preImg(this.id,'imgPre');" /></td>
+											class="empty" id="file" onchange="preImg(this.id,'imgPre');" /></td>
 									</tr>
 
 								</table>
@@ -397,9 +399,9 @@
 						<div class="modal-content text-center admin_hide"
 							id="${teacher.loginid}ta">
 							<div class="modal-header">
-								<a type="button" class="close" data-dismiss="modal" href="user.do?flag=1"
-									id="${teacher.loginid}t">
-									<span aria-hidden="true">&times;</span>
+								<a type="button" class="close" data-dismiss="modal"
+									href="user.do?flag=1" id="${teacher.loginid}t"> <span
+									aria-hidden="true">&times;</span>
 								</a>
 								<h4 class="modal-title" id="myModalLabel">编辑老师信息</h4>
 							</div>
@@ -409,16 +411,17 @@
 								<div class="container table-responsive">
 									<table>
 										<tr style="padding-top:20px;">
-										   
+
 											<td style="width:80px;text-align:center;line-height:100px;"><label
 												for="exampleInputName2">登录名</label></td>
 											<td style="text-align:left;"><input type="text"
 												onChange="checkLoginid2(this)" value="${teacher.loginid}"
-												name="loginid"  id="myForm${teacher.loginid}loginid2"></td>
+												name="loginid" id="myForm${teacher.loginid}loginid2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">密码</label></td>
-											<td style="text-align:left;"><input type="text" onChange="checkPassword(this)"
-												value="${teacher.password}" name="pwd" class="form-control"
+											<td style="text-align:left;"><input type="text"
+												onChange="checkPassword(this)" value="${teacher.password}"
+												name="pwd" class="form-control"
 												id="myForm${teacher.loginid}password2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">管理员</label></td>
@@ -432,8 +435,9 @@
 										<tr style="margin-top:20px;">
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">姓名</label></td>
-											<td style="text-align:left;"><input type="text" onChange="checkName(this)"
-												value="${teacher.name}" name="name" class="form-control"
+											<td style="text-align:left;"><input type="text"
+												onChange="checkName(this)" value="${teacher.name}"
+												name="name" class="form-control"
 												id="myForm${teacher.loginid}name2"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">性别</label></td>
@@ -444,15 +448,17 @@
 												for="q2_2">女</label></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">出生日期</label></td>
-											<td style="text-align:left;"><input type="text" onChange="checkBirthdate(this)"
-												value="${teacher.date}" name="birth_date"
-												class="form-control" id="myForm${teacher.loginid}birth_date2"></td>
+											<td style="text-align:left;"><input type="text"
+												onChange="checkBirthdate(this)" value="${teacher.date}"
+												name="birth_date" class="form-control"
+												id="myForm${teacher.loginid}birth_date2"></td>
 										</tr>
 
 										<tr>
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">学院</label></td>
-											<td style="text-align:left;"><select name="college" onChange="checkCollege(this)"
+											<td style="text-align:left;"><select name="college"
+												onChange="checkCollege(this)"
 												id="myForm${teacher.loginid}college2" style="width:195px;">
 													<option value="-1">请选择</option>
 													<c:forEach items='${colleges}' var="college">
@@ -462,13 +468,15 @@
 											</select></td>
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">QQ</label></td>
-											<td style="text-align:left;"><input type="text" id="myForm${teacher.loginid}qq2" onChange="checkQq(this)"
+											<td style="text-align:left;"><input type="text"
+												id="myForm${teacher.loginid}qq2" onChange="checkQq(this)"
 												name="qq" value="${teacher.qq }" class="form-control"></td>
 											<td style="width:80px;text-align:center;margin-left:30px;"><label
 												for="exampleInputName2">电话</label></td>
-											<td style="text-align:left;"><input type="text" onChange="checkPhone(this)"
-												id="myForm${teacher.loginid}phone2" value="${teacher.phone }" name="phone"
-												class="form-control"></td>
+											<td style="text-align:left;"><input type="text"
+												onChange="checkPhone(this)"
+												id="myForm${teacher.loginid}phone2"
+												value="${teacher.phone }" name="phone" class="form-control"></td>
 										</tr>
 
 
@@ -476,8 +484,9 @@
 										<tr>
 											<td style="width:80px;text-align:center;line-height:100px;"><label
 												for="exampleInputName2">地址</label></td>
-											<td colspan="5"><textarea type="text" onChange="checkAddress(this)"
-													class="form-control" name="address" id="myForm${teacher.loginid}address2"
+											<td colspan="5"><textarea type="text"
+													onChange="checkAddress(this)" class="form-control"
+													name="address" id="myForm${teacher.loginid}address2"
 													style="width:650px;"> ${teacher.address }</textarea></td>
 										</tr>
 
@@ -490,9 +499,13 @@
 											<td>照片</td>
 											<td><img src="${teacher.img}" id="imgPre" width="100px"
 												height="120px" style="display: block;" /> <input
-												type="file" name="imgOne" id="myForm${teacher.loginid}imgOne" onChange="checkFile(this)"
+												type="file" name="imgOne"
+												id="myForm${teacher.loginid}imgOne"
+												onChange="checkFile(this)"
 												onchange="preImg(this.id,'imgPre');" /></td>
-												 <td><input type="text" name="hide" id="myForm${teacher.loginid}loginid2hide" value="${teacher.loginid}" hidden="hidden"></td>
+											<td><input type="text" name="hide"
+												id="myForm${teacher.loginid}loginid2hide"
+												value="${teacher.loginid}" hidden="hidden"></td>
 										</tr>
 
 									</table>
@@ -543,9 +556,9 @@
 						$(id).submit();
 					})
 					$(".close").bind("click", function() {
-						 var id = this.id + "a";
-						document.getElementById(id).style.display = "none"; 
-						
+						var id = this.id + "a";
+						document.getElementById(id).style.display = "none";
+
 					})
 					function checkName(obj) {
 						var name = document.getElementById(obj.id).value;
@@ -588,7 +601,7 @@
 								alert("error");
 							},
 							success : function(data) {
-								if (data[0].flag) {									
+								if (data[0].flag) {
 									alert("该登录名已存在！");
 									return false;
 								}
@@ -599,7 +612,7 @@
 					function checkLoginid2(obj) {
 
 						var loginid = document.getElementById(obj.id).value;
-						var hide = document.getElementById(obj.id+"hide").value;						
+						var hide = document.getElementById(obj.id + "hide").value;
 						var dateFormatL = /^[0-9]{12}$/;
 						if (loginid == "") {
 							alert("登录名不能为空！");
@@ -625,11 +638,10 @@
 							},
 							success : function(data) {
 								if (data[0].flag) {
-									if(loginid!=hide)
-										{
-									alert("该登录名已存在！");
-									return false;
-										}
+									if (loginid != hide) {
+										alert("该登录名已存在！");
+										return false;
+									}
 								}
 
 							}
@@ -710,7 +722,7 @@
 					function check() {
 						var name = document.getElementById("name").value;//通过id获取相应input输入框的值
 						var college = document.getElementById("college").value;
-						var loginid = document.getElementById("loginid").value;						
+						var loginid = document.getElementById("loginid").value;
 						var password = document.getElementById("password").value;
 						var birth_date = document.getElementById("birth_date").value;
 						/**/
@@ -724,7 +736,7 @@
 						var address = document.getElementById("address").value;
 
 						var file = document.getElementById("file").value;
-                        var returnValue=true;
+						var returnValue = true;
 						if (loginid == "") {
 							alert("登录名不能为空！");
 							return false;
@@ -734,7 +746,7 @@
 								return false;
 							}
 						}
-						
+
 						$.ajax({
 
 							type : 'POST',
@@ -750,9 +762,9 @@
 							},
 							success : function(data) {
 								if (data[0].flag) {
-									
+
 									alert("该登录名已存在！");
-									returnValue=false;	
+									returnValue = false;
 								}
 
 							}
@@ -828,22 +840,28 @@
 
 					function check2(obj) {
 
-						var name = document.getElementById(obj.id+"name2").value;//通过id获取相应input输入框的值
-						var college = document.getElementById(obj.id+"college2").value;
-						var loginid = document.getElementById(obj.id+"loginid2").value;
-						var hide = document.getElementById(obj.id+"loginid2hide").value;	
-						var password = document.getElementById(obj.id+"password2").value;
-						var birth_date = document.getElementById(obj.id+"birth_date2").value;
+						var name = document.getElementById(obj.id + "name2").value;//通过id获取相应input输入框的值
+						var college = document.getElementById(obj.id
+								+ "college2").value;
+						var loginid = document.getElementById(obj.id
+								+ "loginid2").value;
+						var hide = document.getElementById(obj.id
+								+ "loginid2hide").value;
+						var password = document.getElementById(obj.id
+								+ "password2").value;
+						var birth_date = document.getElementById(obj.id
+								+ "birth_date2").value;
 						/**/
 						var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
 						var dateFormatL = /^[0-9]{12}$/;
 						var dateFormatP = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,19}$/;
 						var dateFormatQ = /^[1-9]{1}[0-9]{4,10}$/;
 						var dateFormatPh = /^1[0-9]{10}$/;
-						var qq = document.getElementById(obj.id+"qq2").value;
-						var phone = document.getElementById(obj.id+"phone2").value;
-						var address = document.getElementById(obj.id+"address2").value;
-                        var returnValue=true;
+						var qq = document.getElementById(obj.id + "qq2").value;
+						var phone = document.getElementById(obj.id + "phone2").value;
+						var address = document.getElementById(obj.id
+								+ "address2").value;
+						var returnValue = true;
 						if (loginid == "") {
 							alert("登录名不能为空！");
 							return false;
@@ -853,7 +871,7 @@
 								return false;
 							}
 						}
-						
+
 						$.ajax({
 
 							type : 'POST',
@@ -869,16 +887,15 @@
 							},
 							success : function(data) {
 								if (data[0].flag) {
-									if(loginid!=hide)
-										{
-									alert("该登录名已存在！");
-									returnValue=false;
-										}
+									if (loginid != hide) {
+										alert("该登录名已存在！");
+										returnValue = false;
+									}
 								}
 
 							}
 						});
-							
+
 						if (password == "") {
 							alert("密码不能为空！");
 							return false;

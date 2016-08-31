@@ -47,7 +47,9 @@ public class UserController
 			if(flag1)
 			{				
 				session.setAttribute("user", loginid);
-			    return "redirect:admin.do";
+				session.setAttribute("userAuthority", userService.getAuthority(loginid));
+				System.out.println(userService.getAuthority(loginid));
+			    return "admin";
 			}
 			else
 			{
@@ -56,11 +58,7 @@ public class UserController
 			}
 	}
 	  
-	@RequestMapping("/admin.do")
-	public String admin(HttpServletRequest request,HttpServletResponse response)
-	{		
-		return "admin";
-	}
+	
 	private Member getMember(String loginid, String password)
 	{
 		// TODO Auto-generated method stub
