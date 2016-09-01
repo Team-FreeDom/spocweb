@@ -239,7 +239,7 @@
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="honorS.do" method="post" name="myform"
+							<form action="deleteHonor.do" method="post" name="myform"
 								id="myform" onSubmit="return check1()">
 								<table class="table" id="tabBox">
 									<tr>
@@ -387,7 +387,7 @@
 				
 					<!--edit-section-end -->
 				<script type="text/javascript">
-					function deleteMember() {
+					function deleteType() {
 
 						$('#myform').submit();
 
