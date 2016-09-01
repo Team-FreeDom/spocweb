@@ -34,6 +34,7 @@ import com.spoc.po.Apply;
 import com.spoc.service.AffairService;
 import com.spoc.service.Affair_categoryService;
 import com.spoc.service.ApplyService;
+import com.spoc.service.UserService;
 
 @Controller("affairController")
 @RequestMapping("/jsp")
@@ -45,6 +46,9 @@ public class AffairController {
 	private ApplyService applyService;
 	@Autowired
 	private AffairService affairService;
+	@Autowired
+	private UserService userService;
+	
 	private ServletContext servletContext;
 	@RequestMapping("/lianxi.do")
 	public String userAffair(HttpServletRequest request,HttpServletResponse response) throws Exception
@@ -189,11 +193,23 @@ public class AffairController {
 	@RequestMapping("/applyAffair.do")
 	public String applyAffair(HttpServletRequest request, ModelMap map)
 	{
+		/*
+		 * applyAffair.jsp页面的查看详情，审阅完成的权限值分别为9,10
+		 *
+		 * */
 		List<Affair> list=affairService.getAffairs();
 		int flag=Integer.valueOf(request.getParameter("flag"));
 		map.addAttribute("affairs", list);
+		int userValue=(Integer) request.getSession().getAttribute("userAuthority");
+		boolean sysbomlC;
+		boolean sysbomlR;
+		
 		if(flag==0)
 		{
+			sysbomlC=userService.checkAuthority(userValue, 9);
+			sysbomlR=userService.checkAuthority(userValue, 10);
+			 map.addAttribute("sysbomlR", sysbomlR);
+			 map.addAttribute("sysbomlC", sysbomlC);
 		return "applyAffair";
 		}else
 		{

@@ -581,12 +581,7 @@
 						if (loginid == "") {
 							alert("登录名不能为空！");
 							return false;
-						} else {
-							if (!dateFormatL.exec(loginid)) {
-								alert("登录名应为12位的数字!");
-								return false;
-							}
-						}
+						} 
 						$.ajax({
 
 							type : 'POST',
@@ -617,12 +612,7 @@
 						if (loginid == "") {
 							alert("登录名不能为空！");
 							return false;
-						} else {
-							if (!dateFormatL.exec(loginid)) {
-								alert("登录名应为12位的数字!");
-								return false;
-							}
-						}
+						} 
 						$.ajax({
 
 							type : 'POST',
@@ -740,12 +730,7 @@
 						if (loginid == "") {
 							alert("登录名不能为空！");
 							return false;
-						} else {
-							if (!dateFormatL.exec(loginid)) {
-								alert("登录名应为12位的数字!");
-								return false;
-							}
-						}
+						} 
 
 						$.ajax({
 
@@ -865,11 +850,6 @@
 						if (loginid == "") {
 							alert("登录名不能为空！");
 							return false;
-						} else {
-							if (!dateFormatL.exec(loginid)) {
-								alert("登录名应为12位的数字!");
-								return false;
-							}
 						}
 
 						$.ajax({
