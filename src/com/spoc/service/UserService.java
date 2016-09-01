@@ -26,6 +26,12 @@ public class UserService
 		return flag;
 	}
 	
+	public boolean findAdmin(String loginid,String password)
+	{
+		boolean flag=userDao.findAdmin(loginid,password);	
+		return flag;
+	}
+	
 	public boolean checkAuthority(int userValue,int functionValue)
 	{
 		functionValue=(int)Math.pow(2, functionValue);

@@ -365,7 +365,7 @@
 									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
 											for="exampleInputName2">组别<span class="symbol">*</span></label></td>
-										<td clospan="5"><c:forEach items='${groups}' var="group">
+										<td colspan="5"><c:forEach items='${groups}' var="group">
 												<label class="checkbox-inline"> <input
 													value="${group.gid}" type="checkbox" name="groupOne"
 													id="groupOne" value="option1" /> <label>${group.name}
@@ -520,7 +520,7 @@
 										<tr>
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">组别</label></td>
-											<td clospan="5">
+											<td colspan="5" align="left">
 											 <c:forEach items='${groups}'	var="group">
 											   <label class="checkbox-inline"> 
 											     <input	value="${group.gid}" type="checkbox" name="myForm${student.loginid}groupOne2" 

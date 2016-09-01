@@ -242,7 +242,7 @@
 												<td>${affair.aff_id}</td>
 												<td>${affair.type}</td>
 
-												<td>${affair.loginid}</td>
+												<td>${affair.dealname}</td>
 												<td colspan="2"><a href="#" class="display"
 													id="${affair.aff_id}">查看详情</a></td>
 											</tr>
@@ -295,15 +295,18 @@
 											<td style="width:80px;text-align:center;line-height:100px;">
 												<label for="exampleInputName2">附件地址</label>
 											</td>
-											<td><input type="text" name="typeName"
-												class="form-control" id="exampleInputName2"
+											<td colspan="5"><input type="text" name="typeName"
+											class="form-control" id="exampleInputName2"
 												value="${affair.doc}" /></td>
+												
+										</tr>	
+										<tr>	
 											<td style="width:80px;text-align:center;margin-left:100px;">
 												<label for="exampleInputName2">处理人</label>
 											</td>
-											<td style="text-align:left;"><input type="text"
+											<td colspan="2" style="text-align:left;"><input type="text"
 												name="typeName" class="form-control" id="exampleInputName2"
-												value="${affair.loginid}"></td>
+												value="${affair.dealname}"></td>
 										</tr>
 
 										</tr>

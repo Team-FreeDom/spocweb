@@ -31,9 +31,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spoc.po.Affair;
 import com.spoc.po.Affair_category;
 import com.spoc.po.Apply;
+import com.spoc.po.Member;
 import com.spoc.service.AffairService;
 import com.spoc.service.Affair_categoryService;
 import com.spoc.service.ApplyService;
+import com.spoc.service.MemberService;
 import com.spoc.service.UserService;
 
 @Controller("affairController")
@@ -48,6 +50,8 @@ public class AffairController {
 	private AffairService affairService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private MemberService memberService;
 	
 	private ServletContext servletContext;
 	@RequestMapping("/lianxi.do")
@@ -225,7 +229,8 @@ public class AffairController {
 		//session.setAttribute("user", "ffff");//�������û���¼�������ڴ�session����
 		int aff_id=Integer.valueOf(request.getParameter("aff_id"));
 		String loginid=(String) session.getAttribute("user");
-		affairService.updateAffair(aff_id, loginid);
+		String dealname=memberService.getUniqueMember(loginid).getName();
+		affairService.updateAffair(aff_id, dealname);
 		return "forward:applyAffair.do?flag=0";
 	}
 	
