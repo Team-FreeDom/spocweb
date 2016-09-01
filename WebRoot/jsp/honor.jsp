@@ -284,7 +284,7 @@
 							<h4 class="modal-title" id="myModalLabel">添加荣誉表</h4>
 						</div>
 						<form action="addhonor.do" method="post" enctype="multipart/form-data"
-							name="myForm2" id="myForm2">
+							name="myForm2" id="myForm2" onSubmit="return  honor()" >
 							<div class="container table-responsive">
 								<table>
 									<tr style="padding-top:20px;">
@@ -335,7 +335,7 @@
 							</div>
 							<form action="updateHonor.do" method="post"
 								enctype="multipart/form-data" name="myForm2" 
-								id="myForm${honor.hid}">
+								id="myForm${honor.hid}" >
 								<div class="container table-responsive">
 									<table>
 										<tr style="padding-top:20px;">
@@ -366,13 +366,13 @@
 												hidden="hidden" />
 											</td>
 										</tr>	
-											<center>
+											
 										<tr>
 											<td style="text-align:right;">照片</td>
 											<td rowspan="3"><img src="${honor.img}" id="${honor.hid}" width="450px"
-												height="300px" style="display: block;" /> </td>
+												height="300px" style="display: block;"  /> </td>
 										</tr>
-								       </center>
+								      
 									</table>
 								</div>
 							</form>
@@ -387,11 +387,16 @@
 				
 					<!--edit-section-end -->
 				<script type="text/javascript">
-					function deleteType() {
+				function deleteType() {
 
-						$('#myform').submit();
+					$('#myform').submit();
 
-					}
+				}
+				function deleteMember() {
+
+					$('#myform').submit();
+
+				}
 					$(".edit").bind("click", function() {
 						var id = this.id + "ta";
 						document.getElementById(id).style.display = "block";
@@ -407,11 +412,13 @@
 					function fun(obj) {
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
-						$("input").val("");
+						
+						$("#addMember .empty").val("");
 					}
 
 					function add() {
 						$('#myForm2').submit();
+						
 
 					}
 					$(".update").bind("click", function() {
@@ -443,6 +450,22 @@
 								return false;
 								}
 							return true;
+					}
+					function honor()
+					{
+						var img=document.getElementById("imgOne").value;
+						var time=document.getElementById("exampleInputName2").value;
+						if(time=="")
+						{
+							alert("请填写获奖时间");
+							return false;
+						}
+						if(img=="")
+							{
+							alert("请上传证书");
+							return false;
+							}
+						return true;
 					}
 					
 				</script>
