@@ -282,15 +282,17 @@
 										<td style="width:80px;text-align:center;line-height:100px;">
 											<label for="exampleInputName2">小组名称</label>
 										</td>
-										<td style="text-align:left;width:60px;"><input type="text"
+										<td style="text-align:left;"><input type="text"
 										 name="name" class="form-control empty" id="name">
-										</td>										
+										</td>
+										<td width="150px"></td>
+										<td width="150px"></td>										
                                      </tr>
                                      <tr style="padding-top:20px;">
 										<td style="width:80px;text-align:center;line-height:100px;">
 											<label for="exampleInputName2">小组描述</label>
 										</td>
-										<td style="text-align:left;">
+										<td style="text-align:left;" colspan="3">
 										<textarea type="text" class="form-control empty"
 													name="description" id="description"
 													style="width:650px;height:120px;"> </textarea>
@@ -333,18 +335,20 @@
 												<label for="exampleInputName2">小组名称</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
-												name="name" class="form-control"
+												name="name"  class="form-control"
 												id="myForm${group.gid}typeName2"
 												value="${group.name}"></td>
+											<td width="150px"></td>
+											<td width="150px"></td>
 											</tr>
 											<tr style="padding-top:20px;">
 										<td style="width:80px;text-align:center;line-height:100px;">
 											<label for="exampleInputName2">小组描述</label>
 										</td>
-										<td style="text-align:left;">
+										<td style="text-align:left;" colspan="3">
 										<textarea type="text" class="form-control"
 													name="description" 
-													style="width:650px;height:120px;">${group.description } </textarea>
+													style="height:120px;">${group.description } </textarea>
 													</td>
 									</tr>
 										<tr>
