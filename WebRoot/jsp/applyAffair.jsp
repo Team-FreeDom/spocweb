@@ -236,10 +236,11 @@
 												<td>${affair.name}</td>
 												<td>${affair.phone}</td>
 												<td colspan="2"><a href="#" class="display"
-													id="${affair.aff_id}">查看详情</a> <a style="margin-left:20px;"
+													id="${affair.aff_id}">${sysbomlC?"查看详情":"" }</a> <a style="margin-left:20px;"
 													data-toggle="modal" data-target=".bs-example-modal-lg"
 													href="#">
-														<button type="button" class="btn btn-primary read"
+														<button type="button" class="btn btn-primary read" 
+														  ${sysbomlR?"":"style='display:none'"}
 															data-dismiss="modal">审阅完成</button>
 												</a></td>
 												<td><input type="text" name="aff_id" hidden="hidden"

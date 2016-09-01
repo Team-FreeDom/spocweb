@@ -442,6 +442,7 @@
 								alert("请选择您要删除的选项！");
 								return false;
 								}
+							return true;
 					}
 					
 				</script>

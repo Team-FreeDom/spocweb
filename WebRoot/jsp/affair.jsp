@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
       <div class="modal-body">
             <div class="htmleaf-container">
-                <form action="upload.do" method="post" enctype="multipart/form-data" onSubmit="return checkU(this.value)">
+                <form action="upload.do" method="post" enctype="multipart/form-data" onSubmit="return checkU()">
                     <div class="form-group">
                         <input id="file-4" type="file" class="file"  name="imgOne">
                        <!--<input type="submit" value="上传">-->
