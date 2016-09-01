@@ -242,7 +242,7 @@
 												<td>${affair.aff_id}</td>
 												<td>${affair.type}</td>
 
-												<td>${affair.loginid}</td>
+												<td>${affair.dealname}</td>
 												<td colspan="2"><a href="#" class="display"
 													id="${affair.aff_id}">查看详情</a></td>
 											</tr>
@@ -306,7 +306,7 @@
 											</td>
 											<td colspan="2" style="text-align:left;"><input type="text"
 												name="typeName" class="form-control" id="exampleInputName2"
-												value="${affair.loginid}"></td>
+												value="${affair.dealname}"></td>
 										</tr>
 
 										</tr>

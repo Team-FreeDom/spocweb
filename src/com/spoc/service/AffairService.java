@@ -26,9 +26,9 @@ public class AffairService {
 		return affairDao.getAffairs();
 	}
 	
-	public void updateAffair(int aff_id,String loginid)
+	public void updateAffair(int aff_id,String dealname)
 	{
-		affairDao.updateAffair(aff_id, loginid);
+		affairDao.updateAffair(aff_id, dealname);
 	}
 	
 	public void deleteAffair(String[] str)

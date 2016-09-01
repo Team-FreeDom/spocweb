@@ -21,7 +21,7 @@ public class Affair {
 	 private String content;
 	 private int flag;
 	 private String doc;
-	 private String loginid;
+	 private String dealname;
 	 private String type;
 	public int getAff_id() {
 		return aff_id;
@@ -56,15 +56,16 @@ public class Affair {
 	public String getDoc() {
 		return doc;
 	}
+	public String getDealname() {
+		return dealname;
+	}
+	public void setDealname(String dealname) {
+		this.dealname = dealname;
+	}
 	public void setDoc(String doc) {
 		this.doc = doc;
 	}
-	public String getLoginid() {
-		return loginid;
-	}
-	public void setLoginid(String loginid) {
-		this.loginid = loginid;
-	}
+	
 	public String getType() {
 		return type;
 	}
@@ -72,14 +73,14 @@ public class Affair {
 		this.type = type;
 	}
 	public Affair(String name, String phone, String content, int flag,
-			String doc, String loginid, String type) {
+			String doc, String dealname, String type) {
 		super();
 		this.name = name;
 		this.phone = phone;
 		this.content = content;
 		this.flag = flag;
 		this.doc = doc;
-		this.loginid = loginid;
+		this.dealname = dealname;
 		this.type = type;
 	}
 	public Affair() {

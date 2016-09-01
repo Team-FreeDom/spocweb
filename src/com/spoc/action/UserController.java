@@ -41,14 +41,14 @@ public class UserController
 		    String loginid = request.getParameter("loginid");
 			String password = request.getParameter("password");
 			System.out.println(loginid+password);
-			boolean flag1=userService.find(loginid, password);
+			boolean flag1=userService.findAdmin(loginid, password);
 			HttpSession session=request.getSession();
 			Member member=new Member();
 			if(flag1)
 			{				
 				session.setAttribute("user", loginid);
 				session.setAttribute("userAuthority", userService.getAuthority(loginid));
-				System.out.println(userService.getAuthority(loginid));
+				
 			    return "admin";
 			}
 			else
