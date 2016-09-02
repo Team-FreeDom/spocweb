@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li data-menuanchor="secondPage"><a href="#secondPage">团队荣誉</a></li>
             <li data-menuanchor="3rdPage"><a href="#3rdPage">作品展示</a></li>
             <li data-menuanchor="4thpage"><a href="#4thpage">业务范围</a></li>
-            <li data-menuanchor="lastPage"><a href="#lastPage">联系我们</a></li>
+            <li data-menuanchor="lastPage"><a href="#lastPage">团队成员</a></li>
             <li><a href="#" data-toggle="modal" data-target="#myModal1">管理入口</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -145,7 +145,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                            </c:forEach>    
                         </ul>
                         <ul class="row item">
-                        <c:forEach items='${gethonor}' var="gh" begin="2" >
+                        <c:forEach items='${gethonor}' var="gh" begin="0" end="3" >
                           <li class="col-xs-3">
 									<img src="${gh.img}" class="img-responsive img-thumbnail"/>
 						   </li>
@@ -162,7 +162,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          	
          	<ul class="row">
                 <li class="col-xs-2 col-md-2">
-                    <a  href="#" data-toggle="tooltip" title="漩涡鸣人！日本漫画家岸本齐史作品《火影忍者》中男主角。因为身上封印着邪恶的九尾妖狐，无父无母的他受尽了村人的冷眼与歧视，他下定决心要成为第六代火影，让所有人都认同他的存在">
+                    <a  href="#" data-toggle="tooltip" 
+                     <c:forEach items='${groups}' var="group">
+                      <c:if test="${group.name=='摄影组' }">
+                       title="${group.description}"
+                        </c:if>
+                    </c:forEach> 
+                    >
                         <div><img alt="" src="../image/images/wangye_03.gif" class="img-responsive img-thumbnail"></div>
                         <div>
                             <span style="font-size:2.5vw">摄影组</span>
@@ -170,7 +176,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </a>
                 </li>
                 <li class="col-xs-2 col-md-2">
-                    <a href="#" data-toggle="tooltip" title="蒙奇·D·路飞 是日本人气动漫 《海贼王》中的主人公。是日本人气动漫 《海贼王》中的主人公。草帽海贼团船长，梦想是找到传说中的宝藏 —— ONE PIECE，成为海贼王。">
+                    <a href="#" data-toggle="tooltip" 
+                      <c:forEach items='${groups}' var="group">
+                      <c:if test="${group.name=='平面组' }">
+                       title="${group.description}"
+                        </c:if>
+                    </c:forEach> 
+                    >
                         <div>
                             <img alt="" src="../image/images/wangye_05.gif" class="img-responsive img-thumbnail">
                         </div>
@@ -180,7 +192,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </a>
                 </li>
                 <li class="col-xs-2 col-md-2">
-                    <a href="#" data-toggle="tooltip" title="日向雏田！ 日本漫画家岸本齐史作品《火影忍者》中的3号女主角。木叶忍者村的女忍者，木叶名门日向一族宗家族长的长女。喜欢漩涡鸣人，原本是个性格柔弱的女孩，但是在鸣人的影响下逐渐变得坚强，并逐渐成长为一名优秀的忍者。在">
+                    <a href="#" data-toggle="tooltip" 
+                    <c:forEach items='${groups}' var="group">
+                      <c:if test="${group.name=='动画组' }">
+                       title="${group.description}"
+                        </c:if>
+                    </c:forEach>                    
+                    >                    
                         <div><img alt="" src="../image/images/wangye_07.gif" class="img-responsive img-thumbnail"></div>
                         <div>
                             <span style="font-size:2.5vw">动画组</span>
@@ -188,7 +206,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </a>
                 </li>
                 <li class="col-xs-2 col-md-2">
-                    <a href="#" data-toggle="tooltip" title="漩涡鸣人！日本漫画家岸本齐史作品《火影忍者》中男主角。因为身上封印着邪恶的九尾妖狐，无父无母的他受尽了村人的冷眼与歧视，他下定决心要成为第六代火影，让所有人都认同他的存在">
+                    <a href="#" data-toggle="tooltip" 
+                    <c:forEach items='${groups}' var="group">
+                      <c:if test="${group.name=='视频组' }">
+                       title="${group.description}"
+                        </c:if>
+                    </c:forEach> 
+                    >
                         <div>
                             <img alt="" src="../image/images/wangye_09.gif" class="img-responsive img-thumbnail">
                         </div>
@@ -198,7 +222,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </a>
                 </li>
                 <li class="col-xs-2 col-md-2">
-                    <a href="#" data-toggle="tooltip" title="漩涡鸣人！日本漫画家岸本齐史作品《火影忍者》中男主角。因为身上封印着邪恶的九尾妖狐，无父无母的他受尽了村人的冷眼与歧视，他下定决心要成为第六代火影，让所有人都认同他的存在">
+                    <a href="#" data-toggle="tooltip" 
+                      <c:forEach items='${groups}' var="group">
+                      <c:if test="${group.name=='程序组' }">
+                       title="${group.description}"
+                        </c:if>
+                    </c:forEach> 
+                    >
                         <div>
                             <img alt="" src="../image/images/wangye_11.gif" class="img-responsive img-thumbnail">
                         </div>
@@ -208,7 +238,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </a>
                 </li>
                 <li class="col-xs-2 col-md-2">
-                    <a href="#" data-toggle="tooltip" title="漩涡鸣人！日本漫画家岸本齐史作品《火影忍者》中男主角。因为身上封印着邪恶的九尾妖狐，无父无母的他受尽了村人的冷眼与歧视，他下定决心要成为第六代火影，让所有人都认同他的存在">
+                    <a href="#" data-toggle="tooltip" 
+                      <c:forEach items='${groups}' var="group">
+                      <c:if test="${group.name=='创意组' }">
+                       title="${group.description}"
+                        </c:if>
+                    </c:forEach> 
+                    >
                         <div>
                             <img alt="" src="../image/images/wangye_13.gif" class="img-responsive img-thumbnail">
                         </div>
@@ -365,7 +401,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title text-center" id="myModalLabel"></h4>
       </div>
-      <form action="login.do" onSubmit="return check()">
+      <form action="login.do" onSubmit="return check()" method="post">
           <div class="modal-body">
                
                       <div class="input-group" style="margin-top:15px;">

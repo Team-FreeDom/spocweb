@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                          <input value="${inlineCheckbox.name}" name="inlineCheckbox" type="checkbox" id="inlineCheckbox1" >
                           <label  >${inlineCheckbox.name} </label>
                         </li>
-			             </c:forEach>             	                       
+			             </c:forEach>          	                       
                     </ul>
                   
                 </div>
@@ -74,10 +74,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
       <div class="modal-body">
             <div class="htmleaf-container">
-                <form action="upload.do" method="post" enctype="multipart/form-data">
+                <form action="upload.do" method="post" enctype="multipart/form-data" onSubmit="return checkU()">
                     <div class="form-group">
-                        <input id="file-4" type="file" class="file"  name="file">
+                        <input id="file-4" type="file" class="file"  name="imgOne">
                        <!--<input type="submit" value="上传">-->
+                       
                     </div>
                 </form>
              </div>
@@ -89,6 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
   </div>
 </div>
+
     		
             
             
@@ -114,6 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							'elErrorContainer': '#errorBlock'
 						});
 					});
+					   
                 </script>   
                 <script type="text/javascript">
       function check()
@@ -143,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 			if(m==i)
 			{
-				alert("请选择业务类别！");
+				alert("请选择业务！！！");
 				return false;
 				}
 			 if(content=="")
@@ -154,6 +157,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		     return true;
       }
+      function checkU() 
+      {
+    var fileupload = document.getElementById("file-4");
+    var agent = window.navigator.userAgent;
+    if (agent.indexOf("Firefox") >= 1) 
+    {
+        var maxsize = 4 * 1024 * 1024;
+        var size = fileupload.files[0].size;
+        if (size > parseInt(maxsize))
+        {
+            alert("文件超过大小,请重新选择！");
+            return false;
+            
+        }
+        else
+        {
+            if(size<parseInt(maxsize)&&fileupload)
+            {
+            	alert("上传成功");
+            }
+            else
+            {
+            	alert("上传失败");
+            	  return "redirect:lianxijsp.do";
+            }
+        }
+    } 
+ }
+			
   </script> 	 			 		
    
 </body>

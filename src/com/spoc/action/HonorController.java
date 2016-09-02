@@ -112,5 +112,12 @@ public class HonorController {
 		honorService.update(Hn);
 		return "forward:honors.do";
 	}
+        @RequestMapping("/deleteHonor.do") //删除管理员所选择的相应的记录
+	public String deleteHonor(HttpServletRequest request)
+	{
+		String[] check=request.getParameterValues("deletehonor");
+		honorService.deleteHonor(check);
+		return "forward:honors.do";
+	}
 	
 }

@@ -1,4 +1,4 @@
-﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!doctype html>
@@ -83,13 +83,14 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent onclick=expand(2) href="javascript:void(0);">荣誉管理                                                                                                                       </a></td>
+											class=menuparent onclick=expand(2) href="javascript:void(0);">荣誉管理
+										</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
 									</tr>
 								</table>
-                                                                      <table id=child2 style="display: none"
+								<table id=child2 style="display: none"
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
@@ -103,7 +104,7 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent href="products.do" target="main">作品管理</a></td>
+											class=menuparent href="../list2.html" target="main">作品管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
@@ -154,7 +155,7 @@
 										<td width=30><img src="../image/menu_icon.gif"></td>
 										<td><a class=menuchild href="applys.do">报名申请管理</a></td>
 									</tr>
-									
+
 									<tr height=4>
 										<td colspan=2></td>
 									</tr>
@@ -212,22 +213,9 @@
 				</div>
 				<div class="col-md-10 col-xs-10">
 
-					<div class=" row text-right" style="margin-top:10px;">
-						<div class="col-md-12 col-xs-12">
-							<form action="searchType.do" method="post" class="form-inline">
-								<div class="form-group">
-									<label for="exampleInputName2">用户搜索</label> <input type="text"
-										name="affairtype" class="form-control" id="exampleInputName2"
-										placeholder="业务类别名">
-								</div>
-								<input type="submit" name="submit" value="搜索"
-									class="btn btn-default" />
-							</form>
-						</div>
-					</div>
 
 					<div class="row admin_black admin_spacing">
-						<div class="col-md-2 col-xs-5">业务类别信息</div>
+						<div class="col-md-2 col-xs-5">组别信息</div>
 						<div class="col-md-7 hidden-xs"></div>
 						<div class="col-md-3 col-xs-7">
 							<span> <a class="add" href="#"> <img
@@ -242,25 +230,25 @@
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="deleteType.do" method="post" name="myform"  onSubmit="return check1()"
-								id="myform">
+							<form action="deleteGroup.do" method="post" name="myform"
+								onSubmit="return check1()" id="myform">
 								<table class="table" id="tabBox">
 									<tr>
 										<td></td>
-										<td>类别编号</td>
-										<td>类别名称</td>
-										<td>投入开发</td>
+										<td>小组编号</td>
+										<td>小组名称</td>
+										
 										<td colspan="2">基本操作</td>
 									</tr>
-									<c:forEach items='${affairtypes}' var="affairtype">
+									<c:forEach items='${groups}' var="group">
 										<tr>
 											<td><label><input type="checkbox" name="type"
-													value="${affairtype.acid}" id="type" class="ck" /></label></td>
+													value="${group.gid}" id="type" class="ck" /></label></td>
 
-											<td>${affairtype.acid}</td>
-											<td>${affairtype.name}</td>
-											<td>${affairtype.flag==1?"是":"否"}</td>
-											<td colspan="2"><a class="edit" id=${affairtype.acid }
+											<td>${group.gid}</td>
+											<td>${group.name}</td>
+											
+											<td colspan="2"><a class="edit" id=${group.gid }
 												style="margin-left:20px;" data-toggle="modal"
 												data-target=".bs-example-modal-lg" href="#"> <img
 													src="../image/edit.gif" width="10" height="10" /> 编辑
@@ -284,31 +272,31 @@
 								onclick="fun(this)">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h4 class="modal-title" id="myModalLabel">添加业务类别</h4>
+							<h4 class="modal-title" id="myModalLabel">添加小组</h4>
 						</div>
-						<form action="addType.do" method="post" name="myForm2"   onSubmit="return check()"
-							id="myForm2">
+						<form action="addGroup.do" method="post" name="myForm2"
+							onSubmit="return check()" id="myForm2">
 							<div class="container table-responsive">
 								<table>
 									<tr style="padding-top:20px;">
 										<td style="width:80px;text-align:center;line-height:100px;">
-											<label for="exampleInputName2">类别名称</label>
+											<label for="exampleInputName2">小组名称</label>
 										</td>
 										<td style="text-align:left;"><input type="text"
-											name="name" class="form-control empty" id="typeName">
+										 name="name" class="form-control empty" id="name">
 										</td>
-										<td style="width:100px;text-align:center;margin-left:150px;">
-											<label for="exampleInputName2">投入开发</label>
+										<td width="150px"></td>
+										<td width="150px"></td>										
+                                     </tr>
+                                     <tr style="padding-top:20px;">
+										<td style="width:80px;text-align:center;line-height:100px;">
+											<label for="exampleInputName2">小组描述</label>
 										</td>
-										<td style="text-align:left;"><input name="flag" value="1" checked="checked"
-									id="use" type="radio"> <label for="q2_1">是</label> <input
-											name="flag" value="0" type="radio" /> <label for="q2_2">否</label></td>
-										<td style="width:150px;text-align:center;line-height:100px;">
-												<label for="exampleInputName2">排列序号</label>												
-											</td>											
-											<td style="text-align:left;">
-											  <input type="text" name="rank" class="form-control"
-												 ></td>
+										<td style="text-align:left;" colspan="3">
+										<textarea type="text" class="form-control empty"
+													name="description" id="description"
+													style="width:650px;height:120px;"> </textarea>
+													</td>
 									</tr>
 								</table>
 							</div>
@@ -327,56 +315,54 @@
 
 					<!--edit-section-start  -->
 
-					<c:forEach items='${affairtypes}' var="affairtype">
+					<c:forEach items='${groups}' var="group">
 						<div class="modal-content text-center admin_hide"
-							id="${affairtype.acid}ta">
+							id="${group.gid}ta">
 							<div class="modal-header">
-								<a class="close" data-dismiss="modal" href="dealAT.do"
-									id="${affairtype.acid}t"">
-									<span aria-hidden="true">&times;</span>
+								<a class="close" data-dismiss="modal" href="group.do"
+									id="${group.gid}t""> <span aria-hidden="true">&times;</span>
 								</a>
-								<h4 class="modal-title" id="myModalLabel">编辑业务类别</h4>
+								<h4 class="modal-title" id="myModalLabel">编辑小组信息</h4>
 							</div>
-							<form action="updateType.do" method="post"   onSubmit="return checkU(this)"
-								enctype="multipart/form-data" name="myForm2"
-								id="myForm${affairtype.acid}">
+							<form action="updateGroup.do" method="post"
+								onSubmit="return checkU(this)" enctype="multipart/form-data"
+								name="myForm2" id="myForm${group.gid}">
 								<div class="container table-responsive">
 									<table>
 										<tr style="padding-top:20px;">
-										   
+
 											<td style="width:80px;text-align:center;line-height:100px;">
-												<label for="exampleInputName2">类别名称</label>
+												<label for="exampleInputName2">小组名称</label>
 											</td>
 											<td style="text-align:left;"><input type="text"
-												 name="typeName" class="form-control"
-												id="myForm${affairtype.acid}typeName2" value="${affairtype.name}"></td>
-											<td style="width:100px;text-align:center;margin-left:150px;">
-												<label for="exampleInputName2">投入开发</label>
-											</td>
-											<td style="text-align:left;"><input name="flag"
-												value="1" ${affairtype.flag==1?"checked":""} type="radio">
-												<label for="q2_1">是</label> <input
-												${affairtype.flag==0?"checked":""} name="flag" value="0"
-												type="radio" /> <label for="q2_2">否</label>
-												</td>
-											 <td style="width:150px;text-align:center;line-height:100px;">
-												<label for="exampleInputName2">排列序号</label>												
-											</td>											
-											<td style="text-align:left;">
-											  <input type="text" name="rank" class="form-control"
-												id="rank" value="${affairtype.rank}"></td>
-										</tr>
+												name="name"  class="form-control"
+												id="myForm${group.gid}typeName2"
+												value="${group.name}"></td>
+											<td width="150px"></td>
+											<td width="150px"></td>
+											</tr>
+											<tr style="padding-top:20px;">
+										<td style="width:80px;text-align:center;line-height:100px;">
+											<label for="exampleInputName2">小组描述</label>
+										</td>
+										<td style="text-align:left;" colspan="3">
+										<textarea type="text" class="form-control"
+													name="description" 
+													style="height:120px;">${group.description } </textarea>
+													</td>
+									</tr>
 										<tr>
-											<td><input type="text" name="acid" id="acid"
-												value="${affairtype.acid}" hidden="hidden" /></td>
+											<td><input type="text" name="gid" id="gid"
+												value="${group.gid}" hidden="hidden" /></td>
 										</tr>
 									</table>
 								</div>
 							</form>
 							<div class="modal-footer">
 
-								<button type="button"  class="btn btn-primary update" 
-									id="${affairtype.acid}" data-dismiss="modal">确定</a>
+								<button type="button" class="btn btn-primary update"
+									id="${group.gid}" data-dismiss="modal">
+									确定</a>
 							</div>
 						</div>
 				</div>
@@ -404,7 +390,7 @@
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
 						$("#addMember .empty").val("");
-						document.getElementById("use").checked="checked";
+						
 					}
 
 					function add() {
@@ -421,43 +407,35 @@
 						var id = "#myForm" + this.id;
 						$(id).submit();
 					})
-					 function check()
-                     {
-						 var typeName=document.getElementById("typeName").value;
-						 if(typeName=="")
-					       {
-						     alert("请填写类别名称！");
-						     return false;
-						   }
-						 return true;
-                     }
-					function check1()
-					{
-						 var checkboxs=document.getElementsByName("type");
-						 var m=0;
-						  for(var i=0;i<checkboxs.length;i++)
-							{
-								if(checkboxs[i].checked==false)
-								{
-									m=m+1;
-								}
-							}
-							if(m==i)
-							{
-								alert("请选择您要删除的选项！！！");
-								return false;
-								}
+					function check() {
+						var name = document.getElementById("name").value;
+						if (name == "") {
+							alert("请填写小组名称！");
+							return false;
+						}
+						return true;
 					}
-					function checkU(obj)
-					{						
-						var typeName2=obj.id+"typeName2";						
-						var typeName=document.getElementById(typeName2).value;						
-						 if(typeName=="")
-					       {
-						     alert("类别名称不能为空！");
-						     return false;
-						   }
-						 return true;
+					function check1() {
+						var checkboxs = document.getElementsByName("type");
+						var m = 0;
+						for (var i = 0; i < checkboxs.length; i++) {
+							if (checkboxs[i].checked == false) {
+								m = m + 1;
+							}
+						}
+						if (m == i) {
+							alert("请选择您要删除的选项！！！");
+							return false;
+						}
+					}
+					function checkU(obj) {
+						var typeName2 = obj.id + "typeName2";
+						var typeName = document.getElementById(typeName2).value;
+						if (typeName == "") {
+							alert("小组名称不能为空！");
+							return false;
+						}
+						return true;
 					}
 				</script>
 				<script>

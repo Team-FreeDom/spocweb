@@ -186,6 +186,25 @@
 										<td colspan=2></td>
 									</tr>
 								</table>
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent onclick=expand(7) href="javascript:void(0);">组别管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+								<table id=child7 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="group.do">组别信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 					</table>
@@ -212,13 +231,15 @@
                       <span> <a class="add" href="#"> <img
 									src="../image/add.gif" width="10" height="10" /> 添加
 							</a> &nbsp; 
-							
+							 <a href="javascript:deleteType()"> <img
+									src="../image/del.gif" width="10" height="10" /> 删除
+							</a> &nbsp;&nbsp;
 							</span>
 						</div>
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="honorS.do" method="post" name="myform"
+							<form action="deleteHonor.do" method="post" name="myform"
 								id="myform" onSubmit="return check1()">
 								<table class="table" id="tabBox">
 									<tr>
@@ -231,6 +252,8 @@
 									</tr>
 									<c:forEach items='${honors}' var="honor">
 										<tr>
+                                                                                 <td><label><input type="checkbox" name="deletehonor"
+													value="${honor.hid}" id="type" class="ck"                                                                                                                                           /></label></td>
 										<td>${honor.hid}</td>
 										<td>${honor.time}</td>
 										<td>${honor.img}</td>
@@ -261,7 +284,7 @@
 							<h4 class="modal-title" id="myModalLabel">添加荣誉表</h4>
 						</div>
 						<form action="addhonor.do" method="post" enctype="multipart/form-data"
-							name="myForm2" id="myForm2">
+							name="myForm2" id="myForm2" onSubmit="return  honor()" >
 							<div class="container table-responsive">
 								<table>
 									<tr style="padding-top:20px;">
@@ -312,7 +335,7 @@
 							</div>
 							<form action="updateHonor.do" method="post"
 								enctype="multipart/form-data" name="myForm2" 
-								id="myForm${honor.hid}">
+								id="myForm${honor.hid}" >
 								<div class="container table-responsive">
 									<table>
 										<tr style="padding-top:20px;">
@@ -343,13 +366,13 @@
 												hidden="hidden" />
 											</td>
 										</tr>	
-											<center>
+											
 										<tr>
 											<td style="text-align:right;">照片</td>
 											<td rowspan="3"><img src="${honor.img}" id="${honor.hid}" width="450px"
-												height="300px" style="display: block;" /> </td>
+												height="300px" style="display: block;"  /> </td>
 										</tr>
-								       </center>
+								      
 									</table>
 								</div>
 							</form>
@@ -364,11 +387,16 @@
 				
 					<!--edit-section-end -->
 				<script type="text/javascript">
-					function deleteMember() {
+				function deleteType() {
 
-						$('#myform').submit();
+					$('#myform').submit();
 
-					}
+				}
+				function deleteMember() {
+
+					$('#myform').submit();
+
+				}
 					$(".edit").bind("click", function() {
 						var id = this.id + "ta";
 						document.getElementById(id).style.display = "block";
@@ -384,11 +412,13 @@
 					function fun(obj) {
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
-						$("input").val("");
+						
+						$("#addMember .empty").val("");
 					}
 
 					function add() {
 						$('#myForm2').submit();
+						
 
 					}
 					$(".update").bind("click", function() {
@@ -399,6 +429,44 @@
 						var id = this.id + "a";
 						document.getElementById(id).style.display = "none";
 					})
+                                        function check1()
+					{
+						 var checkboxs=document.getElementsByName("deletehonor");
+						 var m=0;
+						 if(checkboxs.length==0)
+							 {
+							 alert("没有要删除的选项！");
+							 }
+						  for(var i=0;i<checkboxs.length;i++)
+							{
+								if(checkboxs[i].checked==false)
+								{
+									m=m+1;
+								}
+							}
+							if(m==i)
+							{
+								alert("请选择您要删除的选项！");
+								return false;
+								}
+							return true;
+					}
+					function honor()
+					{
+						var img=document.getElementById("imgOne").value;
+						var time=document.getElementById("exampleInputName2").value;
+						if(time=="")
+						{
+							alert("请填写获奖时间");
+							return false;
+						}
+						if(img=="")
+							{
+							alert("请上传证书");
+							return false;
+							}
+						return true;
+					}
 					
 				</script>
 				<script>

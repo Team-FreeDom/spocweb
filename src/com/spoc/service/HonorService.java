@@ -33,7 +33,15 @@ public class HonorService
 	{
 		honordao.updategonor(Hn);
 	}
-	
+	public void deleteHonor(String[] str)
+	{
+		String hid;
+		for(int i=0;i<str.length;i++)
+		{
+			hid=(str[i]);
+			honordao.deleteHonor(hid);;
+		}
+	}
 	
 	
 	

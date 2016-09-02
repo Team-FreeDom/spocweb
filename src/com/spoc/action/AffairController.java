@@ -1,6 +1,9 @@
 ﻿package com.spoc.action;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,15 +23,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spoc.po.Affair;
 import com.spoc.po.Affair_category;
 import com.spoc.po.Apply;
+import com.spoc.po.Member;
 import com.spoc.service.AffairService;
 import com.spoc.service.Affair_categoryService;
 import com.spoc.service.ApplyService;
+import com.spoc.service.MemberService;
+import com.spoc.service.UserService;
 
 @Controller("affairController")
 @RequestMapping("/jsp")
@@ -40,6 +48,11 @@ public class AffairController {
 	private ApplyService applyService;
 	@Autowired
 	private AffairService affairService;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private MemberService memberService;
+	
 	private ServletContext servletContext;
 	@RequestMapping("/lianxi.do")
 	public String userAffair(HttpServletRequest request,HttpServletResponse response) throws Exception
@@ -99,14 +112,14 @@ public class AffairController {
 				outputStream.write(b, 0, length);
 				inputStream.close();
 				outputStream.close();
-				filename = "../infor/honor/" + filename;
+				filename = "../infor/test/" + filename;
 			   HttpSession session = request.getSession();
 			   session.setAttribute("flag", filename);
-			   return "redirect:upload_ok.jsp";
+			    return "redirect:lianxijsp.do";
 			}
 		   else
 			{
-				return "redirect:upload_error.jsp";
+				 return "redirect:lianxijsp.do";
 			}
 	}
 	
@@ -184,11 +197,23 @@ public class AffairController {
 	@RequestMapping("/applyAffair.do")
 	public String applyAffair(HttpServletRequest request, ModelMap map)
 	{
+		/*
+		 * applyAffair.jsp页面的查看详情，审阅完成的权限值分别为9,10
+		 *
+		 * */
 		List<Affair> list=affairService.getAffairs();
 		int flag=Integer.valueOf(request.getParameter("flag"));
 		map.addAttribute("affairs", list);
+		int userValue=(Integer) request.getSession().getAttribute("userAuthority");
+		boolean sysbomlC;
+		boolean sysbomlR;
+		
 		if(flag==0)
 		{
+			sysbomlC=userService.checkAuthority(userValue, 9);
+			sysbomlR=userService.checkAuthority(userValue, 10);
+			 map.addAttribute("sysbomlR", sysbomlR);
+			 map.addAttribute("sysbomlC", sysbomlC);
 		return "applyAffair";
 		}else
 		{
@@ -204,7 +229,8 @@ public class AffairController {
 		//session.setAttribute("user", "ffff");//�������û���¼�������ڴ�session����
 		int aff_id=Integer.valueOf(request.getParameter("aff_id"));
 		String loginid=(String) session.getAttribute("user");
-		affairService.updateAffair(aff_id, loginid);
+		String dealname=memberService.getUniqueMember(loginid).getName();
+		affairService.updateAffair(aff_id, dealname);
 		return "forward:applyAffair.do?flag=0";
 	}
 	
