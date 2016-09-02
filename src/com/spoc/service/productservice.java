@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spoc.dao.productdao;
 import com.spoc.dao.productsdao;
+import com.spoc.po.member_product;
 import com.spoc.po.product;
 
 @Service("productservice")
@@ -35,6 +36,17 @@ public class productservice
 			prosdao.deleteproducts(str[i]);
 		}
 	}
-	
-	
+	public void updateproducts(product pr,member_product mpr)
+	{
+		prodao.updateproducts(pr);
+		prosdao.updateproducts(mpr);
+	}
+	public product getproduct(int pid)
+	{
+		return prodao.getproduct(pid);
+	}
+	public member_product getproducts(int pid)
+	{
+		return prosdao.getproducts(pid);
+	}
 }
