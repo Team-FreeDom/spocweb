@@ -137,20 +137,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <div class="row">
                     <div id="full" class="carousel slide">
                       <div class="carousel-inner">
-                        <ul class="row item active">
-                         <c:forEach items='${gethonor}' var="gh" begin="0" end="3">
-                          <li class="col-xs-3 col-md-3">
-								<img src="${gh.img}" class="img-responsive img-thumbnail"/>
-                          </li>      
-                           </c:forEach>    
-                        </ul>
-                        <ul class="row item">
-                        <c:forEach items='${gethonor}' var="gh" begin="0" end="3" >
-                          <li class="col-xs-3">
-									<img src="${gh.img}" class="img-responsive img-thumbnail"/>
-						   </li>
-						   </c:forEach>
-                        </ul>
+                        <% 
+                      List<Honor> list=(List)session.getAttribute("gethonor");
+                      int n = list.size();
+                      int t=0;
+                      for(int i=0;i<n;i+=4)
+                      {
+                    	  if(n>0&&t<4)
+                    	  {
+                    		  out.println("<ul class=\"row item active\">");
+                    		  for(int k=i;k<4;k++)
+                        	  {
+                        		     
+                        			  out.println(" <li class=\"col-xs-3 col-md-3\">");
+                        			  String temp = "<img src=\""+list.get(k).getImg()+"\" class=\"img-responsive img-thumbnail\"/>";
+                            		  out.println(temp);
+                        			  out.println("</li>"); 
+                        			  t++;
+                        		   
+                        	  }
+                    		  out.println("</ul>");
+                    		  continue;
+                    	  }
+                    	 if(n-i>=4)
+                         {
+                        	 
+                        	 out.println("<ul class=\"row item  \">");
+                        	
+                    	  for(int j=i;j<i+4;j++)
+                    	  {
+                    			  out.println(" <li class=\"col-xs-3\">");
+                                  String temp = "<img src=\""+list.get(j).getImg()+"\" class=\"img-responsive img-thumbnail\"/>";
+                        		  out.println(temp);
+                        		  out.println("</li>");    
+                    	  }
+                    	  out.println("</ul>");
+                    	  
+                         }
+                         else
+                         {
+                        	 out.println("<ul class=\"row item\">");
+                         for(int j=i;j<n;j++)
+                    	  {
+                    		  out.println(" <li class=\"col-xs-3\">");
+                              String temp = "<img src=\""+list.get(j).getImg()+"\" class=\"img-responsive img-thumbnail\"/>";
+                    		  out.println(temp);
+                    		  out.println("</li>");
+                    	  }
+                             out.println("</ul>");
+                         }
+                      } 
+                      %>
                       </div><!--/carousel-inner -->       
                     </div><!--/carousel slide -->
                </div><!--/row --> 
