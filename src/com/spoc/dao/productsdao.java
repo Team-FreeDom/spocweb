@@ -6,7 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.spoc.po.member_product;;
+import com.spoc.po.member_product;
+import com.spoc.po.product;
 
 @Repository("productsdao")
 public class productsdao
@@ -38,5 +39,48 @@ public class productsdao
 		{
 			session.close();
 		}
+	}
+	public void updateproducts(member_product mpr)
+	{
+		Session session=sessionfactory.openSession();
+		Transaction tx=null;
+		try
+		{
+			tx=session.beginTransaction();
+			session.update(mpr);
+			tx.commit();
+		}
+		catch(Exception ex)
+		{
+			if(tx!=null)
+			{
+				tx.rollback();
+			}
+			System.out.println(ex);
+		}
+		finally
+		{
+			session.close();
+		}
+	}
+	public member_product getproducts(int pid)
+	{
+		member_product mpr=null;
+		Session session=sessionfactory.openSession();
+		try
+		{
+			Query query=session.createQuery("from member_product where pid=?");
+			query.setInteger(0, pid);
+			mpr=(member_product)query.uniqueResult();
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex);
+		}
+		finally
+		{
+			session.close();
+		}
+		return mpr;
 	}
 }
