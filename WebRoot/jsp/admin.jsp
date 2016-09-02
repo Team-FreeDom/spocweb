@@ -100,12 +100,23 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-										class=menuparent href="products.do">作品管理</a></td>
+											class=menuparent onclick=expand(3) href="javascript:void(0);">作品管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
 									</tr>
 								</table>
+                             <table id=child3 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="products.do">作品信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>	
+
 
 								<table class="admin_table">
 									<tr height=22>

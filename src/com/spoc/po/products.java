@@ -26,6 +26,8 @@ public class products implements Serializable
 	@Id
 	private String pro_path;
 	@Id
+	private String img_path;
+	@Id
 	private int flag;
 	
 	public int getPid()
@@ -44,14 +46,14 @@ public class products implements Serializable
 	public void setTime(String time)
 	{
 		this.time = time;
-	}
+	}	
 	public products()
 	{
 		super();
 	}
 	public products(int lpid, int pid, String name, String description,
 			String time, String student, String teacher, String pro_path,
-			int flag)
+			String img_path, int flag)
 	{
 		super();
 		this.lpid = lpid;
@@ -62,7 +64,16 @@ public class products implements Serializable
 		this.student = student;
 		this.teacher = teacher;
 		this.pro_path = pro_path;
+		this.img_path = img_path;
 		this.flag = flag;
+	}		
+	public String getImg_path()
+	{
+		return img_path;
+	}
+	public void setImg_path(String img_path)
+	{
+		this.img_path = img_path;
 	}
 	public int getLpid()
 	{

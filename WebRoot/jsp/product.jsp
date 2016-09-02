@@ -26,22 +26,20 @@ $('#myModal').on('shown.bs.modal', function () {
 
 
 <body>
-	<div class="container-fluid">
-		<div class="container">
-
-			<div class="row bg">
-				<div class="col-md-2 col-xs-3 text-while">思博课网站管理</div>
-				<div class="col-md-7 col-xs-6 text-while">
-					<!-- <a style="color: #fff" href="" target=main>修改口令</a>
-             &nbsp;&nbsp;  -->
-					<a style="color: #fff"
-						onclick="if (confirm('确定要退出吗？')) return true; else return false;"
-						href="exit.do" target=_top>退出系统</a>
-				</div>
-				<div class="col-md-3 col-xs-3 bg2"></div>
-			</div>
-
-			<div class="row">
+<div class="container-fluid">
+    <div class="container">
+    
+    	<div class="row bg">
+        	<div class="col-md-2 col-xs-3 text-while">思博课网站管理</div>
+            <div class="col-md-7 col-xs-6 text-while">
+            	<a style="color: #fff" href="" target=main>修改口令</a>
+             &nbsp;&nbsp; 
+             <a style="color: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;" href="../main.htm" target=_top>退出系统</a> 
+            </div>
+            <div class="col-md-3 col-xs-3 bg2"></div>
+        </div>
+        
+        <div class="row">
 				<div class="col-md-2 col-xs-2">
 					<table class=" table admin_table_1">
 						<tr>
@@ -102,12 +100,22 @@ $('#myModal').on('shown.bs.modal', function () {
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent href="products.do">作品管理</a></td>
+											class=menuparent onclick=expand(3) href="javascript:void(0);">作品管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
 									</tr>
 								</table>
+                             <table id=child3 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="products.do">作品信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>								
 
 								<table class="admin_table">
 									<tr height=22>
@@ -184,61 +192,27 @@ $('#myModal').on('shown.bs.modal', function () {
 										<td colspan=2></td>
 									</tr>
 								</table>
-								<table class="admin_table">
-									<tr height=22>
-										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent onclick=expand(7) href="javascript:void(0);">组别管理</a></td>
-									</tr>
-									<tr height=4>
-										<td></td>
-									</tr>
-								</table>
-								<table id=child7 style="display: none"
-									class="text-left admin_table">
-									<tr height=20>
-										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="group.do">组别信息管理</a></td>
-									</tr>
-									<tr height=4>
-										<td colspan=2></td>
-									</tr>
-								</table>
 							</td>
 						</tr>
 					</table>
 
-				</div>
-				<div class="col-md-10 col-xs-10">
-                     
-                        <div class=" row text-right" style="margin-top:10px;">
-                        	<div class="col-md-12 col-xs-12">
-                                <form class="form-inline">
-                                    <div class="form-group">
-                                        <label for="exampleInputName2">作品搜索</label>
-                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="作品名称">
-                                    </div>
-                                    <button type="submit" class="btn btn-default">搜索</button>
-                                </form>
-                            </div>
-                        </div>
-                        
+            </div>
+            <div class="col-md-10 col-xs-10">
                         <div class="row admin_black admin_spacing">
                             <div class="col-md-3 col-xs-5">作品管理信息表</div>
                             <div class="col-md-6 hidden-xs"></div>
                             <div class="col-md-3 col-xs-7">
                                 <span>
-                                    <a href="#"  data-toggle="modal" data-target="#myModal">
+                                    <a href="#"  data-toggle="modal" data-target="#myModal2">
                                     <img src="../image/add.gif" width="10" height="10" /> 添加</a>   &nbsp;
+                                    <!-- <a  data-toggle="modal" data-target=".bs-example-modal-lg" href="#"> -->
                                     <a href="javascript:deleteMember()">
                                     <img src="../image/del.gif" width="10" height="10" /> 删除</a>    &nbsp;&nbsp;
-                                    <a  data-toggle="modal" data-target=".bs-example-modal-lg" href="#">
-                                    <img src="../image/edit.gif" width="10" height="10" /> 编辑</a>   &nbsp;
                                 </span>
                             </div>
-                        </div>
+                        </div>                        
                         
-                        
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -277,94 +251,154 @@ $('#myModal').on('shown.bs.modal', function () {
                               </div>
                             </div>
                           </div>
-                        </div>
-                        
-                        
-                        
-                        
-                        
+                        </div>	            
                         
                         <div id="tableBox">
                             <div class="admin_roll">
-                            	<form action="deleteproducts.do" method="post" name="myform" id="myform" onSubmit="return check()">
-                            		  <table class="table" id="tabBox">
-	                                    <tr>
-	                                        <td></td>
-	                                        <td>作品名称</td>
-	                                        <td>作品描述</td>
-	                                        <td>完成时间</td>
-	                                        <td>参与学生</td>
-	                                        <td>指导老师</td>
-	                                        <td>基本操作</td>
-	                                        <td>是否显示</td>
-	                                    </tr>
-	                                    <c:forEach items='${products1}' var="product">
-	                                    <tr>
-	                                    	
+                            	<form action="deleteproducts.do" method="post" name="myform" id="myform" onSubmit="return check()">	
+                                <table class="table" id="tabBox">
+                                    <tr>
+                                        <td></td>
+                                        <td>作品名称</td>                                      
+                                        <td>参与学生</td>
+                                        <td>指导老师</td>
+                                        <td>基本操作</td>
+                                    </tr>
+                                    <c:forEach items='${products1}' var="product"> 
+                                    	<tr>                                  	                                    	                                    	
 		                                    	<td><label><input type="checkbox" name="products" id="products" value="${product.pid}" class="ck"/></label></td>
-		                                        <td>${product.name}</td>
-		                                        <td>${product.description}</td>
-		                                        <td>${product.time}</td>
+		                                        <td>${product.name}</td>		                                        
 		                                        <td>${product.student}</td>
 		                                        <td>${product.teacher}</td>
-		                                        <td><a href="#"  data-toggle="modal" data-target="#myModal2">查看详情</a></td>
-		                                        <td>
-		                                        	<c:if test="${product.flag==1}">
-			                                        	<label class="radio-inline">
-			                                              	 是
-			                                            </label>
-		                                            </c:if>
-		                                            <c:if test="${product.flag==0}">
-			                                            <label class="radio-inline">
-			                                              	 否
-			                                            </label>
-		                                            </c:if>
-		                                       </td>	                                                     	
-                                       <!-- Modal -->
-                                       <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                          <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                              <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">作品详情</h4>
-                                              </div>
-                                              <div class="modal-body">
-                                             		<video id="example_video_1" class="video-js vjs-default-skin vjs-big-play-centered" controls ="none" width="400px" height="200px"
-                                                      poster="http://video-js.zencoder.com/oceans-clip.png"
-                                                      data-setup="{}">                                  
-                                                    <source src="${product.pro_path}" type='video/mp4' />                                                   
-                                                    <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track>
-                                                    <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track>
-                                                    </video>
-                                              </div>
-                                              <div class="modal-body">
-                                              </div>
-                                              <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <!-- Modal -->
-                                               
+		                                       <td>
+		                                            <a href="productsdetail.do?id=${product.pid}">查看详情</a> 	                                       		
+											   </td>
+											   <td>
+											   		<a class="edit" id=${product.pid } style="margin-left:20px;" data-toggle="modal" data-target=".bs-example-modal-lg" href="#">
+												    <img src="../image/edit.gif" width="10" height="10" /> 编辑</a>
+											   </td>		                                       	                                                                      
                                     </tr>
                                     </c:forEach>
-                                	</table>
+                                    </table>
                             	</form>
-	                              
-                        </div>
                             <div class="text-right" style="margin-right:60px;">
                                 <label><input type="checkbox" name="0" class="ck-all"/>全选</label>
                                 <label><input type="checkbox" name="0" class="ck-re"/>反选</label>
                             </div>
-                        </div>
+                        </div>	
+					<!--edit-section-start  -->
+					<c:forEach items='${products1}' var="product">
+					<div class="modal-content text-center admin_hide"
+							id="${product.pid}ta">
+							<div class="modal-header">
+								<a class="close" data-dismiss="modal" href="products.do"
+									id="${product.pid}t"">
+									<span aria-hidden="true">&times;</span>
+								</a>
+								<h4 class="modal-title" id="myModalLabel">编辑作品信息</h4>
+							</div>
+							<form action="updateproduct.do" method="post"
+								enctype="multipart/form-data" name="myForm2" 
+								id="myForm${product.pid}">
+								<div class="container table-responsive">
+									<table style="width:500px;height: 300px">
+                                	<tr>
+                                    	<td><label for="xx">作品名称</label></td>
+                                        <td style="text-align:left;"><input type="text" onChange="checkname(this)"
+												name="name" class="form-control"
+												value="${product.name}" id="myForm${product.pid}name2">
+										</td>
+                                        <td><label for="xx">完成时间</label></td>
+                                        <td style="text-align:left;"><input type="text" onChange="checktime(this)"
+												name="time" class="form-control" 
+												value="${product.time}" id="myForm${product.pid}time2"/>
+										</td>
+                                    </tr>
+                                    <tr>
+                                    	<td><label for="x">参与学生</label></td>
+                                    	<td colspan="3" style="text-align:left;"><input type="text" onChange="checkstudent(this)"
+												name="student" class="form-control" 
+												value="${product.student}" id="myForm${product.pid}student2"/>
+										</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="xx">指导老师</label></td>
+                                        <td style="text-align:left;"><input type="text" onChange="checkteacher(this)"
+												name="teacher" class="form-control" 
+												value="${product.teacher}" id="myForm${product.pid}teacher2"/>
+										</td>
+                                        <td>
+                                        <label for="x">是否显示在前台</label>
+                                        </td>
+                                    	<td style="text-align:left;"><input name="flag" value="1"
+												${product.flag=="1"?"checked" : ""} type="radio"> <label
+												for="q2_1">是</label> <input name="flag" value="0"
+												${product.flag=="0"?"checked" : ""} type="radio"> <label
+												for="q2_2">否</label>
+										</td>
+                                    </tr>
+                                    <tr>
+                                    	<td><label for="x">作品描述</label></td>
+                                        <td colspan="3" style="text-align:left;"><input type="text" onChange="checkdescription(this)"
+												name="description" class="form-control"
+												value="${product.description}" id="myForm${product.pid}description2">
+										</td>
+                                    </tr>
+                                    <tr>
+										 	<td style="width:120px;text-align:center;margin-left:150px;">
+												<input type="text" name="pid" value="${product.pid}"
+												hidden="hidden" />
+											</td>
+											<td style="width:120px;text-align:center;margin-left:150px;">
+												<input type="text" name="pro_path" value="${product.pro_path}"
+												hidden="hidden" />
+											</td>
+											<td style="width:120px;text-align:center;margin-left:150px;">
+												<input type="text" name="img_path" value="${product.img_path}"
+												hidden="hidden" />
+											</td>
+											<td style="width:120px;text-align:center;margin-left:150px;">
+												<input type="text" name="lpid" value="${product.lpid}"
+												hidden="hidden" />
+											</td>
+										 </tr>
+                                </table>
+								</div>
+							</form>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary update"
+									id="${product.pid}" data-dismiss="modal">确定</button>
+							</div>
+						</div>	
+						</c:forEach>
+						
+				
+					<!--edit-section-end -->
                         <script type="text/javascript">
 						function deleteMember() {
 
 							$('#myform').submit();
+						}
+						$(".edit")
+								.bind(
+										"click",
+										function() {
+											var id = this.id + "ta";
+											document.getElementById(id).style.display = "block";
+										})
+						function add() {
+							$('#myForm2').submit();
 
 						}
+						$(".close").bind("click", function() {
+							var id = this.id + "a";
+							document.getElementById(id).style.display = "none";
+						})
+
+						$(".update").bind("click", function() {
+							var id = "#myForm" + this.id;
+							$(id).submit();
+						})
 						function check()
 						{
 						 var checkboxs=document.getElementsByName("products");
@@ -381,6 +415,52 @@ $('#myModal').on('shown.bs.modal', function () {
 								alert("请选择您要删除的选项！！！");
 								return false;
 								}
+						}
+						function checktime(obj) 
+						{
+							var birth_date = document.getElementById(obj.id).value;
+							var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
+							if (birth_date == "") {
+								alert("完成时间不能为空！");
+								return false;
+							} else {
+								if (!dateFormat.exec(birth_date)) {
+									alert("完成时间的格式必须是xxxx-xx-xx,且均为数字!");
+									return false;
+								}
+							}
+						}
+						function checkname(obj) 
+						{
+							var name = document.getElementById(obj.id).value;
+							if (name == "") {
+								alert("作品名称不能为空！");
+								return false;
+							}
+						}
+						function checkdescription(obj) 
+						{
+							var description = document.getElementById(obj.id).value;
+							if (description == "") {
+								alert("作品描述不能为空！");
+								return false;
+							}
+						}
+						function checkstudent(obj) 
+						{
+							var student = document.getElementById(obj.id).value;
+							if (student == "") {
+								alert("参与学生不能为空！");
+								return false;
+							}
+						}
+						function checkteacher(obj) 
+						{
+							var teacher = document.getElementById(obj.id).value;
+							if (teacher == "") {
+								alert("参与老师不能为空！");
+								return false;
+							}
 						}
 						</script>
                         <script>
