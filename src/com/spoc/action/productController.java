@@ -1,6 +1,9 @@
 package com.spoc.action;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.qcloud.video.api.VideoCloud;
 import com.spoc.po.member_product;
 import com.spoc.po.product;
 import com.spoc.service.productservice;
@@ -75,5 +81,67 @@ public class productController
 		map.addAttribute("pr", pr);
 		map.addAttribute("mpr", mpr);
 		return "detailproduct";
+	}
+	@RequestMapping(value = "/addproduct.do", method = RequestMethod.POST)
+	public String addproduct(HttpServletRequest request, ModelMap map) throws IOException
+	{
+		// 上传文件（图片），将文件存入服务器指定路径下，并获得文件的相对路径
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		// 得到上传的文件
+		MultipartFile mFile = multipartRequest.getFile("img_path");
+		// 得到上传服务器的路径
+		String path = request.getSession().getServletContext().getRealPath("/infor/video_img/");
+		// 得到上传的文件的文件名
+		String fileName = mFile.getOriginalFilename();
+		System.out.println(fileName);
+		/*String fileType = fileName.substring(fileName.lastIndexOf("."));
+		String filename = new Date().getTime() + fileType;*/
+		InputStream inputStream = mFile.getInputStream();
+		byte[] b = new byte[1048576];
+		int length = inputStream.read(b);
+		path += "\\" + fileName;
+		// 文件流写到服务器端
+		FileOutputStream outputStream = new FileOutputStream(path);
+		outputStream.write(b, 0, length);
+		inputStream.close();
+		outputStream.close();
+		fileName = "../infor/video_img/" + fileName;
+//		//上传视频，将视频存于腾讯云中，并获得文件的相对路径
+//		final int APP_ID = 10056183;
+//		final String SECRET_ID = "AKIDR0YEkDMTKtoC77T1tQ3YmmAzHHpHtW7i";
+//		final String SECRET_KEY = "w6IBn2LPxxMOAF133Wy3y5I1eGt5UYPi";
+//		VideoCloud video = new VideoCloud(APP_ID, SECRET_ID, SECRET_KEY);
+//		try
+//		{
+//		String result = "";
+//		String bucketName = "abcde";
+//        String coverUrl = "http://ceshi-1000027.file.myqcloud.com/1.jpg";
+//        long start = System.currentTimeMillis();
+//        //上传视频
+//        MultipartFile pFile = multipartRequest.getFile("pro_path");
+//        String pro_path = pFile.getOriginalFilename();
+//        System.out.println(pro_path);
+//        String fileType1 = pro_path.substring(pro_path.lastIndexOf("."));
+//		String filename1 = new Date().getTime() + fileType1;
+//        
+//        
+//		//result = video.uploadFile(bucketName, "/sdk/test.mp4", pFile);
+//		}
+//		catch(Exception e)
+//		{
+//			System.out.println(e.getMessage());
+//		}
+		String name = request.getParameter("name");
+		String description= request.getParameter("description");
+		String time = request.getParameter("time");
+		String student = request.getParameter("student");
+		String teacher = request.getParameter("teacher");
+		String flagvalue = request.getParameter("inlineRadioOptions");
+		int flag=Integer.parseInt(flagvalue);
+		product pr=new product(name,time,description,fileName,flag);
+		int pid=proservice.addproduct(pr);
+		member_product mpr=new member_product(pid,student,teacher);
+		proservice.addmember_product(mpr);
+		return "forward:products.do";
 	}
 }

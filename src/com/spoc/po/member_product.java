@@ -24,6 +24,13 @@ public class member_product
 		this.student = student;
 		this.teacher = teacher;
 	}
+	public member_product(int pid, String student, String teacher)
+	{
+		super();
+		this.pid = pid;
+		this.student = student;
+		this.teacher = teacher;
+	}
 	public member_product()
 	{
 		super();
