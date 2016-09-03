@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,7 +51,7 @@ public class AffairsController {
 		String name=request.getParameter("name");
 		if(name==null)
 		{
-			name="Î¢¿ÎÄ½¿Î";
+			name="å¾®è¯¾æ…•è¯¾";
 		}else{
 		name=new String(name.getBytes("iso8859-1"),"utf-8");
 		}
