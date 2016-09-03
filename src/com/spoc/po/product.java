@@ -31,6 +31,27 @@ public class product
 		this.img_path = img_path;
 		this.flag = flag;
 	}
+	public product(String name, String time, String description,
+			String pro_path, String img_path, int flag)
+	{
+		super();
+		this.name = name;
+		this.time = time;
+		this.description = description;
+		this.pro_path = pro_path;
+		this.img_path = img_path;
+		this.flag = flag;
+	}
+	public product(String name, String time, String description,
+			String img_path, int flag)
+	{
+		super();
+		this.name = name;
+		this.time = time;
+		this.description = description;
+		this.img_path = img_path;
+		this.flag = flag;
+	}
 	public product()
 	{
 		super();
