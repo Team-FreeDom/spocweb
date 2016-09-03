@@ -10,6 +10,7 @@
 <link href="../css/admin1.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/run_main.js"></script>
 <SCRIPT language=javascript>
 	function expand(el) {
 		childObj = document.getElementById("child" + el);
@@ -508,12 +509,14 @@
 									<table style="color:#000; margin-top:10px;">
 										<tr>
 											<td>照片</td>
-											<td><img src="${teacher.img}" id="imgPre" width="100px"
+											<td><img src="${teacher.img}" id="myForm${teacher.loginid}imgOneimgPre2" width="100px"
 												height="120px" style="display: block;" /> <input
 												type="file" name="imgOne"
 												id="myForm${teacher.loginid}imgOne"
-												onChange="checkFile(this)"
-												onchange="preImg(this.id,'imgPre');" /></td>
+												
+												onchange="preImg(this.id,this.id+'imgPre2');" /></td>
+												
+												
 											<td><input type="text" name="hide"
 												id="myForm${teacher.loginid}loginid2hide"
 												value="${teacher.loginid}" hidden="hidden"></td>
@@ -554,6 +557,7 @@
 						$("#addMember .empty").val("");
 						$("#addMember select").val("-1");
 						$("#addMember textarea").val("");
+						document.getElementById("imgPre").src="";
 						document.getElementById("admin").checked = "checked";
 						document.getElementById("sex").checked = "checked";
 					}
