@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.qcloud.video.api.VideoCloud;
+//import com.qcloud.video.api.VideoCloud;
 import com.spoc.po.member_product;
 import com.spoc.po.product;
 import com.spoc.service.productservice;

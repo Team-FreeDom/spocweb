@@ -428,6 +428,7 @@ $('#myModal').on('shown.bs.modal', function () {
 							var div = document.getElementById("myModal2");
 							div.style.display = "none";
 							$("#myModal2 .empty").val("");
+							document.getElementById("imgPre").src="";
 							$("#myModal2 textarea").val("");			
 							document.getElementById("inlineRadio2").checked="checked"; 							
 						}
