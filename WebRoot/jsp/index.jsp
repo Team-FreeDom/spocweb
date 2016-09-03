@@ -300,7 +300,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       		<div class="section__heading">思博课</div>
 				<div class="isolayer isolayer--deco4">
 					<ul class="grid">
-						<c:forEach items='${product}' var="list" >
+						<c:forEach items='${product}' var="list" begin="0" end="8">
 							<li class="grid__item"><!--.isolayer--deco4 .grid__link div.layer的css块可以该背景图片的高度和宽度-->
 								<a class="grid__link" href="#" data-toggle="modal" data-target="#myModal" data="${list.pro_path}" tle="${list.name}"><div class="layer"></div><div class="layer"></div><div class="layer"></div><img class="grid__img layer" src="${list.img_path}" alt="01" />
 								</a><!--超链接a标签请后台自动生成，主要修改自定义的data属性（视频源地址）和tle属性（类别：作品名）-->
