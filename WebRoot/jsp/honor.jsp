@@ -102,23 +102,12 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent onclick=expand(3) href="javascript:void(0);">作品管理</a></td>
+											class=menuparent href="products.do" target="main">作品管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
 									</tr>
 								</table>
-                             <table id=child3 style="display: none"
-									class="text-left admin_table">
-									<tr height=20>
-										<td width=30><img src="../image/menu_icon.gif"></td>
-										<td><a class=menuchild href="products.do">作品信息管理</a></td>
-									</tr>
-									<tr height=4>
-										<td colspan=2></td>
-									</tr>
-								</table>	
-
 
 								<table class="admin_table">
 									<tr height=22>
@@ -254,7 +243,7 @@
 								id="myform" onSubmit="return check1()">
 								<table class="table" id="tabBox">
 									<tr>
-										
+										<td> </td>
 										<td>荣誉编号</td>
 										<td>获奖时间</td>
 										<td >荣誉照片储存路径</td>
@@ -302,13 +291,13 @@
 										<td style="width:80px;text-align:center;line-height:100px;"><label
 											for="exampleInputName2">获奖时间</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="time" class="form-control" id="exampleInputName2"></td>
+											name="time" class="form-control empty" id="exampleInputName2"></td>
 										</tr>
 										<tr>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">荣誉描述</label></td>
 											<td colspan="5"><textarea type="text" rows="3"
-													class="form-control" name="description"
+													class="form-control empty" name="description"
 													 id="exampleInputName2"
 													style="width:650px;"></textarea></td>
 											
@@ -321,7 +310,7 @@
 										<td>照片</td>
 										<td><img id="imgPre" src="" width="100px" height="120px"
 											style="display: block;" /> 
-											<input type="file" name="imgOne"
+											<input type="file" name="imgOne" class="empty"
 											id="imgOne" onchange="preImg(this.id,'imgPre');" /></td>
 									</tr>
 								</table>
@@ -346,7 +335,7 @@
 							</div>
 							<form action="updateHonor.do" method="post"
 								enctype="multipart/form-data" name="myForm2" 
-								id="myForm${honor.hid}" >
+								id="myForm${honor.hid}" onSubmit="return honor1(this)" >
 								<div class="container table-responsive">
 									<table>
 										<tr style="padding-top:20px;">
@@ -355,7 +344,7 @@
 											</td>
 											<td style="text-align:left;"><input type="text"
 												name="time" class="form-control"
-												value="${honor.time}" id="myForm${honor.time}time2"></td>
+												value="${honor.time}" id="myForm${honor.hid}time2"></td>
                                          </tr>
                                          <tr style="padding-top:20px;">
 											<td style="width:80px;text-align:center;line-height:100px;">
@@ -390,7 +379,7 @@
 							<div class="modal-footer">
 
 								<button type="button" class="btn btn-primary update"
-									id="${honor.hid}" data-dismiss="modal">确定</button>
+									id="${honor.hid}" data-dismiss="modal" >确定</button>
 							</div>
 						</div>	
 						</c:forEach>
@@ -408,6 +397,7 @@
 					$('#myform').submit();
 
 				}
+				
 					$(".edit").bind("click", function() {
 						var id = this.id + "ta";
 						document.getElementById(id).style.display = "block";
@@ -424,7 +414,8 @@
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
 						
-						$("#addMember .empty").val("");
+						$("#addMember .empty").val("");						
+						
 					}
 
 					function add() {
@@ -440,7 +431,7 @@
 						var id = this.id + "a";
 						document.getElementById(id).style.display = "none";
 					})
-                                        function check1()
+                    function check1()
 					{
 						 var checkboxs=document.getElementsByName("deletehonor");
 						 var m=0;
@@ -464,18 +455,48 @@
 					}
 					function honor()
 					{
+						
 						var img=document.getElementById("imgOne").value;
 						var time=document.getElementById("exampleInputName2").value;
+						var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
+						
 						if(time=="")
 						{
 							alert("请填写获奖时间");
 							return false;
+						}
+						else 
+						{
+							if (!dateFormat.exec(time)) 
+							{
+								alert("time");
+								alert("获奖时间的格式必须是xxxx-xx-xx,且均为数字!");
+								return false;
+							}
 						}
 						if(img=="")
 							{
 							alert("请上传证书");
 							return false;
 							}
+						return true;
+					}
+					function honor1(obj)
+					{
+						
+					    var id=obj.id;
+					    
+						var time=document.getElementById(id+"time2").value;
+						
+						var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
+						
+						
+							if (!dateFormat.exec(time)) 
+							{
+								alert("获奖时间的格式必须是xxxx-xx-xx,且均为数字!");
+								return false;
+							}
+						
 						return true;
 					}
 					
