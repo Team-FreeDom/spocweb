@@ -42,7 +42,9 @@ public class AffairsController {
 	@RequestMapping("/affair.do")
 	public String getAffairs(HttpServletRequest request,ModelMap map) throws Exception
 	{
-        List<Honor> honor=honorService.getHonor();
+                List<Honor> honor=honorService.getHonor();
+                HttpSession session = request.getSession();
+	        session.setAttribute("gethonor", honor);
 		map.addAttribute("gethonor", honor);
 		
 		String name=request.getParameter("name");
