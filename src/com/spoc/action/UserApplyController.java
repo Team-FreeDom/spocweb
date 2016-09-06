@@ -38,6 +38,10 @@ public class UserApplyController {
   {
 	 
 	  String name=request.getParameter("name");
+	  if(name==null)
+	  {
+		  return "forward:applyjsp.do";
+	  }
 	  String sex=request.getParameter("sex");
 	  String college=request.getParameter("college");
 	  String grade=request.getParameter("grade");
