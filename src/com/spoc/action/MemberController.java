@@ -62,14 +62,14 @@ public class MemberController {
 		List<Group_manage> groups = group_manageService.getGroup();		
 		int flag = Integer.parseInt(request.getParameter("flag"));
 		int userValue=(Integer) request.getSession().getAttribute("userAuthority");
-		boolean sysbomlA;
+		/*boolean sysbomlA;
 		boolean sysbomlD;
 		boolean sysbomlU;
-		boolean sysbomlC;
+		boolean sysbomlC;*/
 		
 		if (flag == 2) {
 			
-			sysbomlA=userService.checkAuthority(userValue, 5);
+			/*sysbomlA=userService.checkAuthority(userValue, 5);
 			 sysbomlD=userService.checkAuthority(userValue, 6);
 			 sysbomlU=userService.checkAuthority(userValue, 7);
 			 sysbomlC=userService.checkAuthority(userValue, 8);
@@ -78,7 +78,7 @@ public class MemberController {
 			 map.addAttribute("sysbomlU", sysbomlU);
 			 map.addAttribute("sysbomlC", sysbomlC);
 			
-			 System.out.println(userValue+""+sysbomlA+""+sysbomlD+sysbomlU+sysbomlC);
+			 System.out.println(userValue+""+sysbomlA+""+sysbomlD+sysbomlU+sysbomlC);*/
 			map.addAttribute("students", memberService.getStudents());
 			map.addAttribute("colleges", colleges);
 			map.addAttribute("groups", groups);
@@ -89,14 +89,14 @@ public class MemberController {
 			return "student";
 		} else {
 			
-			 sysbomlA=userService.checkAuthority(userValue, 1);
+			 /*sysbomlA=userService.checkAuthority(userValue, 1);
 			 sysbomlD=userService.checkAuthority(userValue, 2);
 			 sysbomlU=userService.checkAuthority(userValue, 3);
 			 sysbomlC=userService.checkAuthority(userValue, 4);
 			 map.addAttribute("sysbomlA", sysbomlA);
 			 map.addAttribute("sysbomlD", sysbomlD);
 			 map.addAttribute("sysbomlU", sysbomlU);
-			 map.addAttribute("sysbomlC", sysbomlC);
+			 map.addAttribute("sysbomlC", sysbomlC);*/
 			 
 			map.addAttribute("teachers", memberService.getTeachers());
 			map.addAttribute("colleges", colleges);			

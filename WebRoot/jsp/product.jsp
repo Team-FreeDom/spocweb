@@ -32,9 +32,9 @@ $('#myModal').on('shown.bs.modal', function () {
     	<div class="row bg">
         	<div class="col-md-2 col-xs-3 text-while">思博课网站管理</div>
             <div class="col-md-7 col-xs-6 text-while">
-            	<a style="color: #fff" href="" target=main>修改口令</a>
+            	<a style="color: #fff" href="" target=main></a>
              &nbsp;&nbsp; 
-             <a style="color: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;" href="../main.htm" target=_top>退出系统</a> 
+             <a style="color: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;" href="exit.do" target=_top>退出系统</a> 
             </div>
             <div class="col-md-3 col-xs-3 bg2"></div>
         </div>
