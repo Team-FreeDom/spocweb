@@ -52,7 +52,7 @@ public class AffairDao {
 		return list;
 	}
 	
-	public void updateAffair(int aff_id,String loginid)
+	public void updateAffair(int aff_id,String dealname)
 	{
 		Session session=sessionFactory.openSession();
 		Transaction transaction = null;
@@ -60,7 +60,7 @@ public class AffairDao {
 		try{
 		transaction=session.beginTransaction();
 		af=(Affair) session.get(Affair.class, aff_id);
-		af.setLoginid(loginid);
+		af.setDealname(dealname);
 		af.setFlag(1);
 		session.update(af);
 		transaction.commit();

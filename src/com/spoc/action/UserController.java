@@ -26,6 +26,7 @@ public class UserController
 	@Autowired
 	private UserService userService;
 	
+	
 	@RequestMapping("/exit.do")
 	public String exit(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -35,23 +36,30 @@ public class UserController
 	}
 	
 	@RequestMapping("/login.do")
-	public ModelAndView handleRequest(HttpServletRequest request,HttpServletResponse response) throws Exception
+	public String handleRequest(HttpServletRequest request,HttpServletResponse response) throws Exception
 	{
 		    String loginid = request.getParameter("loginid");
+		    System.out.println(loginid);
+		    if(loginid==null)
+		    {		    	
+		    	return "redirect:affair.do";
+		    }
 			String password = request.getParameter("password");
-			System.out.println(loginid+password);
-			boolean flag1=userService.find(loginid, password);
+			System.out.println(loginid+" ha"+password);
+			boolean flag1=userService.findAdmin(loginid, password);
 			HttpSession session=request.getSession();
 			Member member=new Member();
 			if(flag1)
 			{				
 				session.setAttribute("user", loginid);
-			    return new ModelAndView("admin");
+				session.setAttribute("userAuthority", userService.getAuthority(loginid));
+				System.out.println("hello");
+			    return "admin";
 			}
 			else
 			{
 				
-				return new ModelAndView("index");
+				return "redirect:affair.do";
 			}
 	}
 	  

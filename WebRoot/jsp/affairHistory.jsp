@@ -103,12 +103,23 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent href="../list2.html" target="main">作品管理</a></td>
+											class=menuparent onclick=expand(3) href="javascript:void(0);">作品管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
 									</tr>
 								</table>
+                             <table id=child3 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="products.do">作品信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>	
+
 
 								<table class="admin_table">
 									<tr height=22>
@@ -187,6 +198,25 @@
 										<td colspan=2></td>
 									</tr>
 								</table>
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent onclick=expand(7) href="javascript:void(0);">组别管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+								<table id=child7 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="group.do">组别信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 					</table>
@@ -223,7 +253,7 @@
 												<td>${affair.aff_id}</td>
 												<td>${affair.type}</td>
 
-												<td>${affair.loginid}</td>
+												<td>${affair.dealname}</td>
 												<td colspan="2"><a href="#" class="display"
 													id="${affair.aff_id}">查看详情</a></td>
 											</tr>
@@ -276,15 +306,18 @@
 											<td style="width:80px;text-align:center;line-height:100px;">
 												<label for="exampleInputName2">附件地址</label>
 											</td>
-											<td><input type="text" name="typeName"
-												class="form-control" id="exampleInputName2"
+											<td colspan="5"><input type="text" name="typeName"
+											class="form-control" id="exampleInputName2"
 												value="${affair.doc}" /></td>
+												
+										</tr>	
+										<tr>	
 											<td style="width:80px;text-align:center;margin-left:100px;">
 												<label for="exampleInputName2">处理人</label>
 											</td>
-											<td style="text-align:left;"><input type="text"
+											<td colspan="2" style="text-align:left;"><input type="text"
 												name="typeName" class="form-control" id="exampleInputName2"
-												value="${affair.loginid}"></td>
+												value="${affair.dealname}"></td>
 										</tr>
 
 										</tr>

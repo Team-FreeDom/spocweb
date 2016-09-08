@@ -32,6 +32,12 @@ import com.spoc.service.Group_manageService;
 import com.spoc.service.MemberService;
 import com.spoc.service.Member_groupService;
 import com.spoc.service.Member_group_viewService;
+import com.spoc.service.UserService;
+
+/*
+ * teacher页面增，删，改，查的权限值分别为1,2,3,4
+ * student页面增，删，改，查的权限值分别为5,6,7,8
+ */
 
 @Controller("memberController")
 @RequestMapping("/jsp")
@@ -47,20 +53,55 @@ public class MemberController {
 	private Member_group_viewService member_group_viewService;
 	@Autowired
 	private Member_groupService member_groupService;
-
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping("/user.do")
 	public String displayUsers(HttpServletRequest request, ModelMap map) {
 		List<College> colleges = collegeService.getCollege();
-		List<Group_manage> groups = group_manageService.getGroup();		
+		List<Group_manage> groups = group_manageService.getGroup();	
+		if(request.getParameter("flag")==null)
+		{
+			return "admin";
+		}
 		int flag = Integer.parseInt(request.getParameter("flag"));
+		int userValue=(Integer) request.getSession().getAttribute("userAuthority");
+		/*boolean sysbomlA;
+		boolean sysbomlD;
+		boolean sysbomlU;
+		boolean sysbomlC;*/
+		
 		if (flag == 2) {
+			
+			/*sysbomlA=userService.checkAuthority(userValue, 5);
+			 sysbomlD=userService.checkAuthority(userValue, 6);
+			 sysbomlU=userService.checkAuthority(userValue, 7);
+			 sysbomlC=userService.checkAuthority(userValue, 8);
+			 map.addAttribute("sysbomlA", sysbomlA);
+			 map.addAttribute("sysbomlD", sysbomlD);
+			 map.addAttribute("sysbomlU", sysbomlU);
+			 map.addAttribute("sysbomlC", sysbomlC);
+			
+			 System.out.println(userValue+""+sysbomlA+""+sysbomlD+sysbomlU+sysbomlC);*/
 			map.addAttribute("students", memberService.getStudents());
 			map.addAttribute("colleges", colleges);
 			map.addAttribute("groups", groups);
 			map.addAttribute("membergroups",
 					member_group_viewService.getMemberGroups());
+			
+			
 			return "student";
 		} else {
+			
+			 /*sysbomlA=userService.checkAuthority(userValue, 1);
+			 sysbomlD=userService.checkAuthority(userValue, 2);
+			 sysbomlU=userService.checkAuthority(userValue, 3);
+			 sysbomlC=userService.checkAuthority(userValue, 4);
+			 map.addAttribute("sysbomlA", sysbomlA);
+			 map.addAttribute("sysbomlD", sysbomlD);
+			 map.addAttribute("sysbomlU", sysbomlU);
+			 map.addAttribute("sysbomlC", sysbomlC);*/
+			 
 			map.addAttribute("teachers", memberService.getTeachers());
 			map.addAttribute("colleges", colleges);			
 			return "teacher";
@@ -111,20 +152,37 @@ public class MemberController {
 	@RequestMapping("/deleteMember.do")
 	public String deleteMember(HttpServletRequest request, ModelMap map) {
 		String[] check = request.getParameterValues("student");
-		memberService.deleteMembers(check);
+		if(check==null)
+		{
+			return "forward:user.do?flag=2";
+		}
+		String path = request.getSession().getServletContext().getRealPath("");
+		memberService.deleteMembers(check,path);
 		return "forward:user.do?flag=2";
 	}
 
 	@RequestMapping("/deleteMember1.do")
 	public String deleteMember1(HttpServletRequest request, ModelMap map) {
+		
 		String[] check = request.getParameterValues("teacher");
-		memberService.deleteMembers(check);
+		if(check==null)
+		{
+			return "forward:user.do?flag=1";
+		}
+		String path = request.getSession().getServletContext().getRealPath("");
+		System.out.println(path);
+		memberService.deleteMembers(check,path);
 		return "forward:user.do?flag=1";
 	}
 	
 	@RequestMapping("/detail.do")
-	public String memberDetail(HttpServletRequest request, ModelMap map) {
+	public String memberDetail(HttpServletRequest request, ModelMap map) {		
 		String loginid = request.getParameter("id");
+		System.out.println(request.getHeaderNames());
+		if(loginid==null)
+		{
+			return "admin";
+		}
 		int flag=Integer.valueOf(request.getParameter("flag"));
 		Member member = memberService.getUniqueMember(loginid);
 		if(flag==2)
@@ -139,9 +197,15 @@ public class MemberController {
 		}
 	}
 
-	@RequestMapping(value = "/add.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/add.do")
 	public String addMember(HttpServletRequest request, ModelMap map)
 			throws Exception {
+		String loginid = request.getParameter("loginid");
+		if(loginid==null)
+		{
+			return "forward:user.do?flag=2";
+		}
+		
 		// 上传文件（图片），将文件存入服务器指定路径下，并获得文件的相对路径
 
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -182,7 +246,7 @@ public class MemberController {
 		String college = request.getParameter("college");
 		String[] group = request.getParameterValues("groupOne");
 		String pwd = request.getParameter("pwd");
-		String loginid = request.getParameter("loginid");
+		
 		int admin=Integer.valueOf(request.getParameter("admin"));
 		Member member=null;
 		if(job==null&&introduction==null)
@@ -210,10 +274,14 @@ public class MemberController {
 		return "forward:user.do?flag=2";
 	}
 
-	@RequestMapping(value = "/add1.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/add1.do")
 	public String addMemberT(HttpServletRequest request, ModelMap map)
 			throws Exception {
-		
+		String loginid = request.getParameter("loginid");
+		if(loginid==null)
+		{
+			return "forward:user.do?flag=1";
+		}
 		// 上传文件（图片），将文件存入服务器指定路径下，并获得文件的相对路径
 
 				MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -248,7 +316,7 @@ public class MemberController {
 				String address = request.getParameter("address");				
 				String college = request.getParameter("college");
 				String pwd = request.getParameter("pwd");
-				String loginid = request.getParameter("loginid");
+				
 				int admin=Integer.valueOf(request.getParameter("admin"));
 				Member member=new Member(loginid, pwd, name, sex, filename,
 						birth_date, college,  qq, phone, address,
@@ -258,9 +326,15 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value = "/updateT.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateT.do")
 	public String updateMemberT(HttpServletRequest request, ModelMap map)
 			throws Exception {
+		String hide=request.getParameter("hide");
+		if(hide==null)
+		{
+			return "forward:user.do?flag=1";
+		}
+		
 		Member member=null;
 		String name = request.getParameter("name");
 		String sex = request.getParameter("sex");
@@ -274,7 +348,7 @@ public class MemberController {
 		String college = request.getParameter("college");
 		String pwd = request.getParameter("pwd");
 		String loginid = request.getParameter("loginid");
-		String hide=request.getParameter("hide");
+		
 		int admin=Integer.valueOf(request.getParameter("admin"));
 		//String file=request.getParameter("imgOne");
 		
@@ -324,10 +398,16 @@ public class MemberController {
 		return "forward:user.do?flag=1";
 	}
 	
-	@RequestMapping(value = "/updateStu.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateStu.do")
 	
 	public String updateMemberStu(HttpServletRequest request, ModelMap map)
 			throws Exception {
+		String hide=request.getParameter("hide");
+		if(hide==null)
+		{
+			return "forward:user.do?flag=2";
+		}
+		
 		Member member=null;
 		String name = request.getParameter("name");
 		String sex = request.getParameter("sex");
@@ -342,7 +422,7 @@ public class MemberController {
 		String introduction = request.getParameter("introduction");
 		String job = request.getParameter("job");
 		String college = request.getParameter("college");
-		String hide=request.getParameter("hide");
+		
 		String[] group = request.getParameterValues("myForm"+hide+"groupOne2");
 		String pwd = request.getParameter("pwd");
 		String loginid = request.getParameter("loginid");

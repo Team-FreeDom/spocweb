@@ -103,7 +103,7 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent href="../list2.html" target="main">作品管理</a></td>
+											class=menuparent href="products.do" target="main">作品管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
@@ -187,9 +187,29 @@
 										<td colspan=2></td>
 									</tr>
 								</table>
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent onclick=expand(7) href="javascript:void(0);">组别管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+								<table id=child7 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="group.do">组别信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 					</table>
+					
 				</div>
 				<div class="col-md-10 col-xs-10">
 
@@ -239,10 +259,10 @@
 						<div class="modal-content text-center admin_hide"
 							id="${affair.apply_id}ta">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
+								<a class="close" data-dismiss="modal" href="applys.do"
 									id="${affair.apply_id}t"">
 									<span aria-hidden="true">&times;</span>
-								</button>
+								</a>
 								<h4 class="modal-title" id="myModalLabel">报名信息${affair.apply_id}</h4>
 							</div>
 							<form action="updateType.do" method="post"

@@ -9,6 +9,7 @@
 <link href="../css/admin1.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/run_main.js"></script>
 <SCRIPT language=javascript>
 	function expand(el) {
 		childObj = document.getElementById("child" + el);
@@ -102,7 +103,7 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent href="../list2.html" target="main">作品管理</a></td>
+											class=menuparent href="products.do" target="main">作品管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
@@ -186,6 +187,25 @@
 										<td colspan=2></td>
 									</tr>
 								</table>
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent onclick=expand(7) href="javascript:void(0);">组别管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+								<table id=child7 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="group.do">组别信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 					</table>
@@ -212,20 +232,19 @@
                       <span> <a class="add" href="#"> <img
 									src="../image/add.gif" width="10" height="10" /> 添加
 							</a> &nbsp; 
-							<!--  <a href="javascript:deleteMember()"> <img
+							 <a href="javascript:deleteType()"> <img
 									src="../image/del.gif" width="10" height="10" /> 删除
-							</a> &nbsp;&nbsp;-->
-
+							</a> &nbsp;&nbsp;
 							</span>
 						</div>
 					</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form action="honorS.do" method="post" name="myform"
-								id="myform">
+							<form action="deleteHonor.do" method="post" name="myform"
+								id="myform" onSubmit="return check1()">
 								<table class="table" id="tabBox">
 									<tr>
-										
+										<td> </td>
 										<td>荣誉编号</td>
 										<td>获奖时间</td>
 										<td >荣誉照片储存路径</td>
@@ -234,11 +253,20 @@
 									</tr>
 									<c:forEach items='${honors}' var="honor">
 										<tr>
+                                                                                 <td><label><input type="checkbox" name="deletehonor"
+													value="${honor.hid}" id="type" class="ck"                                                                                                                                           /></label></td>
 										<td>${honor.hid}</td>
 										<td>${honor.time}</td>
 										<td>${honor.img}</td>
 										<td>${honor.description}</td>
-												
+											<td colspan="2"><a class="edit"
+												id=${honor.hid } style="margin-left:20px;"
+												data-toggle="modal" data-target=".bs-example-modal-lg"
+												href="#"> <img src="../image/edit.gif" width="10"
+													height="10" /> 编辑
+											</a></td>	
+											<td><input type="text" name="hid" hidden="hidden"
+												value="${honor.hid}" /></td>
 										</tr>
 									</c:forEach>  
 								</table>
@@ -257,20 +285,20 @@
 							<h4 class="modal-title" id="myModalLabel">添加荣誉表</h4>
 						</div>
 						<form action="addhonor.do" method="post" enctype="multipart/form-data"
-							name="myForm2" id="myForm2">
+							name="myForm2" id="myForm2" onSubmit="return  honor()" >
 							<div class="container table-responsive">
 								<table>
 									<tr style="padding-top:20px;">
 										<td style="width:80px;text-align:center;line-height:100px;"><label
 											for="exampleInputName2">获奖时间</label></td>
 										<td style="text-align:left;"><input type="text"
-											name="time" class="form-control" id="exampleInputName2"></td>
+											name="time" class="form-control empty" id="exampleInputName2"></td>
 										</tr>
 										<tr>
 										<td style="width:80px;text-align:center;margin-left:30px;"><label
 											for="exampleInputName2">荣誉描述</label></td>
 											<td colspan="5"><textarea type="text" rows="3"
-													class="form-control" name="description"
+													class="form-control empty" name="description"
 													 id="exampleInputName2"
 													style="width:650px;"></textarea></td>
 											
@@ -282,7 +310,8 @@
 									<tr>
 										<td>照片</td>
 										<td><img id="imgPre" src="" width="100px" height="120px"
-											style="display: block;" /> <input type="file" name="imgOne"
+											style="display: block;" /> 
+											<input type="file" name="imgOne" class="empty"
 											id="imgOne" onchange="preImg(this.id,'imgPre');" /></td>
 									</tr>
 								</table>
@@ -293,13 +322,83 @@
 								data-dismiss="modal" onclick="add()">添加</button>
 						</div>
 					</div>
-					<!--add-section-end  -->		
+					<!--add-section-end  -->	
+					<!--edit-section-start  -->
+					<c:forEach items='${honors}' var="honor">
+					<div class="modal-content text-center admin_hide"
+							id="${honor.hid}ta">
+							<div class="modal-header">
+								<a class="close" data-dismiss="modal" href="honors.do""
+									id="${honor.hid}t"">
+									<span aria-hidden="true">&times;</span>
+								</a>
+								<h4 class="modal-title" id="myModalLabel">编辑荣誉信息</h4>
+							</div>
+							<form action="updateHonor.do" method="post"
+								enctype="multipart/form-data" name="myForm2" 
+								id="myForm${honor.hid}" onSubmit="return honor1(this)" >
+								<div class="container table-responsive">
+									<table>
+										<tr style="padding-top:20px;">
+											<td style="width:80px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">获奖时间</label>
+											</td>
+											<td style="text-align:left;"><input type="text"
+												name="time" class="form-control"
+												value="${honor.time}" id="myForm${honor.hid}time2"></td>
+                                         </tr>
+                                         <tr style="padding-top:20px;">
+											<td style="width:80px;text-align:center;line-height:100px;">
+												<label for="exampleInputName2">证书路径</label>
+											</td>
+											<td style="text-align:left;"><input type="text"
+												name="img" class="form-control"
+												value="${honor.img}" id="myForm${honor.img}time2"></td>
+                                         </tr>
+                                         <tr>
+											<td style="width:80px;text-align:center;margin-left:150px;">
+												<label for="exampleInputName2">内容描述</label>
+											</td>
+											<td style="text-align:left;"><input type="text"
+												name="description" class="form-control" 
+												value="${honor.description}" id="myForm${honor.description}description2"/></td>
+											<td style="width:120px;text-align:center;margin-left:150px;">
+												<input type="text" name="hid" value="${honor.hid}"
+												hidden="hidden" />
+											</td>
+										</tr>	
+											
+										<tr>
+											<td style="text-align:right;">照片</td>
+											<td rowspan="3"><img src="${honor.img}" id="${honor.hid}" width="450px"
+												height="300px" style="display: block;"  /> </td>
+										</tr>
+								      
+									</table>
+								</div>
+							</form>
+							<div class="modal-footer">
+
+								<button type="button" class="btn btn-primary update"
+									id="${honor.hid}" data-dismiss="modal" >确定</button>
+							</div>
+						</div>	
+						</c:forEach>
+						
+				
+					<!--edit-section-end -->
 				<script type="text/javascript">
-					function deleteMember() {
+				function deleteType() {
 
-						$('#myform').submit();
+					$('#myform').submit();
 
-					}
+				}
+				function deleteMember() {
+
+					$('#myform').submit();
+
+				}
+				
 					$(".edit").bind("click", function() {
 						var id = this.id + "ta";
 						document.getElementById(id).style.display = "block";
@@ -315,11 +414,15 @@
 					function fun(obj) {
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
-						$("input").val("");
+						
+						$("#addMember .empty").val("");	
+						document.getElementById("imgPre").src="";
+						
 					}
 
 					function add() {
 						$('#myForm2').submit();
+						
 
 					}
 					$(".update").bind("click", function() {
@@ -330,6 +433,75 @@
 						var id = this.id + "a";
 						document.getElementById(id).style.display = "none";
 					})
+                    function check1()
+					{
+						 var checkboxs=document.getElementsByName("deletehonor");
+						 var m=0;
+						 if(checkboxs.length==0)
+							 {
+							 alert("没有要删除的选项！");
+							 }
+						  for(var i=0;i<checkboxs.length;i++)
+							{
+								if(checkboxs[i].checked==false)
+								{
+									m=m+1;
+								}
+							}
+							if(m==i)
+							{
+								alert("请选择您要删除的选项！");
+								return false;
+								}
+							return true;
+					}
+					function honor()
+					{
+						
+						var img=document.getElementById("imgOne").value;
+						var time=document.getElementById("exampleInputName2").value;
+						var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
+						
+						if(time=="")
+						{
+							alert("请填写获奖时间");
+							return false;
+						}
+						else 
+						{
+							if (!dateFormat.exec(time)) 
+							{
+								
+								alert("获奖时间的格式必须是xxxx-xx-xx,且均为数字!");
+								return false;
+							}
+						}
+						if(img=="")
+							{
+							alert("请上传证书");
+							return false;
+							}
+						return true;
+					}
+					function honor1(obj)
+					{
+						
+					    var id=obj.id;
+					    
+						var time=document.getElementById(id+"time2").value;
+						
+						var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
+						
+						
+							if (!dateFormat.exec(time)) 
+							{
+								alert("获奖时间的格式必须是xxxx-xx-xx,且均为数字!");
+								return false;
+							}
+						
+						return true;
+					}
+					
 				</script>
 				<script>
 					var tabBox = document.getElementById("tabBox"),

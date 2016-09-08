@@ -32,6 +32,7 @@ import com.spoc.po.Honor;
 import com.spoc.po.Member;
 import com.spoc.po.Member_group;
 import com.spoc.po.Member_group_view;
+import com.spoc.po.Type_category;
 import com.spoc.service.CollegeService;
 import com.spoc.service.Group_manageService;
 import com.spoc.service.HonorService;
@@ -46,27 +47,34 @@ public class HonorController {
 	@Autowired
 	private HonorService honorService;
 
-	
-	
 	@RequestMapping("/honors.do")
 	public String apply(HttpServletRequest request, ModelMap map)
 	{
 		List<Honor> list=honorService.getHonor();
 		map.addAttribute("honors", list);
+		map.addAttribute("honortype",  honorService.getHonor());
 		return "honor";
 	}
 	@RequestMapping("/honorS.do")
 	public String honor(HttpServletRequest request, ModelMap map)
 	{
 		HttpSession session=request.getSession();
+		if(request.getParameter("hid")==null)
+		{
+			return "forward:honors.do";
+		}
 		int hid=Integer.valueOf(request.getParameter("hid"));
 		honorService.updateHonor(hid);
 		return "forward:honors.do";
 	}
-	@RequestMapping(value = "/addhonor.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/addhonor.do")
 	public String addHonors(HttpServletRequest request, ModelMap map)
 			throws Exception {
-		
+		String time = request.getParameter("time");
+		if(time==null)
+		{
+			return "forward:honors.do";
+		}
 		// 上传文件（图片），将文件存入服务器指定路径下，并获得文件的相对路径
 
 				MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -74,7 +82,7 @@ public class HonorController {
 				MultipartFile mFile = multipartRequest.getFile("imgOne");
 				// 得到上传服务器的路径
 				String path = request.getSession().getServletContext()
-						.getRealPath("/infor/selfie/");
+						.getRealPath("/infor/honor/");
 				// 得到上传的文件的文件名
 				String fileName = mFile.getOriginalFilename();
 				System.out.println(fileName);
@@ -90,13 +98,42 @@ public class HonorController {
 				inputStream.close();
 				outputStream.close();
 				filename = "../infor/honor/" + filename;
+				
+				// HttpSession session = request.getSession();
+				//   session.setAttribute("aaa", filename);
 
 				String hid =request.getParameter("hid");
-				String time = request.getParameter("time");
+				
 				String description=request.getParameter("description");
 				Honor honor=new Honor(hid,time,filename,description);
 				honorService.addHonor(honor);
 				return "forward:honors.do";
+	}
+	@RequestMapping("/updateHonor.do")
+	public String updateHonor(HttpServletRequest request, ModelMap map)
+	{
+		String hid =request.getParameter("hid");
+		if(hid==null)
+		{
+			return "forward:honors.do";
+		}
+		String time = request.getParameter("time");
+		String description=request.getParameter("description");
+		String img=request.getParameter("img");
+		Honor Hn=new Honor(hid,time,img,description);
+		honorService.update(Hn);
+		return "forward:honors.do";
+	}
+        @RequestMapping("/deleteHonor.do") //删除管理员所选择的相应的记录
+	public String deleteHonor(HttpServletRequest request)
+	{
+		String[] check=request.getParameterValues("deletehonor");
+		if(check==null)
+		{
+			return "forward:honors.do";
+		}
+		honorService.deleteHonor(check);
+		return "forward:honors.do";
 	}
 	
 }

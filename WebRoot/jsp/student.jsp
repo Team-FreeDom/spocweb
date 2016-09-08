@@ -10,6 +10,7 @@
 <link href="../css/admin1.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/run_main.js"></script>
 <SCRIPT language=javascript>
 	function expand(el) {
 		childObj = document.getElementById("child" + el);
@@ -103,12 +104,23 @@
 								<table class="admin_table">
 									<tr height=22>
 										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
-											class=menuparent href="../list2.html" target="main">作品管理</a></td>
+											class=menuparent onclick=expand(3) href="javascript:void(0);">作品管理</a></td>
 									</tr>
 									<tr height=4>
 										<td></td>
 									</tr>
 								</table>
+                             <table id=child3 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="products.do">作品信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>	
+
 
 								<table class="admin_table">
 									<tr height=22>
@@ -187,6 +199,25 @@
 										<td colspan=2></td>
 									</tr>
 								</table>
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent onclick=expand(7) href="javascript:void(0);">组别管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+								<table id=child7 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="group.do">组别信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 					</table>
@@ -248,7 +279,7 @@
 												}
 												style="margin-left:20px;" data-toggle="modal"
 												data-target=".bs-example-modal-lg" href="#"> <img
-													src="../image/edit.gif" width="10" height="10" /> 编辑
+												src="../image/edit.gif" width="10" height="10" /> 编辑
 											</a></td>
 										</tr>
 									</c:forEach>
@@ -346,7 +377,7 @@
 									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
 											for="exampleInputName2">组别<span class="symbol">*</span></label></td>
-										<td clospan="5"><c:forEach items='${groups}' var="group">
+										<td colspan="5"  align="left"><c:forEach items='${groups}' var="group">
 												<label class="checkbox-inline"> <input
 													value="${group.gid}" type="checkbox" name="groupOne"
 													id="groupOne" value="option1" /> <label>${group.name}
@@ -501,7 +532,7 @@
 										<tr>
 											<td style="width:80px;text-align:center;line-height:40px;"><label
 												for="exampleInputName2">组别</label></td>
-											<td clospan="5">
+											<td colspan="5" align="left">
 											 <c:forEach items='${groups}'	var="group">
 											   <label class="checkbox-inline"> 
 											     <input	value="${group.gid}" type="checkbox" name="myForm${student.loginid}groupOne2" 
@@ -548,10 +579,10 @@
 									<table style="color:#000; margin-top:10px;">
 										<tr>
 											<td>照片</td>
-											<td><img src="${student.img}" id="imgPre" width="100px"
+											<td><img src="${student.img}" id="${student.loginid}file2imgPre2" width="100px"
 												height="120px" style="display: block;" /> <input
-												type="file" name="imgOne" id="file2"
-												onchange="preImg(this.id,'imgPre');" /></td>
+												type="file" name="imgOne" id="${student.loginid}file2"
+												onchange="preImg(this.id,this.id+'imgPre2');" /></td>
 												<td><input type="text" name="hide" id="myForm${student.loginid}loginid2hide" value="${student.loginid}" hidden="hidden"></td>
 										</tr>
 
@@ -592,7 +623,8 @@
 							div.style.display = "none";
 							$("#addMember .empty").val("");
 							$("#addMember select").val("-1");
-							$("#addMember textarea").val("");			
+							$("#addMember textarea").val("");	
+							document.getElementById("imgPre").src="";
 							document.getElementById("admin").checked="checked";
 							document.getElementById("sex").checked="checked";
 							var allObj = document.getElementsByName("groupOne");//通过NAME得到CHECKBOX集合  
@@ -635,15 +667,10 @@
 					function checkLoginid(obj) {
 
 						var loginid = document.getElementById(obj.id).value;
-						var dateFormatL = /^[0-9]{12}$/;
+						
 						if (loginid == "") {
 							alert("登录名不能为空！");
 							return false;
-						} else {
-							if (!dateFormatL.exec(loginid)) {
-								alert("登录名应为12位的数字!");
-								return false;
-							}
 						}
 						$.ajax({
 
@@ -674,12 +701,7 @@
 						if (loginid == "") {
 							alert("登录名不能为空！");
 							return false;
-						} else {
-							if (!dateFormatL.exec(loginid)) {
-								alert("登录名应为12位的数字!");
-								return false;
-							}
-						}
+						} 
 						$.ajax({
 
 							type : 'POST',
@@ -837,12 +859,7 @@
 							if (loginid == "") {
 								alert("登录名不能为空！");
 								return false;
-							} else {
-								if (!dateFormatL.exec(loginid)) {
-									alert("登录名应为12位的数字!");
-									return false;
-								}
-							}
+							} 
 							$.ajax({
 
 								type : 'POST',

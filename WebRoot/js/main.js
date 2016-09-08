@@ -108,7 +108,7 @@
 		function bindCanvas(){
 			var oGC = oC.getContext('2d');
 	
-			var setArr = [];   //存储要绘制的所有图形的数据
+			var setArr = [];   //瀛樺偍瑕佺粯鍒剁殑鎵�湁鍥惧舰鐨勬暟鎹�
 			
 			timer1 = setInterval(function(){
 				
@@ -342,7 +342,7 @@
 		this.pseudoScrollerEl.className = 'pseudo-scroller';
 		// insert it inside the main container (same level of isolayerEl)
 		this.isolayerEl.parentNode.insertBefore(this.pseudoScrollerEl, this.isolayerEl);
-		// set the height of the pseudoScroller (grid´s height + additional space between the top of the rotated isolayerEl and the page - value set for the translation on the Y axis)
+		// set the height of the pseudoScroller (grid麓s height + additional space between the top of the rotated isolayerEl and the page - value set for the translation on the Y axis)
 		this.pseudoScrollerEl.style.height = this.gridEl.offsetHeight + getComputedTranslateY(this.isolayerEl) * Math.sqrt(2) + 'px';	
 	};
 
@@ -372,7 +372,7 @@
 			window.addEventListener('scroll', scrollHandler, false);
 			// on resize (layoutComplete for the masonry instance) recalculate height
 			this.msnry.on('layoutComplete', function( laidOutItems ) {
-				// reset the height of the pseudoScroller (grid´s height + additional space between the top of the rotated isolayerEl and the page)
+				// reset the height of the pseudoScroller (grid麓s height + additional space between the top of the rotated isolayerEl and the page)
 				self.pseudoScrollerEl.style.height = self.gridEl.offsetHeight + self.isolayerEl.offsetTop * Math.sqrt(2) + 'px';
 				self._scrollPage();
 			});
@@ -441,7 +441,7 @@
 		})
 		
 		$('#myModal').on('hidden.bs.modal', function (e) {
-			if(!myPlayer.paused)
+			//if(!myPlayer.paused)
 				myPlayer.pause();
 		})
 		

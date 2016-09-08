@@ -39,6 +39,10 @@ public class ChargeStandardController {
 	@RequestMapping("/addChargeStandard.do") //增加一条收费标准
 	public String addChargeStandard(HttpServletRequest request, ModelMap map)
 	{
+		if(request.getParameter("affair")==null)
+		{
+			return "forward:chargeStandard.do";
+		}
 		int acid=Integer.valueOf(request.getParameter("affair"));
 		int tcid=Integer.valueOf(request.getParameter("type"));
 		String basic=request.getParameter("basic");
@@ -53,6 +57,10 @@ public class ChargeStandardController {
 	public String deleteChargeStandard(HttpServletRequest request)
 	{
 		String[] check=request.getParameterValues("typeCh");
+		if(check==null)
+		{
+			return "forward:chargeStandard.do";
+		}
 		chargeStandardService.deleteChargeStandard(check);
 		return "forward:chargeStandard.do";
 	}
@@ -60,6 +68,10 @@ public class ChargeStandardController {
 	@RequestMapping("/updateChargeStandard.do")
 	public String updateChargeStandard(HttpServletRequest request)
 	{
+		if(request.getParameter("csid")==null)
+		{
+			return "forward:chargeStandard.do";
+		}
 		int csid=Integer.valueOf(request.getParameter("csid"));
 		int acid=Integer.valueOf(request.getParameter("affair"));
 		int tcid=Integer.valueOf(request.getParameter("type"));

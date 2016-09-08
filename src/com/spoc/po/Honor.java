@@ -25,6 +25,13 @@ public class Honor
 		this.img = img;
 		this.description = description;
 	}
+	public Honor(String hid, String time,  String description)
+	{
+		super();
+		this.hid = hid;
+		this.time = time;
+		this.description = description;
+	}
 	public String getHid()
 	{
 		return hid;
