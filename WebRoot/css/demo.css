@@ -40,6 +40,20 @@
 	z-index: 1000;
 	font-family: 'Playfair Display', serif;
 }
+.section__body{
+	pointer-events: none;
+	padding: 5% 0 0 70%;/*控制思博课三个字的位置*/
+	font-size: 16px;
+	float:left;
+	text-align:left;
+	line-height: 1;
+	color: #fff;
+	position: relative;
+	margin: 0;
+	z-index: 1000;
+	font-family: 'Playfair Display', serif;
+	
+	}
 
 
 /*.section__heading em {
