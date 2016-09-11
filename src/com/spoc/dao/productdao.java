@@ -109,4 +109,36 @@ public class productdao
 		}
 		return pr;
 	}
+	@SuppressWarnings("finally")
+	public int addproduct(product pr)
+	{
+		int pid=0;
+		String name=pr.getName();
+		Session session=sessionfactory.openSession();
+		Transaction transaction = null;
+		product pr1=null;
+		try
+		{
+			transaction=session.beginTransaction();
+			session.save(pr);
+			transaction.commit();
+			Query query=session.createQuery("from product where name=?");
+			query.setString(0, name);
+			pr1=(product)query.uniqueResult();
+			pid=pr1.getPid();
+		}
+		catch (Exception ex)
+		{
+			if (transaction != null) 
+			{
+				transaction.rollback();// 回滚事务，撤消查询语句
+			}
+			System.out.println(ex);
+		} 
+		finally 
+		{
+			session.close();// 关闭会话状态，清空资源
+			return pid;
+		}	
+	}
 }

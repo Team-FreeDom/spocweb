@@ -10,6 +10,7 @@
 <link href="../css/admin1.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/run_main.js"></script>
 <SCRIPT language=javascript>
 	function expand(el) {
 		childObj = document.getElementById("child" + el);
@@ -241,9 +242,9 @@
 						<div class="col-md-7 hidden-xs"></div>
 						<div class="col-md-3 col-xs-7">
 							<span> <a class="add" href="#"> <img
-							${sysbomlA?"":"hidden" }		src="../image/add.gif" width="10" height="10" /> ${sysbomlA?"添加":"" }
+									src="../image/add.gif" width="10" height="10" /> 添加
 							</a> &nbsp; <a href="javascript:deleteMember()"> <img
-								${sysbomlD?"":"hidden" }	src="../image/del.gif" width="10" height="10" /> ${sysbomlD?"删除":"" }
+									src="../image/del.gif" width="10" height="10" /> 删除
 							</a> &nbsp;&nbsp;
 
 							</span>
@@ -273,12 +274,12 @@
 											<td>${student.college}</td>
 											<td>${student.grade}</td>
 											<td colspan="2"><a
-												href="detail.do?id=${student.loginid}&flag=2">${sysbomlC?"查看详情":"" }</a> <a
+												href="detail.do?id=${student.loginid}&flag=2">查看详情</a> <a
 												class="edit" id=${student.loginid
 												}
 												style="margin-left:20px;" data-toggle="modal"
 												data-target=".bs-example-modal-lg" href="#"> <img
-												${sysbomlU?"":"hidden" }	src="../image/edit.gif" width="10" height="10" /> ${sysbomlU?"编辑":"" }
+												src="../image/edit.gif" width="10" height="10" /> 编辑
 											</a></td>
 										</tr>
 									</c:forEach>
@@ -376,7 +377,7 @@
 									<tr>
 										<td style="width:80px;text-align:center;line-height:40px;"><label
 											for="exampleInputName2">组别<span class="symbol">*</span></label></td>
-										<td colspan="5"><c:forEach items='${groups}' var="group">
+										<td colspan="5"  align="left"><c:forEach items='${groups}' var="group">
 												<label class="checkbox-inline"> <input
 													value="${group.gid}" type="checkbox" name="groupOne"
 													id="groupOne" value="option1" /> <label>${group.name}
@@ -578,10 +579,10 @@
 									<table style="color:#000; margin-top:10px;">
 										<tr>
 											<td>照片</td>
-											<td><img src="${student.img}" id="imgPre" width="100px"
+											<td><img src="${student.img}" id="${student.loginid}file2imgPre2" width="100px"
 												height="120px" style="display: block;" /> <input
-												type="file" name="imgOne" id="file2"
-												onchange="preImg(this.id,'imgPre');" /></td>
+												type="file" name="imgOne" id="${student.loginid}file2"
+												onchange="preImg(this.id,this.id+'imgPre2');" /></td>
 												<td><input type="text" name="hide" id="myForm${student.loginid}loginid2hide" value="${student.loginid}" hidden="hidden"></td>
 										</tr>
 
@@ -622,7 +623,8 @@
 							div.style.display = "none";
 							$("#addMember .empty").val("");
 							$("#addMember select").val("-1");
-							$("#addMember textarea").val("");			
+							$("#addMember textarea").val("");	
+							document.getElementById("imgPre").src="";
 							document.getElementById("admin").checked="checked";
 							document.getElementById("sex").checked="checked";
 							var allObj = document.getElementsByName("groupOne");//通过NAME得到CHECKBOX集合  

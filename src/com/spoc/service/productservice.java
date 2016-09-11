@@ -49,4 +49,13 @@ public class productservice
 	{
 		return prosdao.getproducts(pid);
 	}
+	public int addproduct(product pr)
+	{
+		int pid=prodao.addproduct(pr);
+		return pid;
+	}
+	public void addmember_product(member_product mpr)
+	{
+		prosdao.addmember_product(mpr);
+	}
 }

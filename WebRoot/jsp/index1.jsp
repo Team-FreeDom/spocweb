@@ -388,8 +388,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<span id="span" style="color:#b04a34;">收费指南</span>
 							<ul class="list-unstyled fourth_right">
 								<c:forEach items='${affair_category}' var="ac">
-									<li ${ac.flag==0?"class=\"gray\"":"" }><a href="#"
-										onClick="changeAffair('${ac.name }')">${ac.name }</a></li>
+									<li ${ac.flag==0?"class=\"gray\"":"" }><a href="#" 
+										onClick="changeAffair('${ac.name }','${ac.flag}')">${ac.name }</a></li>
 									<%-- href="affair.do?name=${ac.name }#4thpage" --%>
 								</c:forEach>
 							</ul>
@@ -486,8 +486,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						return true;
 					}
 					
-					function changeAffair(name)
+					function changeAffair(name,flag)
 					{
+						if(flag==0)
+							{
+							return;
+							}
 						paras1 = document.getElementsByClassName("act");
 						for(i=0;i<paras1.length;i++){
 						     //删除元素 元素.parentNode.removeChild(元素);

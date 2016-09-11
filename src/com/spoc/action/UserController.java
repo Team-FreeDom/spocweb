@@ -39,8 +39,13 @@ public class UserController
 	public String handleRequest(HttpServletRequest request,HttpServletResponse response) throws Exception
 	{
 		    String loginid = request.getParameter("loginid");
+		    System.out.println(loginid);
+		    if(loginid==null)
+		    {		    	
+		    	return "redirect:affair.do";
+		    }
 			String password = request.getParameter("password");
-			System.out.println(loginid+password);
+			System.out.println(loginid+" ha"+password);
 			boolean flag1=userService.findAdmin(loginid, password);
 			HttpSession session=request.getSession();
 			Member member=new Member();
@@ -48,7 +53,7 @@ public class UserController
 			{				
 				session.setAttribute("user", loginid);
 				session.setAttribute("userAuthority", userService.getAuthority(loginid));
-				
+				System.out.println("hello");
 			    return "admin";
 			}
 			else

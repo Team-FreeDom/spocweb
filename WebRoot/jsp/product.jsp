@@ -32,9 +32,9 @@ $('#myModal').on('shown.bs.modal', function () {
     	<div class="row bg">
         	<div class="col-md-2 col-xs-3 text-while">思博课网站管理</div>
             <div class="col-md-7 col-xs-6 text-while">
-            	<a style="color: #fff" href="" target=main>修改口令</a>
+            	<a style="color: #fff" href="" target=main></a>
              &nbsp;&nbsp; 
-             <a style="color: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;" href="../main.htm" target=_top>退出系统</a> 
+             <a style="color: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;" href="exit.do" target=_top>退出系统</a> 
             </div>
             <div class="col-md-3 col-xs-3 bg2"></div>
         </div>
@@ -192,6 +192,25 @@ $('#myModal').on('shown.bs.modal', function () {
 										<td colspan=2></td>
 									</tr>
 								</table>
+								<table class="admin_table">
+									<tr height=22>
+										<td style="padding-left: 30px" background=../image/menu_bt.jpg><a
+											class=menuparent onclick=expand(7) href="javascript:void(0);">组别管理</a></td>
+									</tr>
+									<tr height=4>
+										<td></td>
+									</tr>
+								</table>
+								<table id=child7 style="display: none"
+									class="text-left admin_table">
+									<tr height=20>
+										<td width=30><img src="../image/menu_icon.gif"></td>
+										<td><a class=menuchild href="group.do">组别信息管理</a></td>
+									</tr>
+									<tr height=4>
+										<td colspan=2></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 					</table>
@@ -211,48 +230,67 @@ $('#myModal').on('shown.bs.modal', function () {
                                 </span>
                             </div>
                         </div>                        
-                        
-                        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                   		<!-- 添加作品 -->     
+                        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id="addproduct">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="fun(this)"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">添加作品</h4>
                               </div>
+                            <form action="addproduct.do" method="post" enctype="multipart/form-data"  onSubmit="return checkA()" name="myForm2" id="myForm2">
                               <div class="modal-body">
                                 <table class="table">
                                 	<tr>
                                     	<td><label for="x">作品名称</label></td>
-                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control empty" onBlur="checkname(this)" id="name" name="name"></td>
                                         <td><label for="xx">完成时间</label></td>
-                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control empty" onBlur="checktime(this)" id="time" name="time" placeholder="请以××××-××-××格式填写"></td>
                                     </tr>
                                     <tr>
                                     	<td><label for="x">参与学生</label></td>
-                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control empty" onBlur="checkstudent(this)" id="student" name="student"></td>
                                         <td><label for="xx">指导老师</label></td>
-                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control empty" onBlur="checkteacher(this)" id="teacher" name="teacher"></td>
+                                    </tr>
+                                    <tr>
+                                    	<td><label for="x">是否显示在前台</label></td>					                         
+					                    <td>
+				                         	<label class="radio-inline">
+				                               <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> 是
+				                             </label>
+				                             <label class="radio-inline">
+				                               <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="0" checked="checked"> 否
+				                             </label>
+					                    </td>
                                     </tr>
                                     <tr>
                                     	<td><label for="x">作品描述</label></td>
-                                        <td colspan="3"><textarea type="text" class="form-control"></textarea></td>
+                                        <td colspan="3"><textarea type="text" class="form-control " onBlur="checkdescription(this)" id="description" name="description"></textarea></td>
                                     </tr>
                                     <tr>
 									<td><label for="x">上传预览图</label></td>
-									<td colspan="3"><img id="imgPre" src="" width="100px" height="120px" style="display: block;" /> <input type="file" name="imgOne"
-										id="imgOne" onchange="preImg(this.id,'imgPre');" />
+									<td colspan="3"><img id="imgPre" src="" width="100px" height="120px" style="display: block;" /> <input type="file" name="img_path"
+										id="img_path" onchange="preImg(this.id,'imgPre');" class="empty"/>
+                                    </td>
+									</tr>
+									<tr>
+									<td><label for="x">上传视频</label></td>
+									<td colspan="3"><img id="proPre" src="" width="100px" height="120px" style="display: block;" /> <input type="file" name="pro_path" class="empty"
+										id="pro_path" onchange="preImg(this.id,'imgPre');" />
                                     </td>
 									</tr>
                                 </table>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="fun(this)">关闭</button>
+                                <button type="button" class="btn btn-primary" onclick="add()">添加</button>
                               </div>
+                           </form>
                             </div>
                           </div>
                         </div>	            
-                        
+                                            
                         <div id="tableBox">
                             <div class="admin_roll">
                             	<form action="deleteproducts.do" method="post" name="myform" id="myform" onSubmit="return check()">	
@@ -386,6 +424,14 @@ $('#myModal').on('shown.bs.modal', function () {
 											var id = this.id + "ta";
 											document.getElementById(id).style.display = "block";
 										})
+						function fun(obj) {
+							var div = document.getElementById("myModal2");
+							div.style.display = "none";
+							$("#myModal2 .empty").val("");
+							document.getElementById("imgPre").src="";
+							$("#myModal2 textarea").val("");			
+							document.getElementById("inlineRadio2").checked="checked"; 							
+						}
 						function add() {
 							$('#myForm2').submit();
 
@@ -462,6 +508,39 @@ $('#myModal').on('shown.bs.modal', function () {
 								return false;
 							}
 						}
+						function checkA() {
+							var name = document.getElementById("name").value;//通过id获取相应input输入框的值
+							var time = document.getElementById("time").value;
+							var student = document.getElementById("student").value;								
+							var teacher = document.getElementById("teacher").value;
+							var description = document.getElementById("description").value;							
+							var dateFormat = /^\d{4}\-\d{2}\-\d{2}$/;
+							var img_path = document.getElementById("img_path").value;
+                            var returnValue=true;
+							if (name == "") 
+							{
+								alert("作品名称不能为空！");
+								return false;
+							}
+							if (time == "") {
+								alert("完成时间不能为空！");
+								return false;
+							}else {
+								if (!dateFormat.exec(time)) {
+									alert("完成时间的格式必须是xxxx-xx-xx,且均为数字!");
+									return false;
+								}
+							}
+							if (description == "") {
+								alert("作品描述不能为空！");
+								return false;
+							}
+							if (img_path == "") {
+								alert("请选择作品预览图！");
+								return false;
+							}
+							return returnValue;
+							} 
 						</script>
                         <script>
                             var tabBox = document.getElementById("tabBox"),

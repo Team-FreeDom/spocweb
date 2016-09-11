@@ -13,11 +13,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet">
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<style type="text/css">
+        #table tr td {
+			border:solid 2px #fff;;
+			
+			}
+			
+    </style>
 </head>
 
 <body>
 <div class="container table-responsive">
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="table" style="background-color: #e5f4f7;margin-top:120px;">
+        <th colspan="7" style="text-align:center;font-size:3em;color:#00349a;background-color: #c4e1ef">     
+                 个人信息
+      </th>
         <tr>
             <td>登录名</td>
             <td>${member.loginid}</td>

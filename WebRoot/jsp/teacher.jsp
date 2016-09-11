@@ -10,6 +10,7 @@
 <link href="../css/admin1.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/run_main.js"></script>
 <SCRIPT language=javascript>
 	function expand(el) {
 		childObj = document.getElementById("child" + el);
@@ -243,11 +244,11 @@
 						<div class="col-md-7 hidden-xs"></div>
 						<div class="col-md-3 col-xs-7">
 							<span> <a class="add" href="#"> <img
-									${sysbomlA?"":"hidden" } src="../image/add.gif" width="10"
-									height="10" /> ${sysbomlA?"添加":"" }
+									 src="../image/add.gif" width="10"
+									height="10" /> 添加
 							</a> &nbsp; <a href="javascript:deleteMember()"> <img
-									${sysbomlD?"":"hidden" } src="../image/del.gif" width="10"
-									height="10" /> ${sysbomlD?"删除":"" }
+									 src="../image/del.gif" width="10"
+									height="10" />删除
 							</a> &nbsp;&nbsp;
 
 							</span>
@@ -277,11 +278,11 @@
 											<td>${teacher.college}</td>
 											<td>${teacher.phone}</td>
 											<td colspan="2"><a
-												href="detail.do?id=${teacher.loginid}&flag=1">${sysbomlC?"查看详情":"" }</a> <a
+												href="detail.do?id=${teacher.loginid}&flag=1">查看详情</a> <a
 												class="edit" id="${teacher.loginid}"
 												style="margin-left:20px;" data-toggle="modal"
 												data-target=".bs-example-modal-lg" href="#"> <img
-												${sysbomlU?"":"hidden" }	src="../image/edit.gif" width="10" height="10" /> ${sysbomlU?"编辑":"" }
+												src="../image/edit.gif" width="10" height="10" />编辑
 											</a></td>
 										</tr>
 									</c:forEach>
@@ -508,12 +509,14 @@
 									<table style="color:#000; margin-top:10px;">
 										<tr>
 											<td>照片</td>
-											<td><img src="${teacher.img}" id="imgPre" width="100px"
+											<td><img src="${teacher.img}" id="myForm${teacher.loginid}imgOneimgPre2" width="100px"
 												height="120px" style="display: block;" /> <input
 												type="file" name="imgOne"
 												id="myForm${teacher.loginid}imgOne"
-												onChange="checkFile(this)"
-												onchange="preImg(this.id,'imgPre');" /></td>
+												
+												onchange="preImg(this.id,this.id+'imgPre2');" /></td>
+												
+												
 											<td><input type="text" name="hide"
 												id="myForm${teacher.loginid}loginid2hide"
 												value="${teacher.loginid}" hidden="hidden"></td>
@@ -554,6 +557,7 @@
 						$("#addMember .empty").val("");
 						$("#addMember select").val("-1");
 						$("#addMember textarea").val("");
+						document.getElementById("imgPre").src="";
 						document.getElementById("admin").checked = "checked";
 						document.getElementById("sex").checked = "checked";
 					}

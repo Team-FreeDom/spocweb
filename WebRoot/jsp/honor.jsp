@@ -9,6 +9,7 @@
 <link href="../css/admin1.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/run_main.js"></script>
 <SCRIPT language=javascript>
 	function expand(el) {
 		childObj = document.getElementById("child" + el);
@@ -414,7 +415,8 @@
 						var div = document.getElementById("addMember");
 						div.style.display = "none";
 						
-						$("#addMember .empty").val("");						
+						$("#addMember .empty").val("");	
+						document.getElementById("imgPre").src="";
 						
 					}
 
@@ -469,7 +471,7 @@
 						{
 							if (!dateFormat.exec(time)) 
 							{
-								alert("time");
+								
 								alert("获奖时间的格式必须是xxxx-xx-xx,且均为数字!");
 								return false;
 							}
