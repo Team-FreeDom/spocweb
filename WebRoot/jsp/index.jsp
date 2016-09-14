@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,com.spoc.po.Honor"
+﻿<%@ page language="java" import="java.util.*,com.spoc.po.Honor"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
@@ -305,7 +305,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       		<div class="section__heading">思博课</div>
 			<div class="section__body" style="margin-left:10px;">
                 	<p>我们个性，我们自由，我们勇敢，我们坚持，我们创新</p>
-                    <p>我们将无限的热情与激情投诸于作品的创造中。</p>
+                    <p>我们将无限的热情与激情投诸于作品的创造中</p>
                     <p>每一幕精妙绝伦的画面都伴随着帧与帧之间无数火花的碰撞</p>
                     <p>每一个惟妙惟肖的勾勒都是点与线的巧妙结合</p>
                     <p>每一次流畅自如的点击都促进了硬件与软件的亲密交流</p>
