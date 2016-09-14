@@ -26,6 +26,13 @@ public class checkFilter extends HttpServlet implements Filter {
 		HttpServletResponse res = (HttpServletResponse) arg1;
 		String path = req.getRequestURI();
 		System.out.println(path);
+		
+		/*if(path.equals("/"))
+		{
+			req.getRequestDispatcher("jsp/affair.do").forward(arg0, arg1);
+		}
+		else if(path.endsWith("*.do") &&!path.endsWith(".jsp")){
+			*/
 		if (!path.endsWith("affair.do") && !path.endsWith("login.do")
 				&& !path.endsWith("changeAffair.do")
 				&& !path.endsWith("lianxijsp.do")&& !path.endsWith("applyjsp.do") && !path.endsWith("apply.do")				
@@ -33,9 +40,10 @@ public class checkFilter extends HttpServlet implements Filter {
 
 			if (req.getSession().getAttribute("user") == null) {
 
-				req.getRequestDispatcher("affair.do").forward(arg0, arg1);
+				res.sendRedirect("/affair.do");
 			}
 		}
+		/*}*/
 
 		arg2.doFilter(arg0, arg1);
 
