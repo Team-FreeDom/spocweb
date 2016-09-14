@@ -301,8 +301,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!--/section2 -->
 
 
-		<div class="section demo-2 orange_lab">
-			<div class="section__heading">思博课</div>
+		<div class="section demo-2 orange_lab" id="section3">
+      		<div class="section__heading">思博课</div>
+			<div class="section__body" style="margin-left:10px;">
+                	<p>我们个性，我们自由，我们勇敢，我们坚持，我们创新</p>
+                    <p>我们将无限的热情与激情投诸于作品的创造中。</p>
+                    <p>每一幕精妙绝伦的画面都伴随着帧与帧之间无数火花的碰撞</p>
+                    <p>每一个惟妙惟肖的勾勒都是点与线的巧妙结合</p>
+                    <p>每一次流畅自如的点击都促进了硬件与软件的亲密交流</p>
+                    <p>每一个呈现给你的作品都是我们团结合作，勇敢创新的成果</p>
+                </div>
 			<div class="isolayer isolayer--deco4">
 				<ul class="grid">
 					<c:forEach items='${product}' var="list" begin="0" end="8">
