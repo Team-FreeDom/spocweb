@@ -238,7 +238,7 @@ $('#myModal').on('shown.bs.modal', function () {
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="fun(this)"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">添加作品</h4>
                               </div>
-                            <form action="addproduct.do" method="post" enctype="multipart/form-data"  onSubmit="return checkA()" name="myForm2" id="myForm2">
+                            <form action="/Spocweb/servlet/test" method="post" enctype="multipart/form-data"  onSubmit="return checkA()" name="myForm2" id="myForm2">
                               <div class="modal-body">
                                 <table class="table">
                                 	<tr>
@@ -276,6 +276,7 @@ $('#myModal').on('shown.bs.modal', function () {
 									</tr>
 									<tr>
 									<td><label for="x">上传视频</label></td>
+									<td>(仅限使用IE浏览器，且视频大小在15M以内)</td>
 									<td colspan="3"><img id="proPre" src="" width="100px" height="120px" style="display: block;" /> <input type="file" name="pro_path" class="empty"
 										id="pro_path" onchange="preImg(this.id,'imgPre');" />
                                     </td>
