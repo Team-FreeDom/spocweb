@@ -32,15 +32,24 @@ public class UserController
 	{
 		HttpSession session=request.getSession();
 		session.invalidate();
-		return "redirect:affair.do";
+		return "redirect:../affair.do";
 	}
 	
 	@RequestMapping("/login.do")
 	public String handleRequest(HttpServletRequest request,HttpServletResponse response) throws Exception
 	{
+		if(request.getSession().getAttribute("user") != null)
+		{
+			return "admin";
+		}
 		    String loginid = request.getParameter("loginid");
+		    System.out.println(loginid);
+		    if(loginid==null)
+		    {		    	
+		    	return "redirect:../affair.do";
+		    }
 			String password = request.getParameter("password");
-			System.out.println(loginid+password);
+			System.out.println(loginid+" ha"+password);
 			boolean flag1=userService.findAdmin(loginid, password);
 			HttpSession session=request.getSession();
 			Member member=new Member();
@@ -48,13 +57,13 @@ public class UserController
 			{				
 				session.setAttribute("user", loginid);
 				session.setAttribute("userAuthority", userService.getAuthority(loginid));
-				
+				System.out.println("hello");
 			    return "admin";
 			}
 			else
 			{
 				
-				return "redirect:affair.do";
+				return "redirect:../affair.do";
 			}
 	}
 	  

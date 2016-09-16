@@ -45,6 +45,10 @@ public class ServiceTypeController {
 	public String addServiceType(HttpServletRequest request, ModelMap map)
 	{
 		String type=request.getParameter("type");
+		if(type==null)
+		{
+			return "forward:service.do";
+		}
 		service_TypeService.addServicetype(type);
 		return "forward:service.do";
 	}
@@ -53,6 +57,10 @@ public class ServiceTypeController {
 	public String deleteServiceType(HttpServletRequest request, ModelMap map)
 	{
 	String[] check = request.getParameterValues("type");
+	if(check==null)
+	{
+		return "forward:service.do";
+	}
 	service_TypeService.deleteType(check);
 	return "forward:service.do";
 	}

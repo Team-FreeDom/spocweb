@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.qcloud.video.api.VideoCloud;
+//import com.qcloud.video.api.VideoCloud;
 import com.spoc.po.member_product;
 import com.spoc.po.product;
 import com.spoc.service.productservice;
@@ -42,6 +42,10 @@ public class productController
 	public String deleteproducts(HttpServletRequest request,ModelMap map)
 	{
 		String[] str=request.getParameterValues("products");
+		if(str==null)
+		{
+			return "forward:products.do";
+		}
 		int [] pro = new int[str.length];
 		for(int i=0;i<str.length;i++)
 		{
@@ -50,10 +54,14 @@ public class productController
 		prosservice.deleteproducts(pro);
 		return "forward:products.do";
 	}
-	@RequestMapping(value="/updateproduct.do", method = RequestMethod.POST)
+	@RequestMapping(value="/updateproduct.do")
 	public String updateproducts(HttpServletRequest request,ModelMap map)throws Exception
 	{		
 		String pidvalue=request.getParameter("pid");
+		if(pidvalue==null)
+		{
+			return "forward:products.do";
+		}
 		int pid=Integer.parseInt(pidvalue);
 		String lpidvalue=request.getParameter("lpid");
 		int lpid=Integer.parseInt(lpidvalue);
@@ -75,6 +83,10 @@ public class productController
 	public String productdetail(HttpServletRequest request,ModelMap map)
 	{
 		String pidvalue=request.getParameter("id");
+		if(pidvalue==null)
+		{
+			return "forward:products.do";
+		}
 		int pid=Integer.parseInt(pidvalue);
 		product pr=proservice.getproduct(pid);
 		member_product mpr=proservice.getproducts(pid);
@@ -82,9 +94,14 @@ public class productController
 		map.addAttribute("mpr", mpr);
 		return "detailproduct";
 	}
-	@RequestMapping(value = "/addproduct.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/addproduct.do")
 	public String addproduct(HttpServletRequest request, ModelMap map) throws IOException
 	{
+		String name = request.getParameter("name");
+		if(name==null)
+		{
+			return "forward:products.do";
+		}
 		// 上传文件（图片），将文件存入服务器指定路径下，并获得文件的相对路径
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		// 得到上传的文件
@@ -131,7 +148,7 @@ public class productController
 //		{
 //			System.out.println(e.getMessage());
 //		}
-		String name = request.getParameter("name");
+		
 		String description= request.getParameter("description");
 		String time = request.getParameter("time");
 		String student = request.getParameter("student");

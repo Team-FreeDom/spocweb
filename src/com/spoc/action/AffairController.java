@@ -57,7 +57,12 @@ public class AffairController {
 	@RequestMapping("/lianxi.do")
 	public String userAffair(HttpServletRequest request,HttpServletResponse response) throws Exception
 	{
+		
 		String name=request.getParameter("name");
+		if(name==null)
+		{
+			return "affair";
+		}
 		String phone=request.getParameter("phone");
 		String content=request.getParameter("content");
 		HttpSession session = request.getSession();
@@ -74,21 +79,21 @@ public class AffairController {
 		Affair affair=new Affair(name,phone,content,str,doc);
 		affairService.add(affair);
 		 request.getSession().invalidate();
-		return "forward:affair.do";
+		return "redirect:../affair.do";
 	}
 	@RequestMapping("/lianxijsp.do")
-	public ModelAndView getInfo(ModelMap map) 
+	public String getInfo(ModelMap map) 
 	{
 		List<Affair_category> Charge=affair_categoryService.getAffairCa();
 		
 		map.addAttribute("Charge", Charge);
-		return new ModelAndView("affair");
+		return "affair";
 	}
 	public void setServletContext(ServletContext context) {
 		this.servletContext  = context;
 	}
 	
-	@RequestMapping(value="/upload.do", method = RequestMethod.POST)
+	@RequestMapping(value="/upload.do")
 	public String handleUploadData(HttpServletRequest request, ModelMap map) throws IOException
 	{
 		// 上传文件（图片），将文件存入服务器指定路径下，并获得文件的相对路径
@@ -144,6 +149,10 @@ public class AffairController {
 	public String addType(HttpServletRequest request, ModelMap map)
 	{
 		String name=request.getParameter("name");
+		if(name==null)
+		{
+			return "forward:dealAT.do";
+		}
 		int flag=Integer.valueOf(request.getParameter("flag"));
 		String str=request.getParameter("rank");
 		int rank=100;
@@ -159,6 +168,10 @@ public class AffairController {
 	public String deleteType(HttpServletRequest request, ModelMap map)
 	{
 		String[] check = request.getParameterValues("type");
+		if(check==null)
+		{
+			return "forward:dealAT.do";
+		}
 		affair_categoryService.deleteType(check);
 		return "forward:dealAT.do";
 	}
@@ -179,6 +192,10 @@ public class AffairController {
 	@RequestMapping("/updateType.do") 
 	public String updateType(HttpServletRequest request, ModelMap map)
 	{
+		if(request.getParameter("acid")==null)
+		{
+			return "forward:dealAT.do";
+		}
 		int acid=Integer.valueOf(request.getParameter("acid"));		
 		String name=request.getParameter("typeName");
 		int flag=Integer.valueOf(request.getParameter("flag"));
@@ -202,7 +219,12 @@ public class AffairController {
 		 *
 		 * */
 		List<Affair> list=affairService.getAffairs();
+		if(request.getParameter("flag")==null)
+		{
+			return "admin";
+		}
 		int flag=Integer.valueOf(request.getParameter("flag"));
+		
 		map.addAttribute("affairs", list);
 		int userValue=(Integer) request.getSession().getAttribute("userAuthority");
 		boolean sysbomlC;
@@ -227,6 +249,10 @@ public class AffairController {
 	{
 		HttpSession session=request.getSession();
 		//session.setAttribute("user", "ffff");//�������û���¼�������ڴ�session����
+		if(request.getParameter("aff_id")==null)
+		{
+			return "forward:applyAffair.do?flag=0";
+		}
 		int aff_id=Integer.valueOf(request.getParameter("aff_id"));
 		String loginid=(String) session.getAttribute("user");
 		String dealname=memberService.getUniqueMember(loginid).getName();
@@ -239,6 +265,10 @@ public class AffairController {
 	public String deleteAffair(HttpServletRequest request, ModelMap map)
 	{
 		String[] check = request.getParameterValues("affair");
+		if(check==null)
+		{
+			return "forward:applyAffair.do?flag=1";
+		}
 		affairService.deleteAffair(check);
 		return "forward:applyAffair.do?flag=1";
 	}
@@ -254,6 +284,10 @@ public class AffairController {
 	public String duqu(HttpServletRequest request, ModelMap map)
 	{
 		HttpSession session=request.getSession();
+		if(request.getParameter("apply_id")==null)
+		{
+			return "forward:applys.do";
+		}
 		int apply_id=Integer.valueOf(request.getParameter("apply_id"));
 		//String loginid=(String) session.getAttribute("user");
 		applyService.updateApply(apply_id);

@@ -59,14 +59,22 @@ public class HonorController {
 	public String honor(HttpServletRequest request, ModelMap map)
 	{
 		HttpSession session=request.getSession();
+		if(request.getParameter("hid")==null)
+		{
+			return "forward:honors.do";
+		}
 		int hid=Integer.valueOf(request.getParameter("hid"));
 		honorService.updateHonor(hid);
 		return "forward:honors.do";
 	}
-	@RequestMapping(value = "/addhonor.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/addhonor.do")
 	public String addHonors(HttpServletRequest request, ModelMap map)
 			throws Exception {
-		
+		String time = request.getParameter("time");
+		if(time==null)
+		{
+			return "forward:honors.do";
+		}
 		// 上传文件（图片），将文件存入服务器指定路径下，并获得文件的相对路径
 
 				MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -95,7 +103,7 @@ public class HonorController {
 				//   session.setAttribute("aaa", filename);
 
 				String hid =request.getParameter("hid");
-				String time = request.getParameter("time");
+				
 				String description=request.getParameter("description");
 				Honor honor=new Honor(hid,time,filename,description);
 				honorService.addHonor(honor);
@@ -105,6 +113,10 @@ public class HonorController {
 	public String updateHonor(HttpServletRequest request, ModelMap map)
 	{
 		String hid =request.getParameter("hid");
+		if(hid==null)
+		{
+			return "forward:honors.do";
+		}
 		String time = request.getParameter("time");
 		String description=request.getParameter("description");
 		String img=request.getParameter("img");
@@ -116,6 +128,10 @@ public class HonorController {
 	public String deleteHonor(HttpServletRequest request)
 	{
 		String[] check=request.getParameterValues("deletehonor");
+		if(check==null)
+		{
+			return "forward:honors.do";
+		}
 		honorService.deleteHonor(check);
 		return "forward:honors.do";
 	}

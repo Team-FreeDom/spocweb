@@ -45,6 +45,10 @@ public class TypeCategoryController {
 	public String addTypeCategory(HttpServletRequest request, ModelMap map)
 	{
 		String description=request.getParameter("description");
+		if(description==null)
+		{
+			return "forward:TypeCategory.do";
+		}
 		//System.out.println(request.getParameter("type"));
 		int stid=Integer.valueOf(request.getParameter("type"));
 		Type_category tc=new Type_category();
@@ -58,6 +62,10 @@ public class TypeCategoryController {
 	public String deleteTypeCategory(HttpServletRequest request, ModelMap map)
 	{
 		String[] check = request.getParameterValues("typeCh");
+		if(check==null)
+		{
+			return "forward:TypeCategory.do";
+		}
 		typeCategoryService.deleteTypeCategory(check);
 		return "forward:TypeCategory.do";
 	}
@@ -66,6 +74,10 @@ public class TypeCategoryController {
 	public String updateTypeCategory(HttpServletRequest request, ModelMap map)
 	{
 		String description=request.getParameter("description");
+		if(description==null)
+		{
+			return "forward:TypeCategory.do";
+		}
 		int stid=Integer.valueOf(request.getParameter("type"));
 		int tcid=Integer.valueOf(request.getParameter("tcid"));
 		Type_category tc=new Type_category(tcid,description,stid);

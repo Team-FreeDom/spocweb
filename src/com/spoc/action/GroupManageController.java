@@ -31,6 +31,10 @@ public class GroupManageController {
 	public String addGroup(HttpServletRequest request, ModelMap map)
 	{
 		String name=request.getParameter("name");
+		if(name==null)
+		{
+			return "redirect:group.do";
+		}
 		String description=request.getParameter("description");
 		Group_manage gm=new Group_manage(name,description);
 		group_manageService.addGroup(gm);
@@ -41,6 +45,10 @@ public class GroupManageController {
 	public String deleteGroup(HttpServletRequest request, ModelMap map)
 	{
 		String[] check = request.getParameterValues("type");
+		if(check==null)
+		{
+			return "redirect:group.do";
+		}
 		group_manageService.deleteGroups(check);
 		return "redirect:group.do";
 	}
@@ -48,6 +56,10 @@ public class GroupManageController {
 	@RequestMapping("/updateGroup.do")  //×ªÏògroupManage.jspÒ³Ãæ
 	public String updateGroup(HttpServletRequest request, ModelMap map)
 	{
+		if(request.getParameter("gid")==null)
+		{
+			return "redirect:group.do";
+		}
 		int gid=Integer.valueOf(request.getParameter("gid"));
 		System.out.println("gid:"+gid);
 		String name=request.getParameter("name");
