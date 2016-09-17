@@ -390,7 +390,7 @@
 									id="${affairtype.acid}" data-dismiss="modal">确定</a>
 							</div>
 						</div>
-				</div>
+				
 				</c:forEach>
 				<!--edit-section-end -->
 				<script type="text/javascript">

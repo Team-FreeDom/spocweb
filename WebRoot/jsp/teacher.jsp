@@ -530,7 +530,7 @@
 									id="${teacher.loginid}" data-dismiss="modal">确定</button>
 							</div>
 						</div>
-				</div>
+				
 				</c:forEach>
 				<!--edit-section-end -->
 				<script type="text/javascript">
