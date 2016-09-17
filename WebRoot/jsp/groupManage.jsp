@@ -325,7 +325,7 @@
 					<!--add-section-end  -->
 
 					<!--edit-section-start  -->
-
+              
 					<c:forEach items='${groups}' var="group">
 						<div class="modal-content text-center admin_hide"
 							id="${group.gid}ta">
@@ -376,8 +376,9 @@
 									确定</a>
 							</div>
 						</div>
-				</div>
+				
 				</c:forEach>
+				
 				<!--edit-section-end -->
 				<script type="text/javascript">
 					function deleteType() {
