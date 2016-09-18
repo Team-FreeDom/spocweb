@@ -289,6 +289,8 @@ public class AffairController {
 			return "forward:applys.do";
 		}
 		int apply_id=Integer.valueOf(request.getParameter("apply_id"));
+                String[] check=request.getParameterValues("deleteapply");
+		applyService.deleteAffair(check);
 		//String loginid=(String) session.getAttribute("user");
 		applyService.updateApply(apply_id);
 		return "forward:applys.do";

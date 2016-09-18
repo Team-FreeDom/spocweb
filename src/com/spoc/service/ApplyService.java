@@ -25,8 +25,17 @@ public class ApplyService {
     	return applyDao.getApply();
     }
     public void updateApply(int apply_id)
-	{
+    {
 		applyDao.updateApply(apply_id);
+    }
+    public void deleteAffair(String[] str)
+	{
+		int apply_id=0;
+		for(String id:str)
+		{
+			apply_id=Integer.valueOf(id);
+			applyDao.deleteApply(apply_id);
+		}
 	}
 	
 }
