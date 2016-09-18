@@ -52,7 +52,7 @@ public class UserApplyController {
 	  Apply apply=new Apply(name,sex,college,grade,major,phone,group);
 	  applyService.userApply(apply);
 	  
-	  return "forward:affair.do";
+	  return "redirect:../affair.do";
   }
   
   @RequestMapping("/applyjsp.do")

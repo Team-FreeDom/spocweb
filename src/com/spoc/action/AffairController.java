@@ -79,15 +79,15 @@ public class AffairController {
 		Affair affair=new Affair(name,phone,content,str,doc);
 		affairService.add(affair);
 		 request.getSession().invalidate();
-		return "forward:affair.do";
+		return "redirect:../affair.do";
 	}
 	@RequestMapping("/lianxijsp.do")
-	public ModelAndView getInfo(ModelMap map) 
+	public String getInfo(ModelMap map) 
 	{
 		List<Affair_category> Charge=affair_categoryService.getAffairCa();
 		
 		map.addAttribute("Charge", Charge);
-		return new ModelAndView("affair");
+		return "affair";
 	}
 	public void setServletContext(ServletContext context) {
 		this.servletContext  = context;

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,com.spoc.po.Honor"
+﻿<%@ page language="java" import="java.util.*,com.spoc.po.Honor"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>我们能拍广告，能拍微课，能帮别人打开心灵之窗</li>
 								<li>我们能做APP，能将你的创意完美实现</li>
 							</ul>
-							<a type="button" href="applyjsp.do" target="_blank"
+							<a type="button" href="jsp/applyjsp.do" target="_blank"
 								class="btn btn-danger btn-lg"
 								style="width:200px; font-size:24px">加入我们</a>
 						</div>
@@ -160,10 +160,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="orange_lab" id="page2-1" style="padding:2% 0 5% 0;">
 				<div class="container">
 
-					<h1 class="commonTitle text-center">
+					<h1 class="commonTitle text-center" style="color:#fff;">
 						<span>荣誉榜</span>
-					</h1>
-
+					</h1>					
 					<div class="row">
 						<div id="full" class="carousel slide">
 							<div class="carousel-inner">
@@ -233,7 +232,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="container" id="turn_picture">
 
 				<ul class="row">
-					<li class="col-xs-2 col-md-2"><a href="#"
+					<li class="col-xs-2 col-md-2" style="margin-left:50px;"><a href="#"
 						data-toggle="tooltip"
 						<c:forEach items='${groups}' var="group">
                       <c:if test="${group.name=='摄影组' }">
@@ -244,11 +243,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<img alt="" src="../image/images/wangye_03.gif"
 									class="img-responsive img-thumbnail">
 							</div>
-							<div>
-								<span style="font-size:2.5vw">摄影组</span>
-							</div>
+							<div align="center" style="padding-top:15%;">
+                            <span style="font-size:2.5vw;">摄影组</span>
+                        </div>
 					</a></li>
-					<li class="col-xs-2 col-md-2"><a href="#"
+					<li class="col-xs-2 col-md-2 col-md-offset-1 col-xs-offset-1"><a href="#"
 						data-toggle="tooltip"
 						<c:forEach items='${groups}' var="group">
                       <c:if test="${group.name=='平面组' }">
@@ -259,29 +258,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<img alt="" src="../image/images/wangye_05.gif"
 									class="img-responsive img-thumbnail">
 							</div>
-							<div>
-								<span style="font-size:2.5vw">平面组</span>
-							</div>
+							 <div align="center" style="padding-top:15%;">
+                            <span style="font-size:2.5vw">平面组</span>
+                        </div>
 					</a></li>
-					<li class="col-xs-2 col-md-2"><a href="#"
+					
+					<li class="col-xs-2 col-md-2 col-md-offset-1 col-xs-offset-1"><a href="#"
 						data-toggle="tooltip"
 						<c:forEach items='${groups}' var="group">
-                      <c:if test="${group.name=='动画组' }">
-                       title="${group.description}"
-                        </c:if>
-                    </c:forEach>>
-							<div>
-								<img alt="" src="../image/images/wangye_07.gif"
-									class="img-responsive img-thumbnail">
-							</div>
-							<div>
-								<span style="font-size:2.5vw">动画组</span>
-							</div>
-					</a></li>
-					<li class="col-xs-2 col-md-2"><a href="#"
-						data-toggle="tooltip"
-						<c:forEach items='${groups}' var="group">
-                      <c:if test="${group.name=='视频组' }">
+                      <c:if test="${group.name=='特效组' }">
                        title="${group.description}"
                         </c:if>
                     </c:forEach>>
@@ -289,11 +274,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<img alt="" src="../image/images/wangye_09.gif"
 									class="img-responsive img-thumbnail">
 							</div>
-							<div>
-								<span style="font-size:2.5vw">视频组</span>
-							</div>
+							  <div align="center" style="padding-top:15%;">
+                            <span style="font-size:2.5vw">特效组</span>
+                        </div>
 					</a></li>
-					<li class="col-xs-2 col-md-2"><a href="#"
+					<li class="col-xs-2 col-md-2 col-md-offset-1 col-xs-offset-1"><a href="#"
 						data-toggle="tooltip"
 						<c:forEach items='${groups}' var="group">
                       <c:if test="${group.name=='程序组' }">
@@ -304,25 +289,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<img alt="" src="../image/images/wangye_11.gif"
 									class="img-responsive img-thumbnail">
 							</div>
-							<div>
-								<span style="font-size:2.5vw">程序组</span>
-							</div>
+							 <div align="center" style="padding-top:15%;">
+                            <span style="font-size:2.5vw">程序组</span>
+                        </div>
 					</a></li>
-					<li class="col-xs-2 col-md-2"><a href="#"
-						data-toggle="tooltip"
-						<c:forEach items='${groups}' var="group">
-                      <c:if test="${group.name=='创意组' }">
-                       title="${group.description}"
-                        </c:if>
-                    </c:forEach>>
-							<div>
-								<img alt="" src="../image/images/wangye_13.gif"
-									class="img-responsive img-thumbnail">
-							</div>
-							<div>
-								<span style="font-size:2.5vw">创意组</span>
-							</div>
-					</a></li>
+					
 				</ul>
 			</div>
 
@@ -330,8 +301,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!--/section2 -->
 
 
-		<div class="section demo-2 orange_lab">
-			<div class="section__heading">思博课</div>
+		<div class="section demo-2 orange_lab" id="section3">
+      		<div class="section__heading">思博课</div>
+			<div class="section__body" style="margin-left:10px;">
+                	<p>我们个性，我们自由，我们勇敢，我们坚持，我们创新</p>
+                    <p>我们将无限的热情与激情投诸于作品的创造中</p>
+                    <p>每一幕精妙绝伦的画面都伴随着帧与帧之间无数火花的碰撞</p>
+                    <p>每一个惟妙惟肖的勾勒都是点与线的巧妙结合</p>
+                    <p>每一次流畅自如的点击都促进了硬件与软件的亲密交流</p>
+                    <p>每一个呈现给你的作品都是我们团结合作，勇敢创新的成果</p>
+                </div>
 			<div class="isolayer isolayer--deco4">
 				<ul class="grid">
 					<c:forEach items='${product}' var="list" begin="0" end="8">
@@ -351,7 +330,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<!--/section3 -->
-		solutions
+		
 
 		<div class="section">
 			<div class="fourth_top">
@@ -389,11 +368,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<ul class="list-unstyled fourth_right">
 								<c:forEach items='${affair_category}' var="ac">
 									<li ${ac.flag==0?"class=\"gray\"":"" }><a href="#"
-										onClick="changeAffair('${ac.name }')">${ac.name }</a></li>
+										onClick="changeAffair('${ac.name }','${ac.flag}')">${ac.name }</a></li>
 									<%-- href="affair.do?name=${ac.name }#4thpage" --%>
 								</c:forEach>
 							</ul>
-							<a type="button" class="btn btn-danger" href="lianxijsp.do"
+							<a type="button" class="btn btn-danger" href="jsp/lianxijsp.do"
 								target="_blank">点击申请</a>
 						</div>
 					</div>
@@ -449,7 +428,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</button>
 						<h4 class="modal-title text-center" id="myModalLabel"></h4>
 					</div>
-					<form action="login.do" onSubmit="return check()" method="post">
+					<form action="jsp/login.do" onSubmit="return check()" method="post">
 						<div class="modal-body">
 
 							<div class="input-group" style="margin-top:15px;">
@@ -485,9 +464,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						return true;
 					}
-					
-					function changeAffair(name)
+					function changeAffair(name,flag)
 					{
+						if(flag==0)
+							{
+							return;
+							}
 						paras1 = document.getElementsByClassName("act");
 						for(i=0;i<paras1.length;i++){
 						     //删除元素 元素.parentNode.removeChild(元素);
@@ -519,7 +501,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								"name" : name
 							},
 							dataType : "json",							
-							url : 'changeAffair.do',
+							url : '../changeAffair.do',
 							async : false,
 							cache : false,
 							error : function(request) {
@@ -575,7 +557,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									"name" : "微课慕课"
 								},
 								dataType : "json",							
-								url : 'changeAffair.do',
+								url : '../changeAffair.do',
 								async : false,
 								cache : false,
 								error : function(request) {

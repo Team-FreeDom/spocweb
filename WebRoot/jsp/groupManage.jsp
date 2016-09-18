@@ -208,7 +208,7 @@
 										<td></td>
 									</tr>
 								</table>
-								<table id=child7 style="display: none"
+								<table id=child7
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
@@ -325,7 +325,7 @@
 					<!--add-section-end  -->
 
 					<!--edit-section-start  -->
-
+              
 					<c:forEach items='${groups}' var="group">
 						<div class="modal-content text-center admin_hide"
 							id="${group.gid}ta">
@@ -376,8 +376,9 @@
 									确定</a>
 							</div>
 						</div>
-				</div>
+				
 				</c:forEach>
+				
 				<!--edit-section-end -->
 				<script type="text/javascript">
 					function deleteType() {

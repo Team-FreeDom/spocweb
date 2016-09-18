@@ -63,7 +63,7 @@
 									</tr>
 								</table>
 
-								<table id=child1 style="display: none"
+								<table id=child1
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
@@ -530,7 +530,7 @@
 									id="${teacher.loginid}" data-dismiss="modal">确定</button>
 							</div>
 						</div>
-				</div>
+				
 				</c:forEach>
 				<!--edit-section-end -->
 				<script type="text/javascript">

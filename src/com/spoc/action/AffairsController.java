@@ -31,7 +31,7 @@ import com.spoc.service.productservice;
 import com.spoc.po.product;
 
 @Controller("affairsController")
-@RequestMapping("/jsp")
+//@RequestMapping("/jsp")
 public class AffairsController {
 
 	@Autowired
@@ -67,7 +67,7 @@ public class AffairsController {
 		map.addAttribute("affairs", list);
 		map.addAttribute("affair_category",
 				affair_categoryService.getAffairCa());
-		return "index1";
+		return "jsp/index";
 	}
 
 	@RequestMapping("/changeAffair.do")
