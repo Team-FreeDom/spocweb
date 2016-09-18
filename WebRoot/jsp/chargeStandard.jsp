@@ -181,7 +181,7 @@
 										<td></td>
 									</tr>
 								</table>
-								<table id=child6 style="display: none"
+								<table id=child6
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>

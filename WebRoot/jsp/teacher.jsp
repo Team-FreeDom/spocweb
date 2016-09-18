@@ -63,7 +63,7 @@
 									</tr>
 								</table>
 
-								<table id=child1 style="display: none"
+								<table id=child1
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
