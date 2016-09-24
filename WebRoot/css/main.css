@@ -29,7 +29,7 @@ li {
 	padding:5% 0;
 }
 #page1-1  ul{
- font-family: "寰蒋闆呴粦";
+ font-family: "瀵邦喛钂嬮梿鍛寸拨";
  color:#FFF
 }
 #page1-1  ul  li{
@@ -132,9 +132,9 @@ white-space: nowrap;
 	text-align:center;
 	font-size:2em;
 	color:#b04a34;
-	font-family:"寰蒋闆呴粦";
+	font-family:"瀵邦喛钂嬮梿鍛寸拨";
 	margin-top:4%;}
-/*鍥剧墖鏃嬭浆鐨刢ss鏍峰紡*/
+/*閸ュ墽澧栭弮瀣祮閻ㄥ垻ss閺嶅嘲绱�/
  #turn_picture ul
         {
            /* width: 960px;*/
@@ -158,7 +158,7 @@ white-space: nowrap;
             display: block;
             width: 100%;
             height: 100%;
-            /*鑸炲彴锛堝姩鐢诲厓绱犵殑鐖跺鍣級perspective*/
+            /*閼哥偛褰撮敍鍫濆З閻㈣鍘撶槐鐘垫畱閻栬泛顔愰崳顭掔礆perspective*/
             -webkit-perspective: 800px;
             -moz-perspective: 800px;
 
@@ -172,12 +172,12 @@ white-space: nowrap;
             width: 100%;
             height: 100%;
             color: #b04a34;
-            /*鍔ㄧ敾鍏冪礌transform-style*/
+            /*閸斻劎鏁鹃崗鍐transform-style*/
             -webkit-transform-style: preserve-3d;
             -moz-transform-style: preserve-3d;
             -webkit-transition: .8s ease-in-out ;
             -moz-transition:  .8s ease-in-out ;
-            /*鍔ㄧ敾鍏冪礌鑳屽悗璁剧疆涓篽idden*/
+            /*閸斻劎鏁鹃崗鍐閼冲苯鎮楃拋鍓х枂娑撶idden*/
             -webkit-backface-visibility: hidden;
             -moz-backface-visibility: hidden;
         }
@@ -185,7 +185,7 @@ white-space: nowrap;
         #turn_picture ul li a div:first-child
         {
             /*
-            缁晊杞存棆杞�            */
+            缂佹檴鏉炲瓨妫嗘潪锟�           */
             -webkit-transform: rotateY(0);
             -moz-transform: rotateY(0);
             z-index: 2;

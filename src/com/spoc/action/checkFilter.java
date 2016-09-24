@@ -36,8 +36,9 @@ public class checkFilter extends HttpServlet implements Filter {
 		if (!path.endsWith("affair.do") && !path.endsWith("login.do")
 				&& !path.endsWith("changeAffair.do")
 				&& !path.endsWith("lianxijsp.do")&& !path.endsWith("applyjsp.do") && !path.endsWith("apply.do")				
-				&& !path.endsWith("lianxi.do") && !path.endsWith("upload.do")) {
+				&& !path.endsWith("lianxi.do") && !path.endsWith("upload.do") && !path.endsWith("success.jsp")) {
 
+			System.out.println(req.getSession().getAttribute("user"));
 			if (req.getSession().getAttribute("user") == null) {
 
 				res.sendRedirect("/affair.do");

@@ -54,7 +54,7 @@
 		var aLi = oTeamContent3.getElementsByTagName('li');
 		var oC = null;
 		var w =190;
-		var h = 300;
+		var h = 448;
 		var timer1 = null;
 		var timer2 = null;
 		create();
