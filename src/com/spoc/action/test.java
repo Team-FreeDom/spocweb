@@ -199,7 +199,7 @@ public class test extends HttpServlet
 		int pid=up.addproduct(pr);
 		member_product mpr=new member_product(pid,student,teacher);
 		up.addmember_product(mpr);
-		response.sendRedirect("/spocweb1/jsp/success.jsp");
+		response.sendRedirect("/SpocWeb/jsp/success.jsp");
 	}
 
 	/**

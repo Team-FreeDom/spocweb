@@ -106,7 +106,7 @@ $('#myModal').on('shown.bs.modal', function () {
 										<td></td>
 									</tr>
 								</table>
-                             <table id=child3 style="display: none"
+                             <table id=child3
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
@@ -238,7 +238,7 @@ $('#myModal').on('shown.bs.modal', function () {
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="fun(this)"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">添加作品</h4>
                               </div>
-                            <form action="/Spocweb/servlet/test" method="post" enctype="multipart/form-data"  onSubmit="return checkA()" name="myForm2" id="myForm2">
+                            <form action="/SpocWeb/servlet/test" method="post" enctype="multipart/form-data"  onSubmit="return checkA()" name="myForm2" id="myForm2">
                               <div class="modal-body">
                                 <table class="table">
                                 	<tr>

@@ -67,12 +67,12 @@
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
 
-										<td><a class=menuchild href="user.do?flag=1" target=main>老师管理</a></td>
+										<td><a class=menuchild href="user.do?flag=1" >老师管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
 										<td><a class=menuchild href="user.do?flag=2"
-											target="main">学生管理</a></td>
+											>学生管理</a></td>
 									</tr>
 									<tr height=4>
 										<td colspan=2></td>
@@ -148,7 +148,7 @@
 										<td></td>
 									</tr>
 								</table>
-								<table id=child5 style="display: none"
+								<table id=child5
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
@@ -217,13 +217,21 @@
 					<div class="row admin_black admin_spacing">
 						<div class="col-md-2 col-xs-5">报名申请处理</div>
 						<div class="col-md-7 hidden-xs"></div>
-					</div>
+					
+					 <div class="col-md-3 col-xs-7">
+                      <span> 
+							 <a href="javascript:deleteType()"> <img
+									src="../image/del.gif" width="10" height="10" /> 删除
+							</a> &nbsp;&nbsp;
+							</span>
+						</div>
+						</div>
 					<div id="tableBox">
 						<div class="admin_roll">
-							<form id="myForm4" action="duqu.do" method="post">
+							<form name="myform" id="myform" action="duqu.do" method="post" onSubmit="return check1()">
 								<table class="table" id="tabBox">
 									<tr>
-
+                                                                                <td>    </td>
 										<td>姓名</td>
 										<td>性别</td>
 										<td>学院</td>
@@ -232,7 +240,8 @@
 									<c:forEach items='${apply}' var="affair">
 
 											<tr>
-
+                                                                                               <td><label><input type="checkbox" name="deleteapply"
+													value="${affair.apply_id}" id="type" class="ck" /></label></td>
 												<td>${affair.name}</td>
 												<td>${affair.sex}</td>
 												<td>${affair.college}</td>
@@ -338,6 +347,11 @@
 						$('#myform').submit();
 
 					}
+                                         function deleteMember() {
+
+						$('#myform').submit();
+
+					}
 					$(".display").bind("click", function() {
 						var id = this.id + "ta";
 						document.getElementById(id).style.display = "block";
@@ -370,6 +384,28 @@
 						var id = this.id + "ta";
 						document.getElementById(id).style.display = "none";
 					})
+function check1()
+					{
+						 var checkboxs=document.getElementsByName("deleteapply");
+						 var m=0;
+						 if(checkboxs.length==0)
+							 {
+							 alert("没有要删除的选项！");
+							 }
+						  for(var i=0;i<checkboxs.length;i++)
+							{
+								if(checkboxs[i].checked==false)
+								{
+									m=m+1;
+								}
+							}
+							if(m==i)
+							{
+								alert("请选择您要删除的选项！");
+								return false;
+								}
+							return true;
+					}
 				</script>
 				<script>
 					var tabBox = document.getElementById("tabBox"),

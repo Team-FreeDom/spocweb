@@ -67,12 +67,12 @@
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
 
-										<td><a class=menuchild href="user.do?flag=1" target=main>老师管理</a></td>
+										<td><a class=menuchild href="user.do?flag=1" >老师管理</a></td>
 									</tr>
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>
 										<td><a class=menuchild href="user.do?flag=2"
-											target="main">学生管理</a></td>
+											>学生管理</a></td>
 									</tr>
 									<tr height=4>
 										<td colspan=2></td>
@@ -180,7 +180,7 @@
 										<td></td>
 									</tr>
 								</table>
-								<table id=child6 style="display: none"
+								<table id=child6
 									class="text-left admin_table">
 									<tr height=20>
 										<td width=30><img src="../image/menu_icon.gif"></td>

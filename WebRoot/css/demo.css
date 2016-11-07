@@ -31,28 +31,15 @@
 
 .section__heading {
 	pointer-events: none;
-	padding: 6% 0 0 60%;/*控制思博课三个字的位置*/
+	padding: 6% 0 0 0;/*控制思博课三个字的位�*/
 	font-size: 2em;
-	float:left;
+	float:right;
 	text-align:left;
 	line-height: 1;
 	color: #fff;
 	font-family: 'Playfair Display', serif;
 }
-.section__body{
-	pointer-events: none;
-	padding: 5% 0 0 60%;/*控制思博课三个字的位置*/
-	font-size: 1em;
-	float:left;
-	text-align:left;
-	line-height: 2em;
-	color: #fff;
-/*	position: relative;
-	margin: 0;
-	z-index: 1000;
-*/	font-family: 'Playfair Display', serif;
-	
-	}
+
 
 
 

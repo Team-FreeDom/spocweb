@@ -53,18 +53,20 @@
 		var oTeamContent3=document.getElementById("teamContent3");
 		var aLi = oTeamContent3.getElementsByTagName('li');
 		var oC = null;
-		var w = 118;
-		var h = 300;
+		var w =190;
+		var h = 448;
 		var timer1 = null;
 		var timer2 = null;
 		create();
 		bindList();
 		function create(){
 			var oUl = document.createElement('ul');
-			for(var i=0;i<8;i++){
+			for(var i=0;i<5;i++){
+				
 				var oLi = document.createElement('li');
 				oLi.style.backgroundPosition =  -(i*w) +'px 0';
 				oUl.appendChild(oLi);
+					
 			}
 			oTeamContent3.appendChild(oUl);
 		}

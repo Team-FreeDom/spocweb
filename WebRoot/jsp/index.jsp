@@ -97,12 +97,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="col-md-5 col-xs-12 col-md-offset-1">
 							<video id="example_video_1"
 								class="video-js vjs-skin-hotdog-stand vjs-big-play-centered "
-								poster="http://video-js.zencoder.com/oceans-clip.png">
-								<source id='v1' src="http://vjs.zencdn.net/v/oceans.mp4"
+								poster="../image/video.jpg">
+								<source id='v1' src="http://systemcover-10056183.video.myqcloud.com/beginv1.0.mp4"
 									type='video/mp4' />
-								<source src="http://vjs.zencdn.net/v/oceans.webm"
+								<source src="http://systemcover-10056183.video.myqcloud.com/beginv1.0.webm"
 									type='video/webm' />
-								<source src="http://vjs.zencdn.net/v/oceans.ogv"
+								<source src="http://systemcover-10056183.video.myqcloud.com/beginv1.0.ogv"
 									type='video/ogg' />
 								<track kind="captions" src="demo.captions.vtt" srclang="zh"
 									label="china"></track>
@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>我们能拍广告，能拍微课，能帮别人打开心灵之窗</li>
 								<li>我们能做APP，能将你的创意完美实现</li>
 							</ul>
-							<a type="button" href="jsp/applyjsp.do" target="_blank"
+							<a type="button" href="jsp/applyjsp.do"
 								class="btn btn-danger btn-lg"
 								style="width:200px; font-size:24px">加入我们</a>
 						</div>
@@ -240,7 +240,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </c:if>
                     </c:forEach>>
 							<div>
-								<img alt="" src="../image/images/wangye_03.gif"
+								<img alt="" src="../image/images/wangye_03.png"
 									class="img-responsive img-thumbnail">
 							</div>
 							<div align="center" style="padding-top:15%;">
@@ -255,7 +255,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </c:if>
                     </c:forEach>>
 							<div>
-								<img alt="" src="../image/images/wangye_05.gif"
+								<img alt="" src="../image/images/wangye_05.png"
 									class="img-responsive img-thumbnail">
 							</div>
 							 <div align="center" style="padding-top:15%;">
@@ -271,7 +271,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </c:if>
                     </c:forEach>>
 							<div>
-								<img alt="" src="../image/images/wangye_09.gif"
+								<img alt="" src="../image/images/wangye_09.png"
 									class="img-responsive img-thumbnail">
 							</div>
 							  <div align="center" style="padding-top:15%;">
@@ -286,7 +286,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </c:if>
                     </c:forEach>>
 							<div>
-								<img alt="" src="../image/images/wangye_11.gif"
+								<img alt="" src="../image/images/wangye_11.png"
 									class="img-responsive img-thumbnail">
 							</div>
 							 <div align="center" style="padding-top:15%;">
@@ -302,15 +302,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 		<div class="section demo-2 orange_lab" id="section3">
-      		<div class="section__heading">思博课</div>
-			<div class="section__body" style="margin-left:10px;">
-                	<p>我们个性，我们自由，我们勇敢，我们坚持，我们创新</p>
-                    <p>我们将无限的热情与激情投诸于作品的创造中</p>
-                    <p>每一幕精妙绝伦的画面都伴随着帧与帧之间无数火花的碰撞</p>
-                    <p>每一个惟妙惟肖的勾勒都是点与线的巧妙结合</p>
-                    <p>每一次流畅自如的点击都促进了硬件与软件的亲密交流</p>
-                    <p>每一个呈现给你的作品都是我们团结合作，勇敢创新的成果</p>
-                </div>
+      		<div class="section__heading">
+      		  <img src="../image/work_1.jpg" width="600px">
+      		</div>
+			
 			<div class="isolayer isolayer--deco4">
 				<ul class="grid">
 					<c:forEach items='${product}' var="list" begin="0" end="8">
